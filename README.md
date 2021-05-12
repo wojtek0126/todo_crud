@@ -1,4 +1,6 @@
 # todo_crud
+Do planowania i dokumentowania krok po kroku używam Jira.
+
 Oto wymagania i wytyczne projektu:
 
 Stworzyć listę TODO w React.js z CRUD.
