@@ -1,6 +1,4 @@
 # todo_crud
-Simple to do list made in react.
-Using Jira board to plan and progress.
 Oto wymagania i wytyczne projektu:
 
 Stworzyć listę TODO w React.js z CRUD.
