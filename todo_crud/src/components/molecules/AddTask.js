@@ -22,7 +22,7 @@ const AddTask = () => (
    <InputField placeholder={`describe your task`} color={`text`} labelText={'Task description'} />   
    <TextArea color={`text`} labelText={'your task details'} labelColor={`text`} fs1={`3`} fs2={`4`} fs3={`5`} />   
     <Flex sx={{flexDirection: 'column'}}>        
-    <ButtonPrimary text={`save task`} to={`/add`} color={`primary`}/>  
+    <ButtonPrimary text={`save`} to={`/add`} color={`primary`}/>  
     <ButtonPrimary text={`back to menu`} to={`/home`} color={`primary`}/>  
     </Flex>   
   </div>
