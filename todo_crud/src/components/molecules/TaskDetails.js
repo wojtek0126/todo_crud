@@ -1,8 +1,11 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { Flex, jsx, Link, ThemeProvider } from 'theme-ui';
+import { Flex, jsx, ThemeProvider } from 'theme-ui';
 import theme from '../../styles/theme';
+import BigText from '../atoms/BigText';
 import ButtonPrimary from '../atoms/ButtonPrimary';
+import MediumText from '../atoms/MediumText';
+import SmallText from '../atoms/SmallText';
 
 const TaskDetails = () => (
     <ThemeProvider theme={theme}>
@@ -16,52 +19,15 @@ const TaskDetails = () => (
       padding: 3,
     }}
   >
-    <h2
-      sx={{
-        fontFamily: 'heading',
-        fontWeight: 'heading',
-        fontSize: [3, 4, 5],
-        margin: 0,
-      }}
-    >
-      task name
-    </h2>
-    <div
-      sx={{
-        fontFamily: 'heading',
-        fontWeight: 'heading',
-        fontSize: [1, 2],
-        color: 'muted',
-        marginBottom: 2,
-      }}
-    >
-      task description
-    </div>   
-    <div
-      sx={{
-        fontFamily: 'heading',
-        fontWeight: 'heading',
-        fontSize: [1, 2],
-        color: 'muted',
-        marginBottom: 2,
-      }}
-    >
-      notes
-    </div> 
-    <div
-      sx={{
-        fontFamily: 'heading',
-        fontWeight: 'heading',
-        fontSize: [1, 2],
-        color: 'muted',
-        marginBottom: 2,
-      }}
-    >
-      status
-    </div> 
     <Flex sx={{flexDirection: 'column'}}>
-       <ButtonPrimary text={`change status`} to={`/details`} color={`primary`} />
-       <ButtonPrimary text={`edit task`} to={`/details`} color={`primary`} />
+      <BigText text={`task name`} color={`text`} />
+      <MediumText text={`task decription`} color={`muted`} />  
+      <MediumText text={`notes`} color={`muted`} />  
+      <MediumText text={`status`} color={`muted`} />  
+    </Flex>  
+    
+    <Flex sx={{flexDirection: 'column'}}>     
+       <ButtonPrimary text={`edit task`} to={`/edit`} color={`primary`} />
        <ButtonPrimary text={`delete task`} to={`/details`} color={`primary`} />       
        <ButtonPrimary text={`back to menu`} to={`/home`} color={`primary`} />
     </Flex>    

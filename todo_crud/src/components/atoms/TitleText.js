@@ -2,12 +2,12 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
 
-const TitleText = ({text, textColor}) => (
+const TitleText = ({text, color}) => (
     <h1
     sx={{
       fontFamily: 'heading',
       fontWeight: 'heading',
-      color: `${textColor}`,
+      color: `${color}`,
       fontSize: [3, 4, 5],
       margin: 0,
       textTransform: 'uppercase',

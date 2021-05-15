@@ -24,7 +24,7 @@ const Title = () => (
     <Flex sx={{
       flexDirection: 'row',    
     }}>
-      <InputField text={`search`} textColor={`text`} placeholder={`search`}/>
+      <InputField text={`search`} placeholder={`search`} color={`text`}/>
        <SearchIcon color={`text`} />
     </Flex>  
     <Flex sx={{justifyContent: 'space-between'}}>

@@ -1,7 +1,10 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from 'theme-ui';
+import BigText from '../atoms/BigText';
 import ButtonPrimary from '../atoms/ButtonPrimary';
+import MediumText from '../atoms/MediumText';
+import SmallText from '../atoms/SmallText';
 
 const Task = () => (
   <div
@@ -14,27 +17,9 @@ const Task = () => (
       padding: 3,
     }}
   >
-    <h2
-      sx={{
-        fontFamily: 'heading',
-        fontWeight: 'heading',
-        fontSize: [3, 4, 5],
-        margin: 0,
-      }}
-    >
-      task name
-    </h2>
-    <div
-      sx={{
-        fontFamily: 'heading',
-        fontWeight: 'heading',
-        fontSize: [1, 2],
-        color: 'muted',
-        marginBottom: 2,
-      }}
-    >
-      task description
-    </div>   
+  <BigText text={`task name`} color={`text`} />  
+  <MediumText text={`task description`} color={`muted`} /> 
+  <MediumText text={`status`} color={`text`} />  
    <ButtonPrimary text={`show details`} to={`/details`} color={`primary`}/>
   </div>
 );
