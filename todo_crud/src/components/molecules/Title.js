@@ -3,6 +3,9 @@
 import { jsx, Flex, Input } from 'theme-ui'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom'
+import ButtonPrimary from '../atoms/ButtonPrimary'
+import ProgressCounter from '../atoms/ProgressCounter'
 
 
 const Title = () => (
@@ -73,24 +76,7 @@ const Title = () => (
     </Flex>  
     <Flex sx={{justifyContent: 'space-between'}}>
     <Flex sx={{flexDirection: 'column'}}>
-      <div      
-        sx={{
-          border: '1px solid black',
-          backgroundColor: 'progress',
-          borderRadius: '100em',
-          color: 'foreground',
-          display: 'inline-block',
-          fontFamily: 'heading',
-          fontSize: [0, 1],
-          fontWeight: 'bold',
-          marginBottom: 1,
-          px: 3, // shorthand for defining padding-left and padding-right
-          py: 2, // shorthand for defining padding-top and padding-bottom
-          textDecoration: 'none',
-          textTransform: 'uppercase',         
-        }}
-      >in progress: 2323211    
-      </div>
+     <ProgressCounter text={`in progress`} color={`progress`} counter={`234`} />
       <div        
         sx={{
           border: '1px solid black',
@@ -109,29 +95,7 @@ const Title = () => (
         }}
       > completed: 45678
       </div>
-      <a
-        href="/"
-        sx={{
-          backgroundColor: 'primary',
-          borderRadius: '100em',
-          color: 'foreground',
-          display: 'inline-block',
-          fontFamily: 'heading',
-          fontSize: [0, 1],
-          fontWeight: 'bold',
-          marginBottom: 1,
-          px: 3, // shorthand for defining padding-left and padding-right
-          py: 2, // shorthand for defining padding-top and padding-bottom
-          textDecoration: 'none',
-          textTransform: 'uppercase',
-          height: 'fit-content',
-          width: 'fit-content',
-          // alignSelf: 'center',
-          '&:hover, &:focus': { backgroundColor: 'secondary' },
-        }}
-      >
-        new task
-      </a> 
+      <ButtonPrimary text={`add new task`} to={`/add`} />  
       </Flex>       
     </Flex>   
   </Flex>
