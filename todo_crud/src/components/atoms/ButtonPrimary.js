@@ -1,14 +1,13 @@
-
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
 import { Link } from 'react-router-dom'
 
-const ButtonPrimary = ({to, text}) => (
+const ButtonPrimary = ({to, text, color}) => (
     <Link to={to} >
         <a href="/"  
             sx={{
-            backgroundColor: 'primary',
+            backgroundColor: `${color}`,
             borderRadius: '100em',
             color: 'foreground',
             display: 'inline-block',

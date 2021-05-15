@@ -60,15 +60,10 @@ const TaskDetails = () => (
       status
     </div> 
     <Flex sx={{flexDirection: 'column'}}>
-        <Link to="/add" >          
-        <ButtonPrimary text={`edit`} />         
-        </Link> 
-        <ButtonPrimary text={`change status`} />  
-        <Link to="/home" >          
-        <ButtonPrimary text={`delete`} />   
-        </Link>  <Link to="/home" >          
-        <ButtonPrimary text={`back to menu`} />   
-        </Link> 
+       <ButtonPrimary text={`change status`} to={`/details`} color={`primary`} />
+       <ButtonPrimary text={`edit task`} to={`/details`} color={`primary`} />
+       <ButtonPrimary text={`delete task`} to={`/details`} color={`primary`} />       
+       <ButtonPrimary text={`back to menu`} to={`/home`} color={`primary`} />
     </Flex>    
   </div>
     </ThemeProvider>

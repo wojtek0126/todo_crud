@@ -38,8 +38,8 @@ const AddTask = () => (
       task description
     </div>   
     <Flex sx={{flexDirection: 'column'}}>        
-    <ButtonPrimary text={`add new task`} to={`/add`} />  
-    <ButtonPrimary text={`back to main board`} to={`/home`} />  
+    <ButtonPrimary text={`add new task`} to={`/add`} color={`primary`}/>  
+    <ButtonPrimary text={`back to main board`} to={`/home`} color={`primary`}/>  
     </Flex>   
   </div>
     </ThemeProvider>

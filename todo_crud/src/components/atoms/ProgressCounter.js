@@ -1,4 +1,3 @@
-
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
@@ -7,7 +6,7 @@ const ProgressCounter = ({text, counter, color}) => (
     <div        
     sx={{
       border: '1px solid black',
-      backgroundColor: {color},
+      backgroundColor: `${color}`,
       borderRadius: '100em',
       color: 'foreground',
       display: 'inline-block',
