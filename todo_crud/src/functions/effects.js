@@ -1,0 +1,1 @@
+//storage for functions responsible for element effects
