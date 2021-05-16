@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 import AddTask from "./components/molecules/AddTask";
 import EditTask from './components/molecules/EditTask';
 import TaskDetails from "./components/molecules/TaskDetails";
@@ -9,6 +9,7 @@ const App = () => {
     <>  
     <Router>
       <Switch>
+      <Redirect exact from="/" to="/home" />
         <Route path="/home" component={MainView} />           
         <Route path="/details" component={TaskDetails} />
         <Route path="/add" component={AddTask} />   
