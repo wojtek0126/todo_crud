@@ -16,27 +16,10 @@ const cards = [1, 2, 3, 4, 5, 6]; // Demo data to generate 6 cards
 const [tasks, setTasks] = useState([])
 
 
-
 // get all tasks from db
 useEffect(() => {
-  return getAllTasks(`todos`, setTasks);   
- 
+  return getAllTasks(`todos`, setTasks);    
 }, []);
-let tasksArr = []
-// useEffect(() => {
-  tasks.map((element, index) => {
-    tasksArr.push(element);
-    console.log(tasksArr[index], "z index");})
-//   });
-
-// }, [tasks]);
-
-// Object.entries(tasks.object).map(([key, val], i) => {
-//   console.log(val)
-// })
-
-
-console.log(tasksArr);
 
 
   return (
@@ -46,11 +29,10 @@ console.log(tasksArr);
         <Title />      
         <Flex sx={{ flexWrap: 'wrap' }}>
         {
-                    tasks.map((task) => {
-                        console.log(task.id, `gracz o id: ${tasks.id}`);                      
+                    tasks.map((task) => {                                         
                         return (
                             <Box key={task.id} sx={{ width: ['100%', '50%', '33.33%'] }}>
-                              <Task taskName={task.name} taskDescription={task.description} status={task.status} />
+                              <Task id={task.id} taskName={task.name} taskDescription={task.description} status={task.status} />
                             </Box>
                         )
                     })

@@ -3,9 +3,9 @@
 import { jsx } from 'theme-ui'
 import { Link } from 'react-router-dom'
 
-const ButtonPrimary = ({to, text, color}) => (
+const ButtonPrimary = ({to, text, color, onClick}) => (
     <Link to={to} >
-        <a href="/"  
+        <a href="/" onClick={onClick} 
             sx={{
             backgroundColor: `${color}`,
             borderRadius: '100em',

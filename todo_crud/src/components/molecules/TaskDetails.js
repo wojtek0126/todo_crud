@@ -1,13 +1,26 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
+import { useState, useEffect } from 'react'
 import { Flex, jsx, ThemeProvider } from 'theme-ui';
+import { getSingleTask } from '../../API/fetch';
 import theme from '../../styles/theme';
 import BigText from '../atoms/BigText';
 import ButtonPrimary from '../atoms/ButtonPrimary';
 import MediumText from '../atoms/MediumText';
 import SmallText from '../atoms/SmallText';
 
-const TaskDetails = () => (
+const TaskDetails = () => {
+    const [task, setTask] = useState([]);
+    const idfromstorage = localStorage.getItem(`taskId`);
+
+    useEffect(() => {
+        getSingleTask(`todos`, idfromstorage, setTask);   
+        // window.localStorage.clear();  
+    }, [])
+
+    console.log(task, "task w taskdetails");
+
+    return (
     <ThemeProvider theme={theme}>
 <div
     sx={{
@@ -20,10 +33,10 @@ const TaskDetails = () => (
     }}
   >
     <Flex sx={{flexDirection: 'column'}}>
-      <BigText text={`task name`} color={`text`} />
-      <MediumText text={`task decription`} color={`muted`} />  
-      <MediumText text={`notes`} color={`muted`} />  
-      <MediumText text={`status`} color={`muted`} />  
+      <BigText text={`task name: ${task.name}`} color={`text`} />
+      <MediumText text={`task decription: ${task.description}`} color={`muted`} />  
+      <MediumText text={`notes: ${task.notes}`} color={`muted`} />  
+      <MediumText text={`status: ${task.status}`} color={`muted`} />  
     </Flex>  
     
     <Flex sx={{flexDirection: 'column'}}>     
@@ -33,6 +46,6 @@ const TaskDetails = () => (
     </Flex>    
   </div>
     </ThemeProvider>
-);
+); }
 
 export default TaskDetails;

@@ -1,18 +1,6 @@
 // json-server --watch src/API/todos.json --host 127.0.0.1
 import {API} from "./variables"
 
-//test
-// export const getAllTasks = (setArray) => {
-//     fetch(`${API}/todos`)
-//         .then(response => response.json())
-//         .then(data => {
-//             console.log(data);
-//             setArray(data);
-//         })
-//         .catch(error => {
-//             console.log(error);
-//         });
-// }
 
 //get all the tasks from database - for 'main view' view
 export const getAllTasks = (itemsToGet, successCallback) => {
@@ -34,8 +22,7 @@ export const getSingleTask = (itemsToGet, id, successCallback) => {
     fetch(`${API}/${itemsToGet}/${id}`)
         .then(response => response.json())
         .then(data => {
-            successCallback(data);
-            console.log(data, "fetch get player for draw przed succescallbackiem");
+            successCallback(data);          
         })
         .catch(error => {
             console.log(error);            

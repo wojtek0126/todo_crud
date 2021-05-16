@@ -1,13 +1,32 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx } from 'theme-ui';
-import BigText from '../atoms/BigText';
-import ButtonPrimary from '../atoms/ButtonPrimary';
-import MediumText from '../atoms/MediumText';
+import { useState, useEffect } from 'react'
+import { jsx } from 'theme-ui'
+import { getAllTasks } from '../../API/fetch'
+import BigText from '../atoms/BigText'
+import ButtonPrimary from '../atoms/ButtonPrimary'
+import MediumText from '../atoms/MediumText'
 
 
-const Task = ({taskName, taskDescription, status}) => (
-  <div
+const Task = ({id, taskName, taskDescription, status}) => {
+//   const [tasksArr, setTasksArr] = useState([]);
+//   const [taskId, setTaskId] = useState([]);
+
+//   useEffect(() => {
+//     getAllTasks(setTasksArr);
+// },[])
+
+  const handleContinue = (id) => {
+    // tasksArr.map((el) => {
+    //     setTaskId(id)
+    console.log(id, "ideeee")
+    localStorage.setItem(`taskId`, id);        
+    }  
+
+  
+
+    return (
+    <div
     sx={{
       background: 'linear-gradient(rgba(10,0,0,0.1),transparent)',     
       backgroundColor: 'foreground',
@@ -20,8 +39,13 @@ const Task = ({taskName, taskDescription, status}) => (
   <BigText text={taskName} color={`text`} />  
   <MediumText text={taskDescription} color={`muted`} /> 
   <MediumText text={status} color={`text`} />  
-   <ButtonPrimary text={`show details`} to={`/details`} color={`primary`}/>
+   <ButtonPrimary onClick={() => handleContinue(id)} text={`show details`} to={`/details`} color={`primary`}/>
   </div>
 );
+  
+  }
+  
+
+
 
 export default Task;
