@@ -3,14 +3,10 @@
 import { useState } from 'react'
 import { Flex, jsx, ThemeProvider } from 'theme-ui';
 import { addTask } from '../../API/fetch';
-import taskData from '../../API/objectData';
-import { createNewTask } from '../../functions/handlers';
 import theme from '../../styles/theme';
 import ButtonPrimary from '../atoms/ButtonPrimary';
 import InputField from '../atoms/InputField';
 import TextArea from '../atoms/TextArea';
-// import createNewTask from '/../functions/handlers.js';
-import TaskDetails from './TaskDetails';
 
 const AddTask = () => { 
     const [taskName, setTaskName] = useState("");
@@ -25,8 +21,6 @@ const AddTask = () => {
         status: "to do"       
     }   
     console.log(task)     
-
-
  
 
 return (
