@@ -2,7 +2,8 @@
 /** @jsx jsx */
 import { Flex, jsx, Label, Select } from 'theme-ui'
 
-const OptionBox = ({defaultValue, height, width, backgroundColor, textColor, labelText, labelColor, fs1, fs2, fs3}) => (  
+const OptionBox = ({onChange, options, value, height, width,
+   backgroundColor, textColor, labelText, labelColor, fs1, fs2, fs3}) => (  
   <Flex>
     <Label sx={{flexDirection: `column`,
                    fontFamily: 'heading',
@@ -11,7 +12,7 @@ const OptionBox = ({defaultValue, height, width, backgroundColor, textColor, lab
                    fontSize: [`${fs1}, ${fs2}, ${fs3}`],
                    margin: 0,
               }}>{labelText}
-        <Select  defaultvalue={defaultValue}       
+        <Select onChange={onChange} value={value}       
             sx={{
               backgroundColor: `${backgroundColor}`,
               borderRadius: '100em',
@@ -30,9 +31,9 @@ const OptionBox = ({defaultValue, height, width, backgroundColor, textColor, lab
               '&:hover, &:focus': { backgroundColor: 'foreground' },
             }}
           >   
-          <option>to do</option> 
-          <option>in progress</option> 
-          <option>done</option>         
+          {options.map(el => (
+          <option  value={`${el}`}>{el}</option>
+        ))}        
         </Select> 
       </Label>
   </Flex> 

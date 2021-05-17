@@ -1,18 +1,3 @@
 {
-    "todos": [
-      {
-        "id": 1,
-        "name": "shoemaking",
-        "description": "make pair of shoes",
-        "notes": "need leather, and some old shoe cuz I'm lazy",
-        "status": "to do"
-      },    
-      {
-        "id": 2,
-        "name": "make shopping",
-        "description": "make some shopping ",
-        "notes": "get money, get to car, go",
-        "status": "to do"
-      }
-    ]   
-  }
+  "todos": []
+}

@@ -10,3 +10,4 @@ const taskData = (nameData, description, notes, status) =>
     return task            
 };  
 
+export default taskData

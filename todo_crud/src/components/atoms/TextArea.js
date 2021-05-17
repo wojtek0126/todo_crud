@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import { Flex, jsx, Label, Textarea } from 'theme-ui'
 
-const TextArea = ({cols, placeholder, height, width, backgroundColor, textColor, labelText, labelColor, fs1, fs2, fs3}) => (
+const TextArea = ({defaultValue, cols, placeholder, height, width, backgroundColor, textColor, labelText, labelColor, fs1, fs2, fs3, onChange}) => (
     <Flex>
         <Label sx={{flexDirection: `column`, 
         fontFamily: 'heading',
@@ -11,7 +11,7 @@ const TextArea = ({cols, placeholder, height, width, backgroundColor, textColor,
         fontSize: [`${fs1}, ${fs2}, ${fs3}`],
         margin: 0,
 }}>{labelText}
-            <Textarea
+            <Textarea defaultValue={defaultValue} onChange={onChange}
             cols={cols} placeholder={placeholder}
             sx={{
                 backgroundColor: `${backgroundColor}`,

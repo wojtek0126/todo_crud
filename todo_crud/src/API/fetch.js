@@ -49,7 +49,7 @@ export const addTask = (itemsToGet, taskData, successCallback) => {
 };
 
 //edit task - for 'edit task' view
-export const updatePlayerStats = (itemsToGet, id, modified, successCallback) => {
+export const updateTask = (itemsToGet, id, modified, successCallback) => {
     fetch(`${API}/${itemsToGet}/${id}`, {
         headers: {
             // "Authorization": API_KEY,

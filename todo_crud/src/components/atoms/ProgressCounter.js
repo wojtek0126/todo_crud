@@ -3,9 +3,9 @@
 import { jsx } from 'theme-ui'
 
 const ProgressCounter = ({text, counter, color}) => (
-    <div        
+    <button        
     sx={{
-      border: '1px solid black',
+    //   border: '1px solid black',
       backgroundColor: `${color}`,
       borderRadius: '100em',
       color: 'foreground',
@@ -20,7 +20,7 @@ const ProgressCounter = ({text, counter, color}) => (
       textTransform: 'uppercase',         
     }}
   > {text}: {counter}
-  </div>   
+  </button>   
 );
 
 export default ProgressCounter;

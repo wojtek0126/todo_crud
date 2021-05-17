@@ -1,29 +1,15 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { useState, useEffect } from 'react'
 import { jsx } from 'theme-ui'
-import { getAllTasks } from '../../API/fetch'
 import BigText from '../atoms/BigText'
 import ButtonPrimary from '../atoms/ButtonPrimary'
 import MediumText from '../atoms/MediumText'
 
-
 const Task = ({id, taskName, taskDescription, status}) => {
-//   const [tasksArr, setTasksArr] = useState([]);
-//   const [taskId, setTaskId] = useState([]);
 
-//   useEffect(() => {
-//     getAllTasks(setTasksArr);
-// },[])
-
-  const handleContinue = (id) => {
-    // tasksArr.map((el) => {
-    //     setTaskId(id)
-    console.log(id, "ideeee")
+  const handleContinue = (id) => {    
     localStorage.setItem(`taskId`, id);        
-    }  
-
-  
+    }    
 
     return (
     <div
@@ -44,8 +30,5 @@ const Task = ({id, taskName, taskDescription, status}) => {
 );
   
   }
-  
-
-
 
 export default Task;

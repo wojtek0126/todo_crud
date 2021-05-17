@@ -29,7 +29,8 @@ useEffect(() => {
         <Title />      
         <Flex sx={{ flexWrap: 'wrap' }}>
         {
-                    tasks.map((task) => {                                         
+                    tasks.map((task) => {
+                                         
                         return (
                             <Box key={task.id} sx={{ width: ['100%', '50%', '33.33%'] }}>
                               <Task id={task.id} taskName={task.name} taskDescription={task.description} status={task.status} />
