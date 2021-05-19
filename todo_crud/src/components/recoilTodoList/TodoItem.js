@@ -1,22 +1,18 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx } from 'theme-ui'
-import {
-    RecoilRoot,
-    atom,
-    selector,
-    useRecoilState,
-    useRecoilValue,
-  } from 'recoil';
-import { todoListState } from '../../functions/recoil';
-import ButtonPrimary from '../atoms/ButtonPrimary';
-import CheckboxAtom from '../atoms/Checkbox';
-import Checkbox from '../atoms/Checkbox';
-import InputField from '../atoms/InputField';
-import { deleteTask, updateTask } from '../../API/fetch';
+import { Flex, jsx } from 'theme-ui'
+import { useRecoilState } from 'recoil';
+import { useState } from 'react'
+import { todoListState } from '../../functions/recoil'
+import ButtonPrimary from '../atoms/ButtonPrimary'
+import CheckboxAtom from '../atoms/Checkbox'
+import InputField from '../atoms/InputField'
+import { deleteTask, updateTask } from '../../API/fetch'
+
 
 function TodoItem({item}) {
     const [todoList, setTodoList] = useRecoilState(todoListState); 
+    const [updateButtonText, setUpdateButtonText] = useState("update");
     const index = todoList.findIndex((listItem) => listItem === item);
   
   
@@ -31,7 +27,11 @@ function TodoItem({item}) {
         isComplete: item.isComplete,
       }
       updateTask(`todos`, item.id, todoDataMod)
-      setTodoList(newList);      
+      setTodoList(newList);    
+      setUpdateButtonText("content modified");
+      setTimeout(() => {
+        setUpdateButtonText("update");
+      }, 3000)  
     };
   
     const toggleItemCompletion = () => {
@@ -49,12 +49,8 @@ function TodoItem({item}) {
       
     };
   
-    const deleteItem = () => {
-        // const idArr =[]
-      const newList = removeItemAtIndex(todoList, index);
-    //   todoList.map((el) => {
-    //     idArr.push(el.id);
-    //   })
+    const deleteItem = () => {   
+      const newList = removeItemAtIndex(todoList, index);   
        deleteTask(`todos`, item.id); 
       setTodoList(newList);
     };
@@ -70,12 +66,19 @@ function TodoItem({item}) {
           margin: 3,
           padding: 3,
         }}
-      >
+      >Task {item.id}:
         <InputField type={"text"} value={item.text} onChange={editItemText} backgroundColor={`foreground`}/>
-        <CheckboxAtom   checked={item.isComplete} label={`Is task completed?`}
-          onChange={toggleItemCompletion} />     
+        <Flex sx={{flexDirection: 'row',
+                   marginBottom: 2}} >
+            <div sx={{marginRight: 2}}>
+                 Is task completed?
+            </div>
+        <CheckboxAtom   checked={item.isComplete} 
+          onChange={toggleItemCompletion} />    
+        </Flex>
+      
         <ButtonPrimary onClick={deleteItem} text={`delete`} backgroundColor={'primary'}/>
-        <ButtonPrimary onClick={() => editItemText} text={`update`} backgroundColor={'primary'}/>
+        <ButtonPrimary onClick={() => editItemText} text={updateButtonText} backgroundColor={'primary'}/>
       </div>
     );
   }
@@ -87,5 +90,6 @@ function TodoItem({item}) {
   function removeItemAtIndex(arr, index) {
     return [...arr.slice(0, index), ...arr.slice(index + 1)];
   }
+  
 
   export default TodoItem;

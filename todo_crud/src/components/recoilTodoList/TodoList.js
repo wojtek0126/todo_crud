@@ -1,7 +1,4 @@
 import {
-  RecoilRoot,
-  atom,
-  selector,
   useRecoilState,
   useRecoilValue,
 } from 'recoil';
@@ -11,18 +8,18 @@ import TodoItem from './TodoItem';
 import TodoItemCreator from './TodoItemCreator';
 import TodoListFilters from './TodoListFilters';
 import TodoListStats from './TodoListStats';
-import { jsx, ThemeProvider, Container, Flex, Box } from 'theme-ui';
+import { ThemeProvider, Container, Flex, Box } from 'theme-ui';
 import theme from '../../styles/theme';
 import { getAllTasks } from '../../API/fetch';
 import InputField from '../atoms/InputField';
+import MediumText from '../atoms/MediumText';
+
 
 function TodoList() {
-    const todoList = useRecoilValue(filteredTodoListState);
     const [todos, setTodos] = useRecoilState(todoListState)
     const [toSearch, setToSearch] = useState("")
     const [searchResults, setSearchResults] = useState([]);
     const [taskList, setTaskList] = useState([]);
-    // const [updatedTaskList, setUpdatedTaskList] = useState([]);
     const [taskText, setTaskText] = useState([]);
     const filteredData =  useRecoilValue(filteredTodoListState);
    
@@ -31,29 +28,11 @@ function TodoList() {
       getAllTasks(`todos`, setTodos)
       }
      getTodos()
-   }, [])
-
-  //  useEffect(() => {
-  //   setFilteredData(todos)   
-
-  //  }, [todos])
-
-   console.log(todos, "todos 111")
-
-//    useEffect(() => {
-//     setUpdatedTaskList(taskList => [...taskList, {currentOrNewKey: filteredTodoListState}]);    
-//  }, [])
+   }, []) 
   
-// const todoListState = atom({
-//   key: 'todoListState',
-//   default: taskList,
-// });
-  
-   useEffect(() => {
-  
+   useEffect(() => {  
       taskList.map(el => {        
-          setTaskText(taskText => [...taskText, el.text]);})
-    
+          setTaskText(taskText => [...taskText, el.text]);})    
        }, [taskList])
   
    useEffect(() => {
@@ -61,11 +40,9 @@ function TodoList() {
         item.toString().toLowerCase().includes(toSearch)
       );
       setSearchResults(results); 
-    }, [toSearch]);  
-  
+    }, [toSearch]);    
   
   let filterData = filteredData.filter(item => item.text.includes(toSearch));
-  console.log(filteredData, "filllllllllllllllltred new")
   
       const handleChange = (e) => {
           setToSearch(e.target.value);
@@ -76,7 +53,6 @@ function TodoList() {
       <ThemeProvider theme={theme}>       
         <Container>            
         <TodoItemCreator/>  
-        <TodoListFilters />
         <Flex         sx={{
           background: 'linear-gradient(rgba(10,0,0,0.1),transparent)',     
           backgroundColor: 'foreground',
@@ -84,12 +60,15 @@ function TodoList() {
           fontSize: 4,
           margin: 3,
           padding: 3,
-        }}>
+          flexDirection: 'column'
+        }}><MediumText text={' Find Your task:'} />
+        <TodoListFilters />
         <InputField
           type={"text"}
           placeholder={"Search"}
           value={toSearch}
           onChange={handleChange}
+          backgroundColor={`foreground`}
         /></Flex>
         <TodoListStats />              
         <Flex sx={{ flexWrap: 'wrap' }}>  
@@ -104,5 +83,6 @@ function TodoList() {
     
     );
   }
+
 
   export default TodoList;

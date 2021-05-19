@@ -5,6 +5,7 @@ import { useRecoilValue } from "recoil";
 import { todoListStatsState } from "../../functions/recoil";
 import ProgressCounter from '../atoms/ProgressCounter';
 
+
 function TodoListStats() {
     const {
       totalNum,
@@ -13,7 +14,9 @@ function TodoListStats() {
       percentCompleted,
     } = useRecoilValue(todoListStatsState);
   
+    //percentage completed feature - disabled at the momend, see jsx below commented - uncomment to enable
     const formattedPercentCompleted = Math.round(percentCompleted);
+    
      
     return (
       <Flex
@@ -26,7 +29,7 @@ function TodoListStats() {
         margin: 3,
         padding: 3,
       }}
-    >
+    >Progress counter:
         <ProgressCounter text={`Total tasks: ${totalNum}`} />
         <ProgressCounter text={`Completed: ${totalCompletedNum}`} />
         <ProgressCounter text={`In progress: ${totalUncompletedNum}`} />
@@ -34,5 +37,6 @@ function TodoListStats() {
       </Flex>
     );
   }
+
 
   export default TodoListStats;

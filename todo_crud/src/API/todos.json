@@ -1,24 +1,9 @@
 {
   "todos": [
     {
-      "id": 1,
-      "text": "newjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj",
-      "isComplete": true
-    },
-    {
-      "id": 2,
-      "text": "lllll",
-      "isComplete": false
-    },
-    {
       "id": 3,
-      "text": "lkjh",
+      "text": "wyjdź ze psem   ",
       "isComplete": false
-    },
-    {
-      "id": 4,
-      "text": "ppppp",
-      "isComplete": true
     }
   ]
 }

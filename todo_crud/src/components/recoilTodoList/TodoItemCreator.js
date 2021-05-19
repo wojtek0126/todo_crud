@@ -1,47 +1,17 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx, Flex } from 'theme-ui'
-import {
-  RecoilRoot,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
-  useSetRecoilState
-} from 'recoil';
-import { useState, useEffect } from 'react'
+import { useSetRecoilState } from 'recoil';
+import { useState } from 'react'
 import { todoListState } from '../../functions/recoil';
 import InputField from '../atoms/InputField';
 import ButtonPrimary from '../atoms/ButtonPrimary';
-import { addTask, getAllTasks } from '../../API/fetch';
+import { addTask } from '../../API/fetch';
+
 
 function TodoItemCreator() {
   const [inputValue, setInputValue] = useState('');  
   const setTodoList = useSetRecoilState(todoListState);
-  // const setAccount = useSetRecoilState(accountState);
-
-//   const createTask = useCallback(async (text)=> {
-//     const response = await fetch(url, {
-//       method: 'POST',
-//       body: { text },
-//     });
-
-//     const responseJson = await response.json();
-//     setAccount(responseJson);
-//   }, [setAccount]);
-
-//   return register;
-
-// }
-
-// const RegisterForm = () => {
-//   const register = useRegister();
-
-//   const handleSubmit = async e => {
-//     e.preventDefault();
-
-//     await register(username);
-//   };
 
 
   const addItem = () => {
@@ -57,12 +27,14 @@ function TodoItemCreator() {
     ]);
     setInputValue('');
     addTask(`todos`, todoData);
+    //reload easy way, if necessary may be replaced by state
     window.location.reload();    
   };
 
   const onChange = ({target: {value}}) => {
     setInputValue(value);
   };
+
 
   return (
     <Flex
@@ -82,10 +54,12 @@ function TodoItemCreator() {
   );
 }
 
+
 // utility for creating unique Id
 let id = 0;
 function getId() {
   return id++;
 }
+
 
 export default TodoItemCreator;

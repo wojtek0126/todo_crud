@@ -1,42 +1,17 @@
-import {
-    RecoilRoot,
-    atom,
-    selector,
-    useRecoilState,
-    useRecoilValue,
-  } from 'recoil';
-import { getAllTasks } from '../API/fetch';
+import { atom, selector } from 'recoil';
 
-
-
-
-//   const GetTasks = () => {
-//       const [tasks, setTasks] = useState([])
-      
-//       useEffect(() => {
-//           getAllTasks(`todos`, setTasks)          
-//       }, [])
-
-// //   }
-// const tasksAll = []
-// getAllTasks(`todos`, tasksAll)
-// console.log(tasksAll, "dfsdfsdffsd")
-// const mySelector = selector({
-//     key: 'mySelector',
-//     get: async ({get}) => {
-//      return await getAllTasks("todos");
-//     }
-//   })
 
 export const todoListState = atom({
     key: 'todoListState',
     default: [],
   });
 
+
   export const todoListFilterState = atom({
     key: 'todoListFilterState',
-    default: 'Show All',
+    default: 'Show All Tasks',
   });
+
 
   export const filteredTodoListState = selector({
     key: 'filteredTodoListState',
@@ -45,15 +20,16 @@ export const todoListState = atom({
       const list = get(todoListState);
   
       switch (filter) {
-        case 'Show All':
-          return list.filter((item) => item.isComplete);
-        case 'Hide Completed':
+        case 'Show All Tasks':
+          return list.filter((item) => item);
+        case 'Hide Completed Tasks':
           return list.filter((item) => !item.isComplete);
         default:
           return list;
       }
     },
   });
+  
 
   export const todoListStatsState = selector({
     key: 'todoListStatsState',
