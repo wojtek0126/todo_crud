@@ -4,6 +4,7 @@ import { jsx, Flex } from 'theme-ui'
 import { useRecoilValue } from "recoil";
 import { todoListStatsState } from "../../functions/recoil";
 import ProgressCounter from '../atoms/ProgressCounter';
+import MediumText from '../atoms/MediumText';
 
 
 function TodoListStats() {
@@ -16,7 +17,7 @@ function TodoListStats() {
   
     //percentage completed feature - disabled at the momend, see jsx below commented - uncomment to enable
     const formattedPercentCompleted = Math.round(percentCompleted);
-    
+
      
     return (
       <Flex
@@ -29,7 +30,7 @@ function TodoListStats() {
         margin: 3,
         padding: 3,
       }}
-    >Progress counter:
+    ><MediumText text={'Your progress:'} marginBottom={2} />
         <ProgressCounter text={`Total tasks: ${totalNum}`} />
         <ProgressCounter text={`Completed: ${totalCompletedNum}`} />
         <ProgressCounter text={`In progress: ${totalUncompletedNum}`} />

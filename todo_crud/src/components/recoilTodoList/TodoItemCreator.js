@@ -7,6 +7,7 @@ import { todoListState } from '../../functions/recoil';
 import InputField from '../atoms/InputField';
 import ButtonPrimary from '../atoms/ButtonPrimary';
 import { addTask } from '../../API/fetch';
+import MediumText from '../atoms/MediumText';
 
 
 function TodoItemCreator() {
@@ -47,7 +48,7 @@ function TodoItemCreator() {
       margin: 3,
       padding: 3,
     }}
-  > Create new task:
+  ><MediumText text={'Create new task:'} marginBottom={2} />
       <InputField type={"text"} value={inputValue} onChange={onChange} backgroundColor={`foreground`} />
       <ButtonPrimary onClick={addItem} text={`add`} backgroundColor={`primary`} />
     </Flex>

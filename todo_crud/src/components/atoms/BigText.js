@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
 
-const BigText = ({text, color}) => (
+const BigText = ({text, color, marginBottom}) => (
     <h2
       sx={{
         fontFamily: 'heading',
@@ -10,6 +10,7 @@ const BigText = ({text, color}) => (
         color: `${color}`,
         fontSize: [3, 4, 5],
         margin: 0,
+        marginBottom: `${marginBottom}`
       }}
     >
       {text}

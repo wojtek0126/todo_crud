@@ -61,7 +61,7 @@ function TodoList() {
           margin: 3,
           padding: 3,
           flexDirection: 'column'
-        }}><MediumText text={' Find Your task:'} />
+        }}><MediumText text={' Find Your task:'} marginBottom={2} />
         <TodoListFilters />
         <InputField
           type={"text"}

@@ -8,6 +8,8 @@ import ButtonPrimary from '../atoms/ButtonPrimary'
 import CheckboxAtom from '../atoms/Checkbox'
 import InputField from '../atoms/InputField'
 import { deleteTask, updateTask } from '../../API/fetch'
+import MediumText from '../atoms/MediumText';
+import BigText from '../atoms/BigText';
 
 
 function TodoItem({item}) {
@@ -31,7 +33,7 @@ function TodoItem({item}) {
       setUpdateButtonText("content modified");
       setTimeout(() => {
         setUpdateButtonText("update");
-      }, 3000)  
+      }, 1500)  
     };
   
     const toggleItemCompletion = () => {
@@ -66,14 +68,14 @@ function TodoItem({item}) {
           margin: 3,
           padding: 3,
         }}
-      >Task {item.id}:
+      ><BigText text={ `Task # ${item.id}`} marginBottom={2} />
         <InputField type={"text"} value={item.text} onChange={editItemText} backgroundColor={`foreground`}/>
         <Flex sx={{flexDirection: 'row',
                    marginBottom: 2}} >
             <div sx={{marginRight: 2}}>
-                 Is task completed?
+                 <MediumText text={`Is task completed?`} />
             </div>
-        <CheckboxAtom   checked={item.isComplete} 
+        <CheckboxAtom checked={item.isComplete} 
           onChange={toggleItemCompletion} />    
         </Flex>
       
@@ -90,6 +92,6 @@ function TodoItem({item}) {
   function removeItemAtIndex(arr, index) {
     return [...arr.slice(0, index), ...arr.slice(index + 1)];
   }
-  
+
 
   export default TodoItem;
