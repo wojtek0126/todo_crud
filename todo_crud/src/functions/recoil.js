@@ -18,15 +18,15 @@ import { getAllTasks } from '../API/fetch';
 //       }, [])
 
 // //   }
-const tasksAll = []
-getAllTasks(`todos`, tasksAll)
-console.log(tasksAll, "dfsdfsdffsd")
-const mySelector = selector({
-    key: 'mySelector',
-    get: async ({get}) => {
-     return await getAllTasks("todos");
-    }
-  })
+// const tasksAll = []
+// getAllTasks(`todos`, tasksAll)
+// console.log(tasksAll, "dfsdfsdffsd")
+// const mySelector = selector({
+//     key: 'mySelector',
+//     get: async ({get}) => {
+//      return await getAllTasks("todos");
+//     }
+//   })
 
 export const todoListState = atom({
     key: 'todoListState',
@@ -45,9 +45,9 @@ export const todoListState = atom({
       const list = get(todoListState);
   
       switch (filter) {
-        case 'Show Completed':
+        case 'Show All':
           return list.filter((item) => item.isComplete);
-        case 'Show Uncompleted':
+        case 'Hide Completed':
           return list.filter((item) => !item.isComplete);
         default:
           return list;

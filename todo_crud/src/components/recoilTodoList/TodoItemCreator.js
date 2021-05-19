@@ -56,7 +56,8 @@ function TodoItemCreator() {
      todoData,
     ]);
     setInputValue('');
-    addTask(`todos`, todoData)    
+    addTask(`todos`, todoData);
+    window.location.reload();    
   };
 
   const onChange = ({target: {value}}) => {

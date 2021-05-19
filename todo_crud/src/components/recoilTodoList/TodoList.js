@@ -24,15 +24,19 @@ function TodoList() {
     const [taskList, setTaskList] = useState([]);
     // const [updatedTaskList, setUpdatedTaskList] = useState([]);
     const [taskText, setTaskText] = useState([]);
-    const [filteredData, setFilteredData] = useState([]);
+    const filteredData =  useRecoilValue(filteredTodoListState);
    
     useEffect(() => {
       const getTodos = async () => {
       getAllTasks(`todos`, setTodos)
       }
      getTodos()
-      // getAllTasks(`todos`, setTaskList);    
    }, [])
+
+  //  useEffect(() => {
+  //   setFilteredData(todos)   
+
+  //  }, [todos])
 
    console.log(todos, "todos 111")
 
@@ -60,8 +64,8 @@ function TodoList() {
     }, [toSearch]);  
   
   
-  let filterData = todos.filter(item => item.text.includes(toSearch));
-  console.log(filterData, "filllllllllllllllltred")
+  let filterData = filteredData.filter(item => item.text.includes(toSearch));
+  console.log(filteredData, "filllllllllllllllltred new")
   
       const handleChange = (e) => {
           setToSearch(e.target.value);
@@ -72,7 +76,7 @@ function TodoList() {
       <ThemeProvider theme={theme}>       
         <Container>            
         <TodoItemCreator/>  
-        {/* <TodoListFilters /> */}
+        <TodoListFilters />
         <Flex         sx={{
           background: 'linear-gradient(rgba(10,0,0,0.1),transparent)',     
           backgroundColor: 'foreground',
@@ -90,16 +94,10 @@ function TodoList() {
         <TodoListStats />              
         <Flex sx={{ flexWrap: 'wrap' }}>  
           {filterData.map((todoItem) => (
-            <Box sx={{ width: ['100%', '50%', '33.33%'] }}>
+            <Box sx={{ width: ['100%'] }}>
               <TodoItem key={todoItem.id} item={todoItem} />
             </Box>         
          ))}
-             {/* {filterData.map(itemB => (
-                 <Box sx={{ width: ['100%', '50%', '33.33%'] }}>
-                     <TodoItem key={itemB.id} item={itemB} />
-                 </Box>
-        
-          ))} */}
           </Flex>
         </Container>     
       </ThemeProvider>

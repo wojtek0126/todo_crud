@@ -20,8 +20,7 @@ function TodoItem({item}) {
     const index = todoList.findIndex((listItem) => listItem === item);
   
   
-    const editItemText = ({target: {value}}) => {
-        // const idArrUpd =[]
+    const editItemText = ({target: {value}}) => {        
       const newList = replaceItemAtIndex(todoList, index, {
         ...item,
         text: value,
@@ -32,7 +31,7 @@ function TodoItem({item}) {
         isComplete: item.isComplete,
       }
       updateTask(`todos`, item.id, todoDataMod)
-      setTodoList(newList);
+      setTodoList(newList);      
     };
   
     const toggleItemCompletion = () => {

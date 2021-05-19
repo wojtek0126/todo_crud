@@ -1,13 +1,7 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx, Flex } from 'theme-ui'
 import { useRecoilState } from "recoil";
+import { Flex } from "theme-ui";
 import { todoListFilterState } from "../../functions/recoil";
 import OptionBox from "../atoms/OptionBox";
-import SearchField from '../atoms/SearchBox';
-import SearchBox from '../atoms/SearchBox';
-import TestComponent from '../atoms/TestSearch';
-import TestSearch from '../atoms/TestSearch';
 
 function TodoListFilters() {
     const [filter, setFilter] = useRecoilState(todoListFilterState);
@@ -16,7 +10,7 @@ function TodoListFilters() {
       setFilter(value);
     };
 
-    const options = [`Show all`, `Show completed`, `Show Uncompleted`];
+    const options = [`Show All`, `Hide Completed`];
   
     return (
         <Flex
@@ -31,8 +25,7 @@ function TodoListFilters() {
     }}
   >
         Filter:
-        <OptionBox options={options} value={filter} onChange={updateFilter} backgroundColor={`foreground`} /> 
-        {/* <TestSearch />       */}
+        <OptionBox options={options} value={filter} onChange={updateFilter} backgroundColor={`foreground`} />         
       </Flex>
     );
   }
