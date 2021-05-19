@@ -15,45 +15,51 @@ import BigText from '../atoms/BigText';
 function TodoItem({item}) {
     const [todoList, setTodoList] = useRecoilState(todoListState); 
     const [updateButtonText, setUpdateButtonText] = useState("update");
-    const index = todoList.findIndex((listItem) => listItem === item);
-  
+    const index = todoList.findIndex((listItem) => listItem === item);  
+ 
   
     const editItemText = ({target: {value}}) => {        
       const newList = replaceItemAtIndex(todoList, index, {
         ...item,
-        text: value,
+        title: value,
       });
       const todoDataMod =    {
         id: item.id,
-        text: value,
-        isComplete: item.isComplete,
+        userId: 0,
+        title: value,
+        completed: item.completed,
+        created_at: 0
       }
-      updateTask(`todos`, item.id, todoDataMod)
+      console.log(todoDataMod, "toupdatedata")
+      updateTask(item.id, todoDataMod)
       setTodoList(newList);    
       setUpdateButtonText("content modified");
       setTimeout(() => {
         setUpdateButtonText("update");
       }, 1500)  
-    };
-  
+    };   
+
     const toggleItemCompletion = () => {
       const newList = replaceItemAtIndex(todoList, index, {
         ...item,
-        isComplete: !item.isComplete,
+        completed: !item.completed,
       });    
       const todoDataModCheck =    {
         id: item.id,
-        text: item.text,
-        isComplete: !item.isComplete,
+        userId: "",        
+        title: item.title,
+        completed: !item.completed,
+        created_at: item.created_at,
+        updated_at: Date.now()
       }
-      updateTask(`todos`, item.id, todoDataModCheck) 
+      updateTask(item.id, todoDataModCheck) 
       setTodoList(newList);  
       
     };
   
     const deleteItem = () => {   
       const newList = removeItemAtIndex(todoList, index);   
-       deleteTask(`todos`, item.id); 
+       deleteTask(item.id); 
       setTodoList(newList);
     };
 
@@ -68,14 +74,14 @@ function TodoItem({item}) {
           margin: 3,
           padding: 3,
         }}
-      ><BigText text={ `Task # ${item.id}`} marginBottom={2} />
-        <InputField type={"text"} value={item.text} onChange={editItemText} backgroundColor={`foreground`}/>
+      ><BigText text={ `Task # ${item.id}:`} marginBottom={2} />
+        <InputField type={"text"} value={item.title} onChange={editItemText} backgroundColor={`foreground`}/>
         <Flex sx={{flexDirection: 'row',
                    marginBottom: 2}} >
             <div sx={{marginRight: 2}}>
                  <MediumText text={`Is task completed?`} />
             </div>
-        <CheckboxAtom checked={item.isComplete} 
+        <CheckboxAtom checked={item.completed} 
           onChange={toggleItemCompletion} />    
         </Flex>
       

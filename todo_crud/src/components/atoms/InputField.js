@@ -3,7 +3,7 @@
 import { Flex, Input, jsx, Label } from 'theme-ui'
 
 const InputField = ({type, placeholder, value, height, width, 
-  backgroundColor, textColor, focusColor, labelText, labelColor, fs1, fs2, fs3, onChange}) => (  
+  backgroundColor, textColor, focusColor, labelText, labelColor, fs1, fs2, fs3, onChange, id}) => (  
   <Flex>
     <Label sx={{flexDirection: `column`,
                    fontFamily: 'heading',
@@ -12,7 +12,7 @@ const InputField = ({type, placeholder, value, height, width,
                    fontSize: [`${fs1}, ${fs2}, ${fs3}`],
                    margin: 0,
               }}>{labelText}
-        <Input value={value} onChange={onChange}
+        <Input id={id} value={value} onChange={onChange}
           type={type} placeholder={placeholder}
           sx={{
             backgroundColor: `${backgroundColor}`,
@@ -28,7 +28,7 @@ const InputField = ({type, placeholder, value, height, width,
             px: 3, // shorthand for defining padding-left and padding-right
             py: 2, // shorthand for defining padding-top and padding-bottom
             textDecoration: 'none',
-            textTransform: 'uppercase',
+            // textTransform: 'uppercase',
             '&:hover, &:focus': { backgroundColor: `${focusColor}`},
           }}
         >    

@@ -32,7 +32,7 @@ const OptionBox = ({onChange, options, value, height, width,
             }}
           >   
           {options.map(el => (
-          <option  value={`${el}`}>{el}</option>
+          <option key={el}  value={`${el}`}>{el}</option>
         ))}        
         </Select> 
       </Label>

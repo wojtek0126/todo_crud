@@ -1,15 +1,15 @@
 // json-server --watch src/API/todos.json --host 127.0.0.1
-import {API} from "./variables"
+import { API, API_TOKEN } from "./variables";
 
 
 //get all the tasks from database - for 'main view' view
-export const getAllTasks = (itemsToGet, successCallback) => {
-    fetch(`${API}/${itemsToGet}`)
+export const getAllTasks = (successCallback) => {
+    fetch(`${API}`)
         .then(response => response.json())
         .then(data => {
-            successCallback(data);
+            successCallback(data.data);
             if (data.error === false && typeof successCallback === "function") {
-                successCallback(data);
+                successCallback(data.data);
             }
         })
         .catch(error => {
@@ -18,11 +18,11 @@ export const getAllTasks = (itemsToGet, successCallback) => {
 }
 
 //get single task - for 'view task' view
-export const getSingleTask = (itemsToGet, id, successCallback) => {
-    fetch(`${API}/${itemsToGet}/${id}`)
+export const getSingleTask = (id, successCallback) => {
+    fetch(`${API}/${id}`)    
         .then(response => response.json())
         .then(data => {
-            successCallback(data);          
+            successCallback(data.data);          
         })
         .catch(error => {
             console.log(error);            
@@ -30,10 +30,10 @@ export const getSingleTask = (itemsToGet, id, successCallback) => {
 }
 
 //add a task - for 'task create/add' view
-export const addTask = (itemsToGet, taskData, successCallback) => {
-    fetch(`${API}/${itemsToGet}`, {
+export const addTask = (taskData, successCallback) => {
+    fetch(`${API}`, {
         headers: {
-            // "Authorization": API_KEY,
+            "Authorization": API_TOKEN,
             "Content-Type": "application/json",
         },
         method: "POST",
@@ -49,10 +49,10 @@ export const addTask = (itemsToGet, taskData, successCallback) => {
 };
 
 //edit task - for 'edit task' view
-export const updateTask = (itemsToGet, id, modified, successCallback) => {
-    fetch(`${API}/${itemsToGet}/${id}`, {
+export const updateTask = (id, modified, successCallback) => {
+    fetch(`${API}/${id}`, {
         headers: {
-            // "Authorization": API_KEY,
+            "Authorization": API_TOKEN,
             "Content-Type": "application/json",
         },
         method: "PUT",
@@ -68,10 +68,10 @@ export const updateTask = (itemsToGet, id, modified, successCallback) => {
 };
 
 //delete task - for 'edit task' view
-export const deleteTask = (itemsToGet, id, successCallback) => {
-    fetch(`${API}/${itemsToGet}/${id}`, {
+export const deleteTask = (id, successCallback) => {
+    fetch(`${API}/${id}`, {
         headers: {
-            // "Authorization": API_KEY
+            "Authorization": API_TOKEN
         },
         method: "DELETE"
     })

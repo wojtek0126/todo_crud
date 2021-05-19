@@ -3,8 +3,8 @@
 import { jsx } from 'theme-ui'
 import { Link } from 'react-router-dom'
 
-const ButtonPrimary = ({text, backgroundColor, onClick, type}) => (
-    <div >
+const ButtonWithlink = ({to, text, backgroundColor, onClick, type}) => (
+    <Link to={to} >
         <button type={type} onClick={onClick} 
             sx={{
             backgroundColor: `${backgroundColor}`,
@@ -25,11 +25,11 @@ const ButtonPrimary = ({text, backgroundColor, onClick, type}) => (
         >
             {text}
         </button>
-    </div> 
+    </Link> 
    
 );
 
-export default ButtonPrimary;
+export default ButtonWithlink;
 
 
     

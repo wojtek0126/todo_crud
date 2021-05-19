@@ -1,4 +1,4 @@
-export default {
+export default{
   fonts: {
     body: 'Georgia, Cambria, "Times New Roman", Times, serif',
     heading: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',

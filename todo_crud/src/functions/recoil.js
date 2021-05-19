@@ -11,7 +11,7 @@ export const todoListState = atom({
     key: 'todoListFilterState',
     default: 'Show All Tasks',
   });
-
+  
 
   export const filteredTodoListState = selector({
     key: 'filteredTodoListState',
@@ -23,20 +23,19 @@ export const todoListState = atom({
         case 'Show All Tasks':
           return list.filter((item) => item);
         case 'Hide Completed Tasks':
-          return list.filter((item) => !item.isComplete);
+          return list.filter((item) => !item.completed);
         default:
           return list;
       }
     },
   });
-  
 
   export const todoListStatsState = selector({
     key: 'todoListStatsState',
     get: ({get}) => {
       const todoList = get(todoListState);
       const totalNum = todoList.length;
-      const totalCompletedNum = todoList.filter((item) => item.isComplete).length;
+      const totalCompletedNum = todoList.filter((item) => item.completed).length;
       const totalUncompletedNum = totalNum - totalCompletedNum;
       const percentCompleted = totalNum === 0 ? 0 : totalCompletedNum / totalNum * 100;
   

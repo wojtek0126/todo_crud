@@ -8,6 +8,7 @@ import InputField from '../atoms/InputField';
 import ButtonPrimary from '../atoms/ButtonPrimary';
 import { addTask } from '../../API/fetch';
 import MediumText from '../atoms/MediumText';
+import ButtonWithlink from '../atoms/ButtonWithLink';
 
 
 function TodoItemCreator() {
@@ -18,8 +19,11 @@ function TodoItemCreator() {
   const addItem = () => {
     const todoData =    {
       id: getId(),
-      text: inputValue,
-      isComplete: false,
+      userId: "",
+      title: inputValue,
+      completed: false,
+      created_at: Date.now(),
+      updated_at: ""
     }
 
     setTodoList((oldTodoList) => [
@@ -27,9 +31,9 @@ function TodoItemCreator() {
      todoData,
     ]);
     setInputValue('');
-    addTask(`todos`, todoData);
+    addTask(todoData);
     //reload easy way, if necessary may be replaced by state
-    window.location.reload();    
+    // window.location.reload();    
   };
 
   const onChange = ({target: {value}}) => {
@@ -50,7 +54,10 @@ function TodoItemCreator() {
     }}
   ><MediumText text={'Create new task:'} marginBottom={2} />
       <InputField type={"text"} value={inputValue} onChange={onChange} backgroundColor={`foreground`} />
-      <ButtonPrimary onClick={addItem} text={`add`} backgroundColor={`primary`} />
+      <Flex sx={{flexDirection: 'column', justifyContent: 'space-between'}}>
+        <ButtonPrimary onClick={addItem} text={`add new task`} backgroundColor={`primary`} />
+        <ButtonWithlink to={`home`} onClick={addItem} text={`back to main`} backgroundColor={`primary`} />
+      </Flex>
     </Flex>
   );
 }

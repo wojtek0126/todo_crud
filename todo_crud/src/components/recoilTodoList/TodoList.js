@@ -10,12 +10,14 @@ import TodoListFilters from './TodoListFilters';
 import TodoListStats from './TodoListStats';
 import { ThemeProvider, Container, Flex, Box } from 'theme-ui';
 import theme from '../../styles/theme';
-import { getAllTasks } from '../../API/fetch';
+import { getAllTasks, getSingleTask } from '../../API/fetch';
 import InputField from '../atoms/InputField';
 import MediumText from '../atoms/MediumText';
 
 
 function TodoList() {
+  const [testing, setTesting] = useState([])
+
     const [todos, setTodos] = useRecoilState(todoListState)
     const [toSearch, setToSearch] = useState("")
     const [searchResults, setSearchResults] = useState([]);
@@ -25,15 +27,19 @@ function TodoList() {
    
     useEffect(() => {
       const getTodos = async () => {
-      getAllTasks(`todos`, setTodos)
+      getAllTasks(setTodos)
       }
      getTodos()
-   }, []) 
+    getSingleTask(21, setTesting)
+    console.log(testing[1], "api single task by id test")
+   }, [])   
+
+ 
   
    useEffect(() => {  
       taskList.map(el => {        
-          setTaskText(taskText => [...taskText, el.text]);})    
-       }, [taskList])
+          setTaskText(taskText => [...taskText, el.title]);})   
+       }, [todos])
   
    useEffect(() => {
       let results = taskText.filter(item =>
@@ -42,7 +48,7 @@ function TodoList() {
       setSearchResults(results); 
     }, [toSearch]);    
   
-  let filterData = filteredData.filter(item => item.text.includes(toSearch));
+  let filterData = filteredData.filter(item => item.title.includes(toSearch));
   
       const handleChange = (e) => {
           setToSearch(e.target.value);
@@ -73,7 +79,7 @@ function TodoList() {
         <TodoListStats />              
         <Flex sx={{ flexWrap: 'wrap' }}>  
           {filterData.map((todoItem) => (
-            <Box sx={{ width: ['100%'] }}>
+            <Box key={todoItem.id} sx={{ width: ['100%'] }}>
               <TodoItem key={todoItem.id} item={todoItem} />
             </Box>         
          ))}
