@@ -5,6 +5,28 @@ import {
     useRecoilState,
     useRecoilValue,
   } from 'recoil';
+import { getAllTasks } from '../API/fetch';
+
+
+
+
+//   const GetTasks = () => {
+//       const [tasks, setTasks] = useState([])
+      
+//       useEffect(() => {
+//           getAllTasks(`todos`, setTasks)          
+//       }, [])
+
+// //   }
+const tasksAll = []
+getAllTasks(`todos`, tasksAll)
+console.log(tasksAll, "dfsdfsdffsd")
+const mySelector = selector({
+    key: 'mySelector',
+    get: async ({get}) => {
+     return await getAllTasks("todos");
+    }
+  })
 
 export const todoListState = atom({
     key: 'todoListState',

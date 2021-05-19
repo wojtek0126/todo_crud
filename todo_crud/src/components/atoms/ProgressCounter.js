@@ -2,13 +2,13 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
 
-const ProgressCounter = ({text, counter, color}) => (
+const ProgressCounter = ({text, counter, backgroundColor, color}) => (
     <button        
     sx={{
     //   border: '1px solid black',
-      backgroundColor: `${color}`,
+      backgroundColor: `${backgroundColor}`,
       borderRadius: '100em',
-      color: 'foreground',
+      color: `${color}`,
       display: 'inline-block',
       fontFamily: 'heading',
       fontSize: [0, 1],
@@ -19,7 +19,7 @@ const ProgressCounter = ({text, counter, color}) => (
       textDecoration: 'none',
       textTransform: 'uppercase',         
     }}
-  > {text}: {counter}
+  > {text} {counter}
   </button>   
 );
 

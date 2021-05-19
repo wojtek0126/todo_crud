@@ -1,5 +1,9 @@
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import { jsx, Flex } from 'theme-ui'
 import { useRecoilValue } from "recoil";
 import { todoListStatsState } from "../../functions/recoil";
+import ProgressCounter from '../atoms/ProgressCounter';
 
 function TodoListStats() {
     const {
@@ -10,14 +14,24 @@ function TodoListStats() {
     } = useRecoilValue(todoListStatsState);
   
     const formattedPercentCompleted = Math.round(percentCompleted);
-  
+     
     return (
-      <ul>
-        <li>Total items: {totalNum}</li>
-        <li>Items completed: {totalCompletedNum}</li>
-        <li>Items not completed: {totalUncompletedNum}</li>
-        <li>Percent completed: {formattedPercentCompleted}</li>
-      </ul>
+      <Flex
+      sx={{
+        flexDirection: 'column',
+        background: 'linear-gradient(rgba(10,0,0,0.1),transparent)',     
+        backgroundColor: 'foreground',
+        borderRadius: 4,
+        fontSize: 4,
+        margin: 3,
+        padding: 3,
+      }}
+    >
+        <ProgressCounter text={`Total tasks: ${totalNum}`} />
+        <ProgressCounter text={`Completed: ${totalCompletedNum}`} />
+        <ProgressCounter text={`In progress: ${totalUncompletedNum}`} />
+        {/* <ProgressCounter text={`Percent completed: ${formattedPercentCompleted}`} />    */}
+      </Flex>
     );
   }
 
