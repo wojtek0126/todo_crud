@@ -13,6 +13,7 @@ import theme from '../../styles/theme';
 import { getAllTasks } from '../../API/fetch';
 import InputField from '../atoms/InputField';
 import MediumText from '../atoms/MediumText';
+import {CircleArrow as ScrollUpButton} from "react-scroll-up-button";
 
 
 function TodoList() {
@@ -71,7 +72,8 @@ function TodoList() {
           onChange={handleChange}
           backgroundColor={`foreground`}
         /></Flex>
-        <TodoListStats />              
+        <TodoListStats />  
+        <ScrollUpButton />             
         <Flex sx={{ flexWrap: 'wrap' }}>  
           {filterData.map((todoItem) => (
             <Box key={todoItem.id} sx={{ width: ['100%'] }}>
