@@ -4,6 +4,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { jsx } from 'theme-ui'
 
+
 const SearchIcon = ({color}) => (    
     <FontAwesomeIcon icon={faSearch}  sx={{
         backgroundColor: 'primary',
@@ -23,6 +24,7 @@ const SearchIcon = ({color}) => (
         '&:hover, &:focus': { backgroundColor: 'secondary' },
       }} />      
 );
+
 
 export default SearchIcon;
 

@@ -8,6 +8,7 @@ import MediumText from '../atoms/MediumText';
 
 
 function TodoListStats() {
+    
     const {
       totalNum,
       totalCompletedNum,
@@ -25,6 +26,7 @@ function TodoListStats() {
 
     //storing for home view
     localStorage.setItem(`percent`, formattedPercentCompleted);
+
      
     return (
       <Flex

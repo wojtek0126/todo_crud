@@ -9,21 +9,34 @@ import ButtonPrimary from '../atoms/ButtonPrimary';
 import { addTask } from '../../API/fetch';
 import MediumText from '../atoms/MediumText';
 import ButtonWithlink from '../atoms/ButtonWithLink';
+import { reloadSite } from '../../functions/functionStorage';
+import TextArea from '../atoms/TextArea';
+import { userId } from '../../API/variables';
 
 
 function TodoItemCreator() {
   const [inputValue, setInputValue] = useState('');  
   const [callback, setCallback] = useState([]);  
-  const setTodoList = useSetRecoilState(todoListState);
+  const setTodoList = useSetRecoilState(todoListState); 
+
+  //date formatting
+  const t = new Date(); 
+  const date = ('0' + t.getDate()).slice(-2);
+  const month = ('0' + (t.getMonth() + 1)).slice(-2);
+  const year = t.getFullYear();
+  const hours = ('0' + t.getHours()).slice(-2);
+  const minutes = ('0' + t.getMinutes()).slice(-2);
+  const seconds = ('0' + t.getSeconds()).slice(-2);
+  const time = `${date}/${month}/${year}, ${hours}:${minutes}:${seconds}`;
 
 
   const addItem = () => {
     const todoData =    {
       id: getId(),
-      userId: "3",
+      user_id: userId,
       title: inputValue,
       completed: false,
-      created_at: Date.now(),
+      created_at: time,
       updated_at: "not updated yet"
     }
 
@@ -34,7 +47,7 @@ function TodoItemCreator() {
     setInputValue('');
     addTask(todoData);
     //reload easy way, if necessary may be replaced by state
-    // window.location.reload();    
+    reloadSite();   
   };
 
   const onChange = ({target: {value}}) => {
@@ -54,7 +67,7 @@ function TodoItemCreator() {
       padding: 3,
     }}
   ><MediumText text={'Create new task:'} marginBottom={2} />
-      <InputField type={"text"} value={inputValue} onChange={onChange} backgroundColor={`foreground`} />
+      <TextArea value={inputValue} onChange={onChange} backgroundColor={`foreground`} />
       <Flex sx={{flexDirection: 'column', justifyContent: 'space-between'}}>
         <ButtonPrimary onClick={addItem} text={`add new task`} backgroundColor={`primary`} />
         <ButtonWithlink to={`home`} onClick={addItem} text={`back to main`} backgroundColor={`primary`} />

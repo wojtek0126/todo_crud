@@ -6,10 +6,9 @@ import MediumText from '../atoms/MediumText';
 import ButtonWithlink from '../atoms/ButtonWithLink';
 
 
-function TitleStats() {
-    
+function TitleStats() {    
 
-    //receiving data from stats view
+    //receiving stats data 
     const total = localStorage.getItem(`total`);
     const totalCompleted = localStorage.getItem(`comp`);
     const totalUncompleted = localStorage.getItem(`uncomp`);

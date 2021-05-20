@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react'
-import Search from 'react-search'
-import React, { Component, PropTypes } from 'react'
-import { getAllTasks } from '../../API/fetch'
-  
+import React from 'react'
+import { getAllTasks } from '../../API/fetch'  
 
 
 const TestSearch = () => {
@@ -13,12 +11,9 @@ const TestSearch = () => {
  const [filteredData, setFilteredData] = useState([]);
 
 
-
  useEffect(() => {
     getAllTasks(`todos`, setTaskList);    
  }, [])
-
-
 
  useEffect(() => {
 
@@ -34,19 +29,12 @@ const TestSearch = () => {
     setSearchResults(results); 
   }, [toSearch]);  
 
-
 let filterData = taskList.filter(item => item.text.includes(toSearch));
-console.log(filterData, "filllllllllllllllltred")
 
     const handleChange = (e) => {
         setToSearch(e.target.value);
     }
 
-    console.log(taskList, "tasklist")
-    console.log(taskText, "fixed")
-    
-    console.log(toSearch, "tosearch")
-    console.log(searchResults, "results")
 
     return (
         <div className="App">
@@ -64,5 +52,6 @@ console.log(filterData, "filllllllllllllllltred")
       </div>
     )
 }
+
 
 export default TestSearch;

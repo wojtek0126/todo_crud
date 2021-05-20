@@ -6,18 +6,18 @@ import { useState } from 'react'
 import { todoListState } from '../../functions/recoil'
 import ButtonPrimary from '../atoms/ButtonPrimary'
 import CheckboxAtom from '../atoms/Checkbox'
-import InputField from '../atoms/InputField'
 import { deleteTask, updateTask } from '../../API/fetch'
 import MediumText from '../atoms/MediumText';
 import BigText from '../atoms/BigText';
+import { reloadSite } from '../../functions/functionStorage';
+import TextArea from '../atoms/TextArea';
 
 
 function TodoItem({item}) {
     const [todoList, setTodoList] = useRecoilState(todoListState); 
     const [updateButtonText, setUpdateButtonText] = useState("update");
     const [inputValue, setInputValue] = useState('');  
-    const index = todoList.findIndex((listItem) => listItem === item);  
- 
+    const index = todoList.findIndex((listItem) => listItem === item);   
   
     const editItemText = ({target: {value}}) => {        
       const newList = replaceItemAtIndex(todoList, index, {
@@ -26,14 +26,14 @@ function TodoItem({item}) {
       });
       const todoDataMod =    {
         id: item.id,
-        userId: item.userId,
+        user_id: item.user_id,
         title: value,
         completed: item.completed,
         created_at: item.created_at,
         updated_at: Date.now
       }
       setInputValue(value);    
-      setTodoList(newList);     
+      setTodoList(newList);       
     };   
 
     const confirmEditChanges = () => {
@@ -43,6 +43,7 @@ function TodoItem({item}) {
           setUpdateButtonText("update");
         }, 1500)  
         setInputValue(""); 
+        reloadSite(); 
     } 
 
     const toggleItemCompletion = () => {
@@ -52,7 +53,7 @@ function TodoItem({item}) {
       });    
       const todoDataModCheck =    {
         id: item.id,
-        userId: 1,        
+        user_id: item.user_id,        
         title: item.title,
         completed: !item.completed,
         created_at: item.created_at,
@@ -60,14 +61,17 @@ function TodoItem({item}) {
       }
       updateTask(item.id, todoDataModCheck) 
       setTodoList(newList);  
+      reloadSite();
       
     };
   
-    const deleteItem = () => {   
+    const deleteItem = () => {  
+        console.log(item.id, "do delete id"); 
       const newList = removeItemAtIndex(todoList, index);   
        deleteTask(item.id); 
       setTodoList(newList);
-    };
+      reloadSite();
+    };   
 
   
     return (
@@ -81,16 +85,19 @@ function TodoItem({item}) {
           padding: 3,
         }}
       ><BigText text={ `Task # ${item.id}:`} marginBottom={2} />
-        <InputField type={"text"} value={item.title} onChange={editItemText} backgroundColor={`foreground`}/>
+        <TextArea value={item.title} onChange={editItemText} backgroundColor={`foreground`}/>
+        <Flex sx={{flexDirection: 'column'}}>
+            <MediumText text={`Time started: ${item.created_at}`} marginBottom={`2`}/>
+            {/* <MediumText text={`Last time modified: ${item.updated_at}`} marginBottom={`3`}/> */}
+        </Flex> 
         <Flex sx={{flexDirection: 'row',
                    marginBottom: 2}} >
             <div sx={{marginRight: 2}}>
                  <MediumText text={`Is task completed?`} />
             </div>
         <CheckboxAtom checked={item.completed} 
-          onChange={toggleItemCompletion} />    
-        </Flex>
-      
+          onChange={toggleItemCompletion} />         
+        </Flex>         
         <ButtonPrimary onClick={deleteItem} text={`delete`} backgroundColor={'primary'}/>
         <ButtonPrimary onClick={confirmEditChanges} text={updateButtonText} backgroundColor={'primary'}/>
       </div>

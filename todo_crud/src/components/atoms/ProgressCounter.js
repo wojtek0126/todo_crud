@@ -2,6 +2,7 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
 
+
 const ProgressCounter = ({text, counter, backgroundColor, color}) => (
     <button        
     sx={{
@@ -22,6 +23,7 @@ const ProgressCounter = ({text, counter, backgroundColor, color}) => (
   > {text} {counter}
   </button>   
 );
+
 
 export default ProgressCounter;
 

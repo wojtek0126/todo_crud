@@ -3,9 +3,9 @@
 import { jsx } from 'theme-ui'
 import { Link } from 'react-router-dom'
 
-const ButtonPrimary = ({text, backgroundColor, onClick, type}) => (
+const ButtonPrimary = ({text, backgroundColor, onClick, type, id, display}) => (
     <div >
-        <button type={type} onClick={onClick} 
+        <button type={type} onClick={onClick} id={id}
             sx={{
             backgroundColor: `${backgroundColor}`,
             borderRadius: '100em',
@@ -19,6 +19,7 @@ const ButtonPrimary = ({text, backgroundColor, onClick, type}) => (
             py: 2, // shorthand for defining padding-top and padding-bottom
             textDecoration: 'none',
             textTransform: 'uppercase',
+            display: `${display}`,
         
             '&:hover, &:focus': { backgroundColor: 'secondary' },
          }}

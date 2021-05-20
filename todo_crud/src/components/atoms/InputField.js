@@ -2,6 +2,7 @@
 /** @jsx jsx */
 import { Flex, Input, jsx, Label } from 'theme-ui'
 
+
 const InputField = ({type, placeholder, value, height, width, 
   backgroundColor, textColor, focusColor, labelText, labelColor, fs1, fs2, fs3, onChange, id}) => (  
   <Flex>
@@ -36,6 +37,7 @@ const InputField = ({type, placeholder, value, height, width,
       </Label>
   </Flex> 
 );
+
 
 export default InputField;
 

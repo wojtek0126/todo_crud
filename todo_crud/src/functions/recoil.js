@@ -22,13 +22,14 @@ export const todoListState = atom({
       switch (filter) {
         case 'Show All Tasks':
           return list.filter((item) => item);
-        case 'Hide Completed Tasks':
+        case 'Completed Tasks Hidden':
           return list.filter((item) => !item.completed);
         default:
           return list;
       }
     },
   });
+
 
   export const todoListStatsState = selector({
     key: 'todoListStatsState',

@@ -4,15 +4,13 @@ import {jsx, ThemeProvider, Container, Flex, Box } from 'theme-ui';
 import theme from '../../styles/theme';  
 import BigText from '../atoms/BigText';
 import TitleStats from './TitleStats';
-import TodoListStats from './TodoListStats';
   
   
   function TitleScreen() {   
-
   
       return (
-        <ThemeProvider theme={theme} sx={{backgroundColor: "pink"}}>       
-          <Container sx={{}}>             
+        <ThemeProvider theme={theme} >       
+          <Container >             
           <Flex         sx={{
             background: 'linear-gradient(rgba(10,0,0,0.1),transparent)',     
             backgroundColor: 'foreground',
@@ -25,8 +23,7 @@ import TodoListStats from './TodoListStats';
             </Flex>
             <TitleStats />
           </Container>     
-        </ThemeProvider>
-      
+        </ThemeProvider>      
       );
     }
   

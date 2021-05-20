@@ -10,31 +10,26 @@ import TodoListFilters from './TodoListFilters';
 import TodoListStats from './TodoListStats';
 import { ThemeProvider, Container, Flex, Box } from 'theme-ui';
 import theme from '../../styles/theme';
-import { getAllTasks, getSingleTask } from '../../API/fetch';
+import { getAllTasks } from '../../API/fetch';
 import InputField from '../atoms/InputField';
 import MediumText from '../atoms/MediumText';
 
 
 function TodoList() {
-  const [testing, setTesting] = useState([])
-
     const [todos, setTodos] = useRecoilState(todoListState)
     const [toSearch, setToSearch] = useState("")
     const [searchResults, setSearchResults] = useState([]);
     const [taskList, setTaskList] = useState([]);
     const [taskText, setTaskText] = useState([]);
     const filteredData =  useRecoilValue(filteredTodoListState);
+
    
     useEffect(() => {
       const getTodos = async () => {
       getAllTasks(setTodos)
       }
-     getTodos()
-    getSingleTask(2, setTesting)
-    console.log(testing, "api single task by id test")
-   }, [])   
-
- 
+     getTodos()  
+   }, [])  
   
    useEffect(() => {  
       taskList.map(el => {        
@@ -46,7 +41,7 @@ function TodoList() {
         item.toString().toLowerCase().includes(toSearch)
       );
       setSearchResults(results); 
-    }, [toSearch]);    
+    }, [toSearch]);  
   
   let filterData = filteredData.filter(item => item.title.includes(toSearch));
   
@@ -85,8 +80,7 @@ function TodoList() {
          ))}
           </Flex>
         </Container>     
-      </ThemeProvider>
-    
+      </ThemeProvider>    
     );
   }
 

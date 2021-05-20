@@ -2,6 +2,7 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
 
+
 const TitleText = ({text, color}) => (
     <h1
     sx={{
@@ -19,6 +20,7 @@ const TitleText = ({text, color}) => (
     {text}
   </h1> 
 );
+
 
 export default TitleText;
 

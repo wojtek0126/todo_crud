@@ -4,6 +4,7 @@
 import { jsx } from 'theme-ui'
 import SearchField from 'react-search-field';
 
+
 const SearchBox = ({onChange, height, width,
   backgroundColor, textColor, focusColor,
   fs1, fs2, fs3,}) => (
@@ -26,6 +27,7 @@ const SearchBox = ({onChange, height, width,
       '&:hover, &:focus': { backgroundColor: `${focusColor}`} }}      
     />
 );
+
 
 export default SearchBox;
 

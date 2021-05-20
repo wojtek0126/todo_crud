@@ -2,6 +2,7 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
 
+
 const SmallText = ({text, color}) => (
     <div
     sx={{
@@ -15,6 +16,7 @@ const SmallText = ({text, color}) => (
     {text}
   </div> 
 );
+
 
 export default SmallText;
 
