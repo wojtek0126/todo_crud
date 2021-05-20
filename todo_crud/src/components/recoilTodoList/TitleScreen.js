@@ -11,8 +11,8 @@ import TodoListStats from './TodoListStats';
 
   
       return (
-        <ThemeProvider theme={theme}>       
-          <Container>             
+        <ThemeProvider theme={theme} sx={{backgroundColor: "pink"}}>       
+          <Container sx={{}}>             
           <Flex         sx={{
             background: 'linear-gradient(rgba(10,0,0,0.1),transparent)',     
             backgroundColor: 'foreground',

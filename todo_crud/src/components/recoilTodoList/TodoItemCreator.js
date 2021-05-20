@@ -13,17 +13,18 @@ import ButtonWithlink from '../atoms/ButtonWithLink';
 
 function TodoItemCreator() {
   const [inputValue, setInputValue] = useState('');  
+  const [callback, setCallback] = useState([]);  
   const setTodoList = useSetRecoilState(todoListState);
 
 
   const addItem = () => {
     const todoData =    {
       id: getId(),
-      userId: "",
+      userId: "3",
       title: inputValue,
       completed: false,
       created_at: Date.now(),
-      updated_at: ""
+      updated_at: "not updated yet"
     }
 
     setTodoList((oldTodoList) => [

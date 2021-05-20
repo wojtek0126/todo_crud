@@ -1,9 +1,28 @@
 {
   "todos": [
     {
+      "id": 1,
+      "userId": "",
+      "title": "gggggg",
+      "completed": false,
+      "created_at": 1621490021059,
+      "updated_at": ""
+    },
+    {
+      "id": 2,
+      "userId": "",
+      "title": "wwwww",
+      "completed": false,
+      "created_at": 1621490043818,
+      "updated_at": ""
+    },
+    {
       "id": 3,
-      "text": "wyjdź ze psem  hhhhhhhhh",
-      "isComplete": false
+      "userId": "",
+      "title": "qqqqq",
+      "completed": false,
+      "created_at": 1621490048218,
+      "updated_at": ""
     }
   ]
 }

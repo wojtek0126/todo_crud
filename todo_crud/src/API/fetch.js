@@ -2,14 +2,14 @@
 import { API, API_TOKEN } from "./variables";
 
 
-//get all the tasks from database - for 'main view' view
+//get all the tasks from database 
 export const getAllTasks = (successCallback) => {
-    fetch(`${API}`)
+    fetch(`${API}/data`)
         .then(response => response.json())
         .then(data => {
             successCallback(data.data);
             if (data.error === false && typeof successCallback === "function") {
-                successCallback(data.data);
+                successCallback(data);
             }
         })
         .catch(error => {
@@ -17,23 +17,23 @@ export const getAllTasks = (successCallback) => {
         });
 }
 
-//get single task - for 'view task' view
+//get single task 
 export const getSingleTask = (id, successCallback) => {
-    fetch(`${API}/${id}`)    
+    fetch(`${API}/data/${id}`)    
         .then(response => response.json())
         .then(data => {
-            successCallback(data.data);          
+            successCallback(data.data[0]);          
         })
         .catch(error => {
             console.log(error);            
         });
 }
 
-//add a task - for 'task create/add' view
+//add a task 
 export const addTask = (taskData, successCallback) => {
-    fetch(`${API}`, {
+    fetch(`${API}/data`, {
         headers: {
-            "Authorization": API_TOKEN,
+            "Authorization": `Bearer ${API_TOKEN}`,
             "Content-Type": "application/json",
         },
         method: "POST",
@@ -42,17 +42,17 @@ export const addTask = (taskData, successCallback) => {
         .then(r => r.json())
         .then(data => {            
             if (data.error === false && typeof successCallback === "function") {
-                successCallback(data);             
+                successCallback(data);                        
             }
         })
         .catch(err => console.log(err));
 };
 
-//edit task - for 'edit task' view
+//edit task 
 export const updateTask = (id, modified, successCallback) => {
-    fetch(`${API}/${id}`, {
+    fetch(`${API}/data/${id}`, {
         headers: {
-            "Authorization": API_TOKEN,
+            "Authorization": `Bearer ${API_TOKEN}`,
             "Content-Type": "application/json",
         },
         method: "PUT",
@@ -67,11 +67,11 @@ export const updateTask = (id, modified, successCallback) => {
         .catch(err => console.log(err));
 };
 
-//delete task - for 'edit task' view
+//delete task 
 export const deleteTask = (id, successCallback) => {
-    fetch(`${API}/${id}`, {
+    fetch(`${API}/data/${id}`, {
         headers: {
-            "Authorization": API_TOKEN
+            "Authorization": `Bearer ${API_TOKEN}`,
         },
         method: "DELETE"
     })

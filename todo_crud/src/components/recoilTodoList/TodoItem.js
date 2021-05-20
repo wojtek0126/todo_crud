@@ -15,6 +15,7 @@ import BigText from '../atoms/BigText';
 function TodoItem({item}) {
     const [todoList, setTodoList] = useRecoilState(todoListState); 
     const [updateButtonText, setUpdateButtonText] = useState("update");
+    const [inputValue, setInputValue] = useState('');  
     const index = todoList.findIndex((listItem) => listItem === item);  
  
   
@@ -25,19 +26,24 @@ function TodoItem({item}) {
       });
       const todoDataMod =    {
         id: item.id,
-        userId: 0,
+        userId: item.userId,
         title: value,
         completed: item.completed,
-        created_at: 0
+        created_at: item.created_at,
+        updated_at: Date.now
       }
-      console.log(todoDataMod, "toupdatedata")
-      updateTask(item.id, todoDataMod)
-      setTodoList(newList);    
-      setUpdateButtonText("content modified");
-      setTimeout(() => {
-        setUpdateButtonText("update");
-      }, 1500)  
+      setInputValue(value);    
+      setTodoList(newList);     
     };   
+
+    const confirmEditChanges = () => {
+        updateTask(item.id, inputValue);
+        setUpdateButtonText("content modified");
+        setTimeout(() => {
+          setUpdateButtonText("update");
+        }, 1500)  
+        setInputValue(""); 
+    } 
 
     const toggleItemCompletion = () => {
       const newList = replaceItemAtIndex(todoList, index, {
@@ -46,7 +52,7 @@ function TodoItem({item}) {
       });    
       const todoDataModCheck =    {
         id: item.id,
-        userId: "",        
+        userId: 1,        
         title: item.title,
         completed: !item.completed,
         created_at: item.created_at,
@@ -86,7 +92,7 @@ function TodoItem({item}) {
         </Flex>
       
         <ButtonPrimary onClick={deleteItem} text={`delete`} backgroundColor={'primary'}/>
-        <ButtonPrimary onClick={() => editItemText} text={updateButtonText} backgroundColor={'primary'}/>
+        <ButtonPrimary onClick={confirmEditChanges} text={updateButtonText} backgroundColor={'primary'}/>
       </div>
     );
   }

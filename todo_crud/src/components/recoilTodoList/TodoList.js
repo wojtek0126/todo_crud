@@ -30,8 +30,8 @@ function TodoList() {
       getAllTasks(setTodos)
       }
      getTodos()
-    getSingleTask(21, setTesting)
-    console.log(testing[1], "api single task by id test")
+    getSingleTask(2, setTesting)
+    console.log(testing, "api single task by id test")
    }, [])   
 
  
