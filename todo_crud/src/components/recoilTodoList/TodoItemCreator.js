@@ -47,7 +47,7 @@ function TodoItemCreator() {
     setInputValue('');
     addTask(todoData);
     //reload easy way, if necessary may be replaced by state
-    reloadSite();   
+    // reloadSite();   
   };
 
   const onChange = ({target: {value}}) => {
@@ -67,10 +67,10 @@ function TodoItemCreator() {
       padding: 3,
     }}
   ><MediumText text={'Create new task:'} marginBottom={2} />
-      <TextArea value={inputValue} onChange={onChange} backgroundColor={`foreground`} />
+      <TextArea value={inputValue} onChange={onChange} backgroundColor={`foreground`} placeholder={`What needs to be done?`}/>
       <Flex sx={{flexDirection: 'column', justifyContent: 'space-between'}}>
         <ButtonPrimary onClick={addItem} text={`add new task`} backgroundColor={`primary`} />
-        <ButtonWithlink to={`home`} onClick={addItem} text={`back to main`} backgroundColor={`primary`} />
+        <ButtonWithlink to={`home`} text={`back to main`} backgroundColor={`primary`} />
       </Flex>
     </Flex>
   );

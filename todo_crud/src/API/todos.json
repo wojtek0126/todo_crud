@@ -1,5 +1,14 @@
 {
   "todos": [
+      {
+        "id": 1,
+        "user_id": 704,
+        "title": "pierwszy todos testuj jsona local",
+        "completed": false,
+        "created_at": "01-01-2345 26:517",
+        "updated_at": "not updated yet"
+      }
     
   ]
 }
+
