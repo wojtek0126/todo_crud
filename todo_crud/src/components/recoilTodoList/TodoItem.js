@@ -30,7 +30,7 @@ function TodoItem({item}) {
         title: value,
         completed: item.completed,
         created_at: item.created_at,
-        updated_at: Date.now
+        updated_at: Date.now()
       }
       setInputValue(value);    
       setTodoList(newList);       
