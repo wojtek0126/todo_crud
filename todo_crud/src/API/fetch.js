@@ -4,7 +4,7 @@ import { API, API_TOKEN } from "./variables";
 
 //get all the tasks from database 
 export const getAllTasks = (successCallback) => {
-    fetch(`${API}`)
+    fetch(`${API}/todos`)
         .then(response => response.json())
         .then(data => {
             successCallback(data.data);
@@ -19,7 +19,7 @@ export const getAllTasks = (successCallback) => {
 
 //get single task 
 export const getSingleTask = (id, successCallback) => {
-    fetch(`${API}/${id}`)    
+    fetch(`${API}/todos/${id}`)    
         .then(response => response.json())
         .then(data => {
             successCallback(data.data[0]);          
@@ -31,7 +31,7 @@ export const getSingleTask = (id, successCallback) => {
 
 //add a task 
 export const addTask = (taskData, successCallback) => {
-    fetch(`${API}`, {
+    fetch(`${API}/todos`, {
         headers: {
             "Authorization": `Bearer ${API_TOKEN}`,
             "Content-Type": "application/json",
@@ -50,7 +50,7 @@ export const addTask = (taskData, successCallback) => {
 
 //edit task 
 export const updateTask = (id, modified, successCallback) => {
-    fetch(`${API}/${id}`, {
+    fetch(`${API}/todos/${id}`, {
         headers: {
             "Authorization": `Bearer ${API_TOKEN}`,
             "Content-Type": "application/json",
@@ -69,7 +69,7 @@ export const updateTask = (id, modified, successCallback) => {
 
 //delete task 
 export const deleteTask = (id, successCallback) => {
-    fetch(`${API}/${id}`, {
+    fetch(`${API}/todos/${id}`, {
         headers: {
             "Authorization": `Bearer ${API_TOKEN}`,
         },

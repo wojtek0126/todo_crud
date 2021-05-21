@@ -47,7 +47,7 @@ function TodoItemCreator() {
     setInputValue('');
     addTask(todoData);
     //reload easy way, if necessary may be replaced by state
-    reloadSite();   
+    // reloadSite();   
   };
 
   const onChange = ({target: {value}}) => {
