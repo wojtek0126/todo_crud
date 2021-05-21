@@ -22,8 +22,10 @@ export const todoListState = atom({
       switch (filter) {
         case 'Show All Tasks':
           return list.filter((item) => item);
-        case 'Completed Tasks Hidden':
+        case 'In progress only':
           return list.filter((item) => !item.completed);
+          case 'Completed only':
+            return list.filter((item) => item.completed);
         default:
           return list;
       }

@@ -41,9 +41,8 @@ function TodoItem({item}) {
         setUpdateButtonText("content modified");
         setTimeout(() => {
           setUpdateButtonText("update");
-        }, 1500)  
-        setInputValue(""); 
-        reloadSite(); 
+        }, 1800)  
+        setInputValue("");      
     } 
 
     const toggleItemCompletion = () => {
@@ -60,17 +59,13 @@ function TodoItem({item}) {
         updated_at: Date.now()
       }
       updateTask(item.id, todoDataModCheck) 
-      setTodoList(newList);  
-      reloadSite();
-      
+      setTodoList(newList);        
     };
   
-    const deleteItem = () => {  
-        console.log(item.id, "do delete id"); 
-      const newList = removeItemAtIndex(todoList, index);   
-       deleteTask(item.id); 
-      setTodoList(newList);
-      reloadSite();
+    const deleteItem = () => {              
+       deleteTask(item.id);       
+       const newList = removeItemAtIndex(todoList, index);   
+      setTodoList(newList);   
     };   
 
   
@@ -86,7 +81,7 @@ function TodoItem({item}) {
         }}
       ><BigText text={ `Task # ${item.id}:`} marginBottom={2} />
         <TextArea value={item.title} onChange={editItemText} backgroundColor={`foreground`}/>
-        <Flex sx={{flexDirection: 'column'}}>
+        <Flex sx={{flexDirection: 'row'}}>
             <MediumText text={`Time started: ${item.created_at}`} marginBottom={`2`}/>
             {/* <MediumText text={`Last time modified: ${item.updated_at}`} marginBottom={`3`}/> */}
         </Flex> 
