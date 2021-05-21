@@ -16,7 +16,8 @@ import TextArea from '../atoms/TextArea';
 function TodoItem({item}) {
     const [todoList, setTodoList] = useRecoilState(todoListState); 
     const [updateButtonText, setUpdateButtonText] = useState("update");
-    const [inputValue, setInputValue] = useState('');  
+    const [inputValue, setInputValue] = useState(''); 
+    const [updatedData, setUpdatedData] = useState([]);   
     const index = todoList.findIndex((listItem) => listItem === item);   
   
     const editItemText = ({target: {value}}) => {        
@@ -32,18 +33,18 @@ function TodoItem({item}) {
         created_at: item.created_at,
         updated_at: Date.now()
       }
+      setUpdatedData(todoDataMod);
       setInputValue(value);    
       setTodoList(newList);       
     };   
 
     const confirmEditChanges = () => {
-        updateTask(item.id, inputValue);
+        updateTask(item.id, updatedData);
         setUpdateButtonText("content modified");
         setTimeout(() => {
           setUpdateButtonText("update");
-        }, 1500)  
-        setInputValue(""); 
-        reloadSite(); 
+        }, 1800)  
+        setInputValue("");      
     } 
 
     const toggleItemCompletion = () => {
@@ -60,17 +61,13 @@ function TodoItem({item}) {
         updated_at: Date.now()
       }
       updateTask(item.id, todoDataModCheck) 
-      setTodoList(newList);  
-      reloadSite();
-      
+      setTodoList(newList);        
     };
   
-    const deleteItem = () => {  
-        console.log(item.id, "do delete id"); 
-      const newList = removeItemAtIndex(todoList, index);   
-       deleteTask(item.id); 
-      setTodoList(newList);
-      reloadSite();
+    const deleteItem = () => {              
+       deleteTask(item.id);       
+       const newList = removeItemAtIndex(todoList, index);   
+      setTodoList(newList);   
     };   
 
   
@@ -86,7 +83,7 @@ function TodoItem({item}) {
         }}
       ><BigText text={ `Task # ${item.id}:`} marginBottom={2} />
         <TextArea value={item.title} onChange={editItemText} backgroundColor={`foreground`}/>
-        <Flex sx={{flexDirection: 'column'}}>
+        <Flex sx={{flexDirection: 'row'}}>
             <MediumText text={`Time started: ${item.created_at}`} marginBottom={`2`}/>
             {/* <MediumText text={`Last time modified: ${item.updated_at}`} marginBottom={`3`}/> */}
         </Flex> 
