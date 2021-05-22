@@ -17,9 +17,9 @@ function TodoListStats() {
     } = useRecoilValue(todoListStatsState);
 
     //sending data to home view
-    localStorage.setItem(`total`, totalNum);
-    localStorage.setItem(`comp`, totalCompletedNum);
-    localStorage.setItem(`uncomp`, totalUncompletedNum);
+    // localStorage.setItem(`total`, totalNum);
+    // localStorage.setItem(`comp`, totalCompletedNum);
+    // localStorage.setItem(`uncomp`, totalUncompletedNum);
   
     //percentage completed feature - disabled at the momend, see jsx below commented - uncomment to enable
     const formattedPercentCompleted = Math.round(percentCompleted);
@@ -50,3 +50,4 @@ function TodoListStats() {
 
 
   export default TodoListStats;
+

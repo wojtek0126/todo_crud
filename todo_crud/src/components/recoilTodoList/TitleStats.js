@@ -1,18 +1,31 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx, Flex } from 'theme-ui'
+import { useRecoilValue } from "recoil";
+import { todoListStatsState } from "../../functions/recoil";
 import ProgressCounter from '../atoms/ProgressCounter';
 import MediumText from '../atoms/MediumText';
-import ButtonWithlink from '../atoms/ButtonWithLink';
 
 
-function TitleStats() {    
+function TodoListStats() {
+    
+    const {
+      totalNum,
+      totalCompletedNum,
+      totalUncompletedNum,
+      percentCompleted,
+    } = useRecoilValue(todoListStatsState);
 
-    //receiving stats data 
-    const total = localStorage.getItem(`total`);
-    const totalCompleted = localStorage.getItem(`comp`);
-    const totalUncompleted = localStorage.getItem(`uncomp`);
-    const percentCompleted = localStorage.getItem(`percent`);   
+    //sending data to home view
+    // localStorage.setItem(`total`, totalNum);
+    // localStorage.setItem(`comp`, totalCompletedNum);
+    // localStorage.setItem(`uncomp`, totalUncompletedNum);
+  
+    //percentage completed feature - disabled at the momend, see jsx below commented - uncomment to enable
+    const formattedPercentCompleted = Math.round(percentCompleted);
+
+    //storing for home view
+    localStorage.setItem(`percent`, formattedPercentCompleted);
 
      
     return (
@@ -26,15 +39,15 @@ function TitleStats() {
         margin: 3,
         padding: 3,
       }}
-    ><MediumText text={'Statistics:'} marginBottom={2} />
-        <ProgressCounter text={`Total tasks: ${total}`} />
-        <ProgressCounter text={`Completed: ${totalCompleted}`} />
-        <ProgressCounter text={`In progress: ${totalUncompleted}`} />
-        <ProgressCounter text={`Percent completed: ${percentCompleted}`} />   
-        <ButtonWithlink to={`action`} text={`To action`} backgroundColor={`primary`} />
+    ><MediumText text={'Your progress:'} marginBottom={2} />
+        <ProgressCounter text={`Total tasks: ${totalNum}`} />
+        <ProgressCounter text={`Completed: ${totalCompletedNum}`} />
+        <ProgressCounter text={`In progress: ${totalUncompletedNum}`} />
+        <ProgressCounter text={`Percent completed: ${formattedPercentCompleted}`} />   
       </Flex>
     );
   }
 
 
-  export default TitleStats;
+  export default TodoListStats;
+

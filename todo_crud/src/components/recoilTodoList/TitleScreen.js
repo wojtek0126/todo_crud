@@ -4,6 +4,7 @@ import {jsx, ThemeProvider, Container, Flex, Box } from 'theme-ui';
 import theme from '../../styles/theme';  
 import BigText from '../atoms/BigText';
 import TitleStats from './TitleStats';
+import TodoListStats from './TodoListStats';
   
   
   function TitleScreen() {   
