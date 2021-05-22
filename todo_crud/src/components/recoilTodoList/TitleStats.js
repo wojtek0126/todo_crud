@@ -5,9 +5,11 @@ import { useRecoilValue } from "recoil";
 import { todoListStatsState } from "../../functions/recoil";
 import ProgressCounter from '../atoms/ProgressCounter';
 import MediumText from '../atoms/MediumText';
+import ButtonWithlink from '../atoms/ButtonWithLink';
 
 
-function TodoListStats() {
+function TitleStats() {
+
     
     const {
       totalNum,
@@ -15,17 +17,9 @@ function TodoListStats() {
       totalUncompletedNum,
       percentCompleted,
     } = useRecoilValue(todoListStatsState);
-
-    //sending data to home view
-    // localStorage.setItem(`total`, totalNum);
-    // localStorage.setItem(`comp`, totalCompletedNum);
-    // localStorage.setItem(`uncomp`, totalUncompletedNum);
   
-    //percentage completed feature - disabled at the momend, see jsx below commented - uncomment to enable
+    //percentage completed feature 
     const formattedPercentCompleted = Math.round(percentCompleted);
-
-    //storing for home view
-    localStorage.setItem(`percent`, formattedPercentCompleted);
 
      
     return (
@@ -44,10 +38,12 @@ function TodoListStats() {
         <ProgressCounter text={`Completed: ${totalCompletedNum}`} />
         <ProgressCounter text={`In progress: ${totalUncompletedNum}`} />
         <ProgressCounter text={`Percent completed: ${formattedPercentCompleted}`} />   
+        <ButtonWithlink to={`action`} text={`to action`} backgroundColor={`primary`} />
+
       </Flex>
     );
   }
 
 
-  export default TodoListStats;
+  export default TitleStats;
 

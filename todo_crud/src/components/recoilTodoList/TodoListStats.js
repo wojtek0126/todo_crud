@@ -16,10 +16,6 @@ function TodoListStats() {
       percentCompleted,
     } = useRecoilValue(todoListStatsState);
 
-    //sending data to home view
-    // localStorage.setItem(`total`, totalNum);
-    // localStorage.setItem(`comp`, totalCompletedNum);
-    // localStorage.setItem(`uncomp`, totalUncompletedNum);
   
     //percentage completed feature - disabled at the momend, see jsx below commented - uncomment to enable
     const formattedPercentCompleted = Math.round(percentCompleted);
@@ -42,8 +38,7 @@ function TodoListStats() {
     ><MediumText text={'Your progress:'} marginBottom={2} />
         <ProgressCounter text={`Total tasks: ${totalNum}`} />
         <ProgressCounter text={`Completed: ${totalCompletedNum}`} />
-        <ProgressCounter text={`In progress: ${totalUncompletedNum}`} />
-        {/* <ProgressCounter text={`Percent completed: ${formattedPercentCompleted}`} />    */}
+        <ProgressCounter text={`In progress: ${totalUncompletedNum}`} /> 
       </Flex>
     );
   }
