@@ -6,7 +6,7 @@ import { Flex } from "theme-ui";
 
 const CheckboxAtom = ({checked, onChange, backgroundColor, color, label, id, display}) => {
   return ( 
-      <div sx={{ display: `${display}`}}>
+      <div sx={{ display: `${display}`, marginBottom: 2}}>
         <Checkbox
                 checked={checked}
                 onChange={onChange}
@@ -24,7 +24,7 @@ const CheckboxAtom = ({checked, onChange, backgroundColor, color, label, id, dis
                 }
                 borderColor="#174A41"
                 // borderWidth={0}
-                borderRadius={20}
+                borderRadius={`4px`}
                 style={{ overflow: "hidden" }}
                 size={15}
                 label={label}

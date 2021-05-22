@@ -1,14 +1,25 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
+import { useState, useEffect } from 'react'
 import { jsx, Flex } from 'theme-ui'
-import { useRecoilValue } from "recoil";
-import { todoListStatsState } from "../../functions/recoil";
-import ProgressCounter from '../atoms/ProgressCounter';
-import MediumText from '../atoms/MediumText';
-import ButtonWithlink from '../atoms/ButtonWithLink';
+import { useRecoilState, useRecoilValue } from "recoil"
+import { todoListState, todoListStatsState } from "../../functions/recoil"
+import ProgressCounter from '../atoms/ProgressCounter'
+import MediumText from '../atoms/MediumText'
+import ButtonWithlink from '../atoms/ButtonWithLink'
+import { getAllTasks } from '../../API/fetch'
 
 
 function TitleStats() {
+    const [todos, setTodos] = useRecoilState(todoListState);
+
+
+    useEffect(() => {
+       const getTodos = async () => {
+       getAllTasks(setTodos)
+       }
+      getTodos()  
+    }, [])  
 
     
     const {
@@ -18,7 +29,7 @@ function TitleStats() {
       percentCompleted,
     } = useRecoilValue(todoListStatsState);
   
-    //percentage completed feature 
+    //percentage completed feature - round it to nearest whole number
     const formattedPercentCompleted = Math.round(percentCompleted);
 
      
@@ -26,8 +37,9 @@ function TitleStats() {
       <Flex
       sx={{
         flexDirection: 'column',
-        background: 'linear-gradient(rgba(10,0,0,0.1),transparent)',     
-        backgroundColor: 'foreground',
+        // background: 'linear-gradient(rgba(10,0,0,0.1),transparent)',     
+        // backgroundColor: 'foreground',
+        border: '2px solid black',
         borderRadius: 4,
         fontSize: 4,
         margin: 3,
@@ -38,8 +50,7 @@ function TitleStats() {
         <ProgressCounter text={`Completed: ${totalCompletedNum}`} />
         <ProgressCounter text={`In progress: ${totalUncompletedNum}`} />
         <ProgressCounter text={`Percent completed: ${formattedPercentCompleted}`} />   
-        <ButtonWithlink to={`action`} text={`to action`} backgroundColor={`primary`} />
-
+        <ButtonWithlink to={`action`} text={`To action`} backgroundColor={`buttons1`} />
       </Flex>
     );
   }

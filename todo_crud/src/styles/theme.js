@@ -1,12 +1,12 @@
 export default{
   fonts: {
-    body: 'Georgia, Cambria, "Times New Roman", Times, serif',
-    heading: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    body: '"Proxima Nova Soft", Helvetica Neue, Helvetica,Arial, sans-serif',
+    heading: '"Proxima Nova Soft", Helvetica Neue, Helvetica,Arial, sans-serif',
   },
-  fontSizes: [12, 14, 16, 20, 24, 32, 48],
+  fontSizes: [12, 14, 16, 18, 20, 24, 32, 48],
     fontWeights: {
     body: 400,
-    heading: 700,
+    heading: 600,
   },
   lineHeights: {
     body: 1.5,
@@ -17,10 +17,15 @@ export default{
     muted: '#aaaaaa',
     background: 'gold',
     foreground: '#ffffff',
-    primary: '#92b955',
-    secondary: '#9f8a6d',
+    buttons1: '#62c03b',
+    buttons2: '#34aadc',
+    buttons3: '#ff70b3',
+    buttonsClicked: '#ff70b3',
     progress: '#3399ff',
-    done: '#00cc00'
+    done: '#00cc00',
+    inputBorder: '#e0e0e0',
+    inputBorderFocus: '#34aadc',
+    box: 'linear-gradient(rgba(10,0,0,0.1),transparent)'    
   },
   space: [0, 4, 8, 16, 32, 48],
   breakpoints: ['40em', '64em', '80em'],

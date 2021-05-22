@@ -16,7 +16,6 @@ import { userId } from '../../API/variables';
 
 function TodoItemCreator() {
   const [inputValue, setInputValue] = useState('');  
-  const [callback, setCallback] = useState([]);  
   const setTodoList = useSetRecoilState(todoListState); 
 
   //date formatting
@@ -45,9 +44,7 @@ function TodoItemCreator() {
      todoData,
     ]);
     setInputValue('');
-    addTask(todoData);
-    //reload easy way, if necessary may be replaced by state
-    // reloadSite();   
+    addTask(todoData);     
   };
 
   const onChange = ({target: {value}}) => {
@@ -59,8 +56,9 @@ function TodoItemCreator() {
     <Flex
     sx={{
       flexDirection: 'column',
-      background: 'linear-gradient(rgba(10,0,0,0.1),transparent)',     
-      backgroundColor: 'foreground',
+      // background: 'linear-gradient(rgba(10,0,0,0.1),transparent)',     
+      // backgroundColor: 'foreground',
+      border: '2px solid black', 
       borderRadius: 4,
       fontSize: 4,
       margin: 3,
@@ -69,8 +67,8 @@ function TodoItemCreator() {
   ><MediumText text={'Create new task:'} marginBottom={2} />
       <TextArea value={inputValue} onChange={onChange} backgroundColor={`foreground`} placeholder={`What needs to be done?`}/>
       <Flex sx={{flexDirection: 'column', justifyContent: 'space-between'}}>
-        <ButtonPrimary onClick={addItem} text={`add new task`} backgroundColor={`primary`} />
-        <ButtonWithlink to={`home`} text={`back to main`} backgroundColor={`primary`} />
+        <ButtonPrimary onClick={addItem} text={`Add new task`} backgroundColor={`buttons2`} />
+        <ButtonWithlink to={`home`} text={`Back to main`} backgroundColor={`buttons1`} />
       </Flex>
     </Flex>
   );

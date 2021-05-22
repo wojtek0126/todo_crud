@@ -1,25 +1,27 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */  
+import { alignItems } from 'styled-system';
 import {jsx, ThemeProvider, Container, Flex, Box } from 'theme-ui';
 import theme from '../../styles/theme';  
 import BigText from '../atoms/BigText';
 import TitleStats from './TitleStats';
-import TodoListStats from './TodoListStats';
   
   
   function TitleScreen() {   
   
       return (
-        <ThemeProvider theme={theme} >       
+        <ThemeProvider theme={theme} >                
           <Container >             
           <Flex         sx={{
-            background: 'linear-gradient(rgba(10,0,0,0.1),transparent)',     
+            // background: 'linear-gradient(rgba(10,0,0,0.1),transparent)',     
             backgroundColor: 'foreground',
             borderRadius: 4,
             fontSize: 4,
             margin: 3,
             padding: 3,
-            flexDirection: 'column'
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center'
           }}><BigText text={' The Todo list'} marginBottom={2} />       
             </Flex>
             <TitleStats />

@@ -16,7 +16,8 @@ const OptionBox = ({onChange, options, value, height, width,
         <Select onChange={onChange} value={value}       
             sx={{
               backgroundColor: `${backgroundColor}`,
-              borderRadius: '100em',
+              borderRadius: '4px',
+              border: '2px solid black',
               height: `${height}`,
               width: `${width}`,
               color: `${textColor}`,
@@ -28,8 +29,10 @@ const OptionBox = ({onChange, options, value, height, width,
               px: 3, // shorthand for defining padding-left and padding-right
               py: 2, // shorthand for defining padding-top and padding-bottom
               textDecoration: 'none',
-              textTransform: 'uppercase',
-              '&:hover, &:focus': { backgroundColor: 'foreground' },
+              // textTransform: 'uppercase',
+              '&:hover, &:focus': { backgroundColor: 'foreground',
+              border: '2px solid #34aadc',
+              outline: 'none !important' },
             }}
           >   
           {options.map(el => (

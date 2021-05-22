@@ -12,31 +12,24 @@ function TodoListStats() {
     const {
       totalNum,
       totalCompletedNum,
-      totalUncompletedNum,
-      percentCompleted,
-    } = useRecoilValue(todoListStatsState);
-
-  
-    //percentage completed feature - disabled at the momend, see jsx below commented - uncomment to enable
-    const formattedPercentCompleted = Math.round(percentCompleted);
-
-    //storing for home view
-    localStorage.setItem(`percent`, formattedPercentCompleted);
+      totalUncompletedNum, 
+    } = useRecoilValue(todoListStatsState);  
 
      
     return (
       <Flex
       sx={{
         flexDirection: 'column',
-        background: 'linear-gradient(rgba(10,0,0,0.1),transparent)',     
-        backgroundColor: 'foreground',
+        // background: 'linear-gradient(rgba(10,0,0,0.1),transparent)',     
+        // backgroundColor: 'foreground',
+        border: '2px solid black', 
         borderRadius: 4,
         fontSize: 4,
         margin: 3,
         padding: 3,
       }}
     ><MediumText text={'Your progress:'} marginBottom={2} />
-        <ProgressCounter text={`Total tasks: ${totalNum}`} />
+        <ProgressCounter text={`Total tasks: ${totalNum}`}  />
         <ProgressCounter text={`Completed: ${totalCompletedNum}`} />
         <ProgressCounter text={`In progress: ${totalUncompletedNum}`} /> 
       </Flex>

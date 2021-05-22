@@ -9,13 +9,12 @@ import CheckboxAtom from '../atoms/Checkbox'
 import { deleteTask, updateTask } from '../../API/fetch'
 import MediumText from '../atoms/MediumText';
 import BigText from '../atoms/BigText';
-import { reloadSite } from '../../functions/functionStorage';
 import TextArea from '../atoms/TextArea';
 
 
 function TodoItem({item}) {
     const [todoList, setTodoList] = useRecoilState(todoListState); 
-    const [updateButtonText, setUpdateButtonText] = useState("update");
+    const [updateButtonText, setUpdateButtonText] = useState("Update");
     const [inputValue, setInputValue] = useState(''); 
     const [updatedData, setUpdatedData] = useState([]);   
     const index = todoList.findIndex((listItem) => listItem === item);   
@@ -40,9 +39,9 @@ function TodoItem({item}) {
 
     const confirmEditChanges = () => {
         updateTask(item.id, updatedData);
-        setUpdateButtonText("content modified");
+        setUpdateButtonText("Content modified");
         setTimeout(() => {
-          setUpdateButtonText("update");
+          setUpdateButtonText("Update");
         }, 1800)  
         setInputValue("");      
     } 
@@ -74,8 +73,9 @@ function TodoItem({item}) {
     return (
         <div
         sx={{
-          background: 'linear-gradient(rgba(10,0,0,0.1),transparent)',     
-          backgroundColor: 'foreground',
+        //   background: 'linear-gradient(rgba(10,0,0,0.1),transparent)',     
+        //   backgroundColor: 'foreground',
+          border: '2px solid black',   
           borderRadius: 4,
           fontSize: 4,
           margin: 3,
@@ -94,9 +94,9 @@ function TodoItem({item}) {
             </div>
         <CheckboxAtom checked={item.completed} 
           onChange={toggleItemCompletion} />         
-        </Flex>         
-        <ButtonPrimary onClick={deleteItem} text={`delete`} backgroundColor={'primary'}/>
-        <ButtonPrimary onClick={confirmEditChanges} text={updateButtonText} backgroundColor={'primary'}/>
+        </Flex>    
+        <ButtonPrimary onClick={confirmEditChanges} text={updateButtonText} backgroundColor={'buttons2'}/>     
+        <ButtonPrimary onClick={deleteItem} text={`Delete`} backgroundColor={'buttons3'}/>
       </div>
     );
   }
