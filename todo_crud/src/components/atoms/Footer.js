@@ -11,6 +11,7 @@ const Footer = ({brandName, year}) => {
         justifyContent: 'center',
         alignItems: 'center', 
         width: '100vw',
+        height: 'unset !important',
         fontSize: 4,
         margin: 3,
         padding: 3,

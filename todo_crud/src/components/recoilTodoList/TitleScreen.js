@@ -41,7 +41,7 @@ const [notes, setNotes] = useState("");
             <Banner imageUrl={blackboard} placeholder={`Any new ideas? Make your quick wish note here.`}
             value={notes} />
             <Flex sx = {{position: 'relative',
-             height: '40vh',
+            //  height: '40vh',
              justifyContent: 'center',
              alignItems: 'flex-end'}}>            
                 <Footer year={`2021`} brandName={`HFM Wojbaza`} />

@@ -10,12 +10,10 @@ const Banner = ({imageUrl, placeholder}) => {
   return ( 
     <Flex
     sx={{
-      position: 'absolute',
-      zIndex: 1,
-      maxHeight: '30vh',
+      maxHeight: '60vh',
       maxWidth: '100vw',
-      width: '-webkit-fill-available',
-      height: '29vh',      
+      width: '-webkit-fill-available',    
+      height: '30vh',      
       flexDirection: 'column',
       background: 'box',     
       backgroundColor: 'boxBackground',
