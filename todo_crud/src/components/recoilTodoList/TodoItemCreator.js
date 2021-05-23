@@ -1,39 +1,30 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Flex } from 'theme-ui'
+import { jsx, Flex } from 'theme-ui';
 import { useSetRecoilState } from 'recoil';
-import { useState } from 'react'
+import { useState } from 'react';
 import { todoListState } from '../../functions/recoil';
-import InputField from '../atoms/InputField';
 import ButtonPrimary from '../atoms/ButtonPrimary';
 import { addTask } from '../../API/fetch';
 import MediumText from '../atoms/MediumText';
 import ButtonWithlink from '../atoms/ButtonWithLink';
-import { reloadSite } from '../../functions/functionStorage';
 import TextArea from '../atoms/TextArea';
-import { userId } from '../../API/variables';
+import { dateFormatter } from '../../functions/specials';
 
 
 function TodoItemCreator() {
   const [inputValue, setInputValue] = useState('');  
-  const [callback, setCallback] = useState([]);  
   const setTodoList = useSetRecoilState(todoListState); 
 
   //date formatting
-  const t = new Date(); 
-  const date = ('0' + t.getDate()).slice(-2);
-  const month = ('0' + (t.getMonth() + 1)).slice(-2);
-  const year = t.getFullYear();
-  const hours = ('0' + t.getHours()).slice(-2);
-  const minutes = ('0' + t.getMinutes()).slice(-2);
-  const seconds = ('0' + t.getSeconds()).slice(-2);
-  const time = `${date}/${month}/${year}, ${hours}:${minutes}:${seconds}`;
+  const t = new Date();  
+  const time = dateFormatter(t);
 
 
   const addItem = () => {
     const todoData =    {
       id: getId(),
-      user_id: userId,
+      // user_id: userId,
       title: inputValue,
       completed: false,
       created_at: time,
@@ -45,9 +36,7 @@ function TodoItemCreator() {
      todoData,
     ]);
     setInputValue('');
-    addTask(todoData);
-    //reload easy way, if necessary may be replaced by state
-    // reloadSite();   
+    addTask(todoData);     
   };
 
   const onChange = ({target: {value}}) => {
@@ -59,18 +48,22 @@ function TodoItemCreator() {
     <Flex
     sx={{
       flexDirection: 'column',
-      background: 'linear-gradient(rgba(10,0,0,0.1),transparent)',     
-      backgroundColor: 'foreground',
+      background: 'box',   
+      backgroundColor: 'boxBackground',
+      color: 'text',      
+      border: '2px solid',
+      borderColor: 'boxBorder', 
       borderRadius: 4,
       fontSize: 4,
       margin: 3,
       padding: 3,
     }}
   ><MediumText text={'Create new task:'} marginBottom={2} />
-      <TextArea value={inputValue} onChange={onChange} backgroundColor={`foreground`} placeholder={`What needs to be done?`}/>
+      <TextArea value={inputValue} onChange={onChange} backgroundColor={`inputBackground`} 
+      placeholder={`What needs to be done?`}/>
       <Flex sx={{flexDirection: 'column', justifyContent: 'space-between'}}>
-        <ButtonPrimary onClick={addItem} text={`add new task`} backgroundColor={`primary`} />
-        <ButtonWithlink to={`home`} text={`back to main`} backgroundColor={`primary`} />
+        <ButtonPrimary onClick={addItem} text={`Add new task`} backgroundColor={`buttons2`} />
+        <ButtonWithlink to={`home`} text={`Back to main`} backgroundColor={`buttons1`} />
       </Flex>
     </Flex>
   );

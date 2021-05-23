@@ -1,36 +1,43 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { Flex, jsx, Label, Textarea } from 'theme-ui'
+import { Flex, jsx, Label, Textarea } from 'theme-ui';
+import blackboard from "../../assets/b4769e3a52766f30e86b375391c84441.jpg";
 
 
-const TextArea = ({value, cols, placeholder, height, width, backgroundColor,
-     textColor, labelText, labelColor, fs1, fs2, fs3, onChange, id, display}) => (
-    <Flex id={id} sx={{display: `${display}`}}>
+const TextArea = ({value, cols, placeholder, 
+     labelText, onChange, id}) => (
+    <Flex id={id}>
         <Label sx={{flexDirection: `column`, 
         fontFamily: 'heading',
-        fontWeight: 'heading',
-        color: `${labelColor}`,
-        fontSize: [`${fs1}, ${fs2}, ${fs3}`],
+        fontWeight: 'heading',              
+        fontSize: [`16, 18, 20`],
         margin: 0,
 }}>{labelText}
             <Textarea value={value} onChange={onChange}
             cols={cols} placeholder={placeholder}
             sx={{
-                backgroundColor: `${backgroundColor}`,
-                borderRadius: '100em',
-                height: `${height}`,
-                width: `${width}`,
-                color: `${textColor}`,
+                backgroundImage: `url(${blackboard})`,
+                // backgroundColor: `inputBackground`,
+                border: '2px solid',
+                borderColor: 'inputBorder',
+                borderRadius: '4px',               
+                color: `textWhite`,
                 display: 'inline-block',
-                fontFamily: 'heading',
-                fontSize: [0, 1],
-                fontWeight: 'bold',
-                marginBottom: 1,
+                fontFamily: 'blackboard',
+                fontSize: [2, 3],
+                fontWeight: '400 !important',                
+                marginBottom: 2,
+                maxWidth: '100%',
                 px: 3, // shorthand for defining padding-left and padding-right
                 py: 2, // shorthand for defining padding-top and padding-bottom
                 textDecoration: 'none',
                 // textTransform: 'uppercase',
-                '&:hover, &:focus': { backgroundColor: 'foreground' },
+                '&:hover, &:focus': {
+                backgroundImage: `url(${blackboard})`,
+                border: '2px solid',
+                borderColor: 'inputBorderFocus',            
+                outline: 'none !important'},
+                '&::placeholder' : {color: 'placeHolderText'}
             }}
             >    
             </Textarea> 

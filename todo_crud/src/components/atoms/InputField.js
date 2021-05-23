@@ -1,26 +1,24 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { Flex, Input, jsx, Label } from 'theme-ui'
+import { Flex, Input, jsx, Label } from 'theme-ui';
 
 
-const InputField = ({type, placeholder, value, height, width, 
-  backgroundColor, textColor, focusColor, labelText, labelColor, fs1, fs2, fs3, onChange, id}) => (  
+const InputField = ({type, placeholder, value, labelText, onChange, id}) => (  
   <Flex>
     <Label sx={{flexDirection: `column`,
                    fontFamily: 'heading',
-                   fontWeight: 'heading',
-                   color: `${labelColor}`,
-                   fontSize: [`${fs1}, ${fs2}, ${fs3}`],
+                   fontWeight: 'heading',                   
+                   fontSize: [`12, 14, 16`],
                    margin: 0,
               }}>{labelText}
         <Input id={id} value={value} onChange={onChange}
           type={type} placeholder={placeholder}
           sx={{
-            backgroundColor: `${backgroundColor}`,
-            borderRadius: '100em',
-            height: `${height}`,
-            width: `${width}`,
-            color: `${textColor}`,
+            backgroundColor: `inputBackground`,
+            borderRadius: '4px',
+            border: '2px solid',
+            borderColor: 'inputBorder',    
+            color: `InputText`,
             display: 'inline-block',
             fontFamily: 'heading',
             fontSize: [0, 1],
@@ -30,7 +28,11 @@ const InputField = ({type, placeholder, value, height, width,
             py: 2, // shorthand for defining padding-top and padding-bottom
             textDecoration: 'none',
             // textTransform: 'uppercase',
-            '&:hover, &:focus': { backgroundColor: `${focusColor}`},
+            '&:hover, &:focus': {backgroundColor: `inputBackground`,
+                                 border: '2px solid',
+                                 borderColor: 'inputBorderFocus',            
+                                 outline: 'none !important'},
+            '&::placeholder' : {color: 'placeHolderText'}
           }}
         >    
         </Input> 

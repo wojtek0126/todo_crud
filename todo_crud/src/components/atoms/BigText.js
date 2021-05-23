@@ -2,9 +2,11 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
 
-const BigText = ({text, color, marginBottom}) => (
+
+const BigText = ({text, color, marginBottom, backgroundColor}) => (
     <h2
       sx={{
+        backgroundColor: `${backgroundColor}`,
         fontFamily: 'heading',
         fontWeight: 'heading',
         color: `${color}`,
@@ -16,6 +18,7 @@ const BigText = ({text, color, marginBottom}) => (
       {text}
     </h2>
 );
+
 
 export default BigText;
 

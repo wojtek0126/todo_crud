@@ -20,7 +20,7 @@ export const todoListState = atom({
       const list = get(todoListState);
   
       switch (filter) {
-        case 'Show All Tasks':
+        case 'Show all tasks':
           return list.filter((item) => item);
         case 'In progress only':
           return list.filter((item) => !item.completed);

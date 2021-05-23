@@ -1,25 +1,27 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { Flex, jsx } from 'theme-ui'
+import { Flex, jsx } from 'theme-ui';
 import { useRecoilState } from 'recoil';
-import { useState } from 'react'
-import { todoListState } from '../../functions/recoil'
-import ButtonPrimary from '../atoms/ButtonPrimary'
-import CheckboxAtom from '../atoms/Checkbox'
-import { deleteTask, updateTask } from '../../API/fetch'
+import { useState } from 'react';
+import { todoListState } from '../../functions/recoil';
+import ButtonPrimary from '../atoms/ButtonPrimary';
+import CheckboxAtom from '../atoms/Checkbox';
+import { deleteTask, updateTask } from '../../API/fetch';
 import MediumText from '../atoms/MediumText';
 import BigText from '../atoms/BigText';
-import { reloadSite } from '../../functions/functionStorage';
 import TextArea from '../atoms/TextArea';
 
 
 function TodoItem({item}) {
     const [todoList, setTodoList] = useRecoilState(todoListState); 
-    const [updateButtonText, setUpdateButtonText] = useState("update");
+    const [updateButtonText, setUpdateButtonText] = useState("Update");
     const [inputValue, setInputValue] = useState(''); 
     const [updatedData, setUpdatedData] = useState([]);   
     const index = todoList.findIndex((listItem) => listItem === item);   
-  
+
+    // decoy for empty inputvalue 
+    console.log(inputValue);
+
     const editItemText = ({target: {value}}) => {        
       const newList = replaceItemAtIndex(todoList, index, {
         ...item,
@@ -40,9 +42,9 @@ function TodoItem({item}) {
 
     const confirmEditChanges = () => {
         updateTask(item.id, updatedData);
-        setUpdateButtonText("content modified");
+        setUpdateButtonText("Content modified");
         setTimeout(() => {
-          setUpdateButtonText("update");
+          setUpdateButtonText("Update");
         }, 1800)  
         setInputValue("");      
     } 
@@ -74,15 +76,18 @@ function TodoItem({item}) {
     return (
         <div
         sx={{
-          background: 'linear-gradient(rgba(10,0,0,0.1),transparent)',     
-          backgroundColor: 'foreground',
+          background: 'box',     
+          backgroundColor: 'boxBackground',
+          color: 'text',
+          border: '2px solid', 
+          borderColor: 'boxBorder',  
           borderRadius: 4,
           fontSize: 4,
           margin: 3,
           padding: 3,
         }}
       ><BigText text={ `Task # ${item.id}:`} marginBottom={2} />
-        <TextArea value={item.title} onChange={editItemText} backgroundColor={`foreground`}/>
+        <TextArea value={item.title} onChange={editItemText} backgroundColor={`inputBackground`}/>
         <Flex sx={{flexDirection: 'row'}}>
             <MediumText text={`Time started: ${item.created_at}`} marginBottom={`2`}/>
             {/* <MediumText text={`Last time modified: ${item.updated_at}`} marginBottom={`3`}/> */}
@@ -94,9 +99,9 @@ function TodoItem({item}) {
             </div>
         <CheckboxAtom checked={item.completed} 
           onChange={toggleItemCompletion} />         
-        </Flex>         
-        <ButtonPrimary onClick={deleteItem} text={`delete`} backgroundColor={'primary'}/>
-        <ButtonPrimary onClick={confirmEditChanges} text={updateButtonText} backgroundColor={'primary'}/>
+        </Flex>    
+        <ButtonPrimary onClick={confirmEditChanges} text={updateButtonText} backgroundColor={'buttons2'}/>     
+        <ButtonPrimary onClick={deleteItem} text={`Delete`} backgroundColor={'buttons3'}/>
       </div>
     );
   }

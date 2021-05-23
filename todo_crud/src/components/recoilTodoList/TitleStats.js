@@ -1,40 +1,62 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Flex } from 'theme-ui'
+import { useEffect } from 'react';
+import { jsx, Flex } from 'theme-ui';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { todoListState, todoListStatsState } from "../../functions/recoil";
 import ProgressCounter from '../atoms/ProgressCounter';
 import MediumText from '../atoms/MediumText';
 import ButtonWithlink from '../atoms/ButtonWithLink';
+import { getAllTasks } from '../../API/fetch';
 
 
-function TitleStats() {    
+function TitleStats() {
+    const [todos, setTodos] = useRecoilState(todoListState);
 
-    //receiving stats data 
-    const total = localStorage.getItem(`total`);
-    const totalCompleted = localStorage.getItem(`comp`);
-    const totalUncompleted = localStorage.getItem(`uncomp`);
-    const percentCompleted = localStorage.getItem(`percent`);   
+
+    useEffect(() => {
+       const getTodos = async () => {
+       getAllTasks(setTodos)
+       }
+      getTodos()  
+    }, [])  
+
+    
+    const {
+      totalNum,
+      totalCompletedNum,
+      totalUncompletedNum,
+      percentCompleted,
+    } = useRecoilValue(todoListStatsState);
+  
+    //percentage completed feature - round it to nearest whole number
+    const formattedPercentCompleted = Math.round(percentCompleted);
 
      
     return (
       <Flex
       sx={{
         flexDirection: 'column',
-        background: 'linear-gradient(rgba(10,0,0,0.1),transparent)',     
-        backgroundColor: 'foreground',
+        background: 'box',     
+        backgroundColor: 'boxBackground',
+        color: 'text',
+        border: '2px solid',
+        borderColor: 'boxBorder',
         borderRadius: 4,
         fontSize: 4,
         margin: 3,
         padding: 3,
       }}
-    ><MediumText text={'Statistics:'} marginBottom={2} />
-        <ProgressCounter text={`Total tasks: ${total}`} />
-        <ProgressCounter text={`Completed: ${totalCompleted}`} />
-        <ProgressCounter text={`In progress: ${totalUncompleted}`} />
-        <ProgressCounter text={`Percent completed: ${percentCompleted}`} />   
-        <ButtonWithlink to={`action`} text={`To action`} backgroundColor={`primary`} />
+    ><MediumText text={'Your progress:'} marginBottom={2} />
+        <ProgressCounter text={`Total tasks: ${totalNum}`} />
+        <ProgressCounter text={`Completed: ${totalCompletedNum}`} />
+        <ProgressCounter text={`In progress: ${totalUncompletedNum}`} />
+        <ProgressCounter text={`Percent completed: ${formattedPercentCompleted}`} />   
+        <ButtonWithlink to={`action`} text={`To action`} backgroundColor={`buttons1`} />
       </Flex>
     );
   }
 
 
   export default TitleStats;
+

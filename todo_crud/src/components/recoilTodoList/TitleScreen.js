@@ -1,27 +1,52 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */  
-import {jsx, ThemeProvider, Container, Flex, Box } from 'theme-ui';
-import theme from '../../styles/theme';  
+import { useState, useEffect } from 'react';
+
+import {jsx, ThemeProvider, Container, Flex } from 'theme-ui';
+import theme from '../../styles/themes/theme';
+import Banner from '../atoms/Banner';
 import BigText from '../atoms/BigText';
+import Footer from '../atoms/Footer';
 import TitleStats from './TitleStats';
+import blackboard from "../../assets/b4769e3a52766f30e86b375391c84441.jpg";
+
   
   
   function TitleScreen() {   
+
+
+const [notes, setNotes] = useState("");
+
+    useEffect(() => {
+        setNotes(localStorage.getItem(`notes`));
+      }, [notes])
   
       return (
-        <ThemeProvider theme={theme} >       
+        <ThemeProvider theme={theme} >                
           <Container >             
-          <Flex         sx={{
-            background: 'linear-gradient(rgba(10,0,0,0.1),transparent)',     
-            backgroundColor: 'foreground',
+          <Flex sx={{               
+            backgroundColor: 'boxBackground',
+            color: 'text',
+            border: '2px solid',  
+            borderColor: 'boxBorder', 
             borderRadius: 4,
             fontSize: 4,
             margin: 3,
             padding: 3,
-            flexDirection: 'column'
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center'
           }}><BigText text={' The Todo list'} marginBottom={2} />       
             </Flex>
             <TitleStats />
+            <Banner imageUrl={blackboard} placeholder={`Any new ideas? Make quick wish note here.`}
+            value={notes} />
+            <Flex sx = {{position: 'relative',
+             height: '40vh',
+             justifyContent: 'center',
+             alignItems: 'flex-end'}}>            
+                <Footer year={`2021`} brandName={`HFM Wojbaza`} />
+            </Flex>         
           </Container>     
         </ThemeProvider>      
       );
