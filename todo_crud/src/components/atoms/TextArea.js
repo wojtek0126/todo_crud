@@ -1,6 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { Flex, jsx, Label, Textarea } from 'theme-ui'
+import { Flex, jsx, Label, Textarea } from 'theme-ui';
 
 
 const TextArea = ({value, cols, placeholder, height, width, backgroundColor,
@@ -17,7 +17,7 @@ const TextArea = ({value, cols, placeholder, height, width, backgroundColor,
             cols={cols} placeholder={placeholder}
             sx={{
                 backgroundColor: `${backgroundColor}`,
-                border: '2px solid black',
+                border: '2px solid inputBorder',
                 borderRadius: '4px',
                 height: `${height}`,
                 width: `${width}`,
@@ -32,7 +32,7 @@ const TextArea = ({value, cols, placeholder, height, width, backgroundColor,
                 textDecoration: 'none',
                 // textTransform: 'uppercase',
                 ' &:focus': { backgroundColor: 'foreground',
-                 border: '2px solid #34aadc',
+                 border: '2px solid borderFocus',
                  outline: 'none !important'
                 },
             }}

@@ -1,6 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { Flex, Input, jsx, Label } from 'theme-ui'
+import { Flex, Input, jsx, Label } from 'theme-ui';
 
 
 const InputField = ({type, placeholder, value, height, width, 
@@ -18,7 +18,7 @@ const InputField = ({type, placeholder, value, height, width,
           sx={{
             backgroundColor: `${backgroundColor}`,
             borderRadius: '4px',
-            border: '2px solid black',
+            border: '2px solid inputBorder',
             height: `${height}`,
             width: `${width}`,
             color: `${textColor}`,
@@ -32,7 +32,7 @@ const InputField = ({type, placeholder, value, height, width,
             textDecoration: 'none',
             // textTransform: 'uppercase',
             '&:hover, &:focus': { backgroundColor: `${focusColor}`,
-            border: '2px solid #34aadc',
+            border: '2px solid inputBorderFocus',
             outline: 'none !important'},
           }}
         >    

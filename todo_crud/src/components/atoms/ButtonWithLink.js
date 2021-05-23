@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx } from 'theme-ui'
-import { Link } from 'react-router-dom'
+import { jsx } from 'theme-ui';
+import { Link } from 'react-router-dom';
 
 
 const ButtonWithlink = ({to, text, backgroundColor, onClick, type}) => (

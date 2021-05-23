@@ -1,6 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */  
-import { jsx } from 'theme-ui'
+import { jsx } from 'theme-ui';
 import * as Icon from "react-icons/fi";
 import Checkbox from "react-custom-checkbox";
 import { Flex } from "theme-ui";
@@ -24,7 +24,7 @@ const CheckboxAtom = ({checked, onChange, backgroundColor, color, label, id, dis
                     <Icon.FiCheck color={color} size={15} />
                 </Flex>
                 }
-                borderColor="#174A41"
+                borderColor="checkboxBorder"
                 // borderWidth={0}
                 borderRadius={`4px`}
                 style={{ overflow: "hidden" }}

@@ -2,18 +2,18 @@ import {
   useRecoilState,
   useRecoilValue,
 } from 'recoil';
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import { filteredTodoListState, todoListState } from '../../functions/recoil';
 import TodoItem from './TodoItem';
 import TodoItemCreator from './TodoItemCreator';
 import TodoListFilters from './TodoListFilters';
 import TodoListStats from './TodoListStats';
 import { ThemeProvider, Container, Flex, Box } from 'theme-ui';
-import theme from '../../styles/theme';
+import theme from '../../styles/themes/theme';
 import { getAllTasks } from '../../API/fetch';
 import InputField from '../atoms/InputField';
 import MediumText from '../atoms/MediumText';
-import {CircleArrow as ScrollUpButton} from "react-scroll-up-button";
+import {CircleArrow as ScrollUpButton} from 'react-scroll-up-button';
 
 
 function TodoList() {
@@ -61,7 +61,7 @@ function TodoList() {
         <Flex         sx={{
           background: 'box',     
           // backgroundColor: 'foreground',
-          border: '2px solid black', 
+          border: '2px solid boxBorder', 
           borderRadius: 4,
           fontSize: 4,
           margin: 3,
@@ -74,7 +74,7 @@ function TodoList() {
           placeholder={"Search"}
           value={toSearch}
           onChange={handleChange}
-          backgroundColor={`foreground`}
+          backgroundColor={`inputBackground`}
         /></Flex>
         <TodoListStats />  
         <ScrollUpButton />             

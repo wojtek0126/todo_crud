@@ -1,13 +1,13 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { useState, useEffect } from 'react'
-import { jsx, Flex } from 'theme-ui'
-import { useRecoilState, useRecoilValue } from "recoil"
-import { todoListState, todoListStatsState } from "../../functions/recoil"
-import ProgressCounter from '../atoms/ProgressCounter'
-import MediumText from '../atoms/MediumText'
-import ButtonWithlink from '../atoms/ButtonWithLink'
-import { getAllTasks } from '../../API/fetch'
+import { useEffect } from 'react';
+import { jsx, Flex } from 'theme-ui';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { todoListState, todoListStatsState } from "../../functions/recoil";
+import ProgressCounter from '../atoms/ProgressCounter';
+import MediumText from '../atoms/MediumText';
+import ButtonWithlink from '../atoms/ButtonWithLink';
+import { getAllTasks } from '../../API/fetch';
 
 
 function TitleStats() {

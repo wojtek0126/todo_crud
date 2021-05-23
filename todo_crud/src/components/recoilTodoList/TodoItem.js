@@ -1,12 +1,12 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { Flex, jsx } from 'theme-ui'
+import { Flex, jsx } from 'theme-ui';
 import { useRecoilState } from 'recoil';
-import { useState } from 'react'
-import { todoListState } from '../../functions/recoil'
-import ButtonPrimary from '../atoms/ButtonPrimary'
-import CheckboxAtom from '../atoms/Checkbox'
-import { deleteTask, updateTask } from '../../API/fetch'
+import { useState } from 'react';
+import { todoListState } from '../../functions/recoil';
+import ButtonPrimary from '../atoms/ButtonPrimary';
+import CheckboxAtom from '../atoms/Checkbox';
+import { deleteTask, updateTask } from '../../API/fetch';
 import MediumText from '../atoms/MediumText';
 import BigText from '../atoms/BigText';
 import TextArea from '../atoms/TextArea';
@@ -75,14 +75,14 @@ function TodoItem({item}) {
         sx={{
           background: 'box',     
         //   backgroundColor: 'foreground',
-          border: '2px solid black',   
+          border: '2px solid boxBorder',   
           borderRadius: 4,
           fontSize: 4,
           margin: 3,
           padding: 3,
         }}
       ><BigText text={ `Task # ${item.id}:`} marginBottom={2} />
-        <TextArea value={item.title} onChange={editItemText} backgroundColor={`foreground`}/>
+        <TextArea value={item.title} onChange={editItemText} backgroundColor={`inputBackground`}/>
         <Flex sx={{flexDirection: 'row'}}>
             <MediumText text={`Time started: ${item.created_at}`} marginBottom={`2`}/>
             {/* <MediumText text={`Last time modified: ${item.updated_at}`} marginBottom={`3`}/> */}

@@ -1,17 +1,14 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Flex } from 'theme-ui'
+import { jsx, Flex } from 'theme-ui';
 import { useSetRecoilState } from 'recoil';
-import { useState } from 'react'
+import { useState } from 'react';
 import { todoListState } from '../../functions/recoil';
-import InputField from '../atoms/InputField';
 import ButtonPrimary from '../atoms/ButtonPrimary';
 import { addTask } from '../../API/fetch';
 import MediumText from '../atoms/MediumText';
 import ButtonWithlink from '../atoms/ButtonWithLink';
-import { reloadSite } from '../../functions/functionStorage';
 import TextArea from '../atoms/TextArea';
-import { userId } from '../../API/variables';
 
 
 function TodoItemCreator() {
@@ -58,14 +55,15 @@ function TodoItemCreator() {
       flexDirection: 'column',
       background: 'box',     
       // backgroundColor: 'foreground',
-      border: '2px solid black', 
+      border: '2px solid boxBorder', 
       borderRadius: 4,
       fontSize: 4,
       margin: 3,
       padding: 3,
     }}
   ><MediumText text={'Create new task:'} marginBottom={2} />
-      <TextArea value={inputValue} onChange={onChange} backgroundColor={`foreground`} placeholder={`What needs to be done?`}/>
+      <TextArea value={inputValue} onChange={onChange} backgroundColor={`inputBackground`} 
+      placeholder={`What needs to be done?`}/>
       <Flex sx={{flexDirection: 'column', justifyContent: 'space-between'}}>
         <ButtonPrimary onClick={addItem} text={`Add new task`} backgroundColor={`buttons2`} />
         <ButtonWithlink to={`home`} text={`Back to main`} backgroundColor={`buttons1`} />
