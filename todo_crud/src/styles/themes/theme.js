@@ -13,6 +13,8 @@ export default{
     heading: 1.125,
   },
   colors: {
+    background: 'vanilla',
+
     boxBorder: '#000000',
     boxBackground: 'gold',
     muted: '#aaaaaa',
