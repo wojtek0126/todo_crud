@@ -12,10 +12,9 @@ import blackboard from "../../assets/b4769e3a52766f30e86b375391c84441.jpg";
 
   
   
-  function TitleScreen() {   
-
-
+ function TitleScreen() { 
 const [notes, setNotes] = useState("");
+
 
     useEffect(() => {
         setNotes(localStorage.getItem(`notes`));
@@ -39,7 +38,7 @@ const [notes, setNotes] = useState("");
           }}><BigText text={' The Todo list'} marginBottom={2} />       
             </Flex>
             <TitleStats />
-            <Banner imageUrl={blackboard} placeholder={`Any new ideas? Make quick wish note here.`}
+            <Banner imageUrl={blackboard} placeholder={`Any new ideas? Make your quick wish note here.`}
             value={notes} />
             <Flex sx = {{position: 'relative',
              height: '40vh',
