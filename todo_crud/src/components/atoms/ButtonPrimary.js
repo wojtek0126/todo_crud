@@ -3,7 +3,7 @@
 import { jsx } from 'theme-ui';
 
 
-const ButtonPrimary = ({text, backgroundColor, onClick, type, id, display}) => (
+const ButtonPrimary = ({text, backgroundColor, onClick, type, id, displayIt}) => (
     <div >
         <button type={type} onClick={onClick} id={id}
             sx={{
@@ -22,7 +22,7 @@ const ButtonPrimary = ({text, backgroundColor, onClick, type, id, display}) => (
             py: 2, // shorthand for defining padding-top and padding-bottom
             textDecoration: 'none',
             textTransform: 'uppercase',
-            display: `${display}`,        
+            display: `${displayIt}`,        
             // '&:hover, &:focus': { backgroundColor: 'buttonsClicked' },
          }}
         >

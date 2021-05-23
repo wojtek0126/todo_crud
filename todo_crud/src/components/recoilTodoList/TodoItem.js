@@ -18,7 +18,10 @@ function TodoItem({item}) {
     const [inputValue, setInputValue] = useState(''); 
     const [updatedData, setUpdatedData] = useState([]);   
     const index = todoList.findIndex((listItem) => listItem === item);   
-  
+
+    // decoy for empty inputvalue 
+    console.log(inputValue);
+
     const editItemText = ({target: {value}}) => {        
       const newList = replaceItemAtIndex(todoList, index, {
         ...item,

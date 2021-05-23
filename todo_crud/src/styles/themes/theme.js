@@ -1,24 +1,27 @@
 export default{
   fonts: {
-    body: "'Reggae One', cursive;",
-    heading: "'Reggae One', cursive;",
+    body: "'Reggae One', cursive",
+    heading: "'Reggae One', cursive",
+    blackboard: "'Indie Flower', cursive"
   },
   fontSizes: [12, 14, 16, 18, 20, 24, 32, 48],
     fontWeights: {
     body: 400,
     heading: 600,
+    blackboardThick: 800
   },
   lineHeights: {
     body: 1.5,
     heading: 1.125,
   },
   colors: {
-    background: 'vanilla',
+    background: 'black',
 
     boxBorder: '#000000',
     boxBackground: 'gold',   
 
-    text: '#392a25',    
+    text: '#392a25', 
+    textWhite: '#ffffff',       
     placeHolderText: '#8a8a5c', 
     muted: '#aaaaaa',
 

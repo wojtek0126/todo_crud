@@ -1,6 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { Flex, jsx, Label, Textarea } from 'theme-ui';
+import blackboard from "../../assets/b4769e3a52766f30e86b375391c84441.jpg";
 
 
 const TextArea = ({value, cols, placeholder, 
@@ -9,27 +10,30 @@ const TextArea = ({value, cols, placeholder,
         <Label sx={{flexDirection: `column`, 
         fontFamily: 'heading',
         fontWeight: 'heading',              
-        fontSize: [`12, 14, 16`],
+        fontSize: [`16, 18, 20`],
         margin: 0,
 }}>{labelText}
             <Textarea value={value} onChange={onChange}
             cols={cols} placeholder={placeholder}
             sx={{
-                backgroundColor: `inputBackground`,
+                backgroundImage: `url(${blackboard})`,
+                // backgroundColor: `inputBackground`,
                 border: '2px solid',
                 borderColor: 'inputBorder',
                 borderRadius: '4px',               
-                color: `text`,
+                color: `textWhite`,
                 display: 'inline-block',
-                fontFamily: 'heading',
-                fontSize: [0, 1],
+                fontFamily: 'blackboard',
+                fontSize: [2, 3],
                 fontWeight: '400 !important',                
                 marginBottom: 2,
+                maxWidth: '100%',
                 px: 3, // shorthand for defining padding-left and padding-right
                 py: 2, // shorthand for defining padding-top and padding-bottom
                 textDecoration: 'none',
                 // textTransform: 'uppercase',
-                '&:hover, &:focus': {backgroundColor: `inputBackground`,
+                '&:hover, &:focus': {
+                backgroundImage: `url(${blackboard})`,
                 border: '2px solid',
                 borderColor: 'inputBorderFocus',            
                 outline: 'none !important'},
