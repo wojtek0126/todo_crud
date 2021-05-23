@@ -1,6 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */  
-import { jsx } from 'theme-ui';
+import { jsx, Textarea } from 'theme-ui';
 import { Flex } from "theme-ui";
 
 
@@ -10,10 +10,11 @@ const Banner = ({imageUrl}) => {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',  
-        height: '60vw',
-        width: '90vw'
+        height: '30vw',
+        // width: '90vw'
     }}>
-          <img src={imageUrl} />                   
+        <Textarea />
+          {/* <img src={imageUrl} />                    */}
       </Flex>         
   );
 };

@@ -2,6 +2,7 @@
 /** @jsx jsx */  
 import {jsx, ThemeProvider, Container, Flex } from 'theme-ui';
 import theme from '../../styles/themes/theme';
+import Banner from '../atoms/Banner';
 // import Banner from '../atoms/Banner';
 import BigText from '../atoms/BigText';
 import Footer from '../atoms/Footer';
@@ -28,6 +29,7 @@ import TitleStats from './TitleStats';
           }}><BigText text={' The Todo list'} marginBottom={2} />       
             </Flex>
             <TitleStats />
+            <Banner />
             <Flex sx = {{position: 'relative',
              height: '40vh',
              justifyContent: 'center',

@@ -29,11 +29,10 @@ const TextArea = ({value, cols, placeholder,
                 py: 2, // shorthand for defining padding-top and padding-bottom
                 textDecoration: 'none',
                 // textTransform: 'uppercase',
-                ' &:focus': { backgroundColor: 'foreground',
-                 border: '2px solid',
-                 borderColor: 'borderFocus',
-                 outline: 'none !important'
-                },
+                '&:hover, &:focus': {backgroundColor: `inputBackground`,
+                border: '2px solid',
+                borderColor: 'inputBorderFocus',            
+                outline: 'none !important'},
                 '&::placeholder' : {color: 'placeHolderText'}
             }}
             >    

@@ -16,7 +16,9 @@ const ButtonWithlink = ({to, text, backgroundColor, onClick, type}) => (
             fontFamily: 'heading',
             fontSize: [0, 1],
             fontWeight: 'bold',
+            marginTop: 2,
             marginBottom: 1,
+
             cursor: 'pointer',
             px: 3, // shorthand for defining padding-left and padding-right
             py: 2, // shorthand for defining padding-top and padding-bottom

@@ -16,6 +16,7 @@ const ButtonPrimary = ({text, backgroundColor, onClick, type, id, display}) => (
             fontSize: [0, 1],
             fontWeight: 'bold',
             marginBottom: 1,
+            marginTop: 2,
             cursor: 'pointer',
             px: 3, // shorthand for defining padding-left and padding-right
             py: 2, // shorthand for defining padding-top and padding-bottom

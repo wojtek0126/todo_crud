@@ -16,11 +16,11 @@ export default{
     background: 'vanilla',
 
     boxBorder: '#000000',
-    boxBackground: 'gold',
-    muted: '#aaaaaa',
+    boxBackground: 'gold',   
 
     text: '#392a25',    
     placeHolderText: '#8a8a5c', 
+    muted: '#aaaaaa',
 
     optionBoxBackground: '#ffffff', 
     optionBoxText: '#392a25',    
@@ -36,9 +36,7 @@ export default{
     inputBackground: '#ffffff',
     inputBorder: '#000000',
     inputBorderFocus: '#34aadc',
-    inputText: '#392a25',  
-
-    
+    inputText: '#392a25',      
 
     counterAll: '#ffffff',
     counterInProgress: '#ffffff',
