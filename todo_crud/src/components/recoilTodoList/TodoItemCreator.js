@@ -32,7 +32,7 @@ function TodoItemCreator() {
   const addItem = () => {
     const todoData =    {
       id: getId(),
-      user_id: userId,
+      // user_id: userId,
       title: inputValue,
       completed: false,
       created_at: time,

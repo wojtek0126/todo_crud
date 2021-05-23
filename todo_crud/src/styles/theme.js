@@ -1,7 +1,7 @@
 export default{
   fonts: {
-    body: '"Proxima Nova Soft", Helvetica Neue, Helvetica,Arial, sans-serif',
-    heading: '"Proxima Nova Soft", Helvetica Neue, Helvetica,Arial, sans-serif',
+    body: "'Reggae One', cursive;",
+    heading: "'Reggae One', cursive;",
   },
   fontSizes: [12, 14, 16, 18, 20, 24, 32, 48],
     fontWeights: {
@@ -39,10 +39,7 @@ export default{
     Container: {
       maxWidth: 1160,
       padding: 3,
-    },
-    Image: {
-      width: '100vw',
-      height: '100vw'
-    },
+    }    
   },
 };
+

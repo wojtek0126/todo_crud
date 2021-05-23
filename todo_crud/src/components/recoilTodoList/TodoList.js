@@ -24,6 +24,9 @@ function TodoList() {
     const [taskText, setTaskText] = useState([]);
     const filteredData =  useRecoilValue(filteredTodoListState);
 
+    //decoy for unused state    
+    console.log(searchResults);    
+
    
     useEffect(() => {
       const getTodos = async () => {

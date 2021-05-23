@@ -1,4 +1,6 @@
-import React from "react";
+/** @jsxRuntime classic */
+/** @jsx jsx */  
+import { jsx } from 'theme-ui'
 import * as Icon from "react-icons/fi";
 import Checkbox from "react-custom-checkbox";
 import { Flex } from "theme-ui";
