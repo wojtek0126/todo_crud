@@ -11,7 +11,7 @@ const ButtonWithlink = ({to, text, backgroundColor, onClick, type}) => (
             backgroundColor: `${backgroundColor}`,
             borderRadius: '4px',
             border: 'none',
-            color: 'foreground',
+            color: 'buttonText',
             display: 'inline-block',
             fontFamily: 'heading',
             fontSize: [0, 1],

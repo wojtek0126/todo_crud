@@ -19,19 +19,22 @@ function TodoListStats() {
     return (
       <Flex
       sx={{
-        flexDirection: 'column',
-        background: 'box',     
-        // backgroundColor: 'foreground',
-        border: '2px solid boxBorder', 
+        flexDirection: 'column',           
+        backgroundColor: 'boxBackground',
+        border: '2px solid', 
+        borderColor: 'boxBorder',
         borderRadius: 4,
         fontSize: 4,
         margin: 3,
         padding: 3,
       }}
     ><MediumText text={'Your progress:'} marginBottom={2} />
-        <ProgressCounter text={`Total tasks: ${totalNum}`} borderColor={`inputBorder`} />
-        <ProgressCounter text={`Completed: ${totalCompletedNum}`}  borderColor={`inputBorder`} />
-        <ProgressCounter text={`In progress: ${totalUncompletedNum}`}  borderColor={`inputBorder`} /> 
+        <ProgressCounter text={`Total tasks: ${totalNum}`} borderColor={`boxBorder`} color={`text`} 
+        backgroundColor={`counterAll`} />
+        <ProgressCounter text={`Completed: ${totalCompletedNum}`}  borderColor={`boxBorder`} color={`text`}
+        backgroundColor={`counterCompleted`} />
+        <ProgressCounter text={`In progress: ${totalUncompletedNum}`}  borderColor={`boxBorder`} color={`text`}
+        backgroundColor={`counterInProgress`} /> 
       </Flex>
     );
   }

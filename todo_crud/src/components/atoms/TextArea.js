@@ -3,25 +3,23 @@
 import { Flex, jsx, Label, Textarea } from 'theme-ui';
 
 
-const TextArea = ({value, cols, placeholder, height, width, backgroundColor,
-     textColor, labelText, labelColor, fs1, fs2, fs3, onChange, id, display}) => (
-    <Flex id={id} sx={{display: `${display}`}}>
+const TextArea = ({value, cols, placeholder, 
+     labelText, onChange, id}) => (
+    <Flex id={id}>
         <Label sx={{flexDirection: `column`, 
         fontFamily: 'heading',
-        fontWeight: 'heading',
-        color: `${labelColor}`,       
-        fontSize: [`${fs1}, ${fs2}, ${fs3}`],
+        fontWeight: 'heading',              
+        fontSize: [`12, 14, 16`],
         margin: 0,
 }}>{labelText}
             <Textarea value={value} onChange={onChange}
             cols={cols} placeholder={placeholder}
             sx={{
-                backgroundColor: `${backgroundColor}`,
-                border: '2px solid inputBorder',
-                borderRadius: '4px',
-                height: `${height}`,
-                width: `${width}`,
-                color: `${textColor}`,
+                backgroundColor: `inputBackground`,
+                border: '2px solid',
+                borderColor: 'inputBorder',
+                borderRadius: '4px',               
+                color: `text`,
                 display: 'inline-block',
                 fontFamily: 'heading',
                 fontSize: [0, 1],
@@ -32,9 +30,11 @@ const TextArea = ({value, cols, placeholder, height, width, backgroundColor,
                 textDecoration: 'none',
                 // textTransform: 'uppercase',
                 ' &:focus': { backgroundColor: 'foreground',
-                 border: '2px solid borderFocus',
+                 border: '2px solid',
+                 borderColor: 'borderFocus',
                  outline: 'none !important'
                 },
+                '&::placeholder' : {color: 'placeHolderText'}
             }}
             >    
             </Textarea> 

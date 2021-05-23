@@ -1,6 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx } from 'theme-ui'
+import { jsx } from 'theme-ui';
 
 
 const ButtonPrimary = ({text, backgroundColor, onClick, type, id, display}) => (
@@ -10,7 +10,7 @@ const ButtonPrimary = ({text, backgroundColor, onClick, type, id, display}) => (
             backgroundColor: `${backgroundColor}`,
             borderRadius: '4px',
             border: 'none',
-            color: 'foreground',
+            color: 'buttonText',
             display: 'inline-block',
             fontFamily: 'heading',
             fontSize: [0, 1],

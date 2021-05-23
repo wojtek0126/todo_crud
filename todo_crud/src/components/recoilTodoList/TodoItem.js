@@ -74,8 +74,10 @@ function TodoItem({item}) {
         <div
         sx={{
           background: 'box',     
-        //   backgroundColor: 'foreground',
-          border: '2px solid boxBorder',   
+          backgroundColor: 'boxBackground',
+          color: 'text',
+          border: '2px solid', 
+          borderColor: 'boxBorder',  
           borderRadius: 4,
           fontSize: 4,
           margin: 3,

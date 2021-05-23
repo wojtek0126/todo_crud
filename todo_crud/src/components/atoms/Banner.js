@@ -2,12 +2,17 @@
 /** @jsx jsx */  
 import { jsx } from 'theme-ui';
 import { Flex } from "theme-ui";
-import { bannerContainer } from '../../styles/style_variables';
 
 
 const Banner = ({imageUrl}) => {
   return ( 
-      <Flex sx={bannerContainer}>
+      <Flex sx={{
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',  
+        height: '60vw',
+        width: '90vw'
+    }}>
           <img src={imageUrl} />                   
       </Flex>         
   );

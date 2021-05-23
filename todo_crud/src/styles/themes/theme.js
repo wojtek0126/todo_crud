@@ -13,21 +13,35 @@ export default{
     heading: 1.125,
   },
   colors: {
-    text: '#392a25',
+    boxBorder: '#000000',
+    boxBackground: 'gold',
     muted: '#aaaaaa',
-    background: 'gold',
-    foreground: '#ffffff',
+
+    text: '#392a25',    
+    placeHolderText: '#8a8a5c', 
+
+    optionBoxBackground: '#ffffff', 
+    optionBoxText: '#392a25',    
+
     buttons1: '#62c03b',
     buttons2: '#34aadc',
     buttons3: '#ff70b3',
-    buttonsClicked: '#ff70b3',    
-    checkboxBorder: '#174A41',
-    inputBackground: '#ffffff',
-    inputBorder: '#e0e0e0',
-    inputBorderFocus: '#34aadc',
-    box: 'gold',
-    boxBorder: '#000000'
+    buttonText: '#ffffff',
+    buttonsClicked: '#ff70b3', 
 
+    checkboxBorder: '#174A41',
+
+    inputBackground: '#ffffff',
+    inputBorder: '#000000',
+    inputBorderFocus: '#34aadc',
+    inputText: '#392a25',  
+
+    
+
+    counterAll: '#ffffff',
+    counterInProgress: '#ffffff',
+    counterCompleted: '#ffffff',
+    counterPercentage: '#ffffff'
   },
   space: [0, 4, 8, 16, 32, 48],
   breakpoints: ['40em', '64em', '80em'],

@@ -38,8 +38,10 @@ function TitleStats() {
       sx={{
         flexDirection: 'column',
         background: 'box',     
-        // backgroundColor: 'foreground',
-        border: '2px solid black',
+        backgroundColor: 'boxBackground',
+        color: 'text',
+        border: '2px solid',
+        borderColor: 'boxBorder',
         borderRadius: 4,
         fontSize: 4,
         margin: 3,

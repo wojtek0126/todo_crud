@@ -3,24 +3,21 @@
 import { Flex, jsx, Label, Select } from 'theme-ui';
 
 
-const OptionBox = ({onChange, options, value, height, width,
-   backgroundColor, textColor, labelText, labelColor, fs1, fs2, fs3}) => (  
+const OptionBox = ({onChange, options, value, labelText}) => (  
   <Flex>
     <Label sx={{flexDirection: `column`,
                    fontFamily: 'heading',
-                   fontWeight: 'heading',
-                   color: `${labelColor}`,
-                   fontSize: [`${fs1}, ${fs2}, ${fs3}`],
+                   fontWeight: 'heading',                   
+                   fontSize: [`12, 14, 16`],
                    margin: 0,
               }}>{labelText}
         <Select onChange={onChange} value={value}       
             sx={{
-              backgroundColor: `${backgroundColor}`,
+              backgroundColor: `optionBoxBackground`,
               borderRadius: '4px',
-              border: '2px solid inputBorder',
-              height: `${height}`,
-              width: `${width}`,
-              color: `${textColor}`,
+              border: '2px solid',
+              borderColor: 'inputBorder',             
+              color: `optionBoxText`,
               display: 'inline-block',
               fontFamily: 'heading',
               fontSize: [0, 1],
@@ -31,7 +28,8 @@ const OptionBox = ({onChange, options, value, height, width,
               textDecoration: 'none',
               // textTransform: 'uppercase',
               '&:hover, &:focus': { backgroundColor: 'foreground',
-              border: '2px solid inputBorderFocus',
+              border: '2px solid',
+              borderColor: 'inputBorderFocus',
               outline: 'none !important' },
             }}
           >   
