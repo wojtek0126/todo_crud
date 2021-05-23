@@ -56,7 +56,7 @@ function TodoList() {
         <Container>            
         <TodoItemCreator/>  
         <Flex         sx={{
-          // background: 'linear-gradient(rgba(10,0,0,0.1),transparent)',     
+          background: 'box',     
           // backgroundColor: 'foreground',
           border: '2px solid black', 
           borderRadius: 4,

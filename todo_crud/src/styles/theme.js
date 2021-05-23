@@ -25,7 +25,7 @@ export default{
     done: '#00cc00',
     inputBorder: '#e0e0e0',
     inputBorderFocus: '#34aadc',
-    box: 'linear-gradient(rgba(10,0,0,0.1),transparent)'    
+    box: 'gold'    
   },
   space: [0, 4, 8, 16, 32, 48],
   breakpoints: ['40em', '64em', '80em'],

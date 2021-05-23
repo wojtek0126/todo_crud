@@ -13,8 +13,9 @@ import TitleStats from './TitleStats';
         <ThemeProvider theme={theme} >                
           <Container >             
           <Flex         sx={{
-            // background: 'linear-gradient(rgba(10,0,0,0.1),transparent)',     
-            backgroundColor: 'foreground',
+            // background: 'box',     
+            // backgroundColor: 'box',
+            border: '2px solid black',   
             borderRadius: 4,
             fontSize: 4,
             margin: 3,
