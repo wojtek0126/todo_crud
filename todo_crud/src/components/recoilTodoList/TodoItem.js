@@ -42,7 +42,7 @@ function TodoItem({item}) {
 
     const confirmEditChanges = () => {
         updateTask(item.id, updatedData);
-        setUpdateButtonText("Content modified");
+        setUpdateButtonText("Content updated");
         setTimeout(() => {
           setUpdateButtonText("Update");
         }, 1800)  

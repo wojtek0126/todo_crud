@@ -14,6 +14,8 @@ import { dateFormatter } from '../../functions/specials';
 
 function TodoItemCreator() {
   const [inputValue, setInputValue] = useState('');  
+  const [updateBtnTxt, setUpdateBtnTxt] = useState("Add new task");
+
   const setTodoList = useSetRecoilState(todoListState); 
 
   //date formatting
@@ -36,7 +38,11 @@ function TodoItemCreator() {
      todoData,
     ]);
     setInputValue('');
-    addTask(todoData);     
+    addTask(todoData); 
+    setUpdateBtnTxt('New task added');
+    setTimeout(() => {
+      setUpdateBtnTxt('Add new task');
+    }, 1800)     
   };
 
   const onChange = ({target: {value}}) => {
@@ -62,7 +68,7 @@ function TodoItemCreator() {
       <TextArea value={inputValue} onChange={onChange} backgroundColor={`inputBackground`} 
       placeholder={`What needs to be done?`}/>
       <Flex sx={{flexDirection: 'column', justifyContent: 'space-between'}}>
-        <ButtonPrimary onClick={addItem} text={`Add new task`} backgroundColor={`buttons2`} />
+        <ButtonPrimary onClick={addItem} text={updateBtnTxt} backgroundColor={`buttons2`} />
         <ButtonWithlink to={`home`} text={`Back to main`} backgroundColor={`buttons1`} />
       </Flex>
     </Flex>

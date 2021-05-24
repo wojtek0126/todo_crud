@@ -38,8 +38,7 @@ import blackboard from "../../assets/b4769e3a52766f30e86b375391c84441.jpg";
             <TitleStats />
             <Banner imageUrl={blackboard} 
             value={boardNotes} />
-            <Flex sx = {{position: 'relative',
-             height: '40vh',
+            <Flex sx = {{           
              justifyContent: 'center',
              alignItems: 'flex-end'}}>            
                 <Footer year={`2021`} brandName={`HFM Wojbaza`} />

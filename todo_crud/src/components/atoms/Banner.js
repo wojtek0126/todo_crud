@@ -10,7 +10,7 @@ const Banner = ({imageUrl, value}) => {
     const boardTxtFromLocal = localStorage.getItem('notes');
     const [boardText, setBoardText] = useState(boardTxtFromLocal);  
     const [updateButtonTxt, setUpdateButtonTxt] = useState("Remember");
-    
+
 
     const handleClickSaveToLocal = (localKey, localValue, buttonText1, buttonText2) => {
         localStorage.setItem(localKey, localValue);
@@ -24,12 +24,12 @@ const Banner = ({imageUrl, value}) => {
   return ( 
     <Flex
     sx={{
-      position: 'absolute',
-      zIndex: 1,
+    //   position: 'absolute',
+    //   zIndex: 1,
       maxHeight: '30vh',
       maxWidth: '100vw',
-      width: '-webkit-fill-available',
-      height: '29vh',      
+    //   width: '-webkit-fill-available',
+      height: '26.3vh',      
       flexDirection: 'column',
       background: 'box',     
       backgroundColor: 'boxBackground',
@@ -40,12 +40,13 @@ const Banner = ({imageUrl, value}) => {
       fontSize: 4,
       margin: 3,
       padding: 3,
+      marginBottom: 0
     }}
   >
         <Textarea onChange={e => setBoardText(e.target.value)}
-                    sx={{height: '-webkit-fill-available',
-                       width: '-webkit-fill-available',
+                    sx={{                   
                        maxWidth: '100%',  
+                       minHeight: '14.5vh',
                        backgroundImage: `url(${imageUrl})`,  
                        fontFamily: 'blackboard',
                        fontWeight: 'blackboardThick',
