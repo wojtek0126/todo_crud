@@ -23,20 +23,10 @@ const Banner = ({imageUrl, value}) => {
 
   return ( 
     <Flex
-    sx={{
-<<<<<<< HEAD
-      maxHeight: '60vh',
-      maxWidth: '100vw',
-      width: '-webkit-fill-available',    
-      height: '30vh',      
-=======
-    //   position: 'absolute',
-    //   zIndex: 1,
+    sx={{   
       maxHeight: '30vh',
-      maxWidth: '100vw',
-    //   width: '-webkit-fill-available',
-      height: '26.3vh',      
->>>>>>> build2
+      maxWidth: '100vw',   
+      height: '26.3vh',   
       flexDirection: 'column',
       background: 'box',     
       backgroundColor: 'boxBackground',
