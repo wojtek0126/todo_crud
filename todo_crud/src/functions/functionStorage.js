@@ -7,9 +7,9 @@ export const switchBtnTxt = (setUpdateState, text1, text2, delay = 1800) => {
     }, delay); 
 }
 
-//date formatting, takes unformatted time, returns formatted time
-export const dateFormatter = (inputDate) => {
-    const t = inputDate; 
+//formatted current date and time, for create and edit tasks
+export const timeStampFormatted = () => {
+    const t = new Date(); 
     const date = ('0' + t.getDate()).slice(-2);
     const month = ('0' + (t.getMonth() + 1)).slice(-2);
     const year = t.getFullYear();
@@ -19,3 +19,5 @@ export const dateFormatter = (inputDate) => {
     const time = `${date}/${month}/${year}, ${hours}:${minutes}:${seconds}`;
     return time
 } 
+
+

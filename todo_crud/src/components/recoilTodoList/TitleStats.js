@@ -13,6 +13,9 @@ import { getAllTasks } from '../../API/fetch';
 function TitleStats() {
     const [todos, setTodos] = useRecoilState(todoListState);
 
+     // decoy for empty state todos
+     console.log(todos);
+
 
     useEffect(() => {
        const getTodos = async () => {
@@ -47,10 +50,14 @@ function TitleStats() {
         padding: 3,
       }}
     ><MediumText text={'Your progress:'} marginBottom={2} />
-        <ProgressCounter text={`Total tasks: ${totalNum}`} />
-        <ProgressCounter text={`Completed: ${totalCompletedNum}`} />
-        <ProgressCounter text={`In progress: ${totalUncompletedNum}`} />
-        <ProgressCounter text={`Percent completed: ${formattedPercentCompleted}`} />   
+        <ProgressCounter text={`Total tasks: ${totalNum}`}
+         backgroundColor={'counterAll'} color={`counterText`} />
+        <ProgressCounter text={`Completed: ${totalCompletedNum}`}
+         backgroundColor={'counterInProgress'} color={`counterText`}/>
+        <ProgressCounter text={`In progress: ${totalUncompletedNum}`}
+         backgroundColor={'counterCompleted'} color={`counterText`}/>
+        <ProgressCounter text={`Percent completed: ${formattedPercentCompleted}`}
+         backgroundColor={'counterPercentage'} color={`counterText`}/>   
         <ButtonWithlink  to={'action'} text={'To action'} backgroundColor={`buttons1`} />
       </Flex>
     );

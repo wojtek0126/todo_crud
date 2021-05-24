@@ -17,7 +17,7 @@ const OptionBox = ({onChange, options, value, labelText}) => (
               borderRadius: '4px',
               border: '2px solid',
               borderColor: 'inputBorder',             
-              color: `optionBoxText`,
+              color: `optionsText`,
               display: 'inline-block',
               fontFamily: 'heading',
               fontSize: [0, 1],

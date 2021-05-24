@@ -3,22 +3,20 @@
 import { jsx } from 'theme-ui';
 
 
-const TitleText = ({text, color}) => (
-    <h1
-    sx={{
-      fontFamily: 'heading',
-      fontWeight: 'heading',
-      color: `${color}`,
-      fontSize: [3, 4, 5],
-      margin: 0,
-      textTransform: 'uppercase',
-      display: 'flex',
-      alignSelf: 'center',
-      paddingBottom: '10px'
-    }}
-  >
-    {text}
-  </h1> 
+const TitleText = ({text1, text2, text3, marginBottom, backgroundColor}) => (
+    <h2
+      sx={{
+        backgroundColor: `${backgroundColor}`,
+        fontFamily: 'heading',
+        fontWeight: 'heading',        
+        fontSize: [3, 4, 5],
+        margin: 0,
+        marginBottom: `${marginBottom}`
+      }}    >
+        <span sx={{color: `titleText1`}}>{text1}</span>
+        <span sx={{color: `titleText2`}}>{text2}</span>
+        <span sx={{color: `titleText3`}}>{text3}</span>      
+    </h2>
 );
 
 

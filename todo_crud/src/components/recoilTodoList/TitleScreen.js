@@ -3,10 +3,10 @@
 import {jsx, ThemeProvider, Container, Flex } from 'theme-ui';
 import theme from '../../styles/themes/theme';
 import Banner from '../atoms/Banner';
-import BigText from '../atoms/BigText';
 import Footer from '../atoms/Footer';
 import TitleStats from './TitleStats';
 import blackboard from "../../assets/b4769e3a52766f30e86b375391c84441.jpg";
+import TitleText from '../atoms/TitleText';
 
     
   function TitleScreen() {   
@@ -28,7 +28,7 @@ import blackboard from "../../assets/b4769e3a52766f30e86b375391c84441.jpg";
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center'
-          }}><BigText text={' The Todo list'} marginBottom={2} />       
+          }}><TitleText text1={'The'} text2={`Eazzy`} text3={`Organizer`} marginBottom={2} />       
             </Flex>
             <TitleStats />
             <Banner imageUrl={blackboard} 

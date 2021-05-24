@@ -9,18 +9,13 @@ import { addTask } from '../../API/fetch';
 import MediumText from '../atoms/MediumText';
 import ButtonWithlink from '../atoms/ButtonWithLink';
 import TextArea from '../atoms/TextArea';
-import { dateFormatter } from '../../functions/functionStorage';
+import { timeStampFormatted } from '../../functions/functionStorage';
 
 
 function TodoItemCreator() {
   const [inputValue, setInputValue] = useState('');  
   const [updateBtnTxt, setUpdateBtnTxt] = useState("Add new task");
-
-  const setTodoList = useSetRecoilState(todoListState); 
-
-  //date formatting
-  const t = new Date();  
-  const time = dateFormatter(t);
+  const setTodoList = useSetRecoilState(todoListState);  
 
 
   const addItem = () => {
@@ -29,7 +24,7 @@ function TodoItemCreator() {
       // user_id: userId,
       title: inputValue,
       completed: false,
-      created_at: time,
+      created_at: timeStampFormatted(),
       updated_at: "not updated yet"
     }
 

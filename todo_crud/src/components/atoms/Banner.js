@@ -28,8 +28,7 @@ const Banner = ({imageUrl, value}) => {
 
   return ( 
     <Flex
-    sx={{    
-      maxHeight: '30vh',
+    sx={{       
       maxWidth: '100vw',               
       flexDirection: 'column',
       background: 'box',     
