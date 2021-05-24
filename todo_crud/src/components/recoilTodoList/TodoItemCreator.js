@@ -9,7 +9,7 @@ import { addTask } from '../../API/fetch';
 import MediumText from '../atoms/MediumText';
 import ButtonWithlink from '../atoms/ButtonWithLink';
 import TextArea from '../atoms/TextArea';
-import { dateFormatter } from '../../functions/specials';
+import { dateFormatter } from '../../functions/functionStorage';
 
 
 function TodoItemCreator() {
@@ -67,7 +67,7 @@ function TodoItemCreator() {
   ><MediumText text={'Create new task:'} marginBottom={2} />
       <TextArea value={inputValue} onChange={onChange} backgroundColor={`inputBackground`} 
       placeholder={`What needs to be done?`}/>
-      <Flex sx={{flexDirection: 'column', justifyContent: 'space-between'}}>
+      <Flex sx={{flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap'}}>
         <ButtonPrimary onClick={addItem} text={updateBtnTxt} backgroundColor={`buttons2`} />
         <ButtonWithlink to={`home`} text={`Back to main`} backgroundColor={`buttons1`} />
       </Flex>

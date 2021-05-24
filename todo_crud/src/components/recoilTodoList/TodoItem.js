@@ -10,11 +10,14 @@ import { deleteTask, updateTask } from '../../API/fetch';
 import MediumText from '../atoms/MediumText';
 import BigText from '../atoms/BigText';
 import TextArea from '../atoms/TextArea';
+import { switchBtnTxt } from '../../functions/functionStorage';
 
 
 function TodoItem({item}) {
     const [todoList, setTodoList] = useRecoilState(todoListState); 
     const [updateButtonText, setUpdateButtonText] = useState("Update");
+    const [deleteButtonText, setDeleteButtonText] = useState("Delete");
+
     const [inputValue, setInputValue] = useState(''); 
     const [updatedData, setUpdatedData] = useState([]);   
     const index = todoList.findIndex((listItem) => listItem === item);   
@@ -42,11 +45,7 @@ function TodoItem({item}) {
 
     const confirmEditChanges = () => {
         updateTask(item.id, updatedData);
-        setUpdateButtonText("Content updated");
-        setTimeout(() => {
-          setUpdateButtonText("Update");
-        }, 1800)  
-        setInputValue("");      
+        switchBtnTxt(setUpdateButtonText, 'Update', 'Updated');          
     } 
 
     const toggleItemCompletion = () => {
@@ -66,10 +65,14 @@ function TodoItem({item}) {
       setTodoList(newList);        
     };
   
-    const deleteItem = () => {              
-       deleteTask(item.id);       
-       const newList = removeItemAtIndex(todoList, index);   
-      setTodoList(newList);   
+    const deleteItem = () => {     
+       switchBtnTxt(setDeleteButtonText, 'Delete', 'Deleted');    
+       setTimeout(() => {
+        deleteTask(item.id);       
+        const newList = removeItemAtIndex(todoList, index);   
+        setTodoList(newList);  
+       }, 300);         
+      
     };   
 
   
@@ -99,9 +102,11 @@ function TodoItem({item}) {
             </div>
         <CheckboxAtom checked={item.completed} 
           onChange={toggleItemCompletion} />         
-        </Flex>    
-        <ButtonPrimary onClick={confirmEditChanges} text={updateButtonText} backgroundColor={'buttons2'}/>     
-        <ButtonPrimary onClick={deleteItem} text={`Delete`} backgroundColor={'buttons3'}/>
+        </Flex>   
+        <Flex sx={{flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'space-between'}}> 
+            <ButtonPrimary onClick={confirmEditChanges} text={updateButtonText} backgroundColor={'buttons2'}/>     
+            <ButtonPrimary onClick={deleteItem} text={deleteButtonText} backgroundColor={'buttons3'}/>
+        </Flex>
       </div>
     );
   }

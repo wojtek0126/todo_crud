@@ -3,33 +3,34 @@
 import { useState } from 'react';
 import { jsx, Textarea } from 'theme-ui';
 import { Flex } from "theme-ui";
+import { switchBtnTxt } from '../../functions/functionStorage';
 import ButtonPrimary from './ButtonPrimary';
+import MediumText from './MediumText';
 
 
 const Banner = ({imageUrl, value}) => {
     const boardTxtFromLocal = localStorage.getItem('notes');
     const [boardText, setBoardText] = useState(boardTxtFromLocal);  
     const [updateButtonTxt, setUpdateButtonTxt] = useState("Remember");
+    const [updateButton2Txt, setUpdateButton2Txt] = useState("Forget");
 
 
     const handleClickSaveToLocal = (localKey, localValue, buttonText1, buttonText2) => {
-        localStorage.setItem(localKey, localValue);
-        setUpdateButtonTxt(buttonText2);
-        setTimeout(() => {
-          setUpdateButtonTxt(buttonText1);
-        }, 1800) 
+        localStorage.setItem(localKey, localValue);       
+        switchBtnTxt(setUpdateButtonTxt, buttonText2, buttonText1);
+    }
+
+    const handleClickClearLocal = (buttonText1, buttonText2) => {
+        localStorage.clear();       
+        switchBtnTxt(setUpdateButton2Txt, buttonText2, buttonText1);
     }
 
 
   return ( 
     <Flex
-    sx={{
-    //   position: 'absolute',
-    //   zIndex: 1,
+    sx={{    
       maxHeight: '30vh',
-      maxWidth: '100vw',
-    //   width: '-webkit-fill-available',
-      height: '26.3vh',      
+      maxWidth: '100vw',               
       flexDirection: 'column',
       background: 'box',     
       backgroundColor: 'boxBackground',
@@ -43,6 +44,7 @@ const Banner = ({imageUrl, value}) => {
       marginBottom: 0
     }}
   >
+      <MediumText text={'Write down Your thoughts:'} marginBottom={2} />
         <Textarea onChange={e => setBoardText(e.target.value)}
                     sx={{                   
                        maxWidth: '100%',  
@@ -53,8 +55,15 @@ const Banner = ({imageUrl, value}) => {
                        color: 'textWhite',
                        '&::placeholder' : {color: 'placeHolderText'}                   
                     }}>{value}</Textarea>
-                    <ButtonPrimary text={updateButtonTxt} backgroundColor={`buttons2`} 
-                    onClick={() => handleClickSaveToLocal('notes', boardText, 'remember', 'remembered')} />
+                    <Flex sx={{flexWrap: 'wrap',
+                               flexDirection: 'row',
+                               justifyContent: 'space-between'}}>
+                        <ButtonPrimary text={updateButtonTxt} backgroundColor={`buttons2`} 
+                        onClick={() => handleClickSaveToLocal('notes', boardText, 'remembered', 'remember')} />
+                        <ButtonPrimary text={updateButton2Txt} backgroundColor={`buttons3`}
+                         onClick={() => handleClickClearLocal('Forgotten', 'Forget')}/>
+                    </Flex>
+                 
       </Flex>         
   );
 };

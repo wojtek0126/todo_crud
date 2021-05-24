@@ -20,7 +20,6 @@ function TitleStats() {
        }
       getTodos()  
     }, [])  
-
     
     const {
       totalNum,
@@ -31,7 +30,7 @@ function TitleStats() {
   
     //percentage completed feature - round it to nearest whole number
     const formattedPercentCompleted = Math.round(percentCompleted);
-
+ 
      
     return (
       <Flex
@@ -52,7 +51,7 @@ function TitleStats() {
         <ProgressCounter text={`Completed: ${totalCompletedNum}`} />
         <ProgressCounter text={`In progress: ${totalUncompletedNum}`} />
         <ProgressCounter text={`Percent completed: ${formattedPercentCompleted}`} />   
-        <ButtonWithlink to={`action`} text={`To action`} backgroundColor={`buttons1`} />
+        <ButtonWithlink  to={'action'} text={'To action'} backgroundColor={`buttons1`} />
       </Flex>
     );
   }
