@@ -74,7 +74,7 @@ const ThoughtBoard = ({imageUrl}) => {
                         onClick={() => handleClickSaveToLocal('notes', boardText, 'Remembered', 'Remember', 
                         boardText)} />
                         <ButtonPrimary text={forgetButtonTxt} backgroundColor={`buttons3`}
-                         onClick={() => handleClickClearLocal('Forgotten', 'Forget', boardText)}/>
+                         onClick={() => handleClickClearLocal('Forgot', 'Forget', boardText)}/>
                     </Flex>
                  
       </Flex>         

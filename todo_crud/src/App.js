@@ -1,13 +1,10 @@
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import TitleScreen from './components/recoilTodoList/TitleScreen';
 import TodoList from './components/recoilTodoList/TodoList';
-import Normalize from 'react-normalize';
 
 
 const App = () => {
-  return ( 
-    <>  
-    <Normalize />
+  return (   
     <Router>
       <Switch>
        <Redirect exact from="/" to="/home" />    
@@ -15,8 +12,7 @@ const App = () => {
         <Route path="/home" component={TitleScreen} />   
       <TodoList />    
      </Switch>         
-    </Router>
-    </>  
+    </Router>    
   );
 }
 
