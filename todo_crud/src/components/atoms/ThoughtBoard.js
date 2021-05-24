@@ -8,7 +8,7 @@ import ButtonPrimary from './ButtonPrimary';
 import MediumText from './MediumText';
 
 
-const Banner = ({imageUrl, value}) => {
+const ThoughtBoard = ({imageUrl, value}) => {
     const boardTxtFromLocal = localStorage.getItem('notes');
     const [boardText, setBoardText] = useState(boardTxtFromLocal);  
     const [updateButtonTxt, setUpdateButtonTxt] = useState("Remember");
@@ -68,6 +68,6 @@ const Banner = ({imageUrl, value}) => {
 };
 
 
-export default Banner;
+export default ThoughtBoard;
 
 
