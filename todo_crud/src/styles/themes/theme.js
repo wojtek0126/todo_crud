@@ -16,7 +16,7 @@ export default{
   },
   colors: {
     // background color
-    background: 'black',
+    background: 'darkolivegreen',
     // box container colors
     boxBorder: '#000000',
     boxBackground: 'darkseagreen', 

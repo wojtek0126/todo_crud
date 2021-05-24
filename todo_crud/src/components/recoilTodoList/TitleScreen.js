@@ -9,8 +9,7 @@ import TitleText from '../atoms/TitleText';
 import ThoughtBoard from '../atoms/ThoughtBoard';
 
     
-  function TitleScreen() {   
-    const boardNotes = localStorage.getItem(`notes`);
+  function TitleScreen() {      
 
   
       return (
@@ -31,8 +30,7 @@ import ThoughtBoard from '../atoms/ThoughtBoard';
           }}><TitleText text1={'The'} text2={`Eazzy`} text3={`Organizer`} marginBottom={2} />       
             </Flex>
             <TitleStats />
-            <ThoughtBoard imageUrl={blackboard} 
-            value={boardNotes} />
+            <ThoughtBoard imageUrl={blackboard} />
             <Flex sx = {{           
              justifyContent: 'center',
              alignItems: 'flex-end'}}>            

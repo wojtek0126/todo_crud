@@ -9,12 +9,12 @@ import { addTask } from '../../API/fetch';
 import MediumText from '../atoms/MediumText';
 import ButtonWithlink from '../atoms/ButtonWithLink';
 import TextArea from '../atoms/TextArea';
-import { timeStampFormatted } from '../../functions/functionStorage';
+import { switchBtnTxt, timeStampFormatted } from '../../functions/functionStorage';
 
 
 function TodoItemCreator() {
   const [inputValue, setInputValue] = useState('');  
-  const [updateBtnTxt, setUpdateBtnTxt] = useState("Add new task");
+  const [createBtnTxt, setCreateBtnTxt] = useState("Add new task");
   const setTodoList = useSetRecoilState(todoListState);  
 
 
@@ -27,20 +27,24 @@ function TodoItemCreator() {
       created_at: timeStampFormatted(),
       updated_at: "not updated yet"
     }
-
+  
     setTodoList((oldTodoList) => [
       ...oldTodoList,
      todoData,
     ]);
-    setInputValue('');
-    addTask(todoData); 
-    setUpdateBtnTxt('New task added');
-    setTimeout(() => {
-      setUpdateBtnTxt('Add new task');
-    }, 1800)     
+    //no empty input validator
+    if (inputValue.length > 0 ) {
+      setInputValue('');
+      addTask(todoData); 
+      switchBtnTxt(setCreateBtnTxt, 'Add new task', 'New task added');  
+    }
+    else if (inputValue.length < 1) {
+      switchBtnTxt(setCreateBtnTxt, 'Add new task', 'Nothing to add');
+    }
+     
   };
 
-  const onChange = ({target: {value}}) => {
+  const handleOnChange = ({target: {value}}) => {
     setInputValue(value);
   };
 
@@ -60,10 +64,10 @@ function TodoItemCreator() {
       padding: 3,
     }}
   ><MediumText text={'Create new task:'} marginBottom={2} />
-      <TextArea value={inputValue} onChange={onChange} backgroundColor={`inputBackground`} 
+      <TextArea value={inputValue} onChange={handleOnChange} backgroundColor={`inputBackground`} 
       placeholder={`What needs to be done?`}/>
       <Flex sx={{flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap'}}>
-        <ButtonPrimary onClick={addItem} text={updateBtnTxt} backgroundColor={`buttons2`} />
+        <ButtonPrimary onClick={addItem} text={createBtnTxt} backgroundColor={`buttons2`} />
         <ButtonWithlink to={`home`} text={`Back to main`} backgroundColor={`buttons1`} />
       </Flex>
     </Flex>

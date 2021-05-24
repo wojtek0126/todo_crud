@@ -12,6 +12,7 @@ const Footer = ({brandName, year}) => {
         alignItems: 'center', 
         width: '100vw',        
         fontSize: 4,
+        textAlign: 'center',
         margin: 3,
         padding: '9px',
         borderRadius: '4px',

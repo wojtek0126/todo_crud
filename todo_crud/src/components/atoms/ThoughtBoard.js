@@ -8,21 +8,34 @@ import ButtonPrimary from './ButtonPrimary';
 import MediumText from './MediumText';
 
 
-const ThoughtBoard = ({imageUrl, value}) => {
+const ThoughtBoard = ({imageUrl}) => {
     const boardTxtFromLocal = localStorage.getItem('notes');
     const [boardText, setBoardText] = useState(boardTxtFromLocal);  
-    const [updateButtonTxt, setUpdateButtonTxt] = useState("Remember");
-    const [updateButton2Txt, setUpdateButton2Txt] = useState("Forget");
+    const [rememberButtonTxt, setRememberButtonTxt] = useState("Remember");
+    const [forgetButtonTxt, setForgetButtonTxt] = useState("Forget");    
 
 
-    const handleClickSaveToLocal = (localKey, localValue, buttonText1, buttonText2) => {
+    const handleClickSaveToLocal = (localKey, localValue, buttonText1, buttonText2, inputValue) => {
+      //no empty validator        
+      if (inputValue !== null) {
         localStorage.setItem(localKey, localValue);       
-        switchBtnTxt(setUpdateButtonTxt, buttonText2, buttonText1);
+        switchBtnTxt(setRememberButtonTxt, buttonText2, buttonText1);
+      }    
+      else {
+        switchBtnTxt(setRememberButtonTxt, 'Remember', 'Nothing to remember');
+      }      
     }
 
-    const handleClickClearLocal = (buttonText1, buttonText2) => {
-        localStorage.clear();       
-        switchBtnTxt(setUpdateButton2Txt, buttonText2, buttonText1);
+    const handleClickClearLocal = (buttonText1, buttonText2, inputValue) => {    
+      if (inputValue !== null ) {
+        localStorage.clear();            
+        switchBtnTxt(setForgetButtonTxt, buttonText2, buttonText1);
+      }
+      else {
+        switchBtnTxt(setForgetButtonTxt, 'Forget', 'Nothing to forget');
+      } 
+
+        
     }
 
 
@@ -53,14 +66,15 @@ const ThoughtBoard = ({imageUrl, value}) => {
                        fontWeight: 'blackboardThick',
                        color: 'textWhite',
                        '&::placeholder' : {color: 'placeHolderText'}                   
-                    }}>{value}</Textarea>
+                    }}>{boardText}</Textarea>
                     <Flex sx={{flexWrap: 'wrap',
                                flexDirection: 'row',
                                justifyContent: 'space-between'}}>
-                        <ButtonPrimary text={updateButtonTxt} backgroundColor={`buttons2`} 
-                        onClick={() => handleClickSaveToLocal('notes', boardText, 'remembered', 'remember')} />
-                        <ButtonPrimary text={updateButton2Txt} backgroundColor={`buttons3`}
-                         onClick={() => handleClickClearLocal('Forgotten', 'Forget')}/>
+                        <ButtonPrimary text={rememberButtonTxt} backgroundColor={`buttons2`} 
+                        onClick={() => handleClickSaveToLocal('notes', boardText, 'Remembered', 'Remember', 
+                        boardText)} />
+                        <ButtonPrimary text={forgetButtonTxt} backgroundColor={`buttons3`}
+                         onClick={() => handleClickClearLocal('Forgotten', 'Forget', boardText)}/>
                     </Flex>
                  
       </Flex>         

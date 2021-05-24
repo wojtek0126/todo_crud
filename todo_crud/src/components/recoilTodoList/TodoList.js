@@ -58,10 +58,9 @@ function TodoList() {
 
     return (
       <ThemeProvider theme={theme}>       
-        <Container>            
+        <Container >            
         <TodoItemCreator/>  
-        <Flex sx={{
-          background: 'box',     
+        <Flex sx={{           
           backgroundColor: 'boxBackground',
           color: 'text',
           border: '2px solid', 
