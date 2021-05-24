@@ -1,10 +1,24 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */  
+import { useState } from 'react';
 import { jsx, Textarea } from 'theme-ui';
 import { Flex } from "theme-ui";
+import ButtonPrimary from './ButtonPrimary';
 
 
-const Banner = ({imageUrl, placeholder}) => {
+const Banner = ({imageUrl, value}) => {
+    const boardTxtFromLocal = localStorage.getItem('notes');
+    const [boardText, setBoardText] = useState(boardTxtFromLocal);  
+    const [updateButtonTxt, setUpdateButtonTxt] = useState("Remember");
+    
+
+    const handleClickSaveToLocal = (localKey, localValue, buttonText1, buttonText2) => {
+        localStorage.setItem(localKey, localValue);
+        setUpdateButtonTxt(buttonText2);
+        setTimeout(() => {
+          setUpdateButtonTxt(buttonText1);
+        }, 1800) 
+    }
 
 
   return ( 
@@ -28,7 +42,7 @@ const Banner = ({imageUrl, placeholder}) => {
       padding: 3,
     }}
   >
-        <Textarea placeholder={placeholder}  
+        <Textarea onChange={e => setBoardText(e.target.value)}
                     sx={{height: '-webkit-fill-available',
                        width: '-webkit-fill-available',
                        maxWidth: '100%',  
@@ -37,7 +51,9 @@ const Banner = ({imageUrl, placeholder}) => {
                        fontWeight: 'blackboardThick',
                        color: 'textWhite',
                        '&::placeholder' : {color: 'placeHolderText'}                   
-                    }} />
+                    }}>{value}</Textarea>
+                    <ButtonPrimary text={updateButtonTxt} backgroundColor={`buttons2`} 
+                    onClick={() => handleClickSaveToLocal('notes', boardText, 'remember', 'remembered')} />
       </Flex>         
   );
 };
