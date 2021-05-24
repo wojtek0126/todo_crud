@@ -13,8 +13,7 @@ function TodoListFilters() {
     const options = [`Show all tasks`, `In progress only`, `Completed only`];
   
     return (
-        <OptionBox options={options} value={filter} onChange={updateFilter}
-         backgroundColor={`inputBackground`} color={`text`} />         
+        <OptionBox options={options} value={filter} onChange={updateFilter} />         
     );
   }
 

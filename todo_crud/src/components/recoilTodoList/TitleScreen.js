@@ -2,38 +2,36 @@
 /** @jsx jsx */  
 import {jsx, ThemeProvider, Container, Flex } from 'theme-ui';
 import theme from '../../styles/themes/theme';
-import Banner from '../atoms/Banner';
-import BigText from '../atoms/BigText';
 import Footer from '../atoms/Footer';
 import TitleStats from './TitleStats';
 import blackboard from "../../assets/b4769e3a52766f30e86b375391c84441.jpg";
+import TitleText from '../atoms/TitleText';
+import ThoughtBoard from '../atoms/ThoughtBoard';
 
-    
-  function TitleScreen() {   
-    const boardNotes = localStorage.getItem(`notes`);
+
+  function TitleScreen() {    
 
   
       return (
         <ThemeProvider theme={theme} >                
-          <Container >             
-          <Flex sx={{               
+          <Container>             
+          <Flex sx={{                        
             backgroundColor: 'boxBackground',
             color: 'text',
             border: '2px solid',  
             borderColor: 'boxBorder', 
             borderRadius: 4,
             fontSize: 4,
-            margin: 3,
+            margin: 3,       
             padding: 3,
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center'
-          }}><BigText text={' The Todo list'} marginBottom={2} />       
+          }}><TitleText text1={'The'} text2={`Eazzy`} text3={`Organizer`} marginBottom={2} />       
             </Flex>
             <TitleStats />
-            <Banner imageUrl={blackboard} 
-            value={boardNotes} />
-            <Flex sx = {{    
+            <ThoughtBoard imageUrl={blackboard} />
+            <Flex sx = {{   
              justifyContent: 'center',
              alignItems: 'flex-end'}}>            
                 <Footer year={`2021`} brandName={`HFM Wojbaza`} />

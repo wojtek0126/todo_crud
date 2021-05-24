@@ -29,16 +29,19 @@ function TodoListStats() {
         padding: 3,
       }}
     ><MediumText text={'Your progress:'} marginBottom={2} />
-        <ProgressCounter text={`Total tasks: ${totalNum}`} borderColor={`boxBorder`} color={`text`} 
+        <ProgressCounter text={`Total tasks: ${totalNum}`} borderColor={`boxBorder`} 
+        color={`counterText`} 
         backgroundColor={`counterAll`} />
-        <ProgressCounter text={`Completed: ${totalCompletedNum}`}  borderColor={`boxBorder`} color={`text`}
+        <ProgressCounter text={`Completed: ${totalCompletedNum}`}  borderColor={`boxBorder`} 
+        color={`counterText`}
         backgroundColor={`counterCompleted`} />
-        <ProgressCounter text={`In progress: ${totalUncompletedNum}`}  borderColor={`boxBorder`} color={`text`}
+        <ProgressCounter text={`In progress: ${totalUncompletedNum}`}  borderColor={`boxBorder`} 
+        color={`counterText`}
         backgroundColor={`counterInProgress`} /> 
       </Flex>
     );
   }
 
-
+  
   export default TodoListStats;
 

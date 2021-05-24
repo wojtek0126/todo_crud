@@ -11,7 +11,7 @@ import TodoListStats from './TodoListStats';
 import { ThemeProvider, Container, Flex, Box } from 'theme-ui';
 import theme from '../../styles/themes/theme';
 import { getAllTasks } from '../../API/fetch';
-import InputField from '../atoms/InputField';
+import SearchField from '../atoms/SearchField';
 import MediumText from '../atoms/MediumText';
 import {CircleArrow as ScrollUpButton} from 'react-scroll-up-button';
 
@@ -24,7 +24,7 @@ function TodoList() {
     const [taskText, setTaskText] = useState([]);
     const filteredData =  useRecoilValue(filteredTodoListState);
 
-    //decoy for unused state    
+    //decoy for unused searchResults state    
     console.log(searchResults);    
 
    
@@ -33,6 +33,8 @@ function TodoList() {
       getAllTasks(setTodos)
       }
      getTodos()  
+     //decoy for unused searchResults state    
+     setTaskList(taskList);
    }, [])  
   
    useEffect(() => {  
@@ -56,10 +58,9 @@ function TodoList() {
 
     return (
       <ThemeProvider theme={theme}>       
-        <Container>            
+        <Container >            
         <TodoItemCreator/>  
-        <Flex sx={{
-          background: 'box',     
+        <Flex sx={{           
           backgroundColor: 'boxBackground',
           color: 'text',
           border: '2px solid', 
@@ -71,12 +72,11 @@ function TodoList() {
           flexDirection: 'column'
         }}><MediumText text={' Find Your task:'} marginBottom={2} />
         <TodoListFilters />
-        <InputField
+        <SearchField
           type={"text"}
           placeholder={"Search"}
           value={toSearch}
-          onChange={handleChange}
-          backgroundColor={`inputBackground`}
+          onChange={handleChange}        
         /></Flex>
         <TodoListStats />  
         <ScrollUpButton />             
