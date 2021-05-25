@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { jsx, Textarea } from 'theme-ui';
 import { Flex } from "theme-ui";
 import { switchBtnTxt } from '../../functions/functionStorage';
-import ButtonPrimary from './ButtonPrimary';
-import MediumText from './MediumText';
+import ButtonPrimary from '../atoms/ButtonPrimary';
+import MediumText from '../atoms/MediumText';
 
 
 const ThoughtBoard = ({imageUrl}) => {
@@ -36,9 +36,7 @@ const ThoughtBoard = ({imageUrl}) => {
         setTimeout(() => {
           window.location.reload();
         })
-      } 
-
-        
+      }         
     }
 
 

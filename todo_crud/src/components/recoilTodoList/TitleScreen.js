@@ -2,11 +2,11 @@
 /** @jsx jsx */  
 import {jsx, ThemeProvider, Container, Flex } from 'theme-ui';
 import theme from '../../styles/themes/theme';
-import Footer from '../atoms/Footer';
+import Footer from '../molecules/Footer';
 import TitleStats from './TitleStats';
 import blackboard from "../../assets/b4769e3a52766f30e86b375391c84441.jpg";
 import TitleText from '../atoms/TitleText';
-import ThoughtBoard from '../atoms/ThoughtBoard';
+import ThoughtBoard from './ThoughtBoard';
 
 
   function TitleScreen() {    

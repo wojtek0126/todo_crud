@@ -1,6 +1,6 @@
 import { useRecoilState } from 'recoil';
 import { todoListFilterState } from '../../functions/recoil';
-import OptionBox from '../atoms/OptionBox';
+import OptionBox from '../molecules/OptionBox';
 
 function TodoListFilters() {
     const [filter, setFilter] = useRecoilState(todoListFilterState);
