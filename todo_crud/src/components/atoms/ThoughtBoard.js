@@ -17,22 +17,25 @@ const ThoughtBoard = ({imageUrl}) => {
 
     const handleClickSaveToLocal = (localKey, localValue, buttonText1, buttonText2, inputValue) => {
       //no empty validator        
-      if (inputValue !== null) {
+      if ( inputValue === "" || inputValue === null || inputValue === undefined) {
+        switchBtnTxt(setRememberButtonTxt, 'Remember', 'Nothing to remember');
+      }    
+      else {    
         localStorage.setItem(localKey, localValue);       
         switchBtnTxt(setRememberButtonTxt, buttonText2, buttonText1);
-      }    
-      else {
-        switchBtnTxt(setRememberButtonTxt, 'Remember', 'Nothing to remember');
       }      
     }
 
     const handleClickClearLocal = (buttonText1, buttonText2, inputValue) => {    
-      if (inputValue !== null ) {
-        localStorage.clear();            
-        switchBtnTxt(setForgetButtonTxt, buttonText2, buttonText1);
+      if (inputValue === "" || inputValue === null || inputValue === undefined) {
+        switchBtnTxt(setForgetButtonTxt, 'Forget', 'Nothing to forget');      
       }
       else {
-        switchBtnTxt(setForgetButtonTxt, 'Forget', 'Nothing to forget');
+        localStorage.clear();            
+        switchBtnTxt(setForgetButtonTxt, buttonText2, buttonText1);
+        setTimeout(() => {
+          window.location.reload();
+        })
       } 
 
         
@@ -74,7 +77,7 @@ const ThoughtBoard = ({imageUrl}) => {
                         onClick={() => handleClickSaveToLocal('notes', boardText, 'Remembered', 'Remember', 
                         boardText)} />
                         <ButtonPrimary text={forgetButtonTxt} backgroundColor={`buttons3`}
-                         onClick={() => handleClickClearLocal('Forgot', 'Forget', boardText)}/>
+                         onClick={() => handleClickClearLocal('Forgotten', 'Forget', boardText)}/>
                     </Flex>
                  
       </Flex>         

@@ -10,7 +10,7 @@ import { deleteTask, updateTask } from '../../API/fetch';
 import MediumText from '../atoms/MediumText';
 import BigText from '../atoms/BigText';
 import TextArea from '../atoms/TextArea';
-import { dateFormatter, switchBtnTxt, timeStampFormatted } from '../../functions/functionStorage';
+import { switchBtnTxt, timeStampFormatted } from '../../functions/functionStorage';
 
 
 function TodoItem({item}) {
@@ -43,9 +43,14 @@ function TodoItem({item}) {
     };   
 
     const confirmEditChanges = () => {
+      if (inputValue === "" || inputValue === null || inputValue === undefined) {
+        switchBtnTxt(setUpdateButtonText, 'Update', 'Cannot be empty');  
+      } 
+      else {
         updateTask(item.id, updatedData);
         switchBtnTxt(setUpdateButtonText, 'Update', 'Updated');          
-    } 
+      }
+    }
 
     const toggleItemCompletion = () => {
       const newList = replaceItemAtIndex(todoList, index, {
