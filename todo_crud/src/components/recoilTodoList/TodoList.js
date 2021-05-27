@@ -23,10 +23,10 @@ function TodoList() {
     const [taskList, setTaskList] = useState([]);
     const [taskText, setTaskText] = useState([]);
     const filteredData =  useRecoilValue(filteredTodoListState);
+    
 
     //decoy for unused searchResults state    
     console.log(searchResults);    
-
    
     useEffect(() => {
       const getTodos = async () => {
@@ -53,7 +53,7 @@ function TodoList() {
   
       const handleChange = (e) => {
           setToSearch(e.target.value);
-      }
+      } 
 
 
     return (

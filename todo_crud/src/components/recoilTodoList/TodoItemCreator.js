@@ -21,11 +21,11 @@ function TodoItemCreator() {
   const addItem = () => {
     const todoData =    {
       id: getId(),
-      // user_id: userId,
+      user_id: 704,
       title: inputValue,
       completed: false,
       created_at: timeStampFormatted(),
-      updated_at: "not updated yet"
+      updated_at: "Not updated yet"
     }
   
     setTodoList((oldTodoList) => [

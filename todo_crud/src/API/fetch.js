@@ -22,7 +22,7 @@ export const getSingleTask = (id, successCallback) => {
     fetch(`${API}/${id}`)    
         .then(response => response.json())
         .then(data => {
-            successCallback(data.data[0]);          
+            successCallback(data.data);          
         })
         .catch(error => {
             console.log(error);            

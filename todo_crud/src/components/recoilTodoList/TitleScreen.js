@@ -16,7 +16,7 @@ import ThoughtBoard from './ThoughtBoard';
         <ThemeProvider theme={theme} >                
           <Container>             
           <Flex sx={{                        
-            backgroundColor: 'boxBackground',
+            background: 'linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,253,65,0.6699813714548319) 100%)',
             color: 'text',
             border: '2px solid',  
             borderColor: 'boxBorder', 

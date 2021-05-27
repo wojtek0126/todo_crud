@@ -10,22 +10,35 @@ import { deleteTask, updateTask } from '../../API/fetch';
 import MediumText from '../atoms/MediumText';
 import BigText from '../atoms/BigText';
 import TextArea from '../atoms/TextArea';
-import { switchBtnTxt, timeStampFormatted } from '../../functions/functionStorage';
+import { switchBtnTxt, timeStampFormatted, toggleDisplay } from '../../functions/functionStorage';
 import YesNoPopup from '../molecules/YesNoPopup';
+import TaskDetails from '../molecules/TaskDetails';
+import ButtonsWrapper from '../atoms/ButtonsWrapper';
 
 
 function TodoItem({item}) {
+
+    const updateText = 'Update task';
+    const updateEmptyText = 'Please type in something';
+    const updateSuccesstext = 'Task updated';
+    const deleteText = 'Delete task';
+    const deleteSuccesstext = 'Task deleted';
+
+    const displayOn = 'flex';
+    const displayOff = 'none';
+  
     const [todoList, setTodoList] = useRecoilState(todoListState); 
-    const [updateButtonText, setUpdateButtonText] = useState("Update");
-    const [deleteButtonText, setDeleteButtonText] = useState("Delete");
+    const [updateButtonText, setUpdateButtonText] = useState(updateText);
+    const [deleteButtonText, setDeleteButtonText] = useState(deleteText);
     const [inputValue, setInputValue] = useState(''); 
     const [updatedData, setUpdatedData] = useState([]);    
     const index = todoList.findIndex((listItem) => listItem === item);
     // buttons activeate toggle
-    const [taskBtnEdit, setTaskBtnEdit] = useState("flex"); 
-    const [taskBtnDelete, setTaskBtnDelete] = useState("flex"); 
-    const [yesNoEditPopup, setYesNoEditPopup] = useState("none");  
-    const [yesNoDeletePopup, setYesNoDeletePopup] = useState("none");   
+    const [taskBtnEdit, setTaskBtnEdit] = useState(displayOn); 
+    const [taskBtnDelete, setTaskBtnDelete] = useState(displayOn); 
+    const [yesNoEditPopup, setYesNoEditPopup] = useState(displayOff);  
+    const [yesNoDeletePopup, setYesNoDeletePopup] = useState(displayOff);  
+    const [taskDetailView, setTaskDetailView] = useState(displayOn);    
 
     // decoy for empty state inputvalue 
     console.log(inputValue);
@@ -49,14 +62,14 @@ function TodoItem({item}) {
     };   
 
     const confirmEditChanges = () => {
-      if (inputValue === "" || inputValue === null || inputValue === undefined) {
-        switchBtnTxt(setUpdateButtonText, 'Update', 'Same or empty content');  
+      if (updatedData.title === "" || updatedData.title === null || updatedData.title === undefined) {
+        switchBtnTxt(setUpdateButtonText, updateText, updateEmptyText);  
       } 
       else {
         updateTask(item.id, updatedData);
-        switchBtnTxt(setUpdateButtonText, 'Update', 'Updated');  
-        setYesNoEditPopup("none"); 
-        setTaskBtnDelete('flex');       
+        switchBtnTxt(setUpdateButtonText, updateText, updateSuccesstext);  
+        setYesNoEditPopup(displayOff); 
+        setTaskBtnDelete(displayOn);       
       }      
     }
 
@@ -71,30 +84,30 @@ function TodoItem({item}) {
         title: item.title,
         completed: !item.completed,
         created_at: item.created_at,
-        updated_at: Date.now()
+        updated_at: timeStampFormatted()
       }
       updateTask(item.id, todoDataModCheck) 
       setTodoList(newList);        
     };
   
     const deleteItem = () => {     
-       switchBtnTxt(setDeleteButtonText, 'Delete', 'Deleted');    
+       switchBtnTxt(setDeleteButtonText, deleteText, deleteSuccesstext);    
        setTimeout(() => {
         deleteTask(item.id);       
         const newList = removeItemAtIndex(todoList, index);   
         setTodoList(newList);  
        }, 300);         
-       setYesNoDeletePopup("none");
-       setTaskBtnEdit('flex');
+       setYesNoDeletePopup(displayOff);
+       setTaskBtnEdit(displayOn);
     };   
 
     //toggle displays when buttons clicked
     const toggleDisplayFlex = (setDisplayOn, setDisplayOff) => {
       setDisplayOn('flex');
       setDisplayOff('none');
-    }
-    
-  
+    }  
+
+
     return (
         <div
         sx={{
@@ -122,18 +135,29 @@ function TodoItem({item}) {
         <CheckboxAtom checked={item.completed} 
           onChange={toggleItemCompletion} />         
         </Flex>   
-        <Flex sx={{flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'space-between'}}> 
-            <ButtonPrimary onClick={() => toggleDisplayFlex(setYesNoEditPopup, setTaskBtnDelete)} displayIt={taskBtnEdit}
-            text={updateButtonText} backgroundColor={'buttons2'}/>     
-            <ButtonPrimary onClick={() => toggleDisplayFlex(setYesNoDeletePopup, setTaskBtnEdit)} displayIt={taskBtnDelete}
+        <Flex sx={{flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'flex-start'}}> 
+           <ButtonPrimary
+            onClick={() => toggleDisplay(setYesNoEditPopup, setTaskBtnDelete, displayOn)} displayIt={taskBtnEdit}
+            text={'Show details'} backgroundColor={'buttons1'}/>         
+            <ButtonPrimary 
+            onClick={() => toggleDisplay(setYesNoEditPopup, setTaskBtnDelete, displayOn)} displayIt={taskBtnEdit}
+            text={updateButtonText} backgroundColor={'buttons2'}/>    
+            <ButtonPrimary 
+            onClick={() => toggleDisplay(setYesNoEditPopup, setTaskBtnDelete, displayOn)} displayIt={taskBtnEdit}
+            text={'Change status'} backgroundColor={'buttons2'}/>                
+            <ButtonPrimary 
+            onClick={() => toggleDisplay(setYesNoDeletePopup, setTaskBtnEdit, displayOn)} displayIt={taskBtnDelete}
             text={deleteButtonText} backgroundColor={'buttons3'}/>          
-        </Flex>
-        <div sx={{display: `${yesNoEditPopup}`, flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'space-between'}}>
-          <YesNoPopup  onClickYes={confirmEditChanges} onClickNo={() => toggleDisplayFlex(setTaskBtnDelete, setYesNoEditPopup)} />
-        </div>  
-        <div sx={{display: `${yesNoDeletePopup}`, flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'space-between'}}>
-          <YesNoPopup onClickYes={deleteItem} onClickNo={() => toggleDisplayFlex(setTaskBtnEdit, setYesNoDeletePopup)} />
-        </div> 
+        </Flex>        
+        <ButtonsWrapper displayStyle={yesNoEditPopup} contentArea={
+        <YesNoPopup  onClickYes={confirmEditChanges} 
+        onClickNo={() => toggleDisplay(setTaskBtnDelete, setYesNoEditPopup, displayOn)} />
+        }/>       
+        <ButtonsWrapper displayStyle={yesNoDeletePopup} contentArea={
+          <YesNoPopup onClickYes={deleteItem} 
+          onClickNo={() => toggleDisplay(setTaskBtnEdit, setYesNoDeletePopup, displayOn)} />
+        }/>
+        <TaskDetails displayIt={taskDetailView} taskId={item.id} />
       </div>
     );
   }
