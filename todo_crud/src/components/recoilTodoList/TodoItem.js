@@ -17,13 +17,13 @@ import ButtonsWrapper from '../atoms/ButtonsWrapper';
 
 
 function TodoItem({item}) {
-
+    // this goes to content.js
     const updateText = 'Update task';
     const updateEmptyText = 'Please type in something';
     const updateSuccesstext = 'Task updated';
     const deleteText = 'Delete task';
     const deleteSuccesstext = 'Task deleted';
-
+   //display
     const displayOn = 'flex';
     const displayOff = 'none';
   
@@ -33,12 +33,15 @@ function TodoItem({item}) {
     const [inputValue, setInputValue] = useState(''); 
     const [updatedData, setUpdatedData] = useState([]);    
     const index = todoList.findIndex((listItem) => listItem === item);
+    //toggle textarea enabled or disabled
+    const [disabled, setDisabled] = useState(true);
     // buttons activeate toggle
     const [taskBtnEdit, setTaskBtnEdit] = useState(displayOn); 
-    const [taskBtnDelete, setTaskBtnDelete] = useState(displayOn); 
+    const [taskBtnDelete, setTaskBtnDelete] = useState(displayOn);
+    const [taskBtnDetails, setTaskBtnDetails] = useState(displayOn);  
     const [yesNoEditPopup, setYesNoEditPopup] = useState(displayOff);  
     const [yesNoDeletePopup, setYesNoDeletePopup] = useState(displayOff);  
-    const [taskDetailView, setTaskDetailView] = useState(displayOn);    
+    const [taskDetailView, setTaskDetailView] = useState(displayOff);    
 
     // decoy for empty state inputvalue 
     console.log(inputValue);
@@ -69,7 +72,8 @@ function TodoItem({item}) {
         updateTask(item.id, updatedData);
         switchBtnTxt(setUpdateButtonText, updateText, updateSuccesstext);  
         setYesNoEditPopup(displayOff); 
-        setTaskBtnDelete(displayOn);       
+        setTaskBtnDelete(displayOn);  
+        setDisabled(true);     
       }      
     }
 
@@ -99,14 +103,26 @@ function TodoItem({item}) {
        }, 300);         
        setYesNoDeletePopup(displayOff);
        setTaskBtnEdit(displayOn);
-    };   
+    };     
 
-    //toggle displays when buttons clicked
-    const toggleDisplayFlex = (setDisplayOn, setDisplayOff) => {
-      setDisplayOn('flex');
-      setDisplayOff('none');
-    }  
+    //when details close button clicked
+    const handleCloseDetailsBtn = () => {
+      setTaskDetailView(displayOff);
+      setTaskBtnDetails(displayOn);
+      setTaskBtnEdit(displayOn);
+    }
 
+    //when update button clicked and updating enabled
+    const handleUpdateBtn = () => {
+      toggleDisplay(setYesNoEditPopup, setTaskBtnDelete, displayOn);
+      setDisabled(false);
+    }
+
+    //when update button clicked and clicking no button
+    const handleUpdateNoBtn = () => {
+      toggleDisplay(setTaskBtnDelete, setYesNoEditPopup, displayOn);
+      setDisabled(true);
+    }
 
     return (
         <div
@@ -122,7 +138,7 @@ function TodoItem({item}) {
           padding: 3,
         }}
       ><BigText text={ `Task # ${item.id}:`} marginBottom={2} />
-        <TextArea value={item.title} onChange={editItemText} backgroundColor={`inputBackground`}/>
+        <TextArea disabled={disabled} value={item.title} onChange={editItemText} backgroundColor={`inputBackground`}/>
         <Flex sx={{flexDirection: 'row'}}>
             <MediumText text={`Time started: ${item.created_at}`} marginBottom={`2`}/>
             {/* <MediumText text={`Last time modified: ${item.updated_at}`} marginBottom={`2`}/> */}
@@ -137,10 +153,10 @@ function TodoItem({item}) {
         </Flex>   
         <Flex sx={{flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'flex-start'}}> 
            <ButtonPrimary
-            onClick={() => toggleDisplay(setYesNoEditPopup, setTaskBtnDelete, displayOn)} displayIt={taskBtnEdit}
+            onClick={() => toggleDisplay(setTaskDetailView, setTaskBtnEdit, displayOn)} displayIt={taskBtnEdit}
             text={'Show details'} backgroundColor={'buttons1'}/>         
             <ButtonPrimary 
-            onClick={() => toggleDisplay(setYesNoEditPopup, setTaskBtnDelete, displayOn)} displayIt={taskBtnEdit}
+            onClick={handleUpdateBtn} displayIt={taskBtnEdit}
             text={updateButtonText} backgroundColor={'buttons2'}/>    
             <ButtonPrimary 
             onClick={() => toggleDisplay(setYesNoEditPopup, setTaskBtnDelete, displayOn)} displayIt={taskBtnEdit}
@@ -151,13 +167,13 @@ function TodoItem({item}) {
         </Flex>        
         <ButtonsWrapper displayStyle={yesNoEditPopup} contentArea={
         <YesNoPopup  onClickYes={confirmEditChanges} 
-        onClickNo={() => toggleDisplay(setTaskBtnDelete, setYesNoEditPopup, displayOn)} />
+        onClickNo={handleUpdateNoBtn} />
         }/>       
         <ButtonsWrapper displayStyle={yesNoDeletePopup} contentArea={
           <YesNoPopup onClickYes={deleteItem} 
           onClickNo={() => toggleDisplay(setTaskBtnEdit, setYesNoDeletePopup, displayOn)} />
         }/>
-        <TaskDetails displayIt={taskDetailView} taskId={item.id} />
+        <TaskDetails displayIt={taskDetailView} taskId={item.id} clickClose={handleCloseDetailsBtn} />
       </div>
     );
   }

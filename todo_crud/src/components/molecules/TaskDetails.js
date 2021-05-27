@@ -6,7 +6,7 @@ import { getSingleTask } from '../../API/fetch';
 import ButtonPrimary from '../atoms/ButtonPrimary';
 
 
-const TaskDetails =({taskId, displayIt = 'flex'}) => {  
+const TaskDetails =({taskId, clickClose, displayIt = 'flex'}) => {  
   const [getTask, setGetTask] = useState([]);
 console.log(taskId, "task id w item details");
   useEffect(() => {
@@ -50,8 +50,8 @@ console.log(taskId, "task id w item details");
             <Flex>Time started: {getTask.created_at}</Flex>
             <Flex>Last time updated: {getTask.updated_at}</Flex>  
             <Flex sx={{flexDirection: 'row', justifyContent: 'space-between'}}>
-          <ButtonPrimary text={'print'} backgroundColor={'buttons1'} />
-          <ButtonPrimary text={'close'} backgroundColor={'buttons3'} />
+          {/* <ButtonPrimary text={'print'} backgroundColor={'buttons1'} /> */}
+          <ButtonPrimary text={'close'} backgroundColor={'buttons3'} onClick={clickClose} />
         </Flex>       
         </Flex>
         

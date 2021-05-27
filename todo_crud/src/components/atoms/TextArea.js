@@ -5,8 +5,8 @@ import blackboard from "../../assets/b4769e3a52766f30e86b375391c84441.jpg";
 
 
 const TextArea = ({value, cols, placeholder, 
-     labelText, onChange, id}) => (
-    <Flex id={id}>
+     labelText, onChange, disabled}) => (
+    <Flex>
         <Label sx={{flexDirection: `column`, 
         fontFamily: 'heading',
         fontWeight: 'heading',              
@@ -14,7 +14,7 @@ const TextArea = ({value, cols, placeholder,
         margin: 0,
 }}>{labelText}
             <Textarea value={value} onChange={onChange}
-            cols={cols} placeholder={placeholder}
+            cols={cols} placeholder={placeholder} disabled={disabled}
             sx={{
                 backgroundImage: `url(${blackboard})`,
                 // backgroundColor: `inputBackground`,
