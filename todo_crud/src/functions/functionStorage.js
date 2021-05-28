@@ -9,8 +9,8 @@ export const switchBtnTxt = (setUpdateState, text1, text2, delay = 1800) => {
 
 
 //toggle displays when buttons clicked
-export const toggleDisplay = (setDisplayOn, setDisplayOff, displaytypeOn) => {
-  setDisplayOn(displaytypeOn);
+export const toggleDisplay = (setDisplayOn, setDisplayOff, displayTypeOn) => {
+  setDisplayOn(displayTypeOn);
   setDisplayOff('none');
 }  
 

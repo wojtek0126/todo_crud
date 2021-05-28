@@ -184,15 +184,54 @@ function TodoItem({item}) {
         setYesNoStatusPopup(displayOff); 
        }
 
-       //item completed display, previously it was checkbox
+       //after clicking
+       const handleShowDetailsBtn = () => {        
+        setTaskBtnEdit(displayOff);
+        setTaskBtnDelete(displayOff);
+        setTaskBtnDetails(displayOff); 
+        setTaskBtnStatus(displayOff);
+        setTaskDetailView(displayOn); 
+      }
+
+           //after clicking 
+           const handleDeleteBtnClick = () => {        
+            setTaskBtnEdit(displayOff);
+            setTaskBtnDelete(displayOff);
+            setTaskBtnDetails(displayOff); 
+            setTaskBtnStatus(displayOff);
+            setTaskDetailView(displayOff);    
+            setYesNoDeletePopup(displayOn);  
+           }
+
+            //after clicking 
+            const handleDeleteBtnYesClick = () => {  
+              deleteItem();      
+              setTaskBtnEdit(displayOff);
+              setTaskBtnDelete(displayOff);
+              setTaskBtnDetails(displayOff); 
+              setTaskBtnStatus(displayOff);
+              setTaskDetailView(displayOff);    
+              setYesNoDeletePopup(displayOn);  
+             }
+
+             //after clicking 
+             const handleDeleteBtnNoClick = () => {        
+              setTaskBtnEdit(displayOn);
+              setTaskBtnDelete(displayOn);
+              setTaskBtnDetails(displayOn); 
+              setTaskBtnStatus(displayOn); 
+              setYesNoDeletePopup(displayOff);                 
+             }
+
+       //item completed/in progress to display
        const itemStatusDisplay = (completedData) => {        
-    if (completedData === true) {
-      return "Task is currently in progress"
-    }
-    else {
-      return "Task is completed"
-    }
-       }
+          if (completedData === true) {
+            return "Task is completed"
+          }
+          else {
+            return "Task is currently in progress"
+          }
+            }
 
     return (
         <div
@@ -208,22 +247,14 @@ function TodoItem({item}) {
           padding: 3,
         }}
       ><BigText text={ `Task # ${item.id}:`} marginBottom={2} />
-        <TextArea disabled={disabled} value={item.title} onChange={editItemText} backgroundColor={`inputBackground`}/>
-        {/* <Flex sx={{flexDirection: 'row'}}>
-            <MediumText text={`Time started: ${item.created_at}`} marginBottom={`2`}/>
-            <MediumText text={`Last time modified: ${item.updated_at}`} marginBottom={`2`}/>
-        </Flex>  */}
+        <TextArea disabled={disabled} value={item.title} onChange={editItemText} backgroundColor={`inputBackground`}/>     
         <Flex sx={{flexDirection: 'row',
-                   marginBottom: 2}} >
-            {/* <div sx={{marginRight: 2}}> */}
-                 <MediumText text={itemStatusDisplay(item.completed)} />
-            {/* </div> */}
-        {/* <CheckboxAtom checked={item.completed} 
-          onChange={handleChoiceBox} />          */}
+                   marginBottom: 2}} >            
+                 <MediumText text={itemStatusDisplay(item.completed)} />      
         </Flex>   
         <Flex sx={{flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'flex-start'}}> 
            <ButtonPrimary
-            onClick={() => toggleDisplay(setTaskDetailView, setTaskBtnEdit, displayOn)} displayIt={taskBtnDetails}
+            onClick={handleShowDetailsBtn} displayIt={taskBtnDetails}
             text={'Show details'} backgroundColor={'buttons1'}/>         
             <ButtonPrimary 
             onClick={handleUpdateBtn} displayIt={taskBtnEdit}
@@ -232,19 +263,16 @@ function TodoItem({item}) {
             onClick={handleChangeStatusBtn} displayIt={taskBtnStatus}
             text={'Change status'} backgroundColor={'buttons2'}/>                
             <ButtonPrimary 
-            onClick={() => toggleDisplay(setYesNoDeletePopup, setTaskBtnEdit, displayOn)} displayIt={taskBtnDelete}
-            text={deleteButtonText} backgroundColor={'buttons3'}/>     
-             {/* <ButtonPrimary 
-            onClick={handleCancelBtn} displayIt={taskBtnCancel}
-            text={'Cancel'} backgroundColor={'buttons3'}/>           */}
+            onClick={handleDeleteBtnClick} displayIt={taskBtnDelete}
+            text={deleteButtonText} backgroundColor={'buttons3'}/>       
         </Flex>        
         <ButtonsWrapper displayStyle={yesNoEditPopup} contentArea={
         <YesNoPopup  onClickYes={confirmEditChanges} 
         onClickNo={handleUpdateNoBtn} />
         }/>       
         <ButtonsWrapper displayStyle={yesNoDeletePopup} contentArea={
-          <YesNoPopup onClickYes={deleteItem} 
-          onClickNo={() => toggleDisplay(setTaskBtnEdit, setYesNoDeletePopup, displayOn)} />
+          <YesNoPopup onClickYes={handleDeleteBtnYesClick} 
+          onClickNo={handleDeleteBtnNoClick} />
         }/>
          <ButtonsWrapper displayStyle={yesNoStatusPopup} contentArea={
           <YesNoPopup onClickYes={handleChoiceBoxConfirm} 
