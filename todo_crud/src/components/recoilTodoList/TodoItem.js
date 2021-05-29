@@ -2,8 +2,8 @@
 /** @jsx jsx */
 import { Flex, jsx } from 'theme-ui';
 import { useRecoilState } from 'recoil';
-import { useState } from 'react';
-import { todoListState } from '../../functions/recoil';
+import { useState, useEffect, useRef } from 'react';
+import { todoItemState, todoListState } from '../../functions/recoil';
 import ButtonPrimary from '../atoms/ButtonPrimary';
 import CheckboxAtom from '../atoms/Checkbox';
 import { deleteTask, updateTask } from '../../API/fetch';
@@ -30,13 +30,15 @@ function TodoItem({item}) {
     const deleteYesNoMessage = "Are you sure to delete this task?";
 
 
-   //display
+   //display to settings.js
     const displayOn = 'flex';
     const displayOff = 'none';
-  //sets equal delays for common timeouts
+  //sets equal delays for common timeouts, to settings.js
   const delayTime = 1800;
 
-  
+
+
+
     const [todoList, setTodoList] = useRecoilState(todoListState); 
     const [updateButtonText, setUpdateButtonText] = useState(updateText);
     const [deleteButtonText, setDeleteButtonText] = useState(deleteText);
@@ -58,13 +60,29 @@ function TodoItem({item}) {
     const [yesNoStatusPopup, setYesNoStatusPopup] = useState(displayOff);  
     //views active or not
     const [taskDetailView, setTaskDetailView] = useState(displayOff);
-    // const [taskStatusView, setTaskStatusView] = useState(displayOff);     
+    // const [taskStatusView, setTaskStatusView] = useState(displayOff);  
+     // const textareaDisplayWhenEditOff = item.title; 
+    // const textareaDisplayWhenEditOn = inputValue; 
+    
+    
+    // let itemData = item.title;  
+    // const [itemState, setItemState] = useState(itemData);
+
+    // useEffect(() => {
+    //   todoList.map((element) => {
+    //     setItemState(element.title);
+    //    });
+    // }, [])
+    
+//  setItemState(oldList);
+//  console.log(itemState, "old list here!!!!!");
 
     // decoy for empty state inputvalue 
-    console.log(inputValue);
+    // console.log(inputValue);
 
     //edit task, just changing content without commiting
-    const editItemText = ({target: {value}}) => {        
+    const editItemText = ({target: {value}}) => {       
+      //this makes target value update dynamically on textarea     
       const newList = replaceItemAtIndex(todoList, index, {
         ...item,
         title: value,
@@ -76,10 +94,11 @@ function TodoItem({item}) {
         completed: item.completed,
         created_at: item.created_at,
         updated_at: timeStampFormatted()
-      }
+      }    
       setUpdatedData(todoDataMod);
       setInputValue(value);    
-      setTodoList(newList);       
+      setTodoList(newList); 
+      // setNewTaskText(updatedData);        
     };   
 
     //commit edit changes on click
@@ -100,13 +119,14 @@ function TodoItem({item}) {
         setDisabled(true);  
         setYesNoEditPopup(displayOff); 
         setTaskBtnEdit(displayOn);
-        setUpdatedData([]);
+        // setUpdatedData([]);
         setTimeout(() => {
           setTaskBtnEdit(displayOn);
           setTaskBtnDelete(displayOn);
           setTaskBtnDetails(displayOn); 
           setTaskBtnStatus(displayOn);         
-        }, delayTime);                
+        }, delayTime); 
+        window.location.reload();               
       }      
     }
 
@@ -151,6 +171,12 @@ function TodoItem({item}) {
 
     //when update button clicked and updating enabled
     const handleUpdateBtn = () => {
+    //checks if textarea is enabled, picks state with output, if textarea enabled,
+    //it sets output state to value from keyboard, if textarea is disabled it shows initial item title
+    // const textareaDisplayWhenEditOff = item.title; 
+    // const textareaDisplayWhenEditOn = inputValue; 
+    // boolInputOutput(disabled, setNewTaskText, textareaDisplayWhenEditOn, textareaDisplayWhenEditOff);
+    //
       setTaskDetailView(displayOff);
       setTaskBtnEdit(displayOff);
       setTaskBtnDelete(displayOff);
@@ -160,15 +186,38 @@ function TodoItem({item}) {
       // toggleDisplay(setYesNoEditPopup, setTaskBtnDelete, displayOn);
       setDisabled(false);
     }
-
+    // export default function App() {
+     
+    
+    //   return (
+    //     <>
+    //       <div className="main">Main</div>
+    //       <div ref={footerRef} className="footer">
+    //         Footer
+    //       </div>
+    //     </>
+    //   );
+    // }
     //when update button clicked and clicking 'no' button
     const handleUpdateNoBtn = () => {
+      //checks if textarea is enabled, picks state with output, if textarea enabled,
+    //it sets output state to value from keyboard, if textarea is disabled it shows initial item title
+    // const textareaDisplayWhenEditOff = item.title; 
+    // const textareaDisplayWhenEditOn = inputValue; 
+    // boolInputOutput(disabled, setNewTaskText, textareaDisplayWhenEditOn, textareaDisplayWhenEditOff);
+    //
+//     todoList.map(element, index, {
+//       setItemState(itemState => [...itemState, element]);
+//      });
+//  setItemState(oldList);
+      // setItemState(item.title);
       setTaskBtnEdit(displayOn);
       setTaskBtnDelete(displayOn);
       setTaskBtnDetails(displayOn); 
       setTaskBtnStatus(displayOn);  
       setYesNoEditPopup(displayOff);
       setDisabled(true);
+      window.location.reload();
     }
 
     //when change status button clicked
@@ -181,23 +230,6 @@ function TodoItem({item}) {
       // setTaskBtnCancel(displayOn);
       // setTaskStatusView(displayOn);     
     }
-
-       //when cancel button clicked
-      //  const handleCancelBtn = () => {
-      //   setTaskBtnEdit(displayOn);
-      //   setTaskBtnDelete(displayOn);
-      //   setTaskBtnDetails(displayOn); 
-      //   setTaskBtnStatus(displayOn);
-      //   setTaskBtnCancel(displayOff);
-      //   setTaskStatusView(displayOff);     
-      // }
-
-      //when status changed go to confirmation  'yes or no' question
-      // const handleChoiceBox = () => {
-      //  setYesNoStatusPopup(displayOn);  
-      //  setTaskStatusView(displayOff);   
-      //  setTaskBtnCancel(displayOff); 
-      // }
 
       //when status changed and answer 'yes' to confirmation question
       const handleChoiceBoxConfirm = () => {
@@ -267,8 +299,24 @@ function TodoItem({item}) {
           }
             }
 
+    //switch between initial task title and updatable task title after clicking update button
+    const boolInputOutput = (getBool, onTrue, onFalse) => {
+      const bool = getBool;
+
+      if (bool === true) {
+       return onTrue;
+      }
+      else {
+       return onFalse;
+      }   
+    }   
+//
+    // const textareaDisplayWhenEditOff = item.title; 
+    // const textareaDisplayWhenEditOn = value; 
+    // boolInputOutput(disabled, textareaDisplayWhenEditOn, textareaDisplayWhenEditOff);
+//
     return (
-        <div
+        <div 
         sx={{
           background: 'box',     
           backgroundColor: 'boxBackground',
@@ -281,33 +329,42 @@ function TodoItem({item}) {
           padding: 3,
         }}
       ><BigText text={ `Task # ${item.id}:`} marginBottom={2} />
-        <TextArea disabled={disabled} value={item.title} onChange={editItemText} backgroundColor={`inputBackground`}/>     
+        {/* display with task title*/}
+        <TextArea disabled={disabled} value={item.title} 
+        onChange={editItemText} backgroundColor={`inputBackground`}/>     
         <Flex sx={{flexDirection: 'row',
                    marginBottom: 2}} >            
                  <MediumText text={itemStatusDisplay(item.completed)} />      
         </Flex>   
         <Flex sx={{flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'flex-start'}}> 
+        {/* show details button */}
            <ButtonPrimary
             onClick={handleShowDetailsBtn} displayIt={taskBtnDetails}
-            text={'Show details'} backgroundColor={'buttons1'}/>         
-            <ButtonPrimary 
+            text={'Show details'} backgroundColor={'buttons1'}/>  
+        {/* update task button */}
+            <ButtonPrimary           
             onClick={handleUpdateBtn} displayIt={taskBtnEdit}
-            text={updateButtonText} backgroundColor={'buttons2'}/>    
+            text={updateButtonText} backgroundColor={'buttons2'}/>   
+              {/* change status button*/} 
             <ButtonPrimary 
             onClick={handleChangeStatusBtn} displayIt={taskBtnStatus}
-            text={'Change status'} backgroundColor={'buttons2'}/>                
+            text={'Change status'} backgroundColor={'buttons2'}/>  
+               {/* delete button*/}               
             <ButtonPrimary 
             onClick={handleDeleteBtnClick} displayIt={taskBtnDelete}
             text={deleteButtonText} backgroundColor={'buttons3'}/>       
-        </Flex>        
+        </Flex>  
+            {/* popup with choices yes or no for editing*/}         
         <ButtonsWrapper displayStyle={yesNoEditPopup} contentArea={
         <YesNoPopup  onClickYes={confirmEditChanges} 
         onClickNo={handleUpdateNoBtn} yesText={yesText} noText={noText} messageText={editYesNoMessage}/>
-        }/>       
+        }/>  
+            {/* popup with choices yes or no for delete*/}          
         <ButtonsWrapper displayStyle={yesNoDeletePopup} contentArea={
           <YesNoPopup onClickYes={handleDeleteBtnYesClick} 
           onClickNo={handleDeleteBtnNoClick} yesText={yesText} noText={noText} messageText={deleteYesNoMessage}/>
         }/>
+            {/* popup with choices yes or no for changing status*/}     
          <ButtonsWrapper displayStyle={yesNoStatusPopup} contentArea={
           <YesNoPopup onClickYes={handleChoiceBoxConfirm} 
           onClickNo={handleChoiceBoxDeny} yesText={yesText} noText={noText} messageText={statusYesNoMessage} />
