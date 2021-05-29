@@ -18,14 +18,24 @@ import ButtonsWrapper from '../atoms/ButtonsWrapper';
 
 function TodoItem({item}) {
     // this goes to content.js
-    const updateText = 'Update task';
-    const updateEmptyText = 'Same or empty content not allowed';
-    const updateSuccesstext = 'Task updated';
-    const deleteText = 'Delete task';
-    const deleteSuccesstext = 'Task deleted';
+    const updateText = "Update task";
+    const updateEmptyText = "Same or empty content not allowed";
+    const updateSuccesstext = "Task updated";
+    const deleteText = "Delete task";
+    const deleteSuccesstext = "Task deleted";
+    const yesText = "Confirm";
+    const noText = "Go back";
+    const statusYesNoMessage = "Please confirm task status change";
+    const editYesNoMessage = "Please update your task and confirm changes";
+    const deleteYesNoMessage = "Are you sure to delete this task?";
+
+
    //display
     const displayOn = 'flex';
     const displayOff = 'none';
+  //sets equal delays for common timeouts
+  const delayTime = 1800;
+
   
     const [todoList, setTodoList] = useRecoilState(todoListState); 
     const [updateButtonText, setUpdateButtonText] = useState(updateText);
@@ -74,15 +84,29 @@ function TodoItem({item}) {
 
     //commit edit changes on click
     const confirmEditChanges = () => {
+      // let dataToEdit =  updatedData.title;
       if (updatedData.title === "" || updatedData.title === null || updatedData.title === undefined) {
-        switchBtnTxt(setUpdateButtonText, updateText, updateEmptyText);  
+        setTaskBtnEdit(displayOn);
+        setYesNoEditPopup(displayOff); 
+        switchBtnTxt(setUpdateButtonText, updateText, updateEmptyText, delayTime);  
+        setTimeout(() => {
+          setTaskBtnEdit(displayOff);
+          setYesNoEditPopup(displayOn); 
+        }, delayTime);   
       } 
       else {
         updateTask(item.id, updatedData);
-        switchBtnTxt(setUpdateButtonText, updateText, updateSuccesstext);  
+        switchBtnTxt(setUpdateButtonText, updateText, updateSuccesstext, delayTime); 
+        setDisabled(true);  
         setYesNoEditPopup(displayOff); 
-        setTaskBtnDelete(displayOn);  
-        setDisabled(true);     
+        setTaskBtnEdit(displayOn);
+        setUpdatedData([]);
+        setTimeout(() => {
+          setTaskBtnEdit(displayOn);
+          setTaskBtnDelete(displayOn);
+          setTaskBtnDetails(displayOn); 
+          setTaskBtnStatus(displayOn);         
+        }, delayTime);                
       }      
     }
 
@@ -119,19 +143,31 @@ function TodoItem({item}) {
     //when details close button clicked
     const handleCloseDetailsBtn = () => {
       setTaskDetailView(displayOff);
-      setTaskBtnDetails(displayOn);
       setTaskBtnEdit(displayOn);
+      setTaskBtnDelete(displayOn);
+      setTaskBtnDetails(displayOn); 
+      setTaskBtnStatus(displayOn);  
     }
 
     //when update button clicked and updating enabled
     const handleUpdateBtn = () => {
-      toggleDisplay(setYesNoEditPopup, setTaskBtnDelete, displayOn);
+      setTaskDetailView(displayOff);
+      setTaskBtnEdit(displayOff);
+      setTaskBtnDelete(displayOff);
+      setTaskBtnDetails(displayOff); 
+      setTaskBtnStatus(displayOff);  
+      setYesNoEditPopup(displayOn);
+      // toggleDisplay(setYesNoEditPopup, setTaskBtnDelete, displayOn);
       setDisabled(false);
     }
 
     //when update button clicked and clicking 'no' button
     const handleUpdateNoBtn = () => {
-      toggleDisplay(setTaskBtnDelete, setYesNoEditPopup, displayOn);
+      setTaskBtnEdit(displayOn);
+      setTaskBtnDelete(displayOn);
+      setTaskBtnDetails(displayOn); 
+      setTaskBtnStatus(displayOn);  
+      setYesNoEditPopup(displayOff);
       setDisabled(true);
     }
 
@@ -169,8 +205,7 @@ function TodoItem({item}) {
         setTaskBtnEdit(displayOn);
         setTaskBtnDelete(displayOn);
         setTaskBtnDetails(displayOn); 
-        setTaskBtnStatus(displayOn);
-        setTaskBtnCancel(displayOff);
+        setTaskBtnStatus(displayOn);      
         setYesNoStatusPopup(displayOff); 
        }
 
@@ -179,8 +214,7 @@ function TodoItem({item}) {
         setTaskBtnEdit(displayOn);
         setTaskBtnDelete(displayOn);
         setTaskBtnDetails(displayOn); 
-        setTaskBtnStatus(displayOn);
-        setTaskBtnCancel(displayOff);
+        setTaskBtnStatus(displayOn);      
         setYesNoStatusPopup(displayOff); 
        }
 
@@ -268,15 +302,15 @@ function TodoItem({item}) {
         </Flex>        
         <ButtonsWrapper displayStyle={yesNoEditPopup} contentArea={
         <YesNoPopup  onClickYes={confirmEditChanges} 
-        onClickNo={handleUpdateNoBtn} />
+        onClickNo={handleUpdateNoBtn} yesText={yesText} noText={noText} messageText={editYesNoMessage}/>
         }/>       
         <ButtonsWrapper displayStyle={yesNoDeletePopup} contentArea={
           <YesNoPopup onClickYes={handleDeleteBtnYesClick} 
-          onClickNo={handleDeleteBtnNoClick} />
+          onClickNo={handleDeleteBtnNoClick} yesText={yesText} noText={noText} messageText={deleteYesNoMessage}/>
         }/>
          <ButtonsWrapper displayStyle={yesNoStatusPopup} contentArea={
           <YesNoPopup onClickYes={handleChoiceBoxConfirm} 
-          onClickNo={handleChoiceBoxDeny} />
+          onClickNo={handleChoiceBoxDeny} yesText={yesText} noText={noText} messageText={statusYesNoMessage} />
         }/>   
         <TaskDetails displayIt={taskDetailView} taskId={item.id} clickClose={handleCloseDetailsBtn} />
       </div>

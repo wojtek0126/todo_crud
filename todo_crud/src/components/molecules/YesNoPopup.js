@@ -6,11 +6,11 @@ import ButtonPrimary from '../atoms/ButtonPrimary';
 import MediumText from '../atoms/MediumText';
 
 
-const YesNoPopup = ({onClickYes, onClickNo}) => (
+const YesNoPopup = ({onClickYes, onClickNo, messageText, yesText, noText}) => (
  <>
-    <ButtonPrimary text={`Yes`} onClick={onClickYes} backgroundColor={'buttons1'}/>
-    <MediumText text={`Are You sure?`} display={'flex'} alignSelf={'center'} />
-    <ButtonPrimary text={`No`} onClick={onClickNo} backgroundColor={'buttons3'}/>
+    <ButtonPrimary text={yesText} onClick={onClickYes} backgroundColor={'buttons1'}/>
+    <MediumText text={messageText} display={'flex'} alignSelf={'center'} />
+    <ButtonPrimary text={noText} onClick={onClickNo} backgroundColor={'buttons3'}/>
  </>
 );
 
