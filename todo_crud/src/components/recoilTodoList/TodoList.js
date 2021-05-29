@@ -17,8 +17,8 @@ import {CircleArrow as ScrollUpButton} from 'react-scroll-up-button';
 
 
 function TodoList() {
-    const [todos, setTodos] = useRecoilState(todoListState)
-    const [toSearch, setToSearch] = useState("")
+    const [todos, setTodos] = useRecoilState(todoListState);
+    const [toSearch, setToSearch] = useState("");
     const [searchResults, setSearchResults] = useState([]);
     const [taskList, setTaskList] = useState([]);
     const [taskText, setTaskText] = useState([]);
@@ -26,7 +26,7 @@ function TodoList() {
     
 
     //decoy for unused searchResults state    
-    console.log(searchResults);    
+    // console.log(searchResults);    
    
     useEffect(() => {
       const getTodos = async () => {

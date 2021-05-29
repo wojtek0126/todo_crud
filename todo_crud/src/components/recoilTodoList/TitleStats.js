@@ -14,7 +14,7 @@ function TitleStats() {
     const [todos, setTodos] = useRecoilState(todoListState);
 
      // decoy for empty state todos
-     console.log(todos);
+    //  console.log(todos);
 
 
     useEffect(() => {

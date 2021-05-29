@@ -6,7 +6,7 @@ import { useState, useEffect, useRef } from 'react';
 import { todoItemState, todoListState } from '../../functions/recoil';
 import ButtonPrimary from '../atoms/ButtonPrimary';
 import CheckboxAtom from '../atoms/Checkbox';
-import { deleteTask, updateTask } from '../../API/fetch';
+import { deleteTask, getSingleTask, updateTask } from '../../API/fetch';
 import MediumText from '../atoms/MediumText';
 import BigText from '../atoms/BigText';
 import TextArea from '../atoms/TextArea';
@@ -26,6 +26,7 @@ function TodoItem({item}) {
     const yesText = "Confirm";
     const noText = "Go back";
     const statusYesNoMessage = "Please confirm task status change";
+    const enterEditYesNoMessage = "Proceed to edit mode?";
     const editYesNoMessage = "Please update your task and confirm changes";
     const deleteYesNoMessage = "Are you sure to delete this task?";
 
@@ -36,6 +37,8 @@ function TodoItem({item}) {
   //sets equal delays for common timeouts, to settings.js
   const delayTime = 1800;
 
+  const todoItemPrevious = item;
+  console.log(todoItemPrevious, "item  init");
 
 
 
@@ -43,7 +46,9 @@ function TodoItem({item}) {
     const [updateButtonText, setUpdateButtonText] = useState(updateText);
     const [deleteButtonText, setDeleteButtonText] = useState(deleteText);
     const [inputValue, setInputValue] = useState(''); 
-    const [updatedData, setUpdatedData] = useState([]);    
+    const [getData, setGetData] = useState(item); 
+    // const [todo, setTodo] = useRecoilState(todoItemState);
+    const [updatedData, setUpdatedData] = useState(todoItemPrevious);    
     const index = todoList.findIndex((listItem) => listItem === item);
     //toggle textarea enabled or disabled
     const [disabled, setDisabled] = useState(true);
@@ -58,52 +63,41 @@ function TodoItem({item}) {
     const [yesNoEditPopup, setYesNoEditPopup] = useState(displayOff);  
     const [yesNoDeletePopup, setYesNoDeletePopup] = useState(displayOff);  
     const [yesNoStatusPopup, setYesNoStatusPopup] = useState(displayOff);  
+    const [yesNoEnterEditPopup, setYesNoEnterEditPopup] = useState(displayOff);  
     //views active or not
     const [taskDetailView, setTaskDetailView] = useState(displayOff);
-    // const [taskStatusView, setTaskStatusView] = useState(displayOff);  
-     // const textareaDisplayWhenEditOff = item.title; 
-    // const textareaDisplayWhenEditOn = inputValue; 
     
-    
-    // let itemData = item.title;  
-    // const [itemState, setItemState] = useState(itemData);
-
-    // useEffect(() => {
-    //   todoList.map((element) => {
-    //     setItemState(element.title);
-    //    });
-    // }, [])
-    
-//  setItemState(oldList);
-//  console.log(itemState, "old list here!!!!!");
-
-    // decoy for empty state inputvalue 
-    // console.log(inputValue);
+    useEffect(() => {
+      getSingleTask(item.id, setGetData);   
+      console.log(getData.data, "get data")    
+    }, [])
 
     //edit task, just changing content without commiting
-    const editItemText = ({target: {value}}) => {       
-      //this makes target value update dynamically on textarea     
-      const newList = replaceItemAtIndex(todoList, index, {
-        ...item,
-        title: value,
-      });
-      const todoDataMod =    {
+    const editItemText = ({target: {value}}) => {  
+      const todoDataMod = {
         id: item.id,
         user_id: item.user_id,
         title: value,
         completed: item.completed,
         created_at: item.created_at,
         updated_at: timeStampFormatted()
-      }    
+      }      
+      //this makes target value update dynamically on textarea     
+      const newList = replaceItemAtIndex(todoList, index, {
+        ...item,
+        title: value,
+        updated_at: timeStampFormatted()
+      });
+        
       setUpdatedData(todoDataMod);
       setInputValue(value);    
       setTodoList(newList); 
+      console.log(updatedData, "mod datas");
       // setNewTaskText(updatedData);        
     };   
 
     //commit edit changes on click
-    const confirmEditChanges = () => {
-      // let dataToEdit =  updatedData.title;
+    const confirmEditChanges = (todoDataMod) => {
       if (updatedData.title === "" || updatedData.title === null || updatedData.title === undefined) {
         setTaskBtnEdit(displayOn);
         setYesNoEditPopup(displayOff); 
@@ -114,19 +108,13 @@ function TodoItem({item}) {
         }, delayTime);   
       } 
       else {
-        updateTask(item.id, updatedData);
-        switchBtnTxt(setUpdateButtonText, updateText, updateSuccesstext, delayTime); 
-        setDisabled(true);  
-        setYesNoEditPopup(displayOff); 
-        setTaskBtnEdit(displayOn);
-        // setUpdatedData([]);
-        setTimeout(() => {
-          setTaskBtnEdit(displayOn);
-          setTaskBtnDelete(displayOn);
-          setTaskBtnDetails(displayOn); 
-          setTaskBtnStatus(displayOn);         
-        }, delayTime); 
-        window.location.reload();               
+        updateTask(item.id, todoDataMod);             
+         setTaskBtnEdit(displayOn);
+       setTaskBtnDelete(displayOn);
+       setTaskBtnDetails(displayOn); 
+       setTaskBtnStatus(displayOn); 
+       setYesNoEditPopup(displayOff);  
+       setDisabled(true);                   
       }      
     }
 
@@ -135,6 +123,7 @@ function TodoItem({item}) {
       const newList = replaceItemAtIndex(todoList, index, {
         ...item,
         completed: !item.completed,
+        updated_at: timeStampFormatted()
       });    
       const todoDataModCheck =    {
         id: item.id,
@@ -144,20 +133,21 @@ function TodoItem({item}) {
         created_at: item.created_at,
         updated_at: timeStampFormatted()
       }
-      updateTask(item.id, todoDataModCheck) 
-      setTodoList(newList);        
+      updateTask(item.id, todoDataModCheck); 
+      setTodoList(newList); 
+      setUpdatedData(todoDataModCheck);       
     };
   
     //delete item on click, assigned to 'yes' button
-    const deleteItem = () => {     
-       switchBtnTxt(setDeleteButtonText, deleteText, deleteSuccesstext);    
-       setTimeout(() => {
+    const deleteItem = () => {       
         deleteTask(item.id);       
         const newList = removeItemAtIndex(todoList, index);   
-        setTodoList(newList);  
-       }, 300);         
+        setTodoList(newList);             
        setYesNoDeletePopup(displayOff);
        setTaskBtnEdit(displayOn);
+       setTaskBtnDelete(displayOn);
+       setTaskBtnDetails(displayOn); 
+       setTaskBtnStatus(displayOn); 
     };     
 
     //when details close button clicked
@@ -170,55 +160,56 @@ function TodoItem({item}) {
     }
 
     //when update button clicked and updating enabled
-    const handleUpdateBtn = () => {
-    //checks if textarea is enabled, picks state with output, if textarea enabled,
-    //it sets output state to value from keyboard, if textarea is disabled it shows initial item title
-    // const textareaDisplayWhenEditOff = item.title; 
-    // const textareaDisplayWhenEditOn = inputValue; 
-    // boolInputOutput(disabled, setNewTaskText, textareaDisplayWhenEditOn, textareaDisplayWhenEditOff);
-    //
+    const handleUpdateBtn = () => {    //
       setTaskDetailView(displayOff);
       setTaskBtnEdit(displayOff);
       setTaskBtnDelete(displayOff);
       setTaskBtnDetails(displayOff); 
       setTaskBtnStatus(displayOff);  
-      setYesNoEditPopup(displayOn);
-      // toggleDisplay(setYesNoEditPopup, setTaskBtnDelete, displayOn);
-      setDisabled(false);
-    }
-    // export default function App() {
-     
-    
-    //   return (
-    //     <>
-    //       <div className="main">Main</div>
-    //       <div ref={footerRef} className="footer">
-    //         Footer
-    //       </div>
-    //     </>
-    //   );
-    // }
+      setYesNoEditPopup(displayOff);  
+      setYesNoEnterEditPopup(displayOn) 
+      // setDisabled(true);
+    }    
+
     //when update button clicked and clicking 'no' button
-    const handleUpdateNoBtn = () => {
-      //checks if textarea is enabled, picks state with output, if textarea enabled,
-    //it sets output state to value from keyboard, if textarea is disabled it shows initial item title
-    // const textareaDisplayWhenEditOff = item.title; 
-    // const textareaDisplayWhenEditOn = inputValue; 
-    // boolInputOutput(disabled, setNewTaskText, textareaDisplayWhenEditOn, textareaDisplayWhenEditOff);
-    //
-//     todoList.map(element, index, {
-//       setItemState(itemState => [...itemState, element]);
-//      });
-//  setItemState(oldList);
-      // setItemState(item.title);
+
+    const handleEnterUpdateYesBtn = () => {  
+      setTaskBtnEdit(displayOff);
+      setTaskBtnDelete(displayOff);
+      setTaskBtnDetails(displayOff); 
+      setYesNoEnterEditPopup(displayOff);  
+      setYesNoEditPopup(displayOn);
+      setDisabled(false);
+        
+    }
+    
+    const handleCancelEnterUpdateYesBtn = () => {  
+      setTaskBtnEdit(displayOn);
+      setTaskBtnDelete(displayOn);
+      setTaskBtnDetails(displayOn); 
+      setTaskBtnStatus(displayOn);  
+      setYesNoEnterEditPopup(displayOff);  
+      setYesNoEditPopup(displayOff);        
+    }
+
+    const handleUpdateNoBtn = () => {  
       setTaskBtnEdit(displayOn);
       setTaskBtnDelete(displayOn);
       setTaskBtnDetails(displayOn); 
       setTaskBtnStatus(displayOn);  
       setYesNoEditPopup(displayOff);
       setDisabled(true);
-      window.location.reload();
+      // window.location.reload();
     }
+
+    // const handleUpdatedTaskView = () => {     
+    //   getSingleTask(item.id, setGetData)   
+    //   setTaskBtnEdit(displayOn);
+    //   setTaskBtnDelete(displayOn);
+    //   setTaskBtnDetails(displayOn); 
+    //   setTaskBtnStatus(displayOn); 
+    //   setYesNoDeletePopup(displayOff);                 
+    //  }
 
     //when change status button clicked
     const handleChangeStatusBtn = () => {
@@ -226,9 +217,7 @@ function TodoItem({item}) {
       setTaskBtnDelete(displayOff);
       setTaskBtnDetails(displayOff); 
       setTaskBtnStatus(displayOff);
-      setYesNoStatusPopup(displayOn);  
-      // setTaskBtnCancel(displayOn);
-      // setTaskStatusView(displayOn);     
+      setYesNoStatusPopup(displayOn);       
     }
 
       //when status changed and answer 'yes' to confirmation question
@@ -251,7 +240,8 @@ function TodoItem({item}) {
        }
 
        //after clicking
-       const handleShowDetailsBtn = () => {        
+       const handleShowDetailsBtn = () => { 
+        getSingleTask(item.id, setGetData);         
         setTaskBtnEdit(displayOff);
         setTaskBtnDelete(displayOff);
         setTaskBtnDetails(displayOff); 
@@ -270,14 +260,8 @@ function TodoItem({item}) {
            }
 
             //after clicking 
-            const handleDeleteBtnYesClick = () => {  
-              deleteItem();      
-              setTaskBtnEdit(displayOff);
-              setTaskBtnDelete(displayOff);
-              setTaskBtnDetails(displayOff); 
-              setTaskBtnStatus(displayOff);
-              setTaskDetailView(displayOff);    
-              setYesNoDeletePopup(displayOn);  
+            const handleDeleteBtnYesClick = () => {          
+                deleteItem();              
              }
 
              //after clicking 
@@ -299,6 +283,13 @@ function TodoItem({item}) {
           }
             }
 
+
+            const itemDetailsDisplay = (updatedData) => {        
+              if (updatedData !== undefined) {
+                   return updatedData
+                }
+              }
+
     //switch between initial task title and updatable task title after clicking update button
     const boolInputOutput = (getBool, onTrue, onFalse) => {
       const bool = getBool;
@@ -310,11 +301,8 @@ function TodoItem({item}) {
        return onFalse;
       }   
     }   
-//
-    // const textareaDisplayWhenEditOff = item.title; 
-    // const textareaDisplayWhenEditOn = value; 
-    // boolInputOutput(disabled, textareaDisplayWhenEditOn, textareaDisplayWhenEditOff);
-//
+
+
     return (
         <div 
         sx={{
@@ -354,9 +342,14 @@ function TodoItem({item}) {
             onClick={handleDeleteBtnClick} displayIt={taskBtnDelete}
             text={deleteButtonText} backgroundColor={'buttons3'}/>       
         </Flex>  
+          {/* popup with choices to go to edit mode*/}   
+        <ButtonsWrapper displayStyle={yesNoEnterEditPopup} contentArea={
+          <YesNoPopup onClickYes={handleEnterUpdateYesBtn} 
+          onClickNo={handleCancelEnterUpdateYesBtn} yesText={yesText} noText={noText} messageText={enterEditYesNoMessage} />
+        }/>  
             {/* popup with choices yes or no for editing*/}         
         <ButtonsWrapper displayStyle={yesNoEditPopup} contentArea={
-        <YesNoPopup  onClickYes={confirmEditChanges} 
+        <YesNoPopup  onClickYes={() => confirmEditChanges(updatedData)} 
         onClickNo={handleUpdateNoBtn} yesText={yesText} noText={noText} messageText={editYesNoMessage}/>
         }/>  
             {/* popup with choices yes or no for delete*/}          
@@ -368,8 +361,8 @@ function TodoItem({item}) {
          <ButtonsWrapper displayStyle={yesNoStatusPopup} contentArea={
           <YesNoPopup onClickYes={handleChoiceBoxConfirm} 
           onClickNo={handleChoiceBoxDeny} yesText={yesText} noText={noText} messageText={statusYesNoMessage} />
-        }/>   
-        <TaskDetails displayIt={taskDetailView} taskId={item.id} clickClose={handleCloseDetailsBtn} />
+        }/>        
+        <TaskDetails displayIt={taskDetailView} taskData={updatedData} clickClose={handleCloseDetailsBtn} />
       </div>
     );
   }
