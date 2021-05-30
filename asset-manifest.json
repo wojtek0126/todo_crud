@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/todo_crud/static/css/main.2ae47eeb.chunk.css",
+    "main.js": "/todo_crud/static/js/main.dadec45d.chunk.js",
+    "main.js.map": "/todo_crud/static/js/main.dadec45d.chunk.js.map",
+    "runtime-main.js": "/todo_crud/static/js/runtime-main.0e99971c.js",
+    "runtime-main.js.map": "/todo_crud/static/js/runtime-main.0e99971c.js.map",
+    "static/js/2.ea20abee.chunk.js": "/todo_crud/static/js/2.ea20abee.chunk.js",
+    "static/js/2.ea20abee.chunk.js.map": "/todo_crud/static/js/2.ea20abee.chunk.js.map",
+    "static/js/3.f2d5db74.chunk.js": "/todo_crud/static/js/3.f2d5db74.chunk.js",
+    "static/js/3.f2d5db74.chunk.js.map": "/todo_crud/static/js/3.f2d5db74.chunk.js.map",
+    "index.html": "/todo_crud/index.html",
+    "static/css/main.2ae47eeb.chunk.css.map": "/todo_crud/static/css/main.2ae47eeb.chunk.css.map",
+    "static/js/2.ea20abee.chunk.js.LICENSE.txt": "/todo_crud/static/js/2.ea20abee.chunk.js.LICENSE.txt",
+    "static/media/b4769e3a52766f30e86b375391c84441.3d007a0b.jpg": "/todo_crud/static/media/b4769e3a52766f30e86b375391c84441.3d007a0b.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0e99971c.js",
+    "static/js/2.ea20abee.chunk.js",
+    "static/css/main.2ae47eeb.chunk.css",
+    "static/js/main.dadec45d.chunk.js"
+  ]
+}
