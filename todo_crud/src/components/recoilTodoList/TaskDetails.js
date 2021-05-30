@@ -13,7 +13,6 @@ import { taskDetailsTaskNumberTxt,
   taskDetailsCompletedTxt
 } from '../../content/contentEng';
 import DisplayDetailsText from '../atoms/DisplayDetailsText';
-import ButtonsWrapper from '../containers/ButtonsWrapper';
 import TaskDetailBtnWrapper from '../containers/TaskDetailBtnWrapper';
 
 
