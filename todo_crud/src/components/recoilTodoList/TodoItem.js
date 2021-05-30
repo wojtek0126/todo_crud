@@ -25,9 +25,9 @@ function TodoItem({item, todos}) {
     const deleteSuccesstext = "Task deleted";
     const yesText = "Confirm";
     const noText = "Go back";
-    const statusYesNoMessage = "Please confirm task status change";
+    const statusYesNoMessage = "Change task status?";
     const enterEditYesNoMessage = "Proceed to edit mode?";
-    const editYesNoMessage = "Please update your task and confirm changes";
+    const editYesNoMessage = "Update your task?";
     const deleteYesNoMessage = "Are you sure to delete this task?";
 
 
@@ -175,14 +175,13 @@ function TodoItem({item, todos}) {
 
     //when update button clicked and updating enabled
     const handleUpdateBtn = () => {    //
-      setTaskDetailView(displayOff);
       setTaskBtnEdit(displayOff);
       setTaskBtnDelete(displayOff);
       setTaskBtnDetails(displayOff); 
+      setYesNoEnterEditPopup(displayOff);  
       setTaskBtnStatus(displayOff);  
-      setYesNoEditPopup(displayOff);  
-      setYesNoEnterEditPopup(displayOn) 
-      // setDisabled(true);
+      setYesNoEditPopup(displayOn);
+      setDisabled(false);
     }    
 
     //when update button clicked and clicking 'no' button
@@ -354,10 +353,10 @@ function TodoItem({item, todos}) {
             text={deleteButtonText} backgroundColor={'buttons3'}/>       
         </Flex>  
           {/* popup with choices to go to edit mode*/}   
-        <ButtonsWrapper displayStyle={yesNoEnterEditPopup} contentArea={
+        {/* <ButtonsWrapper displayStyle={yesNoEnterEditPopup} contentArea={
           <YesNoPopup onClickYes={handleEnterUpdateYesBtn} 
           onClickNo={handleCancelEnterUpdateYesBtn} yesText={yesText} noText={noText} messageText={enterEditYesNoMessage} />
-        }/>  
+        }/>   */}
             {/* popup with choices yes or no for editing*/}         
         <ButtonsWrapper displayStyle={yesNoEditPopup} contentArea={
         <YesNoPopup  onClickYes={() => confirmEditChanges(updatedData)} 
