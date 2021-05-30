@@ -6,7 +6,7 @@ import { useState, useEffect, useRef } from 'react';
 import { todoItemState, todoListState } from '../../functions/recoil';
 import ButtonPrimary from '../atoms/ButtonPrimary';
 import CheckboxAtom from '../atoms/Checkbox';
-import { deleteTask, getSingleTask, updateTask } from '../../API/fetch';
+import { deleteTask, getAllTasks, getSingleTask, updateTask } from '../../API/fetch';
 import MediumText from '../atoms/MediumText';
 import BigText from '../atoms/BigText';
 import TextArea from '../atoms/TextArea';
@@ -16,10 +16,10 @@ import TaskDetails from '../molecules/TaskDetails';
 import ButtonsWrapper from '../atoms/ButtonsWrapper';
 
 
-function TodoItem({item}) {
+function TodoItem({item, todos}) {
     // this goes to content.js
     const updateText = "Update task";
-    const updateEmptyText = "Same or empty content not allowed";
+    const updateEmptyText = "Cannot be empty";
     const updateSuccesstext = "Task updated";
     const deleteText = "Delete task";
     const deleteSuccesstext = "Task deleted";
@@ -37,8 +37,10 @@ function TodoItem({item}) {
   //sets equal delays for common timeouts, to settings.js
   const delayTime = 1800;
 
+  const initialTitleDisplay = item.title;
   const todoItemPrevious = item;
-  console.log(todoItemPrevious, "item  init");
+  // const todoItemTitle = getSingleTask(item.id);
+  // console.log(item, "prop items from item list from recoilstate");
 
 
 
@@ -46,7 +48,8 @@ function TodoItem({item}) {
     const [updateButtonText, setUpdateButtonText] = useState(updateText);
     const [deleteButtonText, setDeleteButtonText] = useState(deleteText);
     const [inputValue, setInputValue] = useState(''); 
-    const [getData, setGetData] = useState(item); 
+    const [initTaskData, setInitTaskData] = useState(item);
+    const [textareaDisplay, setTextareaDisplay] = useState(initialTitleDisplay); 
     // const [todo, setTodo] = useRecoilState(todoItemState);
     const [updatedData, setUpdatedData] = useState(todoItemPrevious);    
     const index = todoList.findIndex((listItem) => listItem === item);
@@ -57,8 +60,8 @@ function TodoItem({item}) {
     const [taskBtnStatus, setTaskBtnStatus] = useState(displayOn); 
     const [taskBtnDelete, setTaskBtnDelete] = useState(displayOn);
     const [taskBtnDetails, setTaskBtnDetails] = useState(displayOn);  
-    const [taskBtnCancel, setTaskBtnCancel] = useState(displayOff); 
-    const [changeStatusBtn, setChangeStatusBtn] = useState(displayOff); 
+    // const [taskBtnCancel, setTaskBtnCancel] = useState(displayOff); 
+    // const [changeStatusBtn, setChangeStatusBtn] = useState(displayOff); 
     //yes no popups active or not
     const [yesNoEditPopup, setYesNoEditPopup] = useState(displayOff);  
     const [yesNoDeletePopup, setYesNoDeletePopup] = useState(displayOff);  
@@ -68,12 +71,22 @@ function TodoItem({item}) {
     const [taskDetailView, setTaskDetailView] = useState(displayOff);
     
     useEffect(() => {
-      getSingleTask(item.id, setGetData);   
-      console.log(getData.data, "get data")    
+      const todoDataInit = {
+        id: item.id,
+        user_id: item.user_id,
+        title: item.title,
+        completed: item.completed,
+        created_at: item.created_at,
+        updated_at: item.updated_at
+      }  
+      setInitTaskData(todoDataInit)
     }, [])
+    console.log(initTaskData, "unchanged item !!!");   
+     
 
     //edit task, just changing content without commiting
     const editItemText = ({target: {value}}) => {  
+  
       const todoDataMod = {
         id: item.id,
         user_id: item.user_id,
@@ -88,14 +101,13 @@ function TodoItem({item}) {
         title: value,
         updated_at: timeStampFormatted()
       });
-        
+     
+      setTextareaDisplay(todoDataMod.title);    
       setUpdatedData(todoDataMod);
       setInputValue(value);    
-      setTodoList(newList); 
-      console.log(updatedData, "mod datas");
-      // setNewTaskText(updatedData);        
+      setTodoList(newList);          
     };   
-
+    console.log(item, "updated item !!!");  
     //commit edit changes on click
     const confirmEditChanges = (todoDataMod) => {
       if (updatedData.title === "" || updatedData.title === null || updatedData.title === undefined) {
@@ -108,13 +120,15 @@ function TodoItem({item}) {
         }, delayTime);   
       } 
       else {
-        updateTask(item.id, todoDataMod);             
+        updateTask(item.id, todoDataMod);   
+        setInitTaskData(item); 
+        // setTextareaDisplay(updatedData.title);             
          setTaskBtnEdit(displayOn);
        setTaskBtnDelete(displayOn);
        setTaskBtnDetails(displayOn); 
        setTaskBtnStatus(displayOn); 
        setYesNoEditPopup(displayOff);  
-       setDisabled(true);                   
+       setDisabled(true);                        
       }      
     }
 
@@ -180,8 +194,14 @@ function TodoItem({item}) {
       setYesNoEnterEditPopup(displayOff);  
       setYesNoEditPopup(displayOn);
       setDisabled(false);
-        
+      // getAllTasks(setTTitleFromApi);  
+      // setTimeout(() => {
+        // setTextareaDisplay(item.title); 
+       
+      // }, 300);          
     }
+
+    // console.log(titleromApi, "textdispno")
     
     const handleCancelEnterUpdateYesBtn = () => {  
       setTaskBtnEdit(displayOn);
@@ -192,24 +212,15 @@ function TodoItem({item}) {
       setYesNoEditPopup(displayOff);        
     }
 
-    const handleUpdateNoBtn = () => {  
+    const handleUpdateNoBtn = () => {          
       setTaskBtnEdit(displayOn);
       setTaskBtnDelete(displayOn);
       setTaskBtnDetails(displayOn); 
       setTaskBtnStatus(displayOn);  
       setYesNoEditPopup(displayOff);
       setDisabled(true);
-      // window.location.reload();
-    }
-
-    // const handleUpdatedTaskView = () => {     
-    //   getSingleTask(item.id, setGetData)   
-    //   setTaskBtnEdit(displayOn);
-    //   setTaskBtnDelete(displayOn);
-    //   setTaskBtnDetails(displayOn); 
-    //   setTaskBtnStatus(displayOn); 
-    //   setYesNoDeletePopup(displayOff);                 
-    //  }
+      setTextareaDisplay(initTaskData.title); 
+    } 
 
     //when change status button clicked
     const handleChangeStatusBtn = () => {
@@ -241,7 +252,7 @@ function TodoItem({item}) {
 
        //after clicking
        const handleShowDetailsBtn = () => { 
-        getSingleTask(item.id, setGetData);         
+        // getSingleTask(item.id, setGetData);         
         setTaskBtnEdit(displayOff);
         setTaskBtnDelete(displayOff);
         setTaskBtnDetails(displayOff); 
@@ -318,7 +329,7 @@ function TodoItem({item}) {
         }}
       ><BigText text={ `Task # ${item.id}:`} marginBottom={2} />
         {/* display with task title*/}
-        <TextArea disabled={disabled} value={item.title} 
+        <TextArea disabled={disabled} value={textareaDisplay} 
         onChange={editItemText} backgroundColor={`inputBackground`}/>     
         <Flex sx={{flexDirection: 'row',
                    marginBottom: 2}} >            
@@ -362,7 +373,7 @@ function TodoItem({item}) {
           <YesNoPopup onClickYes={handleChoiceBoxConfirm} 
           onClickNo={handleChoiceBoxDeny} yesText={yesText} noText={noText} messageText={statusYesNoMessage} />
         }/>        
-        <TaskDetails displayIt={taskDetailView} taskData={updatedData} clickClose={handleCloseDetailsBtn} />
+        <TaskDetails displayIt={taskDetailView} taskData={initTaskData} clickClose={handleCloseDetailsBtn} />
       </div>
     );
   }

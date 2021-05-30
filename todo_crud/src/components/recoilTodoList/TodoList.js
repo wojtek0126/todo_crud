@@ -83,7 +83,7 @@ function TodoList() {
         <Flex sx={{ flexWrap: 'wrap' }}>  
           {filterData.map((todoItem) => (
             <Box key={todoItem.id} sx={{ width: ['100%'] }}>
-              <TodoItem key={todoItem.id} item={todoItem} />
+              <TodoItem item={todoItem} todos={todos} />
             </Box>         
          ))}
           </Flex>
