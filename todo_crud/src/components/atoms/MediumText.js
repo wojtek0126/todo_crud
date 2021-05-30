@@ -3,14 +3,15 @@
 import { jsx } from 'theme-ui';
 
 
-const MediumText = ({text, color, marginBottom, id, display, alignSelf}) => (
-    <div id={id}
+const MediumText = ({text, color, marginBottom, marginTop, display, alignSelf}) => (
+    <div 
     sx={{
       fontFamily: 'heading',
       fontWeight: 'heading',
       fontSize: [1, 2],
       color: `${color}`,
       marginBottom: `${marginBottom}`,
+      marginTop: `${marginTop}`,
       display: `${display}`,
       alignSelf: `${alignSelf}`  
     }}

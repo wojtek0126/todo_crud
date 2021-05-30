@@ -15,7 +15,7 @@ const YesNoPopup = ({onClickYes, onClickNo, messageText, yesText, noText}) => (
                alignItems: 'center',
                justifyContent: 'center'}}}>
     <ButtonPrimary text={yesText} onClick={onClickYes} backgroundColor={'buttons1'}/>
-    <MediumText text={messageText} display={'flex'} alignSelf={'center'} />
+    <MediumText marginBottom={2} marginTop={2} text={messageText} display={'flex'} alignSelf={'center'} />
     <ButtonPrimary text={noText} onClick={onClickNo} backgroundColor={'buttons3'}/>
  </Flex>
 );

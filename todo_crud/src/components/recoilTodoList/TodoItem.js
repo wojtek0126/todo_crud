@@ -243,7 +243,10 @@ function TodoItem({item}) {
           <TextArea disabled={disabled} value={textareaDisplay} 
         onChange={editItemText} backgroundColor={`inputBackground`}/>     
         <Flex sx={{flexDirection: 'row',
-                   marginBottom: 2}} >            
+                   marginBottom: 2,
+                   '@media screen and (max-width: 700px)': {                   
+                    alignItems: 'center',
+                    justifyContent: 'center'}}} >            
           <MediumText text={itemStatusDisplay(item.completed)} display={taskStatusView} />      
         </Flex>   
         <Flex sx={{flexWrap: 'wrap',
