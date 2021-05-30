@@ -14,6 +14,7 @@ import { getAllTasks } from '../../API/fetch';
 import SearchField from '../atoms/SearchField';
 import MediumText from '../atoms/MediumText';
 import {CircleArrow as ScrollUpButton} from 'react-scroll-up-button';
+import { todoListTitleTxt, todoListSearchPlaceholderTxt } from '../../content/contentEng';
 
 
 function TodoList() {
@@ -70,11 +71,11 @@ function TodoList() {
           margin: 3,
           padding: 3,
           flexDirection: 'column'
-        }}><MediumText text={' Find Your task:'} marginBottom={2} />
+        }}><MediumText text={todoListTitleTxt} marginBottom={2} />
         <TodoListFilters />
         <SearchField
           type={"text"}
-          placeholder={"Search"}
+          placeholder={todoListSearchPlaceholderTxt}
           value={toSearch}
           onChange={handleChange}        
         /></Flex>

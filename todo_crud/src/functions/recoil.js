@@ -1,20 +1,11 @@
 import { atom, selector } from 'recoil';
-
-//to contentEng.js
-const showAllTasksTxt = "Show All Tasks";
-const showInProgressOnlyTxt = "In progress only";
-const showCompletedOnlyTxt = "Completed only";
+import { showAllTasksTxt,showInProgressOnlyTxt, showCompletedOnlyTxt} from '../content/contentEng';
 
 
 export const todoListState = atom({
     key: 'todoListState',
     default: [],
-  });
-
-  // export const todoItemState = atom({
-  //   key: 'todoItemState',
-  //   default: [],
-  // });
+  }); 
 
 
   export const todoListFilterState = atom({

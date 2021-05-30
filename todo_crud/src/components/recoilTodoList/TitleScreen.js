@@ -7,10 +7,16 @@ import TitleStats from './TitleStats';
 import blackboard from "../../assets/b4769e3a52766f30e86b375391c84441.jpg";
 import TitleText from '../atoms/TitleText';
 import ThoughtBoard from './ThoughtBoard';
+import { titlePart1Txt,
+         titlePart2Txt,
+         titlePart3Txt,
+         footerYearTxt,
+         footerBrandnameTxt,  
+} from '../../content/contentEng';
 
 
-  function TitleScreen() {    
-
+  function TitleScreen() {  
+  
   
       return (
         <ThemeProvider theme={theme} >                
@@ -27,14 +33,14 @@ import ThoughtBoard from './ThoughtBoard';
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center'
-          }}><TitleText text1={'The'} text2={`Eazzy`} text3={`Organizer`} marginBottom={2} />       
+          }}><TitleText text1={titlePart1Txt} text2={titlePart2Txt} text3={titlePart3Txt} marginBottom={2} />       
             </Flex>
             <TitleStats />
             <ThoughtBoard imageUrl={blackboard} />
             <Flex sx = {{   
              justifyContent: 'center',
              alignItems: 'flex-end'}}>            
-                <Footer year={`2021`} brandName={`HFM Wojbaza`} />
+                <Footer year={footerYearTxt} brandName={footerBrandnameTxt} />
             </Flex>         
           </Container>     
         </ThemeProvider>      

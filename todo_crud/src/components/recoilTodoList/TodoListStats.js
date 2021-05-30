@@ -5,9 +5,15 @@ import { useRecoilValue } from 'recoil';
 import { todoListStatsState } from '../../functions/recoil';
 import ProgressCounter from '../atoms/ProgressCounter';
 import MediumText from '../atoms/MediumText';
+import { todoActionStatsTitleTxt, 
+  todoActionStatsTotalTxt,
+  todoActionStatsCompletedTxt,
+  todoActionStatsInProgressTxt
+ } from '../../content/contentEng';
 
 
 function TodoListStats() {
+   
     
     const {
       totalNum,
@@ -28,14 +34,14 @@ function TodoListStats() {
         margin: 3,
         padding: 3,
       }}
-    ><MediumText text={'Your progress:'} marginBottom={2} />
-        <ProgressCounter text={`Total tasks: ${totalNum}`} borderColor={`boxBorder`} 
+    ><MediumText text={todoActionStatsTitleTxt} marginBottom={2} />
+        <ProgressCounter text={`${todoActionStatsTotalTxt} ${totalNum}`} borderColor={`boxBorder`} 
         color={`counterText`} 
         backgroundColor={`counterAll`} />
-        <ProgressCounter text={`Completed: ${totalCompletedNum}`}  borderColor={`boxBorder`} 
+        <ProgressCounter text={`${todoActionStatsCompletedTxt} ${totalCompletedNum}`}  borderColor={`boxBorder`} 
         color={`counterText`}
         backgroundColor={`counterCompleted`} />
-        <ProgressCounter text={`In progress: ${totalUncompletedNum}`}  borderColor={`boxBorder`} 
+        <ProgressCounter text={`${todoActionStatsInProgressTxt} ${totalUncompletedNum}`}  borderColor={`boxBorder`} 
         color={`counterText`}
         backgroundColor={`counterInProgress`} /> 
       </Flex>

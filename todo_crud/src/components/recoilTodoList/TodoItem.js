@@ -12,38 +12,34 @@ import BigText from '../atoms/BigText';
 import TextArea from '../atoms/TextArea';
 import { switchBtnTxt, timeStampFormatted, toggleDisplay } from '../../functions/functionStorage';
 import YesNoPopup from '../molecules/YesNoPopup';
-import TaskDetails from '../molecules/TaskDetails';
-import ButtonsWrapper from '../atoms/ButtonsWrapper';
+import TaskDetails from './TaskDetails';
+import ButtonsWrapper from '../containers/ButtonsWrapper';
+import { updateText,
+  updateEmptyText,  
+  deleteText,
+  yesText,
+  noText, 
+  statusYesNoMessage,
+  editYesNoMessage,  
+  deleteYesNoMessage,
+  todoItemStatusInProgressText,
+  todoItemStatusCompletedText, 
+  todoItemChangeStatusBtnTxt,
+  todoItemShowDetailsBtnTxt
+} from '../../content/contentEng';
 
 
-function TodoItem({item, todos}) {
-    // this goes to content.js
-    const updateText = "Update task";
-    const updateEmptyText = "Cannot be empty";
-    const updateSuccesstext = "Task updated";
-    const deleteText = "Delete task";
-    const deleteSuccesstext = "Task deleted";
-    const yesText = "Confirm";
-    const noText = "Go back";
-    const statusYesNoMessage = "Change task status?";
-    const enterEditYesNoMessage = "Proceed to edit mode?";
-    const editYesNoMessage = "Update your task?";
-    const deleteYesNoMessage = "Are you sure to delete this task?";
+function TodoItem({item}) {
 
 
-   //display to settings.js
+   //display toggle style setting
     const displayOn = 'flex';
     const displayOff = 'none';
-  //sets equal delays for common timeouts, to settings.js
+  //sets equal delays for common timeouts
   const delayTime = 1800;
 
-  const initialTitleDisplay = item.title;
-  const todoItemPrevious = item;
-  // const todoItemTitle = getSingleTask(item.id);
-  // console.log(item, "prop items from item list from recoilstate");
-
-
-
+    const initialTitleDisplay = item.title;
+    const todoItemPrevious = item;
     const [todoList, setTodoList] = useRecoilState(todoListState); 
     const [updateButtonText, setUpdateButtonText] = useState(updateText);
     const [deleteButtonText, setDeleteButtonText] = useState(deleteText);
@@ -59,16 +55,15 @@ function TodoItem({item, todos}) {
     const [taskBtnEdit, setTaskBtnEdit] = useState(displayOn); 
     const [taskBtnStatus, setTaskBtnStatus] = useState(displayOn); 
     const [taskBtnDelete, setTaskBtnDelete] = useState(displayOn);
-    const [taskBtnDetails, setTaskBtnDetails] = useState(displayOn);  
-    // const [taskBtnCancel, setTaskBtnCancel] = useState(displayOff); 
-    // const [changeStatusBtn, setChangeStatusBtn] = useState(displayOff); 
+    const [taskBtnDetails, setTaskBtnDetails] = useState(displayOn);      
     //yes no popups active or not
     const [yesNoEditPopup, setYesNoEditPopup] = useState(displayOff);  
     const [yesNoDeletePopup, setYesNoDeletePopup] = useState(displayOff);  
     const [yesNoStatusPopup, setYesNoStatusPopup] = useState(displayOff);  
-    const [yesNoEnterEditPopup, setYesNoEnterEditPopup] = useState(displayOff);  
+    // const [yesNoEnterEditPopup, setYesNoEnterEditPopup] = useState(displayOff);  
     //views active or not
     const [taskDetailView, setTaskDetailView] = useState(displayOff);
+    const [taskStatusView, setTaskStatusView] = useState(displayOn);
     
     useEffect(() => {
       const todoDataInit = {
@@ -80,9 +75,7 @@ function TodoItem({item, todos}) {
         updated_at: item.updated_at
       }  
       setInitTaskData(todoDataInit)
-    }, [])
-    console.log(initTaskData, "unchanged item !!!");   
-     
+    }, [])     
 
     //edit task, just changing content without commiting
     const editItemText = ({target: {value}}) => {  
@@ -107,7 +100,7 @@ function TodoItem({item, todos}) {
       setInputValue(value);    
       setTodoList(newList);          
     };   
-    console.log(item, "updated item !!!");  
+
     //commit edit changes on click
     const confirmEditChanges = (todoDataMod) => {
       if (updatedData.title === "" || updatedData.title === null || updatedData.title === undefined) {
@@ -171,45 +164,18 @@ function TodoItem({item, todos}) {
       setTaskBtnDelete(displayOn);
       setTaskBtnDetails(displayOn); 
       setTaskBtnStatus(displayOn);  
+      setTaskStatusView(displayOn);
     }
 
     //when update button clicked and updating enabled
     const handleUpdateBtn = () => {    //
       setTaskBtnEdit(displayOff);
       setTaskBtnDelete(displayOff);
-      setTaskBtnDetails(displayOff); 
-      setYesNoEnterEditPopup(displayOff);  
+      setTaskBtnDetails(displayOff);    
       setTaskBtnStatus(displayOff);  
       setYesNoEditPopup(displayOn);
       setDisabled(false);
-    }    
-
-    //when update button clicked and clicking 'no' button
-
-    const handleEnterUpdateYesBtn = () => {  
-      setTaskBtnEdit(displayOff);
-      setTaskBtnDelete(displayOff);
-      setTaskBtnDetails(displayOff); 
-      setYesNoEnterEditPopup(displayOff);  
-      setYesNoEditPopup(displayOn);
-      setDisabled(false);
-      // getAllTasks(setTTitleFromApi);  
-      // setTimeout(() => {
-        // setTextareaDisplay(item.title); 
-       
-      // }, 300);          
-    }
-
-    // console.log(titleromApi, "textdispno")
-    
-    const handleCancelEnterUpdateYesBtn = () => {  
-      setTaskBtnEdit(displayOn);
-      setTaskBtnDelete(displayOn);
-      setTaskBtnDetails(displayOn); 
-      setTaskBtnStatus(displayOn);  
-      setYesNoEnterEditPopup(displayOff);  
-      setYesNoEditPopup(displayOff);        
-    }
+    }     
 
     const handleUpdateNoBtn = () => {          
       setTaskBtnEdit(displayOn);
@@ -256,7 +222,8 @@ function TodoItem({item, todos}) {
         setTaskBtnDelete(displayOff);
         setTaskBtnDetails(displayOff); 
         setTaskBtnStatus(displayOff);
-        setTaskDetailView(displayOn); 
+        setTaskDetailView(displayOn);
+        setTaskStatusView(displayOff); 
       }
 
            //after clicking 
@@ -286,34 +253,15 @@ function TodoItem({item, todos}) {
        //item completed/in progress to display
        const itemStatusDisplay = (completedData) => {        
           if (completedData === true) {
-            return "Task is completed"
+            return todoItemStatusCompletedText
           }
           else {
-            return "Task is currently in progress"
+            return todoItemStatusInProgressText
           }
-            }
+            }         
 
 
-            const itemDetailsDisplay = (updatedData) => {        
-              if (updatedData !== undefined) {
-                   return updatedData
-                }
-              }
-
-    //switch between initial task title and updatable task title after clicking update button
-    const boolInputOutput = (getBool, onTrue, onFalse) => {
-      const bool = getBool;
-
-      if (bool === true) {
-       return onTrue;
-      }
-      else {
-       return onFalse;
-      }   
-    }   
-
-
-    return (
+    return (      
         <div 
         sx={{
           background: 'box',     
@@ -332,13 +280,13 @@ function TodoItem({item, todos}) {
         onChange={editItemText} backgroundColor={`inputBackground`}/>     
         <Flex sx={{flexDirection: 'row',
                    marginBottom: 2}} >            
-                 <MediumText text={itemStatusDisplay(item.completed)} />      
+                 <MediumText text={itemStatusDisplay(item.completed)} display={taskStatusView} />      
         </Flex>   
         <Flex sx={{flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'flex-start'}}> 
         {/* show details button */}
            <ButtonPrimary
             onClick={handleShowDetailsBtn} displayIt={taskBtnDetails}
-            text={'Show details'} backgroundColor={'buttons1'}/>  
+            text={todoItemShowDetailsBtnTxt} backgroundColor={'buttons1'}/>  
         {/* update task button */}
             <ButtonPrimary           
             onClick={handleUpdateBtn} displayIt={taskBtnEdit}
@@ -346,17 +294,12 @@ function TodoItem({item, todos}) {
               {/* change status button*/} 
             <ButtonPrimary 
             onClick={handleChangeStatusBtn} displayIt={taskBtnStatus}
-            text={'Change status'} backgroundColor={'buttons2'}/>  
+            text={ todoItemChangeStatusBtnTxt} backgroundColor={'buttons2'}/>  
                {/* delete button*/}               
             <ButtonPrimary 
             onClick={handleDeleteBtnClick} displayIt={taskBtnDelete}
             text={deleteButtonText} backgroundColor={'buttons3'}/>       
-        </Flex>  
-          {/* popup with choices to go to edit mode*/}   
-        {/* <ButtonsWrapper displayStyle={yesNoEnterEditPopup} contentArea={
-          <YesNoPopup onClickYes={handleEnterUpdateYesBtn} 
-          onClickNo={handleCancelEnterUpdateYesBtn} yesText={yesText} noText={noText} messageText={enterEditYesNoMessage} />
-        }/>   */}
+        </Flex>        
             {/* popup with choices yes or no for editing*/}         
         <ButtonsWrapper displayStyle={yesNoEditPopup} contentArea={
         <YesNoPopup  onClickYes={() => confirmEditChanges(updatedData)} 

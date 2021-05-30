@@ -10,11 +10,21 @@ import MediumText from '../atoms/MediumText';
 import ButtonWithlink from '../atoms/ButtonWithLink';
 import TextArea from '../atoms/TextArea';
 import { switchBtnTxt, timeStampFormatted } from '../../functions/functionStorage';
+import { todoCreatorAddTaskBtnTxt,
+  todoCreatorTaskAddedTxt,  
+  todoCreatorTaskEmptyTxt,
+  todoCreatorTitleTxt,
+  todoCreatorPlaceholderTxt, 
+  todoCreatorBackToMainTxt,
+  todoCreatorNotUpdatedYetTxt,   
+} from '../../content/contentEng';
 
 
-function TodoItemCreator() {
+function TodoItemCreator() {  
+
+
   const [inputValue, setInputValue] = useState('');  
-  const [createBtnTxt, setCreateBtnTxt] = useState("Add new task");
+  const [createBtnTxt, setCreateBtnTxt] = useState(todoCreatorAddTaskBtnTxt);
   const setTodoList = useSetRecoilState(todoListState);  
 
 
@@ -25,7 +35,7 @@ function TodoItemCreator() {
       title: inputValue,
       completed: false,
       created_at: timeStampFormatted(),
-      updated_at: "Not updated yet"
+      updated_at: todoCreatorNotUpdatedYetTxt
     }
   
   
@@ -37,10 +47,10 @@ function TodoItemCreator() {
       ]);
       setInputValue('');
       addTask(todoData); 
-      switchBtnTxt(setCreateBtnTxt, 'Add new task', 'New task added');  
+      switchBtnTxt(setCreateBtnTxt, todoCreatorAddTaskBtnTxt, todoCreatorTaskAddedTxt);  
     }
     else {
-      switchBtnTxt(setCreateBtnTxt, 'Add new task', 'Nothing to add');
+      switchBtnTxt(setCreateBtnTxt, todoCreatorAddTaskBtnTxt, todoCreatorTaskEmptyTxt);
     }
      
   };
@@ -64,12 +74,12 @@ function TodoItemCreator() {
       margin: 3,
       padding: 3,
     }}
-  ><MediumText text={'Create new task:'} marginBottom={2} />
+  ><MediumText text={todoCreatorTitleTxt} marginBottom={2} />
       <TextArea value={inputValue} onChange={handleOnChange} backgroundColor={`inputBackground`} 
-      placeholder={`What needs to be done?`}/>
+      placeholder={todoCreatorPlaceholderTxt}/>
       <Flex sx={{flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap'}}>
         <ButtonPrimary onClick={addItem} text={createBtnTxt} backgroundColor={`buttons2`} />
-        <ButtonWithlink to={`home`} text={`Back to main`} backgroundColor={`buttons1`} />
+        <ButtonWithlink to={`home`} text={todoCreatorBackToMainTxt} backgroundColor={`buttons1`} />
       </Flex>
     </Flex>
   );
