@@ -28,17 +28,18 @@ function TodoItemCreator() {
       updated_at: "Not updated yet"
     }
   
-    setTodoList((oldTodoList) => [
-      ...oldTodoList,
-     todoData,
-    ]);
+  
     //no empty input validator
-    if (inputValue.length > 0 ) {
+    if (todoData.title.length > 0 ) {
+      setTodoList((oldTodoList) => [
+        ...oldTodoList,
+       todoData,
+      ]);
       setInputValue('');
       addTask(todoData); 
       switchBtnTxt(setCreateBtnTxt, 'Add new task', 'New task added');  
     }
-    else if (inputValue.length < 1) {
+    else {
       switchBtnTxt(setCreateBtnTxt, 'Add new task', 'Nothing to add');
     }
      
