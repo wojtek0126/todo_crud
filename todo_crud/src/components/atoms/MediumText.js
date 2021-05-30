@@ -12,7 +12,7 @@ const MediumText = ({text, color, marginBottom, id, display, alignSelf}) => (
       color: `${color}`,
       marginBottom: `${marginBottom}`,
       display: `${display}`,
-      alignSelf: `${alignSelf}`
+      alignSelf: `${alignSelf}`  
     }}
   >
     {text}

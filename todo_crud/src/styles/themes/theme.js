@@ -52,7 +52,9 @@ export default{
     counterAll: '#000000',
     counterInProgress: '#000000',
     counterCompleted: '#000000',
-    counterPercentage: '#000000'   
+    counterPercentage: '#000000', 
+   //task detail show colors
+   taskDetailBackground: '#F0E68C'   
   },
   space: [0, 4, 8, 16, 32, 48],
   breakpoints: ['40em', '64em', '80em'],

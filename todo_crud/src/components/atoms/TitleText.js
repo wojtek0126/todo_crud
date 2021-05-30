@@ -6,6 +6,8 @@ import { jsx } from 'theme-ui';
 const TitleText = ({text1, text2, text3, marginBottom, backgroundColor}) => (
     <h2
       sx={{
+        display: 'flex',
+        flexWrap: 'wrap',
         backgroundColor: `${backgroundColor}`,
         fontFamily: 'heading',
         fontWeight: 'heading',        

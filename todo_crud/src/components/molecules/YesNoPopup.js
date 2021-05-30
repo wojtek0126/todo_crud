@@ -7,11 +7,11 @@ import MediumText from '../atoms/MediumText';
 
 
 const YesNoPopup = ({onClickYes, onClickNo, messageText, yesText, noText}) => (
- <>
+ <div sx={{alignSelf: 'center'}}>
     <ButtonPrimary text={yesText} onClick={onClickYes} backgroundColor={'buttons1'}/>
     <MediumText text={messageText} display={'flex'} alignSelf={'center'} />
     <ButtonPrimary text={noText} onClick={onClickNo} backgroundColor={'buttons3'}/>
- </>
+ </div>
 );
 
 

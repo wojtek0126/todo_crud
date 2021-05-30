@@ -274,15 +274,20 @@ function TodoItem({item}) {
           margin: 3,
           padding: 3,
         }}
-      ><BigText text={ `Task # ${item.id}:`} marginBottom={2} />
+        ><BigText text={ `Task # ${item.id}:`} marginBottom={2} />
         {/* display with task title*/}
-        <TextArea disabled={disabled} value={textareaDisplay} 
+          <TextArea disabled={disabled} value={textareaDisplay} 
         onChange={editItemText} backgroundColor={`inputBackground`}/>     
         <Flex sx={{flexDirection: 'row',
                    marginBottom: 2}} >            
-                 <MediumText text={itemStatusDisplay(item.completed)} display={taskStatusView} />      
+          <MediumText text={itemStatusDisplay(item.completed)} display={taskStatusView} />      
         </Flex>   
-        <Flex sx={{flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'flex-start'}}> 
+        <Flex sx={{flexWrap: 'wrap',
+                   flexDirection: 'row',
+                   justifyContent: 'flex-start',
+                   '@media screen and (max-width: 700px)': {
+                    flexDirection: 'column'}          
+          }}> 
         {/* show details button */}
            <ButtonPrimary
             onClick={handleShowDetailsBtn} displayIt={taskBtnDetails}
