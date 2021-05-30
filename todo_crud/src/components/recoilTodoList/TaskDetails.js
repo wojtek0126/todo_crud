@@ -13,13 +13,12 @@ import { taskDetailsTaskNumberTxt,
   taskDetailsCompletedTxt
 } from '../../content/contentEng';
 import DisplayDetailsText from '../atoms/DisplayDetailsText';
-import ButtonsWrapper from '../containers/ButtonsWrapper';
 import TaskDetailBtnWrapper from '../containers/TaskDetailBtnWrapper';
 
 
 const TaskDetails =({clickClose, displayIt = 'flex', taskData}) => {  
   let getTask = taskData;  
-
+  
 
   //convert task completion status from true/false to success/in progress text
   let completionText = "";  
