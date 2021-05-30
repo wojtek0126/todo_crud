@@ -21,13 +21,13 @@ function TodoList() {
     const [todos, setTodos] = useRecoilState(todoListState);
     const [toSearch, setToSearch] = useState("");
     const [searchResults, setSearchResults] = useState([]);
-    const [taskList, setTaskList] = useState([]);
+    const taskList = [];
     const [taskText, setTaskText] = useState([]);
     const filteredData =  useRecoilValue(filteredTodoListState);
     
 
     //decoy for unused searchResults state    
-    // console.log(searchResults);    
+    const decoy = searchResults;  
    
     useEffect(() => {
       const getTodos = async () => {
@@ -35,7 +35,7 @@ function TodoList() {
       }
      getTodos()  
      //decoy for unused searchResults state    
-     setTaskList(taskList);
+    //  setTaskList(taskList);
    }, [])  
   
    useEffect(() => {  
@@ -50,16 +50,16 @@ function TodoList() {
       setSearchResults(results); 
     }, [toSearch]);  
   
-  let filterData = filteredData.filter(item => item.title.includes(toSearch));
+   let filterData = filteredData.filter(item => item.title.includes(toSearch));
   
-      const handleChange = (e) => {
-          setToSearch(e.target.value);
-      } 
+   const handleChange = (e) => {
+       setToSearch(e.target.value);
+   } 
 
 
     return (
       <ThemeProvider theme={theme}>       
-        <Container >            
+        <Container>            
         <TodoItemCreator/>  
         <Flex sx={{           
           backgroundColor: 'boxBackground',

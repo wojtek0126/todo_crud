@@ -54,7 +54,9 @@ export default{
     counterCompleted: '#000000',
     counterPercentage: '#000000', 
    //task detail show colors
-   taskDetailBackground: '#F0E68C'   
+   taskDetailBackground: '#F0E68C',
+   taskDetailContentBackground: 'gold',
+   taskDetailBorderColor: '#000000'   
   },
   space: [0, 4, 8, 16, 32, 48],
   breakpoints: ['40em', '64em', '80em'],

@@ -3,15 +3,23 @@
 import { Flex, jsx } from 'theme-ui';
 import ButtonPrimary from '../atoms/ButtonPrimary';
 import TaskDetailsWrapper from '../containers/TaskDetailsWrapper';
+import { taskDetailsTaskNumberTxt,
+  taskDetailsTaskContentTxt,
+  taskDetailsStatusTxt,
+  taskDetailsTimeStartedTxt,
+  taskDetailsTimeUpdatedTxt,
+  taskDetailsInProgressTxt,
+  taskDetailsCloseBtnTxt,
+  taskDetailsCompletedTxt
+} from '../../content/contentEng';
+import DisplayDetailsText from '../atoms/DisplayDetailsText';
+import ButtonsWrapper from '../containers/ButtonsWrapper';
+import TaskDetailBtnWrapper from '../containers/TaskDetailBtnWrapper';
 
 
 const TaskDetails =({clickClose, displayIt = 'flex', taskData}) => {  
-  let getTask = taskData;
+  let getTask = taskData;  
 
-  //text to content.js
-  const taskDetailsCloseBtnTxt = "Close";
-  const taskDetailsCompletedTxt = "Task completed";
-  const taskDetailsInProgressTxt = "Task in progress";
 
   //convert task completion status from true/false to success/in progress text
   let completionText = "";  
@@ -20,22 +28,26 @@ const TaskDetails =({clickClose, displayIt = 'flex', taskData}) => {
     }
   else {
     completionText = taskDetailsInProgressTxt;
-    }  
+    }      
+               
     
-  
     return (
       <TaskDetailsWrapper displayIt={displayIt} contentArea={
-        <Flex sx={{flexDirection: 'column'}}>                
-          <Flex>Task number: {getTask.id}</Flex>           
-          <Flex>Task content:</Flex>
-          <Flex>{getTask.title}</Flex>
-          <Flex>Status: {completionText}</Flex>
-          <Flex>Time started: {getTask.created_at}</Flex>
-          <Flex>Last time updated: {getTask.updated_at}</Flex>  
-          <Flex sx={{flexDirection: 'row', justifyContent: 'space-between'}}>
-            <ButtonPrimary text={taskDetailsCloseBtnTxt} backgroundColor={'buttons3'} onClick={clickClose} />
-          </Flex>          
-        </Flex> 
+        <Flex sx={{flexDirection: 'column'}}>    
+          <DisplayDetailsText headText={taskDetailsTaskNumberTxt} contentText={getTask.id} marginTop={1} marginBottom={1}
+          backgroundColor={'taskDetailContentBackground'}/>       
+          <DisplayDetailsText headText={taskDetailsTaskContentTxt} contentText={getTask.title} marginTop={2} marginBottom={2} 
+          backgroundColor={'taskDetailContentBackground'}/>            
+          <DisplayDetailsText headText={taskDetailsStatusTxt} contentText={completionText} marginTop={2} marginBottom={2}
+          backgroundColor={'taskDetailContentBackground'}/>
+          <DisplayDetailsText headText={taskDetailsTimeStartedTxt} contentText={getTask.created_at} marginTop={2} marginBottom={2}
+          backgroundColor={'taskDetailContentBackground'} />            
+          <DisplayDetailsText headText={taskDetailsTimeUpdatedTxt} contentText={getTask.updated_at} marginTop={2} marginBottom={2}
+          backgroundColor={'taskDetailContentBackground'} />  
+            <TaskDetailBtnWrapper contentArea={  
+            <ButtonPrimary text={taskDetailsCloseBtnTxt} backgroundColor={'buttons3'}
+                           onClick={clickClose} marginTop={1} marginBottom={1}/>} />          
+        </Flex>         
       }/>    
     );
   }

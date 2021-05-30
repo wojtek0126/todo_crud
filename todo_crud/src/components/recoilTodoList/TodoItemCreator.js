@@ -21,13 +21,11 @@ import { todoCreatorAddTaskBtnTxt,
 
 
 function TodoItemCreator() {  
-
-
   const [inputValue, setInputValue] = useState('');  
   const [createBtnTxt, setCreateBtnTxt] = useState(todoCreatorAddTaskBtnTxt);
   const setTodoList = useSetRecoilState(todoListState);  
 
-
+//add new task handle
   const addItem = () => {
     const todoData =    {
       id: getId(),
@@ -36,8 +34,7 @@ function TodoItemCreator() {
       completed: false,
       created_at: timeStampFormatted(),
       updated_at: todoCreatorNotUpdatedYetTxt
-    }
-  
+    }  
   
     //no empty input validator
     if (todoData.title.length > 0 ) {
@@ -55,6 +52,7 @@ function TodoItemCreator() {
      
   };
 
+  //taking input value for task from textarea
   const handleOnChange = ({target: {value}}) => {
     setInputValue(value);
   };
@@ -77,7 +75,14 @@ function TodoItemCreator() {
   ><MediumText text={todoCreatorTitleTxt} marginBottom={2} />
       <TextArea value={inputValue} onChange={handleOnChange} backgroundColor={`inputBackground`} 
       placeholder={todoCreatorPlaceholderTxt}/>
-      <Flex sx={{flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap'}}>
+      <Flex sx={{flexDirection: 'row',
+                 justifyContent: 'space-between',
+                 flexWrap: 'wrap',
+                 '@media screen and (max-width: 700px)': {
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'baseline',                  
+                } }}>
         <ButtonPrimary onClick={addItem} text={createBtnTxt} backgroundColor={`buttons2`} />
         <ButtonWithlink to={`home`} text={todoCreatorBackToMainTxt} backgroundColor={`buttons1`} />
       </Flex>

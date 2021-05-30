@@ -21,7 +21,7 @@ function TitleStats() {
     const [todos, setTodos] = useRecoilState(todoListState);     
 
      // decoy for empty state todos
-    //  console.log(todos);
+    const decoy = todos;
 
 
     useEffect(() => {
@@ -65,7 +65,7 @@ function TitleStats() {
          backgroundColor={'counterCompleted'} color={`counterText`}/>
         <ProgressCounter text={`${titleStatsPercentCompletedTxt} ${formattedPercentCompleted}`}
          backgroundColor={'counterPercentage'} color={`counterText`}/>   
-        <ButtonWithlink  to={'action'} text={titleStatsToActionBtnTxt} backgroundColor={`buttons1`} />
+        <ButtonWithlink to={'action'} text={titleStatsToActionBtnTxt} backgroundColor={`buttons1`} />
       </Flex>
     );
   }

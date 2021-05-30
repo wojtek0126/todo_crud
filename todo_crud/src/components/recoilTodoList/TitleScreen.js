@@ -16,13 +16,13 @@ import { titlePart1Txt,
 
 
   function TitleScreen() {  
-  
-  
+    
+
       return (
         <ThemeProvider theme={theme} >                
           <Container>             
           <Flex sx={{                        
-            background: 'linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,253,65,0.6699813714548319) 100%)',
+            background: 'linear-gradient(to top, #0ba360 0%, #3cba92 100%)',
             color: 'text',
             border: '2px solid',  
             borderColor: 'boxBorder', 

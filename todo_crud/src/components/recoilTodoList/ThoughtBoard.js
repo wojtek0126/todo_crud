@@ -18,14 +18,6 @@ import { thoughtBoardTitleTxt,
 
 const ThoughtBoard = ({imageUrl}) => {
 
-  // //thought board main menu text
-  // const thoughtBoardTitleTxt = "Write down Your thoughts:";
-  // const thoughtRememberBtnTxt = "Remember";
-  // const thoughtForgetBtnTxt = "Forget";
-  // const thoughtForgottenTxt = "Forgotten";
-  // const thoughtRememberedTxt = "Remembered";
-  // const thoughtRememberEmptyTxt = "Nothing to remember";
-  // const thoughtForgetEmpytTxt = "Nothing to forget";
 
     const boardTxtFromLocal = localStorage.getItem('notes');
     const [boardText, setBoardText] = useState(boardTxtFromLocal);  
@@ -87,16 +79,20 @@ const ThoughtBoard = ({imageUrl}) => {
               '&::placeholder' : {color: 'placeHolderText'}                   
            }}>
              {boardText}
-             </Textarea>
-                <Flex sx={{flexWrap: 'wrap',
-                           flexDirection: 'row',
-                           justifyContent: 'space-between'}}>
-                    <ButtonPrimary text={rememberButtonTxt} backgroundColor={`buttons2`} 
-                    onClick={() => handleClickSaveToLocal('notes', boardText, thoughtRememberedTxt, thoughtRememberBtnTxt, 
-                    boardText)} />
-                    <ButtonPrimary text={forgetButtonTxt} backgroundColor={`buttons3`}
-                     onClick={() => handleClickClearLocal(thoughtForgottenTxt, thoughtForgetBtnTxt, boardText)}/>
-                </Flex>                 
+        </Textarea>
+           <Flex sx={{flexWrap: 'wrap',
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      '@media screen and (max-width: 700px)': {
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center'}}}>
+               <ButtonPrimary text={rememberButtonTxt} backgroundColor={`buttons2`} 
+               onClick={() => handleClickSaveToLocal('notes', boardText, thoughtRememberedTxt, thoughtRememberBtnTxt, 
+               boardText)} />
+               <ButtonPrimary text={forgetButtonTxt} backgroundColor={`buttons3`}
+                onClick={() => handleClickClearLocal(thoughtForgottenTxt, thoughtForgetBtnTxt, boardText)}/>
+           </Flex>                 
       </Flex>         
   );
 };

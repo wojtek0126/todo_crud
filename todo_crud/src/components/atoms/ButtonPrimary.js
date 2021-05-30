@@ -3,15 +3,17 @@
 import { jsx } from 'theme-ui';
 
 
-const ButtonPrimary = ({text, backgroundColor, onClick, type, id, displayIt}) => (
+const ButtonPrimary = ({text, backgroundColor, onClick, type, id, displayIt, alignSelf = 'center'}) => (
     <div >
         <button type={type} onClick={onClick} id={id}
             sx={{
+            wordBreak: 'break-word', 
+            alignSelf: `${alignSelf}`,
             backgroundColor: `${backgroundColor}`,
             borderRadius: '4px',
             border: 'none',
             color: 'buttonText',
-            display: 'inline-block',
+            display: 'flex !important',
             fontFamily: 'heading',
             fontSize: [0, 1],
             fontWeight: 'bold',

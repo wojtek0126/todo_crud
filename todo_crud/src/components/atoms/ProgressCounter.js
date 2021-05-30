@@ -6,7 +6,7 @@ import { jsx } from 'theme-ui';
 const ProgressCounter = ({text, counter, backgroundColor, color, borderColor}) => (
     <button        
     sx={{
-    //   border: '1px solid black',
+      wordBreak: 'break-word', 
       backgroundColor: `${backgroundColor}`,
       borderRadius: '4px',
       border: `2px solid`,

@@ -13,8 +13,7 @@ import { todoActionStatsTitleTxt,
 
 
 function TodoListStats() {
-   
-    
+      
     const {
       totalNum,
       totalCompletedNum,

@@ -1,17 +1,23 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import React from 'react';
-import { jsx } from 'theme-ui';
+import { jsx, Flex } from 'theme-ui';
 import ButtonPrimary from '../atoms/ButtonPrimary';
 import MediumText from '../atoms/MediumText';
 
 
 const YesNoPopup = ({onClickYes, onClickNo, messageText, yesText, noText}) => (
- <div sx={{alignSelf: 'center'}}>
+ <Flex sx={{alignItems: 'center',
+            justifyContent: 'space-between',
+            flexDirection: 'row',
+            width: '100%',
+            '@media screen and (max-width: 700px)': {
+               flexDirection: 'column',
+               alignItems: 'center',
+               justifyContent: 'center'}}}>
     <ButtonPrimary text={yesText} onClick={onClickYes} backgroundColor={'buttons1'}/>
     <MediumText text={messageText} display={'flex'} alignSelf={'center'} />
     <ButtonPrimary text={noText} onClick={onClickNo} backgroundColor={'buttons3'}/>
- </div>
+ </Flex>
 );
 
 

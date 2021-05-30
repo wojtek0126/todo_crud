@@ -6,7 +6,7 @@ export const showInProgressOnlyTxt = "In progress only";
 export const showCompletedOnlyTxt = "Completed only";
 
  //thought board main menu text
- export const thoughtBoardTitleTxt = "Write down Your thoughts:";
+ export const thoughtBoardTitleTxt = "Set your goal and completion reward:";
  export const thoughtRememberBtnTxt = "Remember";
  export const thoughtForgetBtnTxt = "Forget";
  export const thoughtForgottenTxt = "Forgotten";
@@ -40,16 +40,16 @@ export const titleStatsToActionBtnTxt = "To action";
  export const deleteYesNoMessage = "Delete this task?";
  export const todoItemStatusInProgressText = "Task is currently in progress";
  export const todoItemStatusCompletedText ="Task is completed";
- export const todoItemChangeStatusBtnTxt = "Change status";
+ export const todoItemChangeStatusBtnTxt = "Completion";
  export const todoItemShowDetailsBtnTxt = "Show details";
 
- //item creator text, , for adding new task or going back to menu
+ //item creator text for adding new task or going back to menu
  export const todoCreatorAddTaskBtnTxt = "Add new task";
  export const todoCreatorTaskAddedTxt = "New task added";
  export const todoCreatorTaskEmptyTxt = "Nothing to add";
  export const todoCreatorTitleTxt = "Create new task:";
  export const todoCreatorPlaceholderTxt = "What needs to be done?";
- export const todoCreatorBackToMainTxt = "Back to main";  
+ export const todoCreatorBackToMainTxt = "Back to main menu";  
  export const todoCreatorNotUpdatedYetTxt = "Not updated yet";
 
  //search filter text in TodoList.js
@@ -66,3 +66,14 @@ export const todoFilterInProgressOnlyTxt = "In progress only";
  export const todoActionStatsTotalTxt = "Total tasks:";
  export const todoActionStatsCompletedTxt = "Completed:";
  export const todoActionStatsInProgressTxt = "In progress:";
+
+ //text from TaskDetails.js
+ export const taskDetailsTaskNumberTxt = "Task number:";
+ export const taskDetailsTaskContentTxt = "Your task:";
+ export const taskDetailsStatusTxt = "Status:";
+ export const taskDetailsTimeStartedTxt = "Time started:";
+ export const taskDetailsTimeUpdatedTxt = "Last time updated:";
+ export const taskDetailsInProgressTxt = "Task in progress";
+ export const taskDetailsCloseBtnTxt = "Close";
+ export const taskDetailsCompletedTxt = "Task completed";
+ 
