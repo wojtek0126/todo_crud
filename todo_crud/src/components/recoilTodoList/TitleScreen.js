@@ -35,8 +35,8 @@ import { titlePart1Txt,
             justifyContent: 'center'
           }}><TitleText text1={titlePart1Txt} text2={titlePart2Txt} text3={titlePart3Txt} marginBottom={2} />       
             </Flex>
-            <TitleStats />
             <ThoughtBoard imageUrl={blackboard} />
+            <TitleStats />            
             <Flex sx = {{   
              justifyContent: 'center',
              alignItems: 'flex-end'}}>            

@@ -17,7 +17,7 @@ import {CircleArrow as ScrollUpButton} from 'react-scroll-up-button';
 import { todoListTitleTxt, todoListSearchPlaceholderTxt } from '../../content/contentEng';
 
 
-function TodoList() {
+const TodoList = () => {
     const [todos, setTodos] = useRecoilState(todoListState);
     const [toSearch, setToSearch] = useState("");
     const [searchResults, setSearchResults] = useState([]);

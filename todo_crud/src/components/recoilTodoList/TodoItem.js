@@ -58,7 +58,7 @@ function TodoItem({item}) {
   const [yesNoStatusPopup, setYesNoStatusPopup] = useState(displayOff);     
   //views active or not
   const [taskDetailView, setTaskDetailView] = useState(displayOff);
-  const [taskStatusView, setTaskStatusView] = useState(displayOn);   
+  const [taskStatusView, setTaskStatusView] = useState(displayOn);  
 
   //decoy for initially empty input
   const decoy = inputValue;
