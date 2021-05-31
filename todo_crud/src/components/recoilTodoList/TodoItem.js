@@ -288,7 +288,7 @@ function TodoItem({item}) {
           <YesNoPopup onClickYes={handleStatusChangeConfirm} 
           onClickNo={handleStatusChangeDeny} yesText={yesText} noText={noText} messageText={statusYesNoMessage} />
         }/>        
-        <TaskDetails displayIt={taskDetailView} taskData={initTaskData} clickClose={handleCloseDetailsBtn} />
+        <TaskDetails displayIt={taskDetailView} taskData={updatedData} clickClose={handleCloseDetailsBtn} />
       </div>
     );
   }
