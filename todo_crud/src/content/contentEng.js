@@ -6,7 +6,7 @@ export const showInProgressOnlyTxt = "In progress only";
 export const showCompletedOnlyTxt = "Completed only";
 
  //thought board main menu text
- export const thoughtBoardTitleTxt = "Set your goal and completion reward:";
+ export const thoughtBoardTitleTxt = "Set your goal and completion reward, or simply write down loose thoughts:";
  export const thoughtRememberBtnTxt = "Remember";
  export const thoughtForgetBtnTxt = "Forget";
  export const thoughtForgottenTxt = "Forgotten";

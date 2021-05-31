@@ -31,8 +31,7 @@ const ThoughtBoard = ({imageUrl}) => {
       }    
       else {    
         localStorage.setItem(localKey, localValue);       
-        switchBtnTxt(setRememberButtonTxt, buttonText2, buttonText1);
-        // setBoardText(localValue);
+        switchBtnTxt(setRememberButtonTxt, buttonText2, buttonText1);  
       }      
     }
 
