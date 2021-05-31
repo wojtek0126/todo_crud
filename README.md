@@ -10,4 +10,4 @@ Wymagania/skorzystaj z:
 - Fetch API, komunikacja z serwerem - wykorzystać https://gorest.co.in API z todos
 - Theme UI do styli i komponentów
 
-gh-pages demo: https://wojtek0126.github.io/todo_crud/
+
