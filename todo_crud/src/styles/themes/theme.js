@@ -1,3 +1,8 @@
+//gradients not supported by theme-ui 
+export const titleBackground = 'linear-gradient(to top, #0ba360 0%, #3cba92 100%)';
+export const itemDetailsBackground = 'linear-gradient(to right, #43e97b 0%, #38f9d7 100%)';  
+
+//theme values
 export default{
   fonts: {
     body: "'Reggae One', cursive",
@@ -57,7 +62,7 @@ export default{
    //task detail show colors
    taskDetailBackground: '#F0E68C',
    taskDetailContentBackground: 'gold',
-   taskDetailBorderColor: '#000000'   
+   taskDetailBorderColor: '#000000',    
   },
   space: [0, 4, 8, 16, 32, 48],
   breakpoints: ['40em', '64em', '80em'],

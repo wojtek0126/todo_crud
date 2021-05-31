@@ -3,7 +3,7 @@ import {
   useRecoilValue,
 } from 'recoil';
 import { useState, useEffect } from 'react';
-import { filteredTodoListState, todoListState } from '../../functions/recoil';
+import { filteredTodoListState, inputLengthState, todoListState } from '../../functions/recoil';
 import TodoItem from './TodoItem';
 import TodoItemCreator from './TodoItemCreator';
 import TodoListFilters from './TodoListFilters';
@@ -19,6 +19,7 @@ import { todoListTitleTxt, todoListSearchPlaceholderTxt } from '../../content/co
 
 const TodoList = () => {
     const [todos, setTodos] = useRecoilState(todoListState);
+    const inputLength = useRecoilValue(inputLengthState);
     const [toSearch, setToSearch] = useState("");
     const [searchResults, setSearchResults] = useState([]);
     const taskList = [];
@@ -27,7 +28,10 @@ const TodoList = () => {
     
 
     //decoy for unused searchResults state    
-    const decoy = searchResults;  
+    const decoy = searchResults; 
+    
+    //dynamic character count
+    console.log(inputLength, "dynamic character count"); 
    
     useEffect(() => {
       const getTodos = async () => {

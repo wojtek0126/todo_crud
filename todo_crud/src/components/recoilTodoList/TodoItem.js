@@ -1,9 +1,9 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { Flex, jsx } from 'theme-ui';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { useState, useEffect } from 'react';
-import { todoListState } from '../../functions/recoil';
+import { textInputState, todoListState } from '../../functions/recoil';
 import ButtonPrimary from '../atoms/ButtonPrimary';
 import { deleteTask, updateTask } from '../../API/fetch';
 import MediumText from '../atoms/MediumText';
@@ -28,7 +28,7 @@ import { updateText,
 } from '../../content/contentEng';
 
 
-function TodoItem({item}) {
+const TodoItem = ({item}) => {
   //init data 
   const initialTitleDisplay = item.title;
   const todoItemPrevious = item;
@@ -62,8 +62,9 @@ function TodoItem({item}) {
   //set border color for textarea when edited or not
   const [textareaBorderColor, setTextareaBorderColor] = useState('inputBorder');
   const [textareaBorderFocusColor, setTextareaBorderFocusColor] = useState('inputBorder');
-  // inputBorderFocus: '#34aadc',  
-  // inputBorderFocusEditOn: 'green',   
+  //set dynamic character count
+  const setInput = useSetRecoilState(textInputState);  
+  
   //decoy for initially empty input
   const decoy = inputValue;
  
@@ -116,7 +117,8 @@ function TodoItem({item}) {
       setTextareaDisplay(todoDataMod.title);    
       setUpdatedData(todoDataMod);
       setInputValue(value);    
-      setTodoList(newList);          
+      setTodoList(newList); 
+      setInput(value);         
     };   
 
     //commit edit changes on click

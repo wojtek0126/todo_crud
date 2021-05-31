@@ -12,7 +12,21 @@ export const todoListState = atom({
     key: 'todoListFilterState',
     default: showAllTasksTxt,
   });
-  
+
+  //input length meter
+  export const textInputState = atom({
+    key: 'textInputState',
+    default: (""),
+  });
+
+  export const inputLengthState = selector({
+    key: 'inputLengthState',
+    get: ({get}) => {
+      const inputText = get(textInputState);          
+      return inputText.length;   
+    },
+  });
+  //
 
   export const filteredTodoListState = selector({
     key: 'filteredTodoListState',

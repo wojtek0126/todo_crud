@@ -15,6 +15,8 @@ import { thoughtBoardTitleTxt,
          thoughtForgetEmpytTxt
 } from '../../content/contentEng';
 import TextArea from '../atoms/TextArea';
+import { textInputState } from '../../functions/recoil';
+import { useSetRecoilState } from 'recoil';
 
 
 const ThoughtBoard = ({imageUrl}) => {
@@ -22,7 +24,14 @@ const ThoughtBoard = ({imageUrl}) => {
     const [boardText, setBoardText] = useState(boardTxtFromLocal);  
     const [rememberButtonTxt, setRememberButtonTxt] = useState(thoughtRememberBtnTxt);
     const [forgetButtonTxt, setForgetButtonTxt] = useState(thoughtForgetBtnTxt);  
+    const setInput = useSetRecoilState(textInputState);     
 
+    
+    const handleOnChange = ({target: {value}}) => {
+      setBoardText(value);
+      setInput(value);
+    };
+   
 
     const handleClickSaveToLocal = (localKey, localValue, buttonText1, buttonText2, inputValue) => {
       //no empty content - validator        
@@ -67,7 +76,7 @@ const ThoughtBoard = ({imageUrl}) => {
     }}
   >
       <MediumText text={thoughtBoardTitleTxt} marginBottom={2} />
-        <TextArea value={boardText} textareaBorderFocusColor={'inputBorderFocus'} onChange={e => setBoardText(e.target.value)}
+        <TextArea value={boardText} textareaBorderFocusColor={'inputBorderFocus'} onChange={handleOnChange}
            sx={{                   
               maxWidth: '100%',  
               minHeight: '14.5vh',

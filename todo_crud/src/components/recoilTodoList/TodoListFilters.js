@@ -3,7 +3,7 @@ import { todoListFilterState } from '../../functions/recoil';
 import OptionBox from '../molecules/OptionBox';
 import { todoFilterShowAllTxt, todoFilterCompletedOnlyTxt, todoFilterInProgressOnlyTxt } from '../../content/contentEng';
 
-function TodoListFilters() {
+const TodoListFilters = () => {
     const [filter, setFilter] = useRecoilState(todoListFilterState);
   
     const updateFilter = ({target: {value}}) => {

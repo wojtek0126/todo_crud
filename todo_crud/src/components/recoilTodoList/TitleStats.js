@@ -17,7 +17,7 @@ import { titleStatsTitleTxt,
 } from '../../content/contentEng';
 
 
-function TitleStats() {
+const TitleStats = () => {
     const [todos, setTodos] = useRecoilState(todoListState);     
 
      // decoy for empty state todos

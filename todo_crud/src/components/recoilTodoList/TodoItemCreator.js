@@ -3,7 +3,7 @@
 import { jsx, Flex } from 'theme-ui';
 import { useSetRecoilState } from 'recoil';
 import { useState } from 'react';
-import { todoListState } from '../../functions/recoil';
+import { textInputState, todoListState } from '../../functions/recoil';
 import ButtonPrimary from '../atoms/ButtonPrimary';
 import { addTask } from '../../API/fetch';
 import MediumText from '../atoms/MediumText';
@@ -20,10 +20,11 @@ import { todoCreatorAddTaskBtnTxt,
 } from '../../content/contentEng';
 
 
-function TodoItemCreator() {  
+const TodoItemCreator = () => {  
   const [inputValue, setInputValue] = useState('');  
   const [createBtnTxt, setCreateBtnTxt] = useState(todoCreatorAddTaskBtnTxt);
-  const setTodoList = useSetRecoilState(todoListState);  
+  const setTodoList = useSetRecoilState(todoListState); 
+  const setInput = useSetRecoilState(textInputState);  
 
 //add new task handle
   const addItem = () => {
@@ -55,6 +56,7 @@ function TodoItemCreator() {
   //taking input value for task from textarea
   const handleOnChange = ({target: {value}}) => {
     setInputValue(value);
+    setInput(value);
   };
 
 

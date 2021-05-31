@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */  
 import {jsx, ThemeProvider, Container, Flex } from 'theme-ui';
-import theme from '../../styles/themes/theme';
+import theme, { titleBackground } from '../../styles/themes/theme';
 import Footer from '../molecules/Footer';
 import TitleStats from './TitleStats';
 import blackboard from "../../assets/b4769e3a52766f30e86b375391c84441.jpg";
@@ -13,16 +13,22 @@ import { titlePart1Txt,
          footerYearTxt,
          footerBrandnameTxt,  
 } from '../../content/contentEng';
+import { inputLengthState } from '../../functions/recoil';
+import { useRecoilValue } from 'recoil';
 
 
-  function TitleScreen() {  
+  const TitleScreen = () => {  
+    const inputLength = useRecoilValue(inputLengthState);
+    
+    //dynamic character count
+    console.log(inputLength, "dynamic character count");
     
 
       return (
         <ThemeProvider theme={theme} >                
           <Container>             
           <Flex sx={{                        
-            background: 'linear-gradient(to top, #0ba360 0%, #3cba92 100%)',
+            background: `${titleBackground}`,
             color: 'text',
             border: '2px solid',  
             borderColor: 'boxBorder', 
