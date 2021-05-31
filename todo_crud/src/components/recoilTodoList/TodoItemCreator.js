@@ -73,7 +73,7 @@ function TodoItemCreator() {
       padding: 3,
     }}
   ><MediumText text={todoCreatorTitleTxt} marginBottom={2} />
-      <TextArea value={inputValue} onChange={handleOnChange} backgroundColor={`inputBackground`} 
+      <TextArea textareaBorderFocusColor={'inputBorderFocus'} value={inputValue} onChange={handleOnChange} backgroundColor={`inputBackground`} 
       placeholder={todoCreatorPlaceholderTxt}/>
       <Flex sx={{flexDirection: 'row',
                  justifyContent: 'space-between',

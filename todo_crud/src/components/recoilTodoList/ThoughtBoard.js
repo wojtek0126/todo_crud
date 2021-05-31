@@ -18,12 +18,10 @@ import TextArea from '../atoms/TextArea';
 
 
 const ThoughtBoard = ({imageUrl}) => {
-
-
-    const boardTxtFromLocal = localStorage.getItem('notes');
+    const boardTxtFromLocal = localStorage.getItem('notes');   
     const [boardText, setBoardText] = useState(boardTxtFromLocal);  
     const [rememberButtonTxt, setRememberButtonTxt] = useState(thoughtRememberBtnTxt);
-    const [forgetButtonTxt, setForgetButtonTxt] = useState(thoughtForgetBtnTxt);    
+    const [forgetButtonTxt, setForgetButtonTxt] = useState(thoughtForgetBtnTxt);  
 
 
     const handleClickSaveToLocal = (localKey, localValue, buttonText1, buttonText2, inputValue) => {
@@ -34,6 +32,7 @@ const ThoughtBoard = ({imageUrl}) => {
       else {    
         localStorage.setItem(localKey, localValue);       
         switchBtnTxt(setRememberButtonTxt, buttonText2, buttonText1);
+        // setBoardText(localValue);
       }      
     }
 
@@ -45,7 +44,7 @@ const ThoughtBoard = ({imageUrl}) => {
         localStorage.clear();            
         switchBtnTxt(setForgetButtonTxt, buttonText2, buttonText1);
         setTimeout(() => {
-          window.location.reload();
+        setBoardText("");
         })
       }         
     }
@@ -69,7 +68,7 @@ const ThoughtBoard = ({imageUrl}) => {
     }}
   >
       <MediumText text={thoughtBoardTitleTxt} marginBottom={2} />
-        <TextArea textareaBorderFocusColor={'inputBorderFocus'} onChange={e => setBoardText(e.target.value)}
+        <TextArea value={boardText} textareaBorderFocusColor={'inputBorderFocus'} onChange={e => setBoardText(e.target.value)}
            sx={{                   
               maxWidth: '100%',  
               minHeight: '14.5vh',
@@ -78,9 +77,7 @@ const ThoughtBoard = ({imageUrl}) => {
               fontWeight: 'blackboardThick',
               color: 'textWhite',
               '&::placeholder' : {color: 'placeHolderText'}                   
-           }}>
-             {boardText}
-        </TextArea>
+           }}/>       
            <Flex sx={{flexWrap: 'wrap',
                       flexDirection: 'row',
                       justifyContent: 'space-between',
