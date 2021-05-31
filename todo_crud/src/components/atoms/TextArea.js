@@ -5,7 +5,7 @@ import blackboard from "../../assets/b4769e3a52766f30e86b375391c84441.jpg";
 
 
 const TextArea = ({value, cols, placeholder, 
-     labelText, onChange, disabled}) => (
+     labelText, onChange, disabled, textareaBorderColor = 'inputBorder', textareaBorderFocusColor}) => (
     <Flex>
         <Label sx={{flexDirection: `column`, 
         fontFamily: 'heading',
@@ -19,7 +19,7 @@ const TextArea = ({value, cols, placeholder,
                 backgroundImage: `url(${blackboard})`,
                 // backgroundColor: `inputBackground`,
                 border: '2px solid',
-                borderColor: 'inputBorder',
+                borderColor: `${textareaBorderColor}`,
                 borderRadius: '4px',               
                 color: `textWhite`,
                 display: 'inline-block',
@@ -35,7 +35,7 @@ const TextArea = ({value, cols, placeholder,
                 '&:hover, &:focus': {
                 backgroundImage: `url(${blackboard})`,
                 border: '2px solid',
-                borderColor: 'inputBorderFocus',            
+                borderColor: `${textareaBorderFocusColor}`,            
                 outline: 'none !important'},
                 '&::placeholder' : {color: 'placeHolderText'}
             }}

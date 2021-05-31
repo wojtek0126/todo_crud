@@ -47,7 +47,8 @@ export default{
     //input fields colors
     inputBackground: '#ffffff',
     inputBorder: '#000000',
-    inputBorderFocus: '#34aadc',         
+    inputBorderFocus: '#34aadc',  
+    inputBorderEditOn: 'green',        
     //statistics fields colors
     counterAll: '#000000',
     counterInProgress: '#000000',

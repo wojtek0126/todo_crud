@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */  
 import { useState } from 'react';
-import { jsx, Textarea } from 'theme-ui';
+import { jsx } from 'theme-ui';
 import { Flex } from "theme-ui";
 import { switchBtnTxt } from '../../functions/functionStorage';
 import ButtonPrimary from '../atoms/ButtonPrimary';
@@ -14,6 +14,7 @@ import { thoughtBoardTitleTxt,
          thoughtRememberEmptyTxt,
          thoughtForgetEmpytTxt
 } from '../../content/contentEng';
+import TextArea from '../atoms/TextArea';
 
 
 const ThoughtBoard = ({imageUrl}) => {
@@ -68,7 +69,7 @@ const ThoughtBoard = ({imageUrl}) => {
     }}
   >
       <MediumText text={thoughtBoardTitleTxt} marginBottom={2} />
-        <Textarea onChange={e => setBoardText(e.target.value)}
+        <TextArea textareaBorderFocusColor={'inputBorderFocus'} onChange={e => setBoardText(e.target.value)}
            sx={{                   
               maxWidth: '100%',  
               minHeight: '14.5vh',
@@ -79,7 +80,7 @@ const ThoughtBoard = ({imageUrl}) => {
               '&::placeholder' : {color: 'placeHolderText'}                   
            }}>
              {boardText}
-        </Textarea>
+        </TextArea>
            <Flex sx={{flexWrap: 'wrap',
                       flexDirection: 'row',
                       justifyContent: 'space-between',

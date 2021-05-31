@@ -59,7 +59,11 @@ function TodoItem({item}) {
   //views active or not
   const [taskDetailView, setTaskDetailView] = useState(displayOff);
   const [taskStatusView, setTaskStatusView] = useState(displayOn);  
-
+  //set border color for textarea when edited or not
+  const [textareaBorderColor, setTextareaBorderColor] = useState('inputBorder');
+  const [textareaBorderFocusColor, setTextareaBorderFocusColor] = useState('inputBorder');
+  // inputBorderFocus: '#34aadc',  
+  // inputBorderFocusEditOn: 'green',   
   //decoy for initially empty input
   const decoy = inputValue;
  
@@ -80,12 +84,16 @@ function TodoItem({item}) {
     //when edit button clicked 
     const handleUpdateBtn = () => {    
       displayControl(displayOff, displayOff, displayOff, displayOff, displayOff, displayOn, displayOff, displayOff, false);
+      setTextareaBorderColor('inputBorderEditOn');
+      setTextareaBorderFocusColor('inputBorderFocus');
         }     
 
     //when edit cancelled     
     const handleUpdateNoBtn = () => {  
       displayControl(displayOn, displayOn, displayOn, displayOn, displayOff, displayOff, displayOff, displayOff, true);
       setTextareaDisplay(initTaskData.title); 
+      setTextareaBorderColor('inputBorder');
+      setTextareaBorderFocusColor('inputBorder');
     } 
 
     //edit dynamic content value on change
@@ -125,7 +133,9 @@ function TodoItem({item}) {
       else {
         updateTask(item.id, todoDataMod);   
         setInitTaskData(item);                  
-        displayControl(displayOn, displayOn, displayOn, displayOn, displayOff, displayOff, displayOff, displayOff, true);                         
+        displayControl(displayOn, displayOn, displayOn, displayOn, displayOff, displayOff, displayOff, displayOff, true);
+        setTextareaBorderColor('inputBorder');
+        setTextareaBorderFocusColor('inputBorder');                        
       }      
     }
 
@@ -240,7 +250,8 @@ function TodoItem({item}) {
         }}
         ><BigText text={ `Task # ${item.id}:`} marginBottom={2} />
         {/* display with task title*/}
-          <TextArea disabled={disabled} value={textareaDisplay} 
+          <TextArea disabled={disabled} value={textareaDisplay} textareaBorderColor={textareaBorderColor}
+          textareaBorderFocusColor={textareaBorderFocusColor}
         onChange={editItemText} backgroundColor={`inputBackground`}/>     
         <Flex sx={{flexDirection: 'row',
                    marginBottom: 2,
