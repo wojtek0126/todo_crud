@@ -30,7 +30,7 @@ const TodoList = () => {
     //decoy for unused searchResults state    
     const decoy = searchResults; 
     
-    //dynamic character count
+    //dynamic character count with recoil
     console.log(inputLength, "dynamic character count"); 
    
     useEffect(() => {
