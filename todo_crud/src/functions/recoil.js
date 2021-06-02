@@ -17,7 +17,8 @@ export const todoListState = atom({
   export const textInputState = atom({
     key: 'textInputState',
     default: (""),
-  });
+    });
+    
 
   export const inputLengthState = selector({
     key: 'inputLengthState',

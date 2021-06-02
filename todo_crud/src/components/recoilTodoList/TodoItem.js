@@ -40,7 +40,6 @@ const TodoItem = ({item}) => {
 
   const [todoList, setTodoList] = useRecoilState(todoListState); 
   const [updateButtonText, setUpdateButtonText] = useState(updateText);
-  const [inputValue, setInputValue] = useState(''); 
   const [initTaskData, setInitTaskData] = useState(item);
   const [textareaDisplay, setTextareaDisplay] = useState(initialTitleDisplay);   
   const [updatedData, setUpdatedData] = useState(todoItemPrevious);    
@@ -63,10 +62,7 @@ const TodoItem = ({item}) => {
   const [textareaBorderColor, setTextareaBorderColor] = useState('inputBorder');
   const [textareaBorderFocusColor, setTextareaBorderFocusColor] = useState('inputBorder');
   //set dynamic character count
-  const setInput = useSetRecoilState(textInputState);  
-  
-  //decoy for initially empty input
-  const decoy = inputValue;
+  const setInput = useSetRecoilState(textInputState);   
  
     
     //data to retrieve initial input if edit cancelled
@@ -95,6 +91,7 @@ const TodoItem = ({item}) => {
       setTextareaDisplay(initTaskData.title); 
       setTextareaBorderColor('inputBorder');
       setTextareaBorderFocusColor('inputBorder');
+      setUpdatedData(initTaskData);
     } 
 
     //edit dynamic content value on change
@@ -116,9 +113,8 @@ const TodoItem = ({item}) => {
       });     
       setTextareaDisplay(todoDataMod.title);    
       setUpdatedData(todoDataMod);
-      setInputValue(value);    
       setTodoList(newList); 
-      setInput(value);         
+      setInput(value);  
     };   
 
     //commit edit changes on click
@@ -306,11 +302,11 @@ const TodoItem = ({item}) => {
     );
   }
   
-  function replaceItemAtIndex(arr, index, newValue) {
+  const replaceItemAtIndex = (arr, index, newValue) => {
     return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
   }
   
-  function removeItemAtIndex(arr, index) {
+  const removeItemAtIndex = (arr, index) => {
     return [...arr.slice(0, index), ...arr.slice(index + 1)];
   }
 
