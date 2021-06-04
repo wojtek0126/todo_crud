@@ -16,8 +16,8 @@ const TextArea = ({value, cols, placeholder,
             <Textarea value={value} onChange={onChange}
             cols={cols} placeholder={placeholder} disabled={disabled}
             sx={{
-                backgroundImage: `url(${blackboard})`,
-                // backgroundColor: `inputBackground`,
+                // backgroundImage: `url(${blackboard})`,
+                backgroundColor: `inputBackground`,
                 border: '2px solid',
                 borderColor: `${textareaBorderColor}`,
                 borderRadius: '4px',               

@@ -38,12 +38,17 @@ const TodoItem = ({item}) => {
   //sets equal delays for common timeouts
   const delayTime = 1800;
 
+  //takes whole list from recoilState
   const [todoList, setTodoList] = useRecoilState(todoListState); 
+   //index finder
+   const index = todoList.findIndex((listItem) => listItem === item);
+
   const [updateButtonText, setUpdateButtonText] = useState(updateText);
+  
   const [initTaskData, setInitTaskData] = useState(item);
   const [textareaDisplay, setTextareaDisplay] = useState(initialTitleDisplay);   
   const [updatedData, setUpdatedData] = useState(todoItemPrevious);    
-  const index = todoList.findIndex((listItem) => listItem === item);
+  
   //toggle textarea enabled or disabled
   const [disabled, setDisabled] = useState(true);
   // buttons active or not
@@ -63,8 +68,10 @@ const TodoItem = ({item}) => {
   const [textareaBorderFocusColor, setTextareaBorderFocusColor] = useState('inputBorder');
   //set dynamic character count
   const setInput = useSetRecoilState(textInputState);   
- 
-    
+
+
+    console.log(todoList[index].title, "textarea display");
+
     //data to retrieve initial input if edit cancelled
     useEffect(() => {
       const todoDataInit = {
@@ -76,7 +83,11 @@ const TodoItem = ({item}) => {
         updated_at: item.updated_at
       }  
       setInitTaskData(todoDataInit)
-    }, [])  
+    }, []);
+    
+    useEffect(() => {
+      setTextareaDisplay(todoList[index].title);
+    }, [])
     
     //when edit button clicked 
     const handleUpdateBtn = () => {    
@@ -95,7 +106,8 @@ const TodoItem = ({item}) => {
     } 
 
     //edit dynamic content value on change
-    const editItemText = ({target: {value}}) => {    
+    const editItemText = ({target: {value}}) => {   
+      
       const todoDataMod = {
         id: item.id,
         user_id: item.user_id,
@@ -103,18 +115,12 @@ const TodoItem = ({item}) => {
         completed: item.completed,
         created_at: item.created_at,
         updated_at: timeStampFormatted()
-      }   
-
-      //this makes target value update dynamically on textarea     
-      const newList = replaceItemAtIndex(todoList, index, {
-        ...item,
-        title: value,
-        updated_at: timeStampFormatted()
-      });     
+      }      
       setTextareaDisplay(todoDataMod.title);    
       setUpdatedData(todoDataMod);
-      setTodoList(newList); 
-      setInput(value);  
+      setTimeout(() => {
+        setInput(value);  
+      },100);    
     };   
 
     //commit edit changes on click
@@ -129,8 +135,15 @@ const TodoItem = ({item}) => {
         }, delayTime);   
       } 
       else {
-        updateTask(item.id, todoDataMod);   
-        setInitTaskData(item);                  
+        updateTask(item.id, todoDataMod);  //
+        // setTextareaDisplay(todoDataMod.title);    
+        setInitTaskData(item);            //  
+        const newList = replaceItemAtIndex(todoList, index, {
+          ...item,
+          title: todoDataMod.title,
+          updated_at: timeStampFormatted()
+        });   
+   setTodoList(newList);     
         displayControl(displayOn, displayOn, displayOn, displayOn, displayOff, displayOff, displayOff, displayOff, true);
         setTextareaBorderColor('inputBorder');
         setTextareaBorderFocusColor('inputBorder');                        

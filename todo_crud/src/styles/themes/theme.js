@@ -50,7 +50,7 @@ export default{
     //search filter colors
     searchFilterBackground: '#000000',    
     //input fields colors
-    inputBackground: '#ffffff',
+    inputBackground: '#000000',
     inputBorder: '#000000',
     inputBorderFocus: '#34aadc',  
     inputBorderEditOn: 'green',        
