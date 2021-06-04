@@ -20,15 +20,9 @@ import { todoListTitleTxt, todoListSearchPlaceholderTxt } from '../../content/co
 const TodoList = () => {
     const [todos, setTodos] = useRecoilState(todoListState);
     const inputLength = useRecoilValue(inputLengthState);
-    const [toSearch, setToSearch] = useState("");
-    const [searchResults, setSearchResults] = useState([]);
-    const taskList = [];
-    const [taskText, setTaskText] = useState([]);
+    const [toSearch, setToSearch] = useState(""); 
     const filteredData =  useRecoilValue(filteredTodoListState);
     
-
-    //decoy for unused searchResults state    
-    const decoy = searchResults; 
     
     //dynamic character count with recoil
     console.log(inputLength, "dynamic character count"); 
@@ -38,21 +32,7 @@ const TodoList = () => {
       getAllTasks(setTodos)
       }
      getTodos()  
-     //decoy for unused searchResults state    
-    //  setTaskList(taskList);
    }, [])  
-  
-   useEffect(() => {  
-      taskList.map(el => {        
-          setTaskText(taskText => [...taskText, el.title]);})   
-       }, [todos])
-  
-   useEffect(() => {
-      let results = taskText.filter(item =>
-        item.toString().toLowerCase().includes(toSearch)
-      );
-      setSearchResults(results); 
-    }, [toSearch]);  
   
    let filterData = filteredData.filter(item => item.title.includes(toSearch));
   

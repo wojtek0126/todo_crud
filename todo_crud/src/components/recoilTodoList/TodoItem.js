@@ -42,15 +42,15 @@ const TodoItem = ({item}) => {
   const [todoList, setTodoList] = useRecoilState(todoListState); 
    //index finder
    const index = todoList.findIndex((listItem) => listItem === item);
-
+  //text on update button
   const [updateButtonText, setUpdateButtonText] = useState(updateText);
-  
-  const [initTaskData, setInitTaskData] = useState(item);
-  const [textareaDisplay, setTextareaDisplay] = useState(initialTitleDisplay);   
-  const [updatedData, setUpdatedData] = useState(todoItemPrevious);    
-  
+  //initial and updated task data
+  const [initTaskData, setInitTaskData] = useState(item);  
+  const [updatedData, setUpdatedData] = useState(todoItemPrevious);      
   //toggle textarea enabled or disabled
   const [disabled, setDisabled] = useState(true);
+  //textarea
+  const [textareaDisplay, setTextareaDisplay] = useState(initialTitleDisplay);   
   // buttons active or not
   const [taskBtnEdit, setTaskBtnEdit] = useState(displayOn); 
   const [taskBtnStatus, setTaskBtnStatus] = useState(displayOn); 
@@ -67,10 +67,8 @@ const TodoItem = ({item}) => {
   const [textareaBorderColor, setTextareaBorderColor] = useState('inputBorder');
   const [textareaBorderFocusColor, setTextareaBorderFocusColor] = useState('inputBorder');
   //set dynamic character count
-  const setInput = useSetRecoilState(textInputState);   
-
-
-    console.log(todoList[index].title, "textarea display");
+  const setInput = useSetRecoilState(textInputState);  
+    
 
     //data to retrieve initial input if edit cancelled
     useEffect(() => {
@@ -83,11 +81,7 @@ const TodoItem = ({item}) => {
         updated_at: item.updated_at
       }  
       setInitTaskData(todoDataInit)
-    }, []);
-    
-    useEffect(() => {
-      setTextareaDisplay(todoList[index].title);
-    }, [])
+    }, [item]);   
     
     //when edit button clicked 
     const handleUpdateBtn = () => {    
@@ -99,7 +93,9 @@ const TodoItem = ({item}) => {
     //when edit cancelled     
     const handleUpdateNoBtn = () => {  
       displayControl(displayOn, displayOn, displayOn, displayOn, displayOff, displayOff, displayOff, displayOff, true);
-      setTextareaDisplay(initTaskData.title); 
+      //      
+      setTextareaDisplay(todoList[index].title);
+      // 
       setTextareaBorderColor('inputBorder');
       setTextareaBorderFocusColor('inputBorder');
       setUpdatedData(initTaskData);

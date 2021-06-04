@@ -18,10 +18,7 @@ import { titleStatsTitleTxt,
 
 
 const TitleStats = () => {
-    const [todos, setTodos] = useRecoilState(todoListState);     
-
-     // decoy for empty state todos
-    const decoy = todos;
+    const setTodos = useRecoilState(todoListState);    
 
 
     useEffect(() => {
@@ -29,7 +26,7 @@ const TitleStats = () => {
        getAllTasks(setTodos)
        }
       getTodos()  
-    }, [])  
+    }, [setTodos]);  
     
     const {
       totalNum,

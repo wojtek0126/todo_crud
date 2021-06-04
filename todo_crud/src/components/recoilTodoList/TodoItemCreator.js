@@ -55,8 +55,10 @@ const TodoItemCreator = () => {
 
   //taking input value for task from textarea
   const handleOnChange = ({target: {value}}) => {
-    setInputValue(value);
-    setInput(value);
+    // setTimeout(() => {
+      setInputValue(value);
+      setInput(value);
+    // },100);    
   };
 
 
@@ -95,7 +97,7 @@ const TodoItemCreator = () => {
 
 // utility for creating unique Id
 let id = 0;
-function getId() {
+const getId = () => {
   return id++;
 }
 

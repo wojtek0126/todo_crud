@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { Flex, jsx, Label, Textarea } from 'theme-ui';
-import blackboard from "../../assets/b4769e3a52766f30e86b375391c84441.jpg";
+// import blackboard from "../../assets/b4769e3a52766f30e86b375391c84441.jpg";
 
 
 const TextArea = ({value, cols, placeholder, 
@@ -33,7 +33,8 @@ const TextArea = ({value, cols, placeholder,
                 textDecoration: 'none',
                 // textTransform: 'uppercase',
                 '&:hover, &:focus': {
-                backgroundImage: `url(${blackboard})`,
+                // backgroundImage: `url(${blackboard})`,
+                backgroundColor: `inputBackground`,
                 border: '2px solid',
                 borderColor: `${textareaBorderFocusColor}`,            
                 outline: 'none !important'},
