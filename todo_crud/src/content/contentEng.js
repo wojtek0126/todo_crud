@@ -30,17 +30,18 @@ export const titleStatsPercentCompletedTxt = "Percent completed:";
 export const titleStatsToActionBtnTxt = "To action"; 
 
  //text for item content and options in TodoItem.js
+ export const taskNumberText = "Task";
  export const updateText = "Update task";
  export const updateEmptyText = "Cannot be empty";    
  export const deleteText = "Delete task";   
  export const yesText = "Confirm";
  export const noText = "Go back";
  export const statusYesNoMessage = "Change task status?";    
- export const editYesNoMessage = "Editing enabled, update task?";
+ export const editYesNoMessage = "Editing enabled, proceed when ready";
  export const deleteYesNoMessage = "Delete this task?";
  export const todoItemStatusInProgressText = "Task is currently in progress";
  export const todoItemStatusCompletedText ="Task is completed";
- export const todoItemChangeStatusBtnTxt = "Completion";
+ export const todoItemChangeStatusBtnTxt = "Change status";
  export const todoItemShowDetailsBtnTxt = "Show details";
 
  //item creator text for adding new task or going back to menu

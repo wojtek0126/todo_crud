@@ -17,6 +17,7 @@ import { thoughtBoardTitleTxt,
 import TextArea from '../atoms/TextArea';
 import { textInputState } from '../../functions/recoil';
 import { useSetRecoilState } from 'recoil';
+import { buttonBackgroundType2, buttonBackgroundType3 } from '../../styles/themes/theme';
 
 
 const ThoughtBoard = ({imageUrl}) => {
@@ -93,10 +94,10 @@ const ThoughtBoard = ({imageUrl}) => {
                         flexDirection: 'column',
                         alignItems: 'center',
                         justifyContent: 'center'}}}>
-               <ButtonPrimary text={rememberButtonTxt} backgroundColor={`buttons2`} 
+               <ButtonPrimary text={rememberButtonTxt} backgroundColor={buttonBackgroundType2} 
                onClick={() => handleClickSaveToLocal('notes', boardText, thoughtRememberedTxt, thoughtRememberBtnTxt, 
                boardText)} />
-               <ButtonPrimary text={forgetButtonTxt} backgroundColor={`buttons3`}
+               <ButtonPrimary text={forgetButtonTxt} backgroundColor={buttonBackgroundType3}
                 onClick={() => handleClickClearLocal(thoughtForgottenTxt, thoughtForgetBtnTxt, boardText)}/>
            </Flex>                 
       </Flex>         

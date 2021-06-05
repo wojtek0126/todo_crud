@@ -15,6 +15,7 @@ import { titleStatsTitleTxt,
   titleStatsPercentCompletedTxt, 
   titleStatsToActionBtnTxt
 } from '../../content/contentEng';
+import { buttonBackgroundType1 } from '../../styles/themes/theme';
 
 
 const TitleStats = () => {
@@ -62,7 +63,7 @@ const TitleStats = () => {
          backgroundColor={'counterCompleted'} color={`counterText`}/>
         <ProgressCounter text={`${titleStatsPercentCompletedTxt} ${formattedPercentCompleted}`}
          backgroundColor={'counterPercentage'} color={`counterText`}/>   
-        <ButtonWithlink to={'action'} text={titleStatsToActionBtnTxt} backgroundColor={`buttons1`} />
+        <ButtonWithlink to={'action'} text={titleStatsToActionBtnTxt} backgroundColor={buttonBackgroundType1} />
       </Flex>
     );
   }

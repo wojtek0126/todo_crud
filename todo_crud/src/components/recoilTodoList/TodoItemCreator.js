@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx, Flex } from 'theme-ui';
-import { useSetRecoilState } from 'recoil';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { useState } from 'react';
 import { textInputState, todoListState } from '../../functions/recoil';
 import ButtonPrimary from '../atoms/ButtonPrimary';
@@ -18,20 +18,23 @@ import { todoCreatorAddTaskBtnTxt,
   todoCreatorBackToMainTxt,
   todoCreatorNotUpdatedYetTxt,   
 } from '../../content/contentEng';
+import { buttonBackgroundType1, buttonBackgroundType2 } from '../../styles/themes/theme';
 
 
 const TodoItemCreator = () => {  
-  const [inputValue, setInputValue] = useState('');  
+  const [textareaDisplay, setTextareaDisplay] = useState("");   
   const [createBtnTxt, setCreateBtnTxt] = useState(todoCreatorAddTaskBtnTxt);
   const setTodoList = useSetRecoilState(todoListState); 
   const setInput = useSetRecoilState(textInputState);  
+  const getInput = useRecoilValue(textInputState);  
+ 
 
 //add new task handle
-  const addItem = () => {
+  const addItem = (title) => {
     const todoData =    {
       id: getId(),
       user_id: 704,
-      title: inputValue,
+      title: title,
       completed: false,
       created_at: timeStampFormatted(),
       updated_at: todoCreatorNotUpdatedYetTxt
@@ -43,7 +46,7 @@ const TodoItemCreator = () => {
         ...oldTodoList,
        todoData,
       ]);
-      setInputValue('');
+      setInput('');
       addTask(todoData); 
       switchBtnTxt(setCreateBtnTxt, todoCreatorAddTaskBtnTxt, todoCreatorTaskAddedTxt);  
     }
@@ -55,10 +58,18 @@ const TodoItemCreator = () => {
 
   //taking input value for task from textarea
   const handleOnChange = ({target: {value}}) => {
-    // setTimeout(() => {
-      setInputValue(value);
+    setTimeout(() => {
+     setTextareaDisplay(value);
       setInput(value);
-    // },100);    
+    },0);    
+  };
+
+   //onblur
+   const handleOnBlur = (value) => {
+    setTimeout(() => {
+      setTextareaDisplay(value);
+      // setInput(textareaDisplay);  
+    },0);  
   };
 
 
@@ -77,7 +88,8 @@ const TodoItemCreator = () => {
       padding: 3,
     }}
   ><MediumText text={todoCreatorTitleTxt} marginBottom={2} />
-      <TextArea textareaBorderFocusColor={'inputBorderFocus'} value={inputValue} onChange={handleOnChange} backgroundColor={`inputBackground`} 
+      <TextArea textareaBorderFocusColor={'inputBorderFocus'} value={getInput} onBlur={() => handleOnBlur(getInput)}
+       onChange={handleOnChange} backgroundColor={`inputBackground`} 
       placeholder={todoCreatorPlaceholderTxt}/>
       <Flex sx={{flexDirection: 'row',
                  justifyContent: 'space-between',
@@ -87,8 +99,8 @@ const TodoItemCreator = () => {
                   alignItems: 'center',
                   justifyContent: 'baseline',                  
                 } }}>
-        <ButtonPrimary onClick={addItem} text={createBtnTxt} backgroundColor={`buttons2`} />
-        <ButtonWithlink to={`home`} text={todoCreatorBackToMainTxt} backgroundColor={`buttons1`} />
+        <ButtonPrimary onClick={() => addItem(getInput)} text={createBtnTxt} backgroundColor={buttonBackgroundType2} />
+        <ButtonWithlink to={`home`} text={todoCreatorBackToMainTxt} backgroundColor={buttonBackgroundType1} />
       </Flex>
     </Flex>
   );

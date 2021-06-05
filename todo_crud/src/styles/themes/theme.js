@@ -1,6 +1,10 @@
 //gradients not supported by theme-ui 
 export const titleBackground = 'linear-gradient(to top, #0ba360 0%, #3cba92 100%)';
 export const itemDetailsBackground = 'linear-gradient(to right, #43e97b 0%, #38f9d7 100%)';  
+export const buttonBackgroundType1 = 'linear-gradient(to top, #0ba360 0%, #3cba92 100%)';  
+export const buttonBackgroundType2 = 'linear-gradient(to top, #4481eb 0%, #04befe 100%)';  
+export const buttonBackgroundType3 = 'linear-gradient(-20deg, #fc6076 0%, #ff9a44 100%)';  
+
 
 //theme values
 export default{

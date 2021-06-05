@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { Flex, jsx } from 'theme-ui';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import { useState, useEffect } from 'react';
 import { textInputState, todoListState } from '../../functions/recoil';
 import ButtonPrimary from '../atoms/ButtonPrimary';
@@ -24,8 +24,10 @@ import { updateText,
   todoItemStatusInProgressText,
   todoItemStatusCompletedText, 
   todoItemChangeStatusBtnTxt,
-  todoItemShowDetailsBtnTxt
+  todoItemShowDetailsBtnTxt,
+  taskNumberText
 } from '../../content/contentEng';
+import { buttonBackgroundType1, buttonBackgroundType2, buttonBackgroundType3 } from '../../styles/themes/theme';
 
 
 const TodoItem = ({item}) => {
@@ -67,9 +69,11 @@ const TodoItem = ({item}) => {
   const [textareaBorderColor, setTextareaBorderColor] = useState('inputBorder');
   const [textareaBorderFocusColor, setTextareaBorderFocusColor] = useState('inputBorder');
   //set dynamic character count
-  const setInput = useSetRecoilState(textInputState);  
+  const setInput = useSetRecoilState(textInputState); 
+  const getInput = useRecoilValue(textInputState);  
+ 
     
-
+console.log(getInput, "input do edit item z recoila");
     //data to retrieve initial input if edit cancelled
     useEffect(() => {
       const todoDataInit = {
@@ -114,10 +118,17 @@ const TodoItem = ({item}) => {
       }      
       setTextareaDisplay(todoDataMod.title);    
       setUpdatedData(todoDataMod);
+      // setTimeout(() => {
+      //   setInput(value);  
+      // },100);    
+    };   
+    
+    //onblur
+    const handleOnBlur = (value) => {
       setTimeout(() => {
         setInput(value);  
-      },100);    
-    };   
+      },100);  
+    };
 
     //commit edit changes on click
     const confirmEditChanges = (todoDataMod) => {
@@ -255,9 +266,10 @@ const TodoItem = ({item}) => {
           margin: 3,
           padding: 3,
         }}
-        ><BigText text={ `Task # ${item.id}:`} marginBottom={2} />
+        ><BigText text={ `${taskNumberText} # ${item.id}:`} marginBottom={2} />
         {/* display with task title*/}
-          <TextArea disabled={disabled} value={textareaDisplay} textareaBorderColor={textareaBorderColor}
+          <TextArea disabled={disabled} value={textareaDisplay} onBlur={() => handleOnBlur(textareaDisplay)}
+          textareaBorderColor={textareaBorderColor}
           textareaBorderFocusColor={textareaBorderFocusColor}
         onChange={editItemText} backgroundColor={`inputBackground`}/>     
         <Flex sx={{flexDirection: 'row',
@@ -277,19 +289,19 @@ const TodoItem = ({item}) => {
            {/* show details button */}
            <ButtonPrimary
             onClick={handleShowDetailsBtn} displayIt={taskBtnDetails}
-            text={todoItemShowDetailsBtnTxt} backgroundColor={'buttons1'}/>  
+            text={todoItemShowDetailsBtnTxt} backgroundColor={buttonBackgroundType1}/>  
             {/* update task button */}
             <ButtonPrimary           
             onClick={handleUpdateBtn} displayIt={taskBtnEdit}
-            text={updateButtonText} backgroundColor={'buttons2'}/>   
+            text={updateButtonText} backgroundColor={buttonBackgroundType2}/>   
               {/* change status button*/} 
             <ButtonPrimary 
             onClick={handleChangeStatusBtn} displayIt={taskBtnStatus}
-            text={ todoItemChangeStatusBtnTxt} backgroundColor={'buttons2'}/>  
+            text={ todoItemChangeStatusBtnTxt} backgroundColor={buttonBackgroundType2}/>  
                {/* delete button*/}               
             <ButtonPrimary 
             onClick={handleDeleteBtnClick} displayIt={taskBtnDelete}
-            text={deleteText} backgroundColor={'buttons3'}/>       
+            text={deleteText} backgroundColor={buttonBackgroundType3}/>       
         </Flex>        
             {/* popup with choices yes or no for editing*/}         
         <ButtonsWrapper displayStyle={yesNoEditPopup} contentArea={

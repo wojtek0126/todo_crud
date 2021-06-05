@@ -5,7 +5,7 @@ import { Flex, jsx, Label, Textarea } from 'theme-ui';
 
 
 const TextArea = ({value, cols, placeholder, 
-     labelText, onChange, disabled, textareaBorderColor = 'inputBorder', textareaBorderFocusColor}) => (
+     labelText, onChange, onBlur, disabled, textareaBorderColor = 'inputBorder', textareaBorderFocusColor}) => (
     <Flex>
         <Label sx={{flexDirection: `column`, 
         fontFamily: 'heading',
@@ -14,7 +14,7 @@ const TextArea = ({value, cols, placeholder,
         margin: 0,
 }}>{labelText}
             <Textarea value={value} onChange={onChange}
-            cols={cols} placeholder={placeholder} disabled={disabled}
+            cols={cols} placeholder={placeholder} disabled={disabled} onBlur={onBlur}
             sx={{
                 // backgroundImage: `url(${blackboard})`,
                 backgroundColor: `inputBackground`,
