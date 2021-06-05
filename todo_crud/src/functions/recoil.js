@@ -12,8 +12,36 @@ export const todoListState = atom({
     key: 'todoListFilterState',
     default: showAllTasksTxt,
   });
-  
 
+  //capture input text
+  export const textInputState = atom({
+    key: 'textInputState',
+    default: (""),
+    });    
+
+  export const inputLengthState = selector({
+    key: 'inputLengthState',
+    get: ({get}) => {
+      const inputText = get(textInputState);          
+      return inputText.length;   
+    },
+  });
+  //
+
+  //capture search input text
+  export const searchTextInputState = atom({
+    key: 'searchTextInputState',
+    default: (""),
+    });
+
+    export const searchGetInputState = selector({
+      key: 'searchGetInputState',
+      get: ({get}) => {
+        const searchInputText = get(searchTextInputState);          
+        return searchInputText;   
+      },
+    });
+  //
   export const filteredTodoListState = selector({
     key: 'filteredTodoListState',
     get: ({get}) => {

@@ -3,7 +3,7 @@
 import { Flex, Input, jsx, Label } from 'theme-ui';
 
 
-const SearchField = ({type, placeholder, value, labelText, onChange, id}) => (  
+const SearchField = ({type, placeholder, value, labelText, onChange, id, onBlur}) => (  
   <Flex>
     <Label sx={{flexDirection: `column`,
                    fontFamily: 'heading',
@@ -11,7 +11,7 @@ const SearchField = ({type, placeholder, value, labelText, onChange, id}) => (
                    fontSize: [`12, 14, 16`],
                    margin: 0,
               }}>{labelText}
-        <Input id={id} value={value} onChange={onChange}
+        <Input id={id} value={value} onChange={onChange} onBlur={onBlur}
           type={type} placeholder={placeholder}
           sx={{
             backgroundColor: `searchFilterBackground`,

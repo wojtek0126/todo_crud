@@ -1,6 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from 'theme-ui';
+import{ itemDetailsBackground } from '../../styles/themes/theme';
 
 
 const TaskDetailsWrapper = ({contentArea, displayIt}) => (  
@@ -10,7 +11,7 @@ const TaskDetailsWrapper = ({contentArea, displayIt}) => (
       alignItems: 'center', 
       justifyContent: 'center',
       alignSelf: 'center',        
-      background: 'linear-gradient(to right, #43e97b 0%, #38f9d7 100%)',
+      background: `${itemDetailsBackground}`,
       color: 'text',
       border: '2px solid', 
       borderColor: 'boxBorder',  

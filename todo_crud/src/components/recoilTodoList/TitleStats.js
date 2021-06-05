@@ -15,13 +15,11 @@ import { titleStatsTitleTxt,
   titleStatsPercentCompletedTxt, 
   titleStatsToActionBtnTxt
 } from '../../content/contentEng';
+import { buttonBackgroundType1 } from '../../styles/themes/theme';
 
 
-function TitleStats() {
-    const [todos, setTodos] = useRecoilState(todoListState);     
-
-     // decoy for empty state todos
-    const decoy = todos;
+const TitleStats = () => {
+    const setTodos = useRecoilState(todoListState);    
 
 
     useEffect(() => {
@@ -29,7 +27,7 @@ function TitleStats() {
        getAllTasks(setTodos)
        }
       getTodos()  
-    }, [])  
+    }, [setTodos]);  
     
     const {
       totalNum,
@@ -65,7 +63,7 @@ function TitleStats() {
          backgroundColor={'counterCompleted'} color={`counterText`}/>
         <ProgressCounter text={`${titleStatsPercentCompletedTxt} ${formattedPercentCompleted}`}
          backgroundColor={'counterPercentage'} color={`counterText`}/>   
-        <ButtonWithlink to={'action'} text={titleStatsToActionBtnTxt} backgroundColor={`buttons1`} />
+        <ButtonWithlink to={'action'} text={titleStatsToActionBtnTxt} backgroundColor={buttonBackgroundType1} />
       </Flex>
     );
   }

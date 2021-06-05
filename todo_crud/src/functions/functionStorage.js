@@ -7,14 +7,6 @@ export const switchBtnTxt = (setUpdateState, text1, text2, delay = 1800) => {
     }, delay); 
 }
 
-
-//toggle displays when buttons clicked
-export const toggleDisplay = (setDisplayOn, setDisplayOff, displayTypeOn) => {
-  setDisplayOn(displayTypeOn);
-  setDisplayOff('none');
-}  
-
-
 //formatted current date and time, for create and edit tasks
 export const timeStampFormatted = () => {
   const timestamp = Date.now(); // This would be the timestamp you want to format
@@ -22,6 +14,8 @@ export const timeStampFormatted = () => {
   hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(timestamp);
   return formatted
 } 
+
+
 
 
 

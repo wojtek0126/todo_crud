@@ -12,7 +12,7 @@ import { todoActionStatsTitleTxt,
  } from '../../content/contentEng';
 
 
-function TodoListStats() {
+const TodoListStats = () => {
       
     const {
       totalNum,

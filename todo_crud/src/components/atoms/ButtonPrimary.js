@@ -9,7 +9,9 @@ const ButtonPrimary = ({text, backgroundColor, onClick, type, id, displayIt, ali
             sx={{
             wordBreak: 'break-word', 
             alignSelf: `${alignSelf}`,
-            backgroundColor: `${backgroundColor}`,
+            // backgroundColor: `${backgroundColor}`,
+            background: `${backgroundColor}`,
+
             borderRadius: '4px',
             border: 'none',
             color: 'buttonText',

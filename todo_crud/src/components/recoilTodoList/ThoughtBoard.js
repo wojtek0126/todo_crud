@@ -15,6 +15,9 @@ import { thoughtBoardTitleTxt,
          thoughtForgetEmpytTxt
 } from '../../content/contentEng';
 import TextArea from '../atoms/TextArea';
+import { textInputState } from '../../functions/recoil';
+import { useSetRecoilState } from 'recoil';
+import { buttonBackgroundType2, buttonBackgroundType3 } from '../../styles/themes/theme';
 
 
 const ThoughtBoard = ({imageUrl}) => {
@@ -22,7 +25,14 @@ const ThoughtBoard = ({imageUrl}) => {
     const [boardText, setBoardText] = useState(boardTxtFromLocal);  
     const [rememberButtonTxt, setRememberButtonTxt] = useState(thoughtRememberBtnTxt);
     const [forgetButtonTxt, setForgetButtonTxt] = useState(thoughtForgetBtnTxt);  
+    const setInput = useSetRecoilState(textInputState);     
 
+    
+    const handleOnChange = ({target: {value}}) => {
+      setBoardText(value);
+      setInput(value);
+    };
+   
 
     const handleClickSaveToLocal = (localKey, localValue, buttonText1, buttonText2, inputValue) => {
       //no empty content - validator        
@@ -67,7 +77,7 @@ const ThoughtBoard = ({imageUrl}) => {
     }}
   >
       <MediumText text={thoughtBoardTitleTxt} marginBottom={2} />
-        <TextArea value={boardText} textareaBorderFocusColor={'inputBorderFocus'} onChange={e => setBoardText(e.target.value)}
+        <TextArea value={boardText} textareaBorderFocusColor={'inputBorderFocus'} onChange={handleOnChange}
            sx={{                   
               maxWidth: '100%',  
               minHeight: '14.5vh',
@@ -84,10 +94,10 @@ const ThoughtBoard = ({imageUrl}) => {
                         flexDirection: 'column',
                         alignItems: 'center',
                         justifyContent: 'center'}}}>
-               <ButtonPrimary text={rememberButtonTxt} backgroundColor={`buttons2`} 
+               <ButtonPrimary text={rememberButtonTxt} backgroundColor={buttonBackgroundType2} 
                onClick={() => handleClickSaveToLocal('notes', boardText, thoughtRememberedTxt, thoughtRememberBtnTxt, 
                boardText)} />
-               <ButtonPrimary text={forgetButtonTxt} backgroundColor={`buttons3`}
+               <ButtonPrimary text={forgetButtonTxt} backgroundColor={buttonBackgroundType3}
                 onClick={() => handleClickClearLocal(thoughtForgottenTxt, thoughtForgetBtnTxt, boardText)}/>
            </Flex>                 
       </Flex>         

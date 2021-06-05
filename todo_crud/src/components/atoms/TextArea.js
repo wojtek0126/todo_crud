@@ -1,11 +1,11 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { Flex, jsx, Label, Textarea } from 'theme-ui';
-import blackboard from "../../assets/b4769e3a52766f30e86b375391c84441.jpg";
+// import blackboard from "../../assets/b4769e3a52766f30e86b375391c84441.jpg";
 
 
 const TextArea = ({value, cols, placeholder, 
-     labelText, onChange, disabled, textareaBorderColor = 'inputBorder', textareaBorderFocusColor}) => (
+     labelText, onChange, onBlur, disabled, textareaBorderColor = 'inputBorder', textareaBorderFocusColor}) => (
     <Flex>
         <Label sx={{flexDirection: `column`, 
         fontFamily: 'heading',
@@ -14,10 +14,10 @@ const TextArea = ({value, cols, placeholder,
         margin: 0,
 }}>{labelText}
             <Textarea value={value} onChange={onChange}
-            cols={cols} placeholder={placeholder} disabled={disabled}
+            cols={cols} placeholder={placeholder} disabled={disabled} onBlur={onBlur}
             sx={{
-                backgroundImage: `url(${blackboard})`,
-                // backgroundColor: `inputBackground`,
+                // backgroundImage: `url(${blackboard})`,
+                backgroundColor: `inputBackground`,
                 border: '2px solid',
                 borderColor: `${textareaBorderColor}`,
                 borderRadius: '4px',               
@@ -33,7 +33,8 @@ const TextArea = ({value, cols, placeholder,
                 textDecoration: 'none',
                 // textTransform: 'uppercase',
                 '&:hover, &:focus': {
-                backgroundImage: `url(${blackboard})`,
+                // backgroundImage: `url(${blackboard})`,
+                backgroundColor: `inputBackground`,
                 border: '2px solid',
                 borderColor: `${textareaBorderFocusColor}`,            
                 outline: 'none !important'},

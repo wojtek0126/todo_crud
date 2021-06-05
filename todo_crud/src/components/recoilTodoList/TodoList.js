@@ -3,7 +3,7 @@ import {
   useRecoilValue,
 } from 'recoil';
 import { useState, useEffect } from 'react';
-import { filteredTodoListState, todoListState } from '../../functions/recoil';
+import { filteredTodoListState, inputLengthState, todoListState } from '../../functions/recoil';
 import TodoItem from './TodoItem';
 import TodoItemCreator from './TodoItemCreator';
 import TodoListFilters from './TodoListFilters';
@@ -19,42 +19,29 @@ import { todoListTitleTxt, todoListSearchPlaceholderTxt } from '../../content/co
 
 const TodoList = () => {
     const [todos, setTodos] = useRecoilState(todoListState);
-    const [toSearch, setToSearch] = useState("");
-    const [searchResults, setSearchResults] = useState([]);
-    const taskList = [];
-    const [taskText, setTaskText] = useState([]);
+    const inputLength = useRecoilValue(inputLengthState);
+    const [toSearch, setToSearch] = useState(""); 
     const filteredData =  useRecoilValue(filteredTodoListState);
     
-
-    //decoy for unused searchResults state    
-    const decoy = searchResults;  
+    
+    //dynamic character count with recoil
+    console.log(inputLength, "dynamic character count"); 
    
     useEffect(() => {
       const getTodos = async () => {
       getAllTasks(setTodos)
       }
      getTodos()  
-     //decoy for unused searchResults state    
-    //  setTaskList(taskList);
    }, [])  
   
-   useEffect(() => {  
-      taskList.map(el => {        
-          setTaskText(taskText => [...taskText, el.title]);})   
-       }, [todos])
-  
-   useEffect(() => {
-      let results = taskText.filter(item =>
-        item.toString().toLowerCase().includes(toSearch)
-      );
-      setSearchResults(results); 
-    }, [toSearch]);  
-  
-   let filterData = filteredData.filter(item => item.title.includes(toSearch));
-  
-   const handleChange = (e) => {
-       setToSearch(e.target.value);
-   } 
+   let filterData = filteredData.filter(item => item.title.includes(toSearch));  
+ 
+
+   const handleOnChange = ({target: {value}}) => {
+    setTimeout(() => {
+      setToSearch(value);
+    },0);    
+  };
 
 
     return (
@@ -77,7 +64,7 @@ const TodoList = () => {
           type={"text"}
           placeholder={todoListSearchPlaceholderTxt}
           value={toSearch}
-          onChange={handleChange}        
+          onChange={handleOnChange}        
         /></Flex>
         <TodoListStats />  
         <ScrollUpButton />             

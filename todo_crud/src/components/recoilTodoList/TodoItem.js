@@ -1,9 +1,9 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { Flex, jsx } from 'theme-ui';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import { useState, useEffect } from 'react';
-import { todoListState } from '../../functions/recoil';
+import { textInputState, todoListState } from '../../functions/recoil';
 import ButtonPrimary from '../atoms/ButtonPrimary';
 import { deleteTask, updateTask } from '../../API/fetch';
 import MediumText from '../atoms/MediumText';
@@ -24,11 +24,13 @@ import { updateText,
   todoItemStatusInProgressText,
   todoItemStatusCompletedText, 
   todoItemChangeStatusBtnTxt,
-  todoItemShowDetailsBtnTxt
+  todoItemShowDetailsBtnTxt,
+  taskNumberText
 } from '../../content/contentEng';
+import { buttonBackgroundType1, buttonBackgroundType2, buttonBackgroundType3 } from '../../styles/themes/theme';
 
 
-function TodoItem({item}) {
+const TodoItem = ({item}) => {
   //init data 
   const initialTitleDisplay = item.title;
   const todoItemPrevious = item;
@@ -38,15 +40,19 @@ function TodoItem({item}) {
   //sets equal delays for common timeouts
   const delayTime = 1800;
 
+  //takes whole list from recoilState
   const [todoList, setTodoList] = useRecoilState(todoListState); 
+   //index finder
+   const index = todoList.findIndex((listItem) => listItem === item);
+  //text on update button
   const [updateButtonText, setUpdateButtonText] = useState(updateText);
-  const [inputValue, setInputValue] = useState(''); 
-  const [initTaskData, setInitTaskData] = useState(item);
-  const [textareaDisplay, setTextareaDisplay] = useState(initialTitleDisplay);   
-  const [updatedData, setUpdatedData] = useState(todoItemPrevious);    
-  const index = todoList.findIndex((listItem) => listItem === item);
+  //initial and updated task data
+  const [initTaskData, setInitTaskData] = useState(item);  
+  const [updatedData, setUpdatedData] = useState(todoItemPrevious);      
   //toggle textarea enabled or disabled
   const [disabled, setDisabled] = useState(true);
+  //textarea
+  const [textareaDisplay, setTextareaDisplay] = useState(initialTitleDisplay);   
   // buttons active or not
   const [taskBtnEdit, setTaskBtnEdit] = useState(displayOn); 
   const [taskBtnStatus, setTaskBtnStatus] = useState(displayOn); 
@@ -62,12 +68,12 @@ function TodoItem({item}) {
   //set border color for textarea when edited or not
   const [textareaBorderColor, setTextareaBorderColor] = useState('inputBorder');
   const [textareaBorderFocusColor, setTextareaBorderFocusColor] = useState('inputBorder');
-  // inputBorderFocus: '#34aadc',  
-  // inputBorderFocusEditOn: 'green',   
-  //decoy for initially empty input
-  const decoy = inputValue;
+  //set dynamic character count
+  const setInput = useSetRecoilState(textInputState); 
+  const getInput = useRecoilValue(textInputState);  
  
     
+console.log(getInput, "input do edit item z recoila");
     //data to retrieve initial input if edit cancelled
     useEffect(() => {
       const todoDataInit = {
@@ -79,7 +85,7 @@ function TodoItem({item}) {
         updated_at: item.updated_at
       }  
       setInitTaskData(todoDataInit)
-    }, [])  
+    }, [item]);   
     
     //when edit button clicked 
     const handleUpdateBtn = () => {    
@@ -91,13 +97,17 @@ function TodoItem({item}) {
     //when edit cancelled     
     const handleUpdateNoBtn = () => {  
       displayControl(displayOn, displayOn, displayOn, displayOn, displayOff, displayOff, displayOff, displayOff, true);
-      setTextareaDisplay(initTaskData.title); 
+      //      
+      setTextareaDisplay(todoList[index].title);
+      // 
       setTextareaBorderColor('inputBorder');
       setTextareaBorderFocusColor('inputBorder');
+      setUpdatedData(initTaskData);
     } 
 
     //edit dynamic content value on change
-    const editItemText = ({target: {value}}) => {    
+    const editItemText = ({target: {value}}) => {   
+      
       const todoDataMod = {
         id: item.id,
         user_id: item.user_id,
@@ -105,19 +115,20 @@ function TodoItem({item}) {
         completed: item.completed,
         created_at: item.created_at,
         updated_at: timeStampFormatted()
-      }   
-
-      //this makes target value update dynamically on textarea     
-      const newList = replaceItemAtIndex(todoList, index, {
-        ...item,
-        title: value,
-        updated_at: timeStampFormatted()
-      });     
+      }      
       setTextareaDisplay(todoDataMod.title);    
       setUpdatedData(todoDataMod);
-      setInputValue(value);    
-      setTodoList(newList);          
+      // setTimeout(() => {
+      //   setInput(value);  
+      // },100);    
     };   
+    
+    //onblur
+    const handleOnBlur = (value) => {
+      setTimeout(() => {
+        setInput(value);  
+      },100);  
+    };
 
     //commit edit changes on click
     const confirmEditChanges = (todoDataMod) => {
@@ -131,8 +142,15 @@ function TodoItem({item}) {
         }, delayTime);   
       } 
       else {
-        updateTask(item.id, todoDataMod);   
-        setInitTaskData(item);                  
+        updateTask(item.id, todoDataMod);  //
+        // setTextareaDisplay(todoDataMod.title);    
+        setInitTaskData(item);            //  
+        const newList = replaceItemAtIndex(todoList, index, {
+          ...item,
+          title: todoDataMod.title,
+          updated_at: timeStampFormatted()
+        });   
+   setTodoList(newList);     
         displayControl(displayOn, displayOn, displayOn, displayOn, displayOff, displayOff, displayOff, displayOff, true);
         setTextareaBorderColor('inputBorder');
         setTextareaBorderFocusColor('inputBorder');                        
@@ -248,9 +266,10 @@ function TodoItem({item}) {
           margin: 3,
           padding: 3,
         }}
-        ><BigText text={ `Task # ${item.id}:`} marginBottom={2} />
+        ><BigText text={ `${taskNumberText} # ${item.id}:`} marginBottom={2} />
         {/* display with task title*/}
-          <TextArea disabled={disabled} value={textareaDisplay} textareaBorderColor={textareaBorderColor}
+          <TextArea disabled={disabled} value={textareaDisplay} onBlur={() => handleOnBlur(textareaDisplay)}
+          textareaBorderColor={textareaBorderColor}
           textareaBorderFocusColor={textareaBorderFocusColor}
         onChange={editItemText} backgroundColor={`inputBackground`}/>     
         <Flex sx={{flexDirection: 'row',
@@ -270,19 +289,19 @@ function TodoItem({item}) {
            {/* show details button */}
            <ButtonPrimary
             onClick={handleShowDetailsBtn} displayIt={taskBtnDetails}
-            text={todoItemShowDetailsBtnTxt} backgroundColor={'buttons1'}/>  
+            text={todoItemShowDetailsBtnTxt} backgroundColor={buttonBackgroundType1}/>  
             {/* update task button */}
             <ButtonPrimary           
             onClick={handleUpdateBtn} displayIt={taskBtnEdit}
-            text={updateButtonText} backgroundColor={'buttons2'}/>   
+            text={updateButtonText} backgroundColor={buttonBackgroundType2}/>   
               {/* change status button*/} 
             <ButtonPrimary 
             onClick={handleChangeStatusBtn} displayIt={taskBtnStatus}
-            text={ todoItemChangeStatusBtnTxt} backgroundColor={'buttons2'}/>  
+            text={ todoItemChangeStatusBtnTxt} backgroundColor={buttonBackgroundType2}/>  
                {/* delete button*/}               
             <ButtonPrimary 
             onClick={handleDeleteBtnClick} displayIt={taskBtnDelete}
-            text={deleteText} backgroundColor={'buttons3'}/>       
+            text={deleteText} backgroundColor={buttonBackgroundType3}/>       
         </Flex>        
             {/* popup with choices yes or no for editing*/}         
         <ButtonsWrapper displayStyle={yesNoEditPopup} contentArea={
@@ -304,11 +323,11 @@ function TodoItem({item}) {
     );
   }
   
-  function replaceItemAtIndex(arr, index, newValue) {
+  const replaceItemAtIndex = (arr, index, newValue) => {
     return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
   }
   
-  function removeItemAtIndex(arr, index) {
+  const removeItemAtIndex = (arr, index) => {
     return [...arr.slice(0, index), ...arr.slice(index + 1)];
   }
 
