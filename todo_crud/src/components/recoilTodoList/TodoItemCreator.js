@@ -60,15 +60,13 @@ const TodoItemCreator = () => {
   const handleOnChange = ({target: {value}}) => {
     setTimeout(() => {
      setTextareaDisplay(value);
-      setInput(value);
     },0);    
   };
 
    //onblur
-   const handleOnBlur = (value) => {
+   const handleOnBlur = () => {
     setTimeout(() => {
-      setTextareaDisplay(value);
-      // setInput(textareaDisplay);  
+      setInput(textareaDisplay);  
     },0);  
   };
 
@@ -88,7 +86,7 @@ const TodoItemCreator = () => {
       padding: 3,
     }}
   ><MediumText text={todoCreatorTitleTxt} marginBottom={2} />
-      <TextArea textareaBorderFocusColor={'inputBorderFocus'} value={getInput} onBlur={() => handleOnBlur(getInput)}
+      <TextArea textareaBorderFocusColor={'inputBorderFocus'} value={textareaDisplay} onBlur={handleOnBlur}
        onChange={handleOnChange} backgroundColor={`inputBackground`} 
       placeholder={todoCreatorPlaceholderTxt}/>
       <Flex sx={{flexDirection: 'row',
