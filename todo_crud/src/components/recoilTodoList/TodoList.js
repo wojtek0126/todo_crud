@@ -34,11 +34,14 @@ const TodoList = () => {
      getTodos()  
    }, [])  
   
-   let filterData = filteredData.filter(item => item.title.includes(toSearch));
-  
-   const handleChange = (e) => {
-       setToSearch(e.target.value);
-   } 
+   let filterData = filteredData.filter(item => item.title.includes(toSearch));  
+ 
+
+   const handleOnChange = ({target: {value}}) => {
+    setTimeout(() => {
+      setToSearch(value);
+    },0);    
+  };
 
 
     return (
@@ -61,7 +64,7 @@ const TodoList = () => {
           type={"text"}
           placeholder={todoListSearchPlaceholderTxt}
           value={toSearch}
-          onChange={handleChange}        
+          onChange={handleOnChange}        
         /></Flex>
         <TodoListStats />  
         <ScrollUpButton />             
