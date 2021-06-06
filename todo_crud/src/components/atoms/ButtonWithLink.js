@@ -4,9 +4,10 @@ import { jsx } from 'theme-ui';
 import { Link } from 'react-router-dom';
 
 
-const ButtonWithlink = ({to, text, backgroundColor, onClick}) => (
+const ButtonWithlink = ({to, text, backgroundColor, onClick, displayIt}) => (
     <Link to={to} onClick={onClick}        
             sx={{  
+            display: `${displayIt}`,    
             alignSelf: 'center',              
             wordBreak: 'break-word', 
             // backgroundColor: `${backgroundColor}`,
@@ -14,7 +15,6 @@ const ButtonWithlink = ({to, text, backgroundColor, onClick}) => (
             borderRadius: '4px',
             border: 'none',
             color: 'buttonText',
-            display: 'flex !important',
             textAlign: 'center',
             fontFamily: 'heading',
             fontSize: [0, 1],

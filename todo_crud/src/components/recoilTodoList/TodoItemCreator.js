@@ -22,6 +22,13 @@ import { buttonBackgroundType1, buttonBackgroundType2, taskBackground } from '..
 
 
 const TodoItemCreator = () => {  
+  const on = 'flex';
+  const off = 'none';
+ //for display control
+  const [creatorBtnMenu, setCreatorBtnMenu] = useState(on);  
+  const [creatorBtnAdd, setCreatorBtnAdd] = useState(off); 
+  const [creatorBtnBack, setCreatorBtnBack] = useState(off); 
+//
   const [textareaDisplay, setTextareaDisplay] = useState("");   
   const [createBtnTxt, setCreateBtnTxt] = useState(todoCreatorAddTaskBtnTxt);
   const setTodoList = useSetRecoilState(todoListState); 
@@ -57,18 +64,38 @@ const TodoItemCreator = () => {
   };
 
   //taking input value for task from textarea
-  const handleOnChange = ({target: {value}}) => {
+  const handleonChange = ({target: {value}}) => {
     setTimeout(() => {
      setTextareaDisplay(value);
     },0);    
   };
 
    //onblur
-   const handleOnBlur = () => {
+   const handleonBlur = () => {
     setTimeout(() => {
       setInput(textareaDisplay);  
     },0);  
   };
+
+
+   //display control function     
+   const displayControlCreateTask = (setBtnMenu, setBtnAdd, setBtnBack) => {
+      setCreatorBtnMenu(setBtnMenu);
+      setCreatorBtnAdd(setBtnAdd);
+      setCreatorBtnBack(setBtnBack);        
+ };
+
+  //popup menu control
+  const handleTaskMenuOpenCloseBtn = () => {
+      
+    displayControlCreateTask(on, off, off); 
+    setTimeout(() => {
+      if (creatorBtnAdd === 'none') {
+        displayControlCreateTask(on, on, on); 
+      }
+    },10);
+
+  }
 
 
   return (
@@ -87,19 +114,24 @@ const TodoItemCreator = () => {
       padding: 3,
     }}
   ><MediumText text={todoCreatorTitleTxt} marginBottom={2} />
-      <TextArea textareaBorderFocusColor={'inputBorderFocus'} value={textareaDisplay} onBlur={handleOnBlur}
-       onChange={handleOnChange} backgroundColor={`inputBackground`} 
+      <TextArea textareaBorderFocusColor={'inputBorderFocus'} value={textareaDisplay} onBlur={handleonBlur}
+       onChange={handleonChange} backgroundColor={`inputBackground`} 
       placeholder={todoCreatorPlaceholderTxt}/>
       <Flex sx={{flexDirection: 'row',
-                 justifyContent: 'space-between',
+                 justifyContent: 'flex-start',
                  flexWrap: 'wrap',
                  '@media screen and (max-width: 700px)': {
                   flexDirection: 'column',
                   alignItems: 'center',
                   justifyContent: 'baseline',                  
-                } }}>
-        <ButtonPrimary onClick={() => addItem(getInput)} text={createBtnTxt} backgroundColor={buttonBackgroundType2} />
-        <ButtonWithlink to={`home`} text={todoCreatorBackToMainTxt} backgroundColor={buttonBackgroundType1} />
+                } }}>                  
+        <ButtonPrimary text={`x`} 
+        onClick={handleTaskMenuOpenCloseBtn}
+        backgroundColor={buttonBackgroundType1} displayIt={creatorBtnMenu} />
+        <ButtonPrimary onClick={() => addItem(getInput)} text={createBtnTxt} backgroundColor={buttonBackgroundType2}
+        displayIt={creatorBtnAdd} />
+        <ButtonWithlink to={`home`} text={todoCreatorBackToMainTxt} backgroundColor={buttonBackgroundType1}
+        displayIt={creatorBtnBack} />
       </Flex>
     </Flex>
   );
