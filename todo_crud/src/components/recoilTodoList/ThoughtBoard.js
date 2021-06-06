@@ -17,7 +17,7 @@ import { thoughtBoardTitleTxt,
 import TextArea from '../atoms/TextArea';
 import { textInputState } from '../../functions/recoil';
 import { useSetRecoilState } from 'recoil';
-import { buttonBackgroundType2, buttonBackgroundType3 } from '../../styles/themes/theme';
+import { buttonBackgroundType2, buttonBackgroundType3, taskBackground } from '../../styles/themes/theme';
 
 
 const ThoughtBoard = ({imageUrl}) => {
@@ -65,7 +65,8 @@ const ThoughtBoard = ({imageUrl}) => {
       maxWidth: '100vw',               
       flexDirection: 'column',
       background: 'box',     
-      backgroundColor: 'boxBackground',
+      // backgroundColor: 'boxBackground',
+      background: `${taskBackground}`,
       color: 'text',
       border: '2px solid',
       borderColor: 'boxBorder',

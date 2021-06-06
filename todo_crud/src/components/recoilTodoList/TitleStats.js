@@ -15,7 +15,7 @@ import { titleStatsTitleTxt,
   titleStatsPercentCompletedTxt, 
   titleStatsToActionBtnTxt
 } from '../../content/contentEng';
-import { buttonBackgroundType1 } from '../../styles/themes/theme';
+import { buttonBackgroundType1, taskBackground } from '../../styles/themes/theme';
 
 
 const TitleStats = () => {
@@ -45,7 +45,8 @@ const TitleStats = () => {
       sx={{
         flexDirection: 'column',
         background: 'box',     
-        backgroundColor: 'boxBackground',
+        // backgroundColor: 'boxBackground',
+        background: `${taskBackground}`,
         color: 'text',
         border: '2px solid',
         borderColor: 'boxBorder',

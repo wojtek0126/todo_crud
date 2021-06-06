@@ -2,6 +2,7 @@
 /** @jsx jsx */  
 import { jsx } from 'theme-ui';
 import { Flex } from "theme-ui";
+import { taskBackground } from '../../styles/themes/theme';
 
 
 const Footer = ({brandName, year}) => {
@@ -18,7 +19,8 @@ const Footer = ({brandName, year}) => {
         borderRadius: '4px',
         border: `2px solid`,
         borderColor: `boxBorder`, 
-        backgroundColor: 'boxBackground'
+        // backgroundColor: 'boxBackground'
+        background: `${taskBackground}`,
         }}>
           <div sx={{
         fontFamily: 'heading',

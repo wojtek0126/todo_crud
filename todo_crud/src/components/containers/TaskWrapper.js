@@ -1,13 +1,15 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from 'theme-ui';
+import { taskBackground } from '../../styles/themes/theme';
 
 
 const TaskWrapper = ({contentArea}) => (    
     <div
     sx={{
       background: 'box',     
-      backgroundColor: 'boxBackground',
+      // backgroundColor: 'boxBackground',
+      background: `${taskBackground}`,     
       color: 'text',
       border: '2px solid', 
       borderColor: 'boxBorder',  

@@ -18,7 +18,7 @@ import { todoCreatorAddTaskBtnTxt,
   todoCreatorBackToMainTxt,
   todoCreatorNotUpdatedYetTxt,   
 } from '../../content/contentEng';
-import { buttonBackgroundType1, buttonBackgroundType2 } from '../../styles/themes/theme';
+import { buttonBackgroundType1, buttonBackgroundType2, taskBackground } from '../../styles/themes/theme';
 
 
 const TodoItemCreator = () => {  
@@ -76,7 +76,8 @@ const TodoItemCreator = () => {
     sx={{
       flexDirection: 'column',
       background: 'box',   
-      backgroundColor: 'boxBackground',
+      // backgroundColor: 'boxBackground',
+      background: `${taskBackground}`,
       color: 'text',      
       border: '2px solid',
       borderColor: 'boxBorder', 

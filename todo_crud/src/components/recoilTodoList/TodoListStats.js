@@ -10,6 +10,7 @@ import { todoActionStatsTitleTxt,
   todoActionStatsCompletedTxt,
   todoActionStatsInProgressTxt
  } from '../../content/contentEng';
+import { taskBackground } from '../../styles/themes/theme';
 
 
 const TodoListStats = () => {
@@ -25,7 +26,8 @@ const TodoListStats = () => {
       <Flex
       sx={{
         flexDirection: 'column',           
-        backgroundColor: 'boxBackground',
+        // backgroundColor: 'boxBackground',
+        background: `${taskBackground}`,
         border: '2px solid', 
         borderColor: 'boxBorder',
         borderRadius: 4,

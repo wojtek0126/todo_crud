@@ -1,14 +1,16 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from 'theme-ui';
+// import { appBackground } from '../../styles/themes/theme';
 
 
-const TitleText = ({text1, text2, text3, marginBottom, backgroundColor}) => (
+const TitleText = ({text1, text2, text3, marginBottom}) => (
     <h2
       sx={{
         display: 'flex',
         flexWrap: 'wrap',
-        backgroundColor: `${backgroundColor}`,
+        // backgroundColor: `${backgroundColor}`,
+        background: `transparent`,
         fontFamily: 'heading',
         fontWeight: 'heading',        
         fontSize: [3, 4, 5],

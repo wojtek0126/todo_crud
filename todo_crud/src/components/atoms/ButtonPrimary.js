@@ -11,7 +11,7 @@ const ButtonPrimary = ({text, backgroundColor, onClick, type, id, displayIt, ali
             alignSelf: `${alignSelf}`,
             // backgroundColor: `${backgroundColor}`,
             background: `${backgroundColor}`,
-
+            transition: '1s',    
             borderRadius: '4px',
             border: 'none',
             color: 'buttonText',

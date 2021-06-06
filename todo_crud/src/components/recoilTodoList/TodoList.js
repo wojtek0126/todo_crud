@@ -9,7 +9,7 @@ import TodoItemCreator from './TodoItemCreator';
 import TodoListFilters from './TodoListFilters';
 import TodoListStats from './TodoListStats';
 import { ThemeProvider, Container, Flex, Box } from 'theme-ui';
-import theme from '../../styles/themes/theme';
+import theme, { appBackground, taskBackground } from '../../styles/themes/theme';
 import { getAllTasks } from '../../API/fetch';
 import SearchField from '../atoms/SearchField';
 import MediumText from '../atoms/MediumText';
@@ -49,7 +49,8 @@ const TodoList = () => {
         <Container>            
         <TodoItemCreator/>  
         <Flex sx={{           
-          backgroundColor: 'boxBackground',
+          // backgroundColor: 'boxBackground',
+          background: `${taskBackground}`,
           color: 'text',
           border: '2px solid', 
           borderColor: 'boxBorder',
@@ -60,7 +61,7 @@ const TodoList = () => {
           flexDirection: 'column'
         }}><MediumText text={todoListTitleTxt} marginBottom={2} />
         <TodoListFilters />
-        <SearchField
+        <SearchField 
           type={"text"}
           placeholder={todoListSearchPlaceholderTxt}
           value={toSearch}
