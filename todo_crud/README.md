@@ -1,0 +1,1 @@
+Ulepszona wersja bez lagów w inputach i z ikonkami zamiast przycisków z napisami.
