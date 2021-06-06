@@ -12,16 +12,29 @@ import { thoughtBoardTitleTxt,
          thoughtForgottenTxt,
          thoughtRememberedTxt,
          thoughtRememberEmptyTxt,
-         thoughtForgetEmpytTxt
+         thoughtForgetEmpytTxt,
+         openMenuBtnIcon,
+         saveBtnIcon,
+         deleteBtnIcon
 } from '../../content/contentEng';
 import TextArea from '../atoms/TextArea';
 import { textInputState } from '../../functions/recoil';
 import { useSetRecoilState } from 'recoil';
-import { buttonBackgroundType2, buttonBackgroundType3, taskBackground } from '../../styles/themes/theme';
+import { buttonBackgroundType1, buttonBackgroundType2, buttonBackgroundType3, taskBackground } from '../../styles/themes/theme';
 
 
 const ThoughtBoard = ({imageUrl}) => {
-    const boardTxtFromLocal = localStorage.getItem('notes');   
+   //display toggle style setting
+   const on = 'flex';
+   const off = 'none';
+
+    const boardTxtFromLocal = localStorage.getItem('notes'); 
+    
+    //for display control
+  const [boardBtnMenu, setBoardrBtnMenu] = useState(on);  
+  const [boardBtnAdd, setBoardBtnAdd] = useState(off); 
+  const [boardBtnDelete, setBoardBtnDelete] = useState(off); 
+
     const [boardText, setBoardText] = useState(boardTxtFromLocal);  
     const [rememberButtonTxt, setRememberButtonTxt] = useState(thoughtRememberBtnTxt);
     const [forgetButtonTxt, setForgetButtonTxt] = useState(thoughtForgetBtnTxt);  
@@ -58,6 +71,25 @@ const ThoughtBoard = ({imageUrl}) => {
       }         
     }
 
+       //display control function     
+   const displayControlBoard = (setBtnMenu, setBtnAdd, setBtnDel) => {
+    setBoardrBtnMenu(setBtnMenu);
+    setBoardBtnAdd(setBtnAdd);
+    setBoardBtnDelete(setBtnDel);        
+};
+
+//popup menu control
+const handleBoardOpenCloseBtn = () => {
+    
+  displayControlBoard(on, off, off); 
+  setTimeout(() => {
+    if (boardBtnAdd === 'none') {
+      displayControlBoard(on, on, on); 
+    }
+  },10);
+
+}
+
 
   return ( 
     <Flex
@@ -90,16 +122,20 @@ const ThoughtBoard = ({imageUrl}) => {
            }}/>       
            <Flex sx={{flexWrap: 'wrap',
                       flexDirection: 'row',
-                      justifyContent: 'space-between',
+                      justifyContent: 'flex-start',
                       '@media screen and (max-width: 700px)': {
                         flexDirection: 'column',
                         alignItems: 'center',
                         justifyContent: 'center'}}}>
-               <ButtonPrimary text={rememberButtonTxt} backgroundColor={buttonBackgroundType2} 
+               <ButtonPrimary text={openMenuBtnIcon} 
+                  onClick={handleBoardOpenCloseBtn}
+                  backgroundColor={buttonBackgroundType1} displayIt={boardBtnMenu} />
+               <ButtonPrimary text={saveBtnIcon} backgroundColor={buttonBackgroundType2} 
                onClick={() => handleClickSaveToLocal('notes', boardText, thoughtRememberedTxt, thoughtRememberBtnTxt, 
-               boardText)} />
-               <ButtonPrimary text={forgetButtonTxt} backgroundColor={buttonBackgroundType3}
-                onClick={() => handleClickClearLocal(thoughtForgottenTxt, thoughtForgetBtnTxt, boardText)}/>
+               boardText)} displayIt={boardBtnAdd} />
+               <ButtonPrimary text={deleteBtnIcon} backgroundColor={buttonBackgroundType3}
+                onClick={() => handleClickClearLocal(thoughtForgottenTxt, thoughtForgetBtnTxt, boardText)}
+                displayIt={boardBtnDelete}/>
            </Flex>                 
       </Flex>         
   );

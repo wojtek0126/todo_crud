@@ -16,9 +16,12 @@ import { todoCreatorAddTaskBtnTxt,
   todoCreatorTitleTxt,
   todoCreatorPlaceholderTxt, 
   todoCreatorBackToMainTxt,
-  todoCreatorNotUpdatedYetTxt,   
+  todoCreatorNotUpdatedYetTxt,
+  openMenuBtnIcon,
+  addTaskBtnIcon,
+  goBackBtnIcon,   
 } from '../../content/contentEng';
-import { buttonBackgroundType1, buttonBackgroundType2, taskBackground } from '../../styles/themes/theme';
+import { buttonBackgroundType1, buttonBackgroundType2, buttonBackgroundType3, taskBackground } from '../../styles/themes/theme';
 
 
 const TodoItemCreator = () => {  
@@ -125,12 +128,12 @@ const TodoItemCreator = () => {
                   alignItems: 'center',
                   justifyContent: 'baseline',                  
                 } }}>                  
-        <ButtonPrimary text={`x`} 
+        <ButtonPrimary text={openMenuBtnIcon} 
         onClick={handleTaskMenuOpenCloseBtn}
         backgroundColor={buttonBackgroundType1} displayIt={creatorBtnMenu} />
-        <ButtonPrimary onClick={() => addItem(getInput)} text={createBtnTxt} backgroundColor={buttonBackgroundType2}
+        <ButtonPrimary onClick={() => addItem(getInput)} text={addTaskBtnIcon} backgroundColor={buttonBackgroundType2}
         displayIt={creatorBtnAdd} />
-        <ButtonWithlink to={`home`} text={todoCreatorBackToMainTxt} backgroundColor={buttonBackgroundType1}
+        <ButtonWithlink to={`home`} text={goBackBtnIcon} backgroundColor={buttonBackgroundType3}
         displayIt={creatorBtnBack} />
       </Flex>
     </Flex>

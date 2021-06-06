@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */  
 import {jsx, ThemeProvider, Container, Flex } from 'theme-ui';
-import theme, { appBackground, taskBackground, titleBackground } from '../../styles/themes/theme';
+import theme, { taskBackground } from '../../styles/themes/theme';
 import Footer from '../molecules/Footer';
 import TitleStats from './TitleStats';
 import blackboard from "../../assets/b4769e3a52766f30e86b375391c84441.jpg";

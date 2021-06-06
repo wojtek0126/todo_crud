@@ -10,7 +10,8 @@ import { taskDetailsTaskNumberTxt,
   taskDetailsTimeUpdatedTxt,
   taskDetailsInProgressTxt,
   taskDetailsCloseBtnTxt,
-  taskDetailsCompletedTxt
+  taskDetailsCompletedTxt,
+  hideDetailsBtnIcon
 } from '../../content/contentEng';
 import DisplayDetailsText from '../atoms/DisplayDetailsText';
 import TaskDetailBtnWrapper from '../containers/TaskDetailBtnWrapper';
@@ -45,7 +46,7 @@ const TaskDetails =({clickClose, displayIt = 'flex', taskData}) => {
           <DisplayDetailsText headText={taskDetailsTimeUpdatedTxt} contentText={getTask.updated_at} marginTop={2} marginBottom={2}
           backgroundColor={'taskDetailContentBackground'} />  
             <TaskDetailBtnWrapper contentArea={  
-            <ButtonPrimary text={taskDetailsCloseBtnTxt} backgroundColor={buttonBackgroundType3}
+            <ButtonPrimary text={hideDetailsBtnIcon} backgroundColor={buttonBackgroundType3}
                            onClick={clickClose} marginTop={1} marginBottom={1}/>} />          
         </Flex>         
       }/>    

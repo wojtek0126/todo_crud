@@ -25,7 +25,14 @@ import { updateText,
   todoItemStatusCompletedText, 
   todoItemChangeStatusBtnTxt,
   todoItemShowDetailsBtnTxt,
-  taskNumberText
+  taskNumberText,
+  openMenuBtnIcon,
+  detailsBtnIcon,
+  editBtnIcon,
+  statusBtnIcon,
+  deleteBtnIcon,
+  declineBtnIcon,
+  confirmBtnIcon
 } from '../../content/contentEng';
 import { buttonBackgroundType1, buttonBackgroundType2, buttonBackgroundType3, taskBackground } from '../../styles/themes/theme';
 
@@ -35,8 +42,8 @@ const TodoItem = ({item}) => {
   const initialTitleDisplay = item.title;
   const todoItemPrevious = item;
   //display toggle style setting
-  const displayOn = 'flex';
-  const displayOff = 'none';
+  const on = 'flex';
+  const off = 'none';
   //sets equal delays for common timeouts
   const delayTime = 1800;
 
@@ -54,18 +61,18 @@ const TodoItem = ({item}) => {
   //textarea
   const [textareaDisplay, setTextareaDisplay] = useState(initialTitleDisplay);   
   // buttons active or not
-  const [taskBtnMenu, setTaskBtnMenu] = useState(displayOn);  
-  const [taskBtnEdit, setTaskBtnEdit] = useState(displayOff); 
-  const [taskBtnStatus, setTaskBtnStatus] = useState(displayOff); 
-  const [taskBtnDelete, setTaskBtnDelete] = useState(displayOff);
-  const [taskBtnDetails, setTaskBtnDetails] = useState(displayOff);      
+  const [taskBtnMenu, setTaskBtnMenu] = useState(on);  
+  const [taskBtnEdit, setTaskBtnEdit] = useState(off); 
+  const [taskBtnStatus, setTaskBtnStatus] = useState(off); 
+  const [taskBtnDelete, setTaskBtnDelete] = useState(off);
+  const [taskBtnDetails, setTaskBtnDetails] = useState(off);      
   //yes no popups active or not
-  const [yesNoEditPopup, setYesNoEditPopup] = useState(displayOff);  
-  const [yesNoDeletePopup, setYesNoDeletePopup] = useState(displayOff);  
-  const [yesNoStatusPopup, setYesNoStatusPopup] = useState(displayOff);     
+  const [yesNoEditPopup, setYesNoEditPopup] = useState(off);  
+  const [yesNoDeletePopup, setYesNoDeletePopup] = useState(off);  
+  const [yesNoStatusPopup, setYesNoStatusPopup] = useState(off);     
   //views active or not
-  const [taskDetailView, setTaskDetailView] = useState(displayOff);
-  const [taskStatusView, setTaskStatusView] = useState(displayOn);  
+  const [taskDetailView, setTaskDetailView] = useState(off);
+  const [taskStatusView, setTaskStatusView] = useState(on);  
   //set border color for textarea when edited or not
   const [textareaBorderColor, setTextareaBorderColor] = useState('inputBorder');
   const [textareaBorderFocusColor, setTextareaBorderFocusColor] = useState('inputBorder');
@@ -90,14 +97,14 @@ console.log(getInput, "input do edit item z recoila");
     
     //when edit button clicked 
     const handleUpdateBtn = () => {    
-      displayControl(displayOff, displayOff, displayOff, displayOff, displayOff, displayOn, displayOff, displayOff, false, displayOff);
-      setTextareaBorderColor('inputBorderEditOn');
+      displayControl(off, off, off, off, off, on, off, off, false, off);
+      setTextareaBorderColor('inputBorderEditon');
       setTextareaBorderFocusColor('inputBorderFocus');
         }     
 
     //when edit cancelled     
     const handleUpdateNoBtn = () => {  
-      displayControl(displayOn, displayOn, displayOn, displayOn, displayOff, displayOff, displayOff, displayOff, true, displayOn);
+      displayControl(on, on, on, on, off, off, off, off, true, on);
       //      
       setTextareaDisplay(todoList[index].title);
       // 
@@ -122,7 +129,7 @@ console.log(getInput, "input do edit item z recoila");
     };   
     
     //onblur
-    const handleOnBlur = (value) => {
+    const handleonBlur = (value) => {
       setTimeout(() => {
         setInput(value);  
       },100);  
@@ -131,12 +138,12 @@ console.log(getInput, "input do edit item z recoila");
     //commit edit changes on click
     const confirmEditChanges = (todoDataMod) => {
       if (updatedData.title === "" || updatedData.title === null || updatedData.title === undefined) {
-        setTaskBtnEdit(displayOn);
-        setYesNoEditPopup(displayOff); 
+        setTaskBtnEdit(on);
+        setYesNoEditPopup(off); 
         switchBtnTxt(setUpdateButtonText, updateText, updateEmptyText, delayTime);  
         setTimeout(() => {
-          setTaskBtnEdit(displayOff);
-          setYesNoEditPopup(displayOn); 
+          setTaskBtnEdit(off);
+          setYesNoEditPopup(on); 
         }, delayTime);   
       } 
       else {
@@ -149,7 +156,7 @@ console.log(getInput, "input do edit item z recoila");
           updated_at: timeStampFormatted()
         });   
    setTodoList(newList);     
-        displayControl(displayOn, displayOn, displayOn, displayOn, displayOff, displayOff, displayOff, displayOff, true, displayOn);
+        displayControl(on, on, on, on, off, off, off, off, true, on);
         setTextareaBorderColor('inputBorder');
         setTextareaBorderFocusColor('inputBorder');                        
       }      
@@ -157,18 +164,18 @@ console.log(getInput, "input do edit item z recoila");
 
     //when change status button clicked
     const handleChangeStatusBtn = () => {
-      displayControl(displayOff, displayOff, displayOff, displayOff, displayOff, displayOff, displayOn, displayOff, true, displayOff);       
+      displayControl(off, off, off, off, off, off, on, off, true, off);       
     }
 
     //when status changed and answer 'yes' to confirmation question
     const handleStatusChangeConfirm = () => {
-     displayControl(displayOn, displayOn, displayOn, displayOn, displayOff, displayOff, displayOff, displayOff, true, displayOn);
+     displayControl(on, on, on, on, off, off, off, off, true, on);
      toggleItemCompletion();      
     }
 
     //when status changed and answer 'no' to confirmation question
     const handleStatusChangeDeny = () => {   
-      displayControl(displayOn, displayOn, displayOn, displayOn, displayOff, displayOff, displayOff, displayOff, true, displayOn);     
+      displayControl(on, on, on, on, off, off, off, off, true, on);     
     }
 
   //update task comletion status
@@ -196,12 +203,12 @@ console.log(getInput, "input do edit item z recoila");
         deleteTask(item.id);       
         const newList = removeItemAtIndex(todoList, index);   
         setTodoList(newList);             
-        displayControl(displayOn, displayOn, displayOn, displayOn, displayOff, displayOff, displayOff, displayOff, true, displayOn);   
+        displayControl(on, on, on, on, off, off, off, off, true, on);   
     };  
 
     //after clicking delete button
     const handleDeleteBtnClick = () => {  
-      displayControl(displayOff, displayOff, displayOff, displayOff, displayOn, displayOff, displayOff, displayOff, true, displayOff);          
+      displayControl(off, off, off, off, on, off, off, off, true, off);          
     }
 
     //after clicking delete confirm button 
@@ -211,19 +218,19 @@ console.log(getInput, "input do edit item z recoila");
 
     //after clicking delete no - 'go back' button
     const handleDeleteBtnNoClick = () => {    
-      displayControl(displayOn, displayOn, displayOn, displayOn, displayOff, displayOff, displayOff, displayOff, true, displayOn);                
+      displayControl(on, on, on, on, off, off, off, off, true, on);                
     }
    
     //after clicking show details
     const handleShowDetailsBtn = () => { 
-     displayControl(displayOff, displayOff, displayOff, displayOff, displayOff, displayOff, displayOff, displayOn, true, displayOff);
-     setTaskStatusView(displayOff);   
+     displayControl(off, off, off, off, off, off, off, on, true, off);
+     setTaskStatusView(off);   
     }
 
     //after clicking close details
     const handleCloseDetailsBtn = () => {
-      displayControl(displayOn, displayOn, displayOn, displayOn, displayOff, displayOff, displayOff, displayOff, true, displayOn); 
-      setTaskStatusView(displayOn); 
+      displayControl(on, on, on, on, off, off, off, off, true, on); 
+      setTaskStatusView(on); 
     }     
  
     //item completed/in progress to display
@@ -251,12 +258,13 @@ console.log(getInput, "input do edit item z recoila");
       setTaskDetailView(setDetailView);        
     };
     
+    //popup menu control
     const handleTaskMenuOpenCloseBtn = () => {
       
-      displayControl(displayOff, displayOff, displayOff, displayOff, displayOff, displayOff, displayOff, displayOff, true, displayOn); 
+      displayControl(off, off, off, off, off, off, off, off, true, on); 
       setTimeout(() => {
         if (taskBtnEdit === 'none') {
-          displayControl(displayOn, displayOn, displayOn, displayOn, displayOff, displayOff, displayOff, displayOff, true, displayOn); 
+          displayControl(on, on, on, on, off, off, off, off, true, on); 
         }
       },10);
 
@@ -279,7 +287,7 @@ console.log(getInput, "input do edit item z recoila");
         }}
         ><BigText text={ `${taskNumberText} # ${item.id}:`} marginBottom={2} />
         {/* display with task title*/}
-          <TextArea disabled={disabled} value={textareaDisplay} onBlur={() => handleOnBlur(textareaDisplay)}
+          <TextArea disabled={disabled} value={textareaDisplay} onBlur={() => handleonBlur(textareaDisplay)}
           textareaBorderColor={textareaBorderColor}
           textareaBorderFocusColor={textareaBorderFocusColor}
         onChange={editItemText} backgroundColor={`inputBackground`}/>     
@@ -298,40 +306,40 @@ console.log(getInput, "input do edit item z recoila");
                     alignItems: 'center',
                     justifyContent: 'center'}}}> 
             {/* open close task options */}
-            <ButtonPrimary text={`x`} 
+            <ButtonPrimary text={openMenuBtnIcon} 
             onClick={handleTaskMenuOpenCloseBtn}
             backgroundColor={buttonBackgroundType1} displayIt={taskBtnMenu} />
            {/* show details button */}
            <ButtonPrimary
             onClick={handleShowDetailsBtn} displayIt={taskBtnDetails}
-            text={todoItemShowDetailsBtnTxt} backgroundColor={buttonBackgroundType1}/>  
+            text={detailsBtnIcon} backgroundColor={buttonBackgroundType1}/>  
             {/* update task button */}
             <ButtonPrimary           
             onClick={handleUpdateBtn} displayIt={taskBtnEdit}
-            text={updateButtonText} backgroundColor={buttonBackgroundType2}/>   
+            text={editBtnIcon} backgroundColor={buttonBackgroundType2}/>   
               {/* change status button*/} 
             <ButtonPrimary 
             onClick={handleChangeStatusBtn} displayIt={taskBtnStatus}
-            text={ todoItemChangeStatusBtnTxt} backgroundColor={buttonBackgroundType2}/>  
+            text={statusBtnIcon} backgroundColor={buttonBackgroundType2}/>  
                {/* delete button*/}               
             <ButtonPrimary 
             onClick={handleDeleteBtnClick} displayIt={taskBtnDelete}
-            text={deleteText} backgroundColor={buttonBackgroundType3}/>       
+            text={deleteBtnIcon} backgroundColor={buttonBackgroundType3}/>       
         </Flex>        
             {/* popup with choices yes or no for editing*/}         
         <ButtonsWrapper displayStyle={yesNoEditPopup} contentArea={
         <YesNoPopup  onClickYes={() => confirmEditChanges(updatedData)} 
-        onClickNo={handleUpdateNoBtn} yesText={yesText} noText={noText} messageText={editYesNoMessage}/>
+        onClickNo={handleUpdateNoBtn} yesText={confirmBtnIcon} noText={declineBtnIcon} messageText={editYesNoMessage}/>
         }/>  
             {/* popup with choices yes or no for delete*/}          
         <ButtonsWrapper displayStyle={yesNoDeletePopup} contentArea={
           <YesNoPopup onClickYes={handleDeleteBtnYesClick} 
-          onClickNo={handleDeleteBtnNoClick} yesText={yesText} noText={noText} messageText={deleteYesNoMessage}/>
+          onClickNo={handleDeleteBtnNoClick} yesText={confirmBtnIcon} noText={declineBtnIcon} messageText={deleteYesNoMessage}/>
         }/>
             {/* popup with choices yes or no for changing status*/}     
          <ButtonsWrapper displayStyle={yesNoStatusPopup} contentArea={
           <YesNoPopup onClickYes={handleStatusChangeConfirm} 
-          onClickNo={handleStatusChangeDeny} yesText={yesText} noText={noText} messageText={statusYesNoMessage} />
+          onClickNo={handleStatusChangeDeny} yesText={confirmBtnIcon} noText={declineBtnIcon} messageText={statusYesNoMessage} />
         }/>        
         <TaskDetails displayIt={taskDetailView} taskData={updatedData} clickClose={handleCloseDetailsBtn} />
       </div>

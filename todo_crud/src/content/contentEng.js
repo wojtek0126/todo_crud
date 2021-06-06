@@ -1,3 +1,13 @@
+import { RiTodoLine, RiDeleteBinLine, RiEdit2Line } from 'react-icons/ri';
+import { CgMenuRound, CgAddR } from 'react-icons/cg';
+import { HiOutlineSave } from 'react-icons/hi';
+import { MdExitToApp } from 'react-icons/md';
+import { FiEye } from 'react-icons/fi';
+import { BiCheckCircle } from 'react-icons/bi';
+import { GiBackwardTime } from 'react-icons/gi';
+import { FaFlagCheckered } from 'react-icons/fa';
+
+
 //all text content in English lands here, in exported variables
 
 //recoil.js text
@@ -27,7 +37,7 @@ export const titleStatsTotalTxt = "Total tasks:";
 export const titleStatsCompletedTxt = "Completed:";
 export const titleStatsInProgressTxt = "In progress:";
 export const titleStatsPercentCompletedTxt = "Percent completed:";
-export const titleStatsToActionBtnTxt = "To action"; 
+export const titleStatsToActionBtnTxt = "O"; 
 
  //text for item content and options in TodoItem.js
  export const taskNumberText = "Task";
@@ -77,4 +87,24 @@ export const todoFilterInProgressOnlyTxt = "In progress only";
  export const taskDetailsInProgressTxt = "Task in progress";
  export const taskDetailsCloseBtnTxt = "Close";
  export const taskDetailsCompletedTxt = "Task completed";
- 
+
+
+ //icons buttons
+export const enterListBtnIcon = <RiTodoLine />;
+export const openMenuBtnIcon = <CgMenuRound />;
+export const saveBtnIcon = <HiOutlineSave />;
+export const deleteBtnIcon = <RiDeleteBinLine />;
+export const addTaskBtnIcon = <CgAddR />
+export const goBackBtnIcon = <MdExitToApp />;
+export const detailsBtnIcon = <FiEye />;
+export const hideDetailsBtnIcon = <MdExitToApp />;
+export const editBtnIcon = <RiEdit2Line />;
+export const statusBtnIcon = <FaFlagCheckered />;
+export const confirmBtnIcon = <BiCheckCircle />;
+export const declineBtnIcon = <GiBackwardTime />;
+
+
+
+
+
+
