@@ -125,8 +125,8 @@ const TodoItemCreator = () => {
                  flexWrap: 'wrap',
                  '@media screen and (max-width: 700px)': {
                   flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'baseline',                  
+                  alignItems: 'baseline',
+                  justifyContent: 'baseline'                  
                 } }}>                  
         <ButtonPrimary text={openMenuBtnIcon} 
         onClick={handleTaskMenuOpenCloseBtn}
@@ -134,7 +134,7 @@ const TodoItemCreator = () => {
         <ButtonPrimary onClick={() => addItem(getInput)} text={addTaskBtnIcon} backgroundColor={buttonBackgroundType2}
         displayIt={creatorBtnAdd} />
         <ButtonWithlink to={`home`} text={goBackBtnIcon} backgroundColor={buttonBackgroundType3}
-        displayIt={creatorBtnBack} />
+        displayIt={creatorBtnBack} alignSelf={'baseline'}/>
       </Flex>
     </Flex>
   );

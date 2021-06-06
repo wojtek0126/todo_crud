@@ -303,8 +303,8 @@ console.log(getInput, "input do edit item z recoila");
                    justifyContent: 'flex-start',
                    '@media screen and (max-width: 700px)': {
                     flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center'}}}> 
+                    alignItems: 'baseline',
+                    justifyContent: 'baseline'}}}> 
             {/* open close task options */}
             <ButtonPrimary text={openMenuBtnIcon} 
             onClick={handleTaskMenuOpenCloseBtn}

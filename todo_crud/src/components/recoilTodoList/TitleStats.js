@@ -18,6 +18,7 @@ import { titleStatsTitleTxt,
   enterListBtnIcon
 } from '../../content/contentEng';
 import { buttonBackgroundType1, taskBackground } from '../../styles/themes/theme';
+import ButtonsWrapper from '../containers/ButtonsWrapper';
 // import { RiTodoLine } from 'react-icons/ri';
 
 
@@ -66,8 +67,8 @@ const TitleStats = () => {
         <ProgressCounter text={`${titleStatsInProgressTxt} ${totalUncompletedNum}`}
          backgroundColor={'counterCompleted'} color={`counterText`}/>
         <ProgressCounter text={`${titleStatsPercentCompletedTxt} ${formattedPercentCompleted}`}
-         backgroundColor={'counterPercentage'} color={`counterText`}/>   
-        <ButtonWithlink to={'action'} text={enterListBtnIcon} backgroundColor={buttonBackgroundType1} />
+         backgroundColor={'counterPercentage'} color={`counterText`}/>  
+        <ButtonWithlink to={'action'} text={enterListBtnIcon} backgroundColor={buttonBackgroundType1} alignSelf={'baseline'}/>
       </Flex>
     );
   }

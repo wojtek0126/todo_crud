@@ -125,7 +125,7 @@ const handleBoardOpenCloseBtn = () => {
                       justifyContent: 'flex-start',
                       '@media screen and (max-width: 700px)': {
                         flexDirection: 'column',
-                        alignItems: 'center',
+                        alignItems: 'baseline',
                         justifyContent: 'center'}}}>
                <ButtonPrimary text={openMenuBtnIcon} 
                   onClick={handleBoardOpenCloseBtn}
