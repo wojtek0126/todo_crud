@@ -9,13 +9,10 @@ import { addTask } from '../../API/fetch';
 import MediumText from '../atoms/MediumText';
 import ButtonWithlink from '../atoms/ButtonWithLink';
 import TextArea from '../atoms/TextArea';
-import { switchBtnTxt, timeStampFormatted } from '../../functions/functionStorage';
-import { todoCreatorAddTaskBtnTxt,
-  todoCreatorTaskAddedTxt,  
-  todoCreatorTaskEmptyTxt,
+import { timeStampFormatted } from '../../functions/functionStorage';
+import {   
   todoCreatorTitleTxt,
-  todoCreatorPlaceholderTxt, 
-  todoCreatorBackToMainTxt,
+  todoCreatorPlaceholderTxt,   
   todoCreatorNotUpdatedYetTxt,
   openMenuBtnIcon,
   addTaskBtnIcon,
@@ -25,15 +22,18 @@ import { buttonBackgroundType1, buttonBackgroundType2, buttonBackgroundType3, ta
 
 
 const TodoItemCreator = () => {  
+  //to be transported to variableStorage.js
   const on = 'flex';
   const off = 'none';
+  const bulbOn = 'bulbOn';
+  const bulbOff = 'bulbOff';
  //for display control
   const [creatorBtnMenu, setCreatorBtnMenu] = useState(on);  
   const [creatorBtnAdd, setCreatorBtnAdd] = useState(off); 
-  const [creatorBtnBack, setCreatorBtnBack] = useState(off); 
+  const [creatorBtnBack, setCreatorBtnBack] = useState(off);   
+  const [creatorBtnMenuLight, setCreatorBtnMenuLight] = useState(bulbOff); 
 //
   const [textareaDisplay, setTextareaDisplay] = useState("");   
-  const [createBtnTxt, setCreateBtnTxt] = useState(todoCreatorAddTaskBtnTxt);
   const setTodoList = useSetRecoilState(todoListState); 
   const setInput = useSetRecoilState(textInputState);  
   const getInput = useRecoilValue(textInputState);  
@@ -58,12 +58,8 @@ const TodoItemCreator = () => {
       ]);
       setInput('');
       addTask(todoData); 
-      switchBtnTxt(setCreateBtnTxt, todoCreatorAddTaskBtnTxt, todoCreatorTaskAddedTxt);  
-    }
-    else {
-      switchBtnTxt(setCreateBtnTxt, todoCreatorAddTaskBtnTxt, todoCreatorTaskEmptyTxt);
-    }
-     
+      setTextareaDisplay("");
+    }     
   };
 
   //taking input value for task from textarea
@@ -95,6 +91,10 @@ const TodoItemCreator = () => {
     setTimeout(() => {
       if (creatorBtnAdd === 'none') {
         displayControlCreateTask(on, on, on); 
+        setCreatorBtnMenuLight(bulbOn);
+      }
+      else {
+        setCreatorBtnMenuLight(bulbOff);
       }
     },10);
 
@@ -129,7 +129,7 @@ const TodoItemCreator = () => {
                   justifyContent: 'baseline'                  
                 } }}>                  
         <ButtonPrimary text={openMenuBtnIcon} 
-        onClick={handleTaskMenuOpenCloseBtn}
+        onClick={handleTaskMenuOpenCloseBtn} color={creatorBtnMenuLight}
         backgroundColor={buttonBackgroundType1} displayIt={creatorBtnMenu} />
         <ButtonPrimary onClick={() => addItem(getInput)} text={addTaskBtnIcon} backgroundColor={buttonBackgroundType2}
         displayIt={creatorBtnAdd} />

@@ -12,14 +12,10 @@ import { titleStatsTitleTxt,
   titleStatsTotalTxt,  
   titleStatsCompletedTxt,
   titleStatsInProgressTxt,
-  titleStatsPercentCompletedTxt, 
-  titleStatsToActionBtnTxt,
-  enterListbtn,
+  titleStatsPercentCompletedTxt,   
   enterListBtnIcon
 } from '../../content/contentEng';
 import { buttonBackgroundType1, taskBackground } from '../../styles/themes/theme';
-import ButtonsWrapper from '../containers/ButtonsWrapper';
-// import { RiTodoLine } from 'react-icons/ri';
 
 
 const TitleStats = () => {

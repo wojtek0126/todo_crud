@@ -15,16 +15,11 @@ import TaskDetails from './TaskDetails';
 import ButtonsWrapper from '../containers/ButtonsWrapper';
 import { updateText,
   updateEmptyText,  
-  deleteText,
-  yesText,
-  noText, 
   statusYesNoMessage,
   editYesNoMessage,  
   deleteYesNoMessage,
   todoItemStatusInProgressText,
   todoItemStatusCompletedText, 
-  todoItemChangeStatusBtnTxt,
-  todoItemShowDetailsBtnTxt,
   taskNumberText,
   openMenuBtnIcon,
   detailsBtnIcon,
@@ -38,6 +33,9 @@ import { buttonBackgroundType1, buttonBackgroundType2, buttonBackgroundType3, ta
 
 
 const TodoItem = ({item}) => {
+  const bulbOn = 'bulbOn';
+  const bulbOff = 'bulbOff';
+
   //init data 
   const initialTitleDisplay = item.title;
   const todoItemPrevious = item;
@@ -66,6 +64,7 @@ const TodoItem = ({item}) => {
   const [taskBtnStatus, setTaskBtnStatus] = useState(off); 
   const [taskBtnDelete, setTaskBtnDelete] = useState(off);
   const [taskBtnDetails, setTaskBtnDetails] = useState(off);      
+  const [taskBtnMenuLight, setTaskBtnMenuLight] = useState(bulbOff); 
   //yes no popups active or not
   const [yesNoEditPopup, setYesNoEditPopup] = useState(off);  
   const [yesNoDeletePopup, setYesNoDeletePopup] = useState(off);  
@@ -265,6 +264,10 @@ console.log(getInput, "input do edit item z recoila");
       setTimeout(() => {
         if (taskBtnEdit === 'none') {
           displayControl(on, on, on, on, off, off, off, off, true, on); 
+          setTaskBtnMenuLight(bulbOn);
+        }
+        else {
+          setTaskBtnMenuLight(bulbOff);
         }
       },10);
 
@@ -307,7 +310,7 @@ console.log(getInput, "input do edit item z recoila");
                     justifyContent: 'baseline'}}}> 
             {/* open close task options */}
             <ButtonPrimary text={openMenuBtnIcon} 
-            onClick={handleTaskMenuOpenCloseBtn}
+            onClick={handleTaskMenuOpenCloseBtn} color={taskBtnMenuLight}
             backgroundColor={buttonBackgroundType1} displayIt={taskBtnMenu} />
            {/* show details button */}
            <ButtonPrimary

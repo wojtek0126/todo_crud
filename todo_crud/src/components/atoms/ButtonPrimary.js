@@ -3,7 +3,8 @@
 import { jsx } from 'theme-ui';
 
 
-const ButtonPrimary = ({text, backgroundColor, onClick, type, id, displayIt, alignSelf = 'center'}) => (
+const ButtonPrimary = ({text, backgroundColor, onClick, type, id, displayIt,
+    color = 'button-text', alignSelf = 'center'}) => (
     <div >
         <button type={type} onClick={onClick} id={id}
             sx={{
@@ -14,7 +15,7 @@ const ButtonPrimary = ({text, backgroundColor, onClick, type, id, displayIt, ali
             transition: '1s',    
             borderRadius: '4px',
             border: 'none',
-            color: 'buttonText',
+            color: `${color}`,
             display: 'flex !important',
             fontFamily: 'heading',
             fontSize: [0, 1],

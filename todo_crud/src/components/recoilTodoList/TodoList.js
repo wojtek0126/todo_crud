@@ -9,7 +9,7 @@ import TodoItemCreator from './TodoItemCreator';
 import TodoListFilters from './TodoListFilters';
 import TodoListStats from './TodoListStats';
 import { ThemeProvider, Container, Flex, Box } from 'theme-ui';
-import theme, { appBackground, taskBackground } from '../../styles/themes/theme';
+import theme, { taskBackground } from '../../styles/themes/theme';
 import { getAllTasks } from '../../API/fetch';
 import SearchField from '../atoms/SearchField';
 import MediumText from '../atoms/MediumText';

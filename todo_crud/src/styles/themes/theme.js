@@ -70,7 +70,10 @@ export default{
    //task detail show colors
    taskDetailBackground: '#F0E68C',
    taskDetailContentBackground: 'gold',
-   taskDetailBorderColor: '#000000',    
+   taskDetailBorderColor: '#000000',   
+   //bulb switch colors
+   bulbOn: 'gold',
+   bulbOff: '#ffffff' 
   },
   space: [0, 4, 8, 16, 32, 48],
   breakpoints: ['40em', '64em', '80em'],

@@ -24,21 +24,19 @@ import { buttonBackgroundType1, buttonBackgroundType2, buttonBackgroundType3, ta
 
 
 const ThoughtBoard = ({imageUrl}) => {
-   //display toggle style setting
+   //display toggle style setting to be out to variableStorage.js
    const on = 'flex';
    const off = 'none';
-
-    const boardTxtFromLocal = localStorage.getItem('notes'); 
-    
+   const bulbOn = 'bulbOn';
+   const bulbOff = 'bulbOff';
+   const boardTxtFromLocal = localStorage.getItem('notes');     
     //for display control
   const [boardBtnMenu, setBoardrBtnMenu] = useState(on);  
   const [boardBtnAdd, setBoardBtnAdd] = useState(off); 
   const [boardBtnDelete, setBoardBtnDelete] = useState(off); 
-
-    const [boardText, setBoardText] = useState(boardTxtFromLocal);  
-    const [rememberButtonTxt, setRememberButtonTxt] = useState(thoughtRememberBtnTxt);
-    const [forgetButtonTxt, setForgetButtonTxt] = useState(thoughtForgetBtnTxt);  
-    const setInput = useSetRecoilState(textInputState);     
+  const [boardBtnMenuLight, setBoardBtnMenuLight] = useState(bulbOff); 
+  const [boardText, setBoardText] = useState(boardTxtFromLocal); 
+  const setInput = useSetRecoilState(textInputState);     
 
     
     const handleOnChange = ({target: {value}}) => {
@@ -50,21 +48,17 @@ const ThoughtBoard = ({imageUrl}) => {
     const handleClickSaveToLocal = (localKey, localValue, buttonText1, buttonText2, inputValue) => {
       //no empty content - validator        
       if ( inputValue === "" || inputValue === null || inputValue === undefined) {
-        switchBtnTxt(setRememberButtonTxt, thoughtRememberBtnTxt, thoughtRememberEmptyTxt);
       }    
       else {    
         localStorage.setItem(localKey, localValue);       
-        switchBtnTxt(setRememberButtonTxt, buttonText2, buttonText1);  
       }      
     }
 
-    const handleClickClearLocal = (buttonText1, buttonText2, inputValue) => {    
+    const handleClickClearLocal = (inputValue) => {    
       if (inputValue === "" || inputValue === null || inputValue === undefined) {
-        switchBtnTxt(setForgetButtonTxt, thoughtForgetBtnTxt, thoughtForgetEmpytTxt);      
       }
       else {
         localStorage.clear();            
-        switchBtnTxt(setForgetButtonTxt, buttonText2, buttonText1);
         setTimeout(() => {
         setBoardText("");
         })
@@ -84,7 +78,11 @@ const handleBoardOpenCloseBtn = () => {
   displayControlBoard(on, off, off); 
   setTimeout(() => {
     if (boardBtnAdd === 'none') {
-      displayControlBoard(on, on, on); 
+      displayControlBoard(on, on, on);
+      setBoardBtnMenuLight(bulbOn); 
+    }
+    else {
+      setBoardBtnMenuLight(bulbOff); 
     }
   },10);
 
@@ -128,7 +126,7 @@ const handleBoardOpenCloseBtn = () => {
                         alignItems: 'baseline',
                         justifyContent: 'center'}}}>
                <ButtonPrimary text={openMenuBtnIcon} 
-                  onClick={handleBoardOpenCloseBtn}
+                  onClick={handleBoardOpenCloseBtn} color={boardBtnMenuLight}
                   backgroundColor={buttonBackgroundType1} displayIt={boardBtnMenu} />
                <ButtonPrimary text={saveBtnIcon} backgroundColor={buttonBackgroundType2} 
                onClick={() => handleClickSaveToLocal('notes', boardText, thoughtRememberedTxt, thoughtRememberBtnTxt, 
