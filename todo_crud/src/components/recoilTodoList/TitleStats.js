@@ -2,10 +2,7 @@
 /** @jsx jsx */
 import { useEffect, useState } from 'react';
 import { jsx, Flex } from 'theme-ui';
-// import { useRecoilState, useRecoilValue } from 'recoil';
-// import { todoListState, todoListStatsState } from "../../functions/recoil";
 import { nonRecoilStats } from "../../functions/functionStorage";
-
 import ProgressCounter from '../atoms/ProgressCounter';
 import MediumText from '../atoms/MediumText';
 import ButtonWithlink from '../atoms/ButtonWithLink';
@@ -20,9 +17,7 @@ import { titleStatsTitleTxt,
 import { buttonBackgroundType1, taskBackground } from '../../styles/themes/theme';
 
 
-const TitleStats = () => {
-    // const setTodos = useRecoilState(todoListState);   
-    // // const getTodos = useRecoilValue(todoListState)
+const TitleStats = () => {   
     const [tasksStatsTitle, setTasksStatsTitle] = useState([]) 
 
 
@@ -34,19 +29,8 @@ const TitleStats = () => {
       getTodos();  
     }, []);  
 
-    const titleStats = nonRecoilStats(tasksStatsTitle);
-    
-    // const {
-    //   totalNum,
-    //   totalCompletedNum,
-    //   totalUncompletedNum,
-    //   percentCompleted,
-    // } = useRecoilValue(todoListStatsState);
-  
-    //percentage completed feature - round it to nearest whole number
-    // const formattedPercentCompleted = Math.round(percentCompleted);
- 
-    console.log(titleStats.totalNumTitleScrn);
+    const titleStats = nonRecoilStats(tasksStatsTitle);    
+   
 
     return (
       <Flex
