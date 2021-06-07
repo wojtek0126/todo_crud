@@ -14,7 +14,7 @@ const ButtonWithlink = ({to, text, backgroundColor, onClick, displayIt, alignSel
             background: `${backgroundColor}`,
             borderRadius: '4px',
             border: 'none',
-            color: 'buttonText',
+            color: 'buttonText2',
             textAlign: 'center',
             fontFamily: 'heading',
             fontSize: [0, 1],

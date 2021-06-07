@@ -1,7 +1,8 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
+import React from 'react';
 import { useEffect, useState } from 'react';
-import { jsx, Flex } from 'theme-ui';
+import { jsx } from 'theme-ui';
 import { nonRecoilStats } from "../../functions/functionStorage";
 import ProgressCounter from '../atoms/ProgressCounter';
 import MediumText from '../atoms/MediumText';
@@ -12,42 +13,43 @@ import { titleStatsTitleTxt,
   titleStatsCompletedTxt,
   titleStatsInProgressTxt,
   titleStatsPercentCompletedTxt,   
-  enterListBtnIcon
 } from '../../content/contentEng';
-import { buttonBackgroundType1, taskBackground } from '../../styles/themes/theme';
+import { buttonBackgroundType1 } from '../../styles/gradients';
+import { enterListBtnIcon } from '../../content/icons';
+import StatsTitleWrapper from '../containers/StatsTitleWrapper';
 
 
-const TitleStats = () => {   
+const TitleStats = () => {  
+    const bulbOn = 'bulbOn';
+    const bulbOff = 'bulbOff'; 
     const [tasksStatsTitle, setTasksStatsTitle] = useState([]) 
+    const [tasksStatsTitleBtnLight, setTasksStatsTitleBtnLight] = useState(bulbOff) 
+
 
 
     useEffect(() => {
        const getTodos = async () => {
-      //  getAllTasks(setTodos);
        getAllTasks(setTasksStatsTitle);
        }
       getTodos();  
     }, []);  
 
-    const titleStats = nonRecoilStats(tasksStatsTitle);    
+    const titleStats = nonRecoilStats(tasksStatsTitle);  
+    
+    const handleOnOffOnClick = (myTarget, setIt, on, off) => {
+      if (myTarget === on) {
+        setIt(off);
+      }
+      else {
+        setIt(on);
+      }
+    } 
    
 
     return (
-      <Flex
-      sx={{
-        flexDirection: 'column',
-        background: 'box',     
-        // backgroundColor: 'boxBackground',
-        background: `${taskBackground}`,
-        color: 'text',
-        border: '2px solid',
-        borderColor: 'boxBorder',
-        borderRadius: 4,
-        fontSize: 4,
-        margin: 3,
-        padding: 3,
-      }}
-    ><MediumText text={titleStatsTitleTxt} marginBottom={2} />
+      <StatsTitleWrapper contentArea={
+        <>
+    <MediumText text={titleStatsTitleTxt} marginBottom={2} />
         <ProgressCounter text={`${titleStatsTotalTxt} ${titleStats.totalNumTitleScrn}`}
          backgroundColor={'counterAll'} color={`counterText`} />
         <ProgressCounter text={`${titleStatsCompletedTxt} ${titleStats.totalCompletedNumTitleScrn}`}
@@ -56,8 +58,11 @@ const TitleStats = () => {
          backgroundColor={'counterCompleted'} color={`counterText`}/>
         <ProgressCounter text={`${titleStatsPercentCompletedTxt} ${titleStats.percentCompletedTitleScrn}`}
          backgroundColor={'counterPercentage'} color={`counterText`}/>  
-        <ButtonWithlink to={'action'} text={enterListBtnIcon} backgroundColor={buttonBackgroundType1} alignSelf={'baseline'}/>
-      </Flex>
+        <ButtonWithlink to={'action'} text={enterListBtnIcon} backgroundColor={buttonBackgroundType1} alignSelf={'baseline'}
+        color={tasksStatsTitleBtnLight} 
+        onClick={() => handleOnOffOnClick(tasksStatsTitleBtnLight, setTasksStatsTitleBtnLight, bulbOn, bulbOff)} />
+        </>
+      } />     
     );
   }
 

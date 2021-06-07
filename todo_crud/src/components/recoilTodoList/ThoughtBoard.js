@@ -1,34 +1,22 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */  
+import React from 'react';
 import { useState } from 'react';
 import { jsx } from 'theme-ui';
-import { Flex } from "theme-ui";
-import { switchBtnTxt } from '../../functions/functionStorage';
 import ButtonPrimary from '../atoms/ButtonPrimary';
 import MediumText from '../atoms/MediumText';
-import { thoughtBoardTitleTxt,
-         thoughtRememberBtnTxt,
-         thoughtForgetBtnTxt,
-         thoughtForgottenTxt,
-         thoughtRememberedTxt,
-         thoughtRememberEmptyTxt,
-         thoughtForgetEmpytTxt,
-         openMenuBtnIcon,
-         saveBtnIcon,
-         deleteBtnIcon
-} from '../../content/contentEng';
+import { openMenuBtnIcon, saveBtnIcon, deleteBtnIcon } from '../../content/icons';
+import { thoughtBoardTitleTxt, thoughtForgetBtnTxt, thoughtForgottenTxt } from '../../content/contentEng';
 import TextArea from '../atoms/TextArea';
 import { textInputState } from '../../functions/recoil';
 import { useSetRecoilState } from 'recoil';
-import { buttonBackgroundType1, buttonBackgroundType2, buttonBackgroundType3, taskBackground } from '../../styles/themes/theme';
+import { buttonBackgroundType2, buttonBackgroundType3, buttonBackgroundType4 } from '../../styles/gradients';
+import { bulbOff, bulbOn, off, on } from '../../variables/settings';
+import ThoughtBoardWrapper from '../containers/ThoughtBoardWrapper';
+import ThoughtButtonsWrapper from '../containers/ThoughtButtonsWrapper';
 
 
-const ThoughtBoard = ({imageUrl}) => {
-   //display toggle style setting to be out to variableStorage.js
-   const on = 'flex';
-   const off = 'none';
-   const bulbOn = 'bulbOn';
-   const bulbOff = 'bulbOff';
+const ThoughtBoard = () => { 
    const boardTxtFromLocal = localStorage.getItem('notes');     
     //for display control
   const [boardBtnMenu, setBoardrBtnMenu] = useState(on);  
@@ -45,7 +33,7 @@ const ThoughtBoard = ({imageUrl}) => {
     };
    
 
-    const handleClickSaveToLocal = (localKey, localValue, buttonText1, buttonText2, inputValue) => {
+    const handleClickSaveToLocal = (localKey, localValue, inputValue) => {
       //no empty content - validator        
       if ( inputValue === "" || inputValue === null || inputValue === undefined) {
       }    
@@ -90,52 +78,24 @@ const handleBoardOpenCloseBtn = () => {
 
 
   return ( 
-    <Flex
-    sx={{       
-      maxWidth: '100vw',               
-      flexDirection: 'column',
-      background: 'box',     
-      // backgroundColor: 'boxBackground',
-      background: `${taskBackground}`,
-      color: 'text',
-      border: '2px solid',
-      borderColor: 'boxBorder',
-      borderRadius: 4,
-      fontSize: 4,
-      margin: 3,
-      padding: 3,
-      marginBottom: 0
-    }}
-  >
-      <MediumText text={thoughtBoardTitleTxt} marginBottom={2} />
-        <TextArea value={boardText} textareaBorderFocusColor={'inputBorderFocus'} onChange={handleOnChange}
-           sx={{                   
-              maxWidth: '100%',  
-              minHeight: '14.5vh',
-              backgroundImage: `url(${imageUrl})`,  
-              fontFamily: 'blackboard',
-              fontWeight: 'blackboardThick',
-              color: 'textWhite',
-              '&::placeholder' : {color: 'placeHolderText'}                   
-           }}/>       
-           <Flex sx={{flexWrap: 'wrap',
-                      flexDirection: 'row',
-                      justifyContent: 'flex-start',
-                      '@media screen and (max-width: 700px)': {
-                        flexDirection: 'column',
-                        alignItems: 'baseline',
-                        justifyContent: 'center'}}}>
-               <ButtonPrimary text={openMenuBtnIcon} 
+    <ThoughtBoardWrapper contentArea={
+      <>
+ <MediumText text={thoughtBoardTitleTxt} marginBottom={2} />
+        <TextArea value={boardText} textareaBorderFocusColor={'inputBorderFocus'} onChange={handleOnChange} />   
+        <ThoughtButtonsWrapper contentArea={
+          <>
+    <ButtonPrimary text={openMenuBtnIcon} 
                   onClick={handleBoardOpenCloseBtn} color={boardBtnMenuLight}
-                  backgroundColor={buttonBackgroundType1} displayIt={boardBtnMenu} />
+                  backgroundColor={buttonBackgroundType4} displayIt={boardBtnMenu} />
                <ButtonPrimary text={saveBtnIcon} backgroundColor={buttonBackgroundType2} 
-               onClick={() => handleClickSaveToLocal('notes', boardText, thoughtRememberedTxt, thoughtRememberBtnTxt, 
-               boardText)} displayIt={boardBtnAdd} />
+               onClick={() => handleClickSaveToLocal('notes', boardText, boardText)} displayIt={boardBtnAdd} />
                <ButtonPrimary text={deleteBtnIcon} backgroundColor={buttonBackgroundType3}
                 onClick={() => handleClickClearLocal(thoughtForgottenTxt, thoughtForgetBtnTxt, boardText)}
                 displayIt={boardBtnDelete}/>
-           </Flex>                 
-      </Flex>         
+          </>
+        } />           
+      </>
+    } />            
   );
 };
 

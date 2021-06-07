@@ -1,5 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
+import React from 'react';
 import { jsx, Flex } from 'theme-ui';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { useState } from 'react';
@@ -10,23 +11,15 @@ import MediumText from '../atoms/MediumText';
 import ButtonWithlink from '../atoms/ButtonWithLink';
 import TextArea from '../atoms/TextArea';
 import { timeStampFormatted } from '../../functions/functionStorage';
-import {   
-  todoCreatorTitleTxt,
-  todoCreatorPlaceholderTxt,   
-  todoCreatorNotUpdatedYetTxt,
-  openMenuBtnIcon,
-  addTaskBtnIcon,
-  goBackBtnIcon,   
-} from '../../content/contentEng';
-import { buttonBackgroundType1, buttonBackgroundType2, buttonBackgroundType3, taskBackground } from '../../styles/themes/theme';
+import { openMenuBtnIcon, addTaskBtnIcon, goBackBtnIcon } from '../../content/icons';
+import { todoCreatorTitleTxt, todoCreatorPlaceholderTxt, todoCreatorNotUpdatedYetTxt } from '../../content/contentEng';
+import { buttonBackgroundType2, buttonBackgroundType3, buttonBackgroundType4, taskBackground } from '../../styles/gradients';
+import { bulbOff, bulbOn, off, on } from '../../variables/settings';
+import CreateWrapper from '../containers/CreateWrapper';
+import CreateButtonsWrapper from '../containers/CreateButtonsWrapper';
 
 
-const TodoItemCreator = () => {  
-  //to be transported to variableStorage.js
-  const on = 'flex';
-  const off = 'none';
-  const bulbOn = 'bulbOn';
-  const bulbOff = 'bulbOff';
+const TodoItemCreator = () => {    
  //for display control
   const [creatorBtnMenu, setCreatorBtnMenu] = useState(on);  
   const [creatorBtnAdd, setCreatorBtnAdd] = useState(off); 
@@ -102,41 +95,27 @@ const TodoItemCreator = () => {
 
 
   return (
-    <Flex
-    sx={{
-      flexDirection: 'column',
-      background: 'box',   
-      // backgroundColor: 'boxBackground',
-      background: `${taskBackground}`,
-      color: 'text',      
-      border: '2px solid',
-      borderColor: 'boxBorder', 
-      borderRadius: 4,
-      fontSize: 4,
-      margin: 3,
-      padding: 3,
-    }}
-  ><MediumText text={todoCreatorTitleTxt} marginBottom={2} />
+    <CreateWrapper contentArea={
+      <>
+       <MediumText text={todoCreatorTitleTxt} marginBottom={2} />
       <TextArea textareaBorderFocusColor={'inputBorderFocus'} value={textareaDisplay} onBlur={handleonBlur}
        onChange={handleonChange} backgroundColor={`inputBackground`} 
       placeholder={todoCreatorPlaceholderTxt}/>
-      <Flex sx={{flexDirection: 'row',
-                 justifyContent: 'flex-start',
-                 flexWrap: 'wrap',
-                 '@media screen and (max-width: 700px)': {
-                  flexDirection: 'column',
-                  alignItems: 'baseline',
-                  justifyContent: 'baseline'                  
-                } }}>                  
-        <ButtonPrimary text={openMenuBtnIcon} 
-        onClick={handleTaskMenuOpenCloseBtn} color={creatorBtnMenuLight}
-        backgroundColor={buttonBackgroundType1} displayIt={creatorBtnMenu} />
-        <ButtonPrimary onClick={() => addItem(getInput)} text={addTaskBtnIcon} backgroundColor={buttonBackgroundType2}
-        displayIt={creatorBtnAdd} />
-        <ButtonWithlink to={`home`} text={goBackBtnIcon} backgroundColor={buttonBackgroundType3}
-        displayIt={creatorBtnBack} alignSelf={'baseline'}/>
-      </Flex>
-    </Flex>
+      <CreateButtonsWrapper contentArea={
+        <>
+          <ButtonPrimary text={openMenuBtnIcon} 
+          onClick={handleTaskMenuOpenCloseBtn} color={creatorBtnMenuLight}
+          backgroundColor={buttonBackgroundType4} displayIt={creatorBtnMenu} />
+          <ButtonPrimary onClick={() => addItem(getInput)} text={addTaskBtnIcon} backgroundColor={buttonBackgroundType2}
+          displayIt={creatorBtnAdd} />
+          <ButtonWithlink to={`home`} text={goBackBtnIcon} backgroundColor={buttonBackgroundType3}
+          displayIt={creatorBtnBack} alignSelf={'baseline'}/>
+        </>
+      } />
+      </>
+    } />
+   
+    
   );
 }
 

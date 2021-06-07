@@ -1,13 +1,15 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from 'theme-ui';
+import { taskBackground } from '../../styles/gradients';
 
 
-const TodoItemWrapper = ({contentArea}) => (    
+const ItemWrapper = ({contentArea}) => (    
     <div 
     sx={{
       background: 'box',     
-      backgroundColor: 'boxBackground',
+      // backgroundColor: 'boxBackground',
+      background: `${taskBackground}`,
       color: 'text',
       border: '2px solid', 
       borderColor: 'boxBorder',  
@@ -22,7 +24,7 @@ const TodoItemWrapper = ({contentArea}) => (
 );
 
 
-export default TodoItemWrapper;
+export default ItemWrapper;
 
 
     

@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from 'theme-ui';
-import { taskBackground } from '../../styles/themes/theme';
+import { taskBackground } from '../../styles/styles/gradients';
 
 
 const TaskWrapper = ({contentArea}) => (    

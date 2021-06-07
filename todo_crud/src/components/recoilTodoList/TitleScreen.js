@@ -1,7 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */  
-import {jsx, ThemeProvider, Container, Flex } from 'theme-ui';
-import theme, { taskBackground } from '../../styles/themes/theme';
+import {jsx, ThemeProvider, Container } from 'theme-ui';
 import Footer from '../molecules/Footer';
 import TitleStats from './TitleStats';
 import blackboard from "../../assets/b4769e3a52766f30e86b375391c84441.jpg";
@@ -15,7 +14,9 @@ import { titlePart1Txt,
 } from '../../content/contentEng';
 import { inputLengthState } from '../../functions/recoil';
 import { useRecoilValue } from 'recoil';
-
+import theme from '../../styles/themes/theme';
+import TitleWrapper from '../containers/TitleWrapper';
+import FooterWrapper from '../containers/FooterWrapper';
 
   const TitleScreen = () => {  
     const inputLength = useRecoilValue(inputLengthState);
@@ -26,29 +27,15 @@ import { useRecoilValue } from 'recoil';
 
       return (
         <ThemeProvider theme={theme} >                
-          <Container>             
-          <Flex sx={{    
-            // backgroundColor: 'boxBackground',                    
-            background: `${taskBackground}`,
-            color: 'text',
-            border: '2px solid',  
-            borderColor: 'boxBorder', 
-            borderRadius: 4,
-            fontSize: 4,
-            margin: 3,       
-            padding: 3,
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}><TitleText text1={titlePart1Txt} text2={titlePart2Txt} text3={titlePart3Txt} marginBottom={2} />       
-            </Flex>
+          <Container>   
+            <TitleWrapper contentArea={           
+              <TitleText text1={titlePart1Txt} text2={titlePart2Txt} text3={titlePart3Txt} marginBottom={2} />               
+            } />            
             <ThoughtBoard imageUrl={blackboard} />
-            <TitleStats />            
-            <Flex sx = {{   
-             justifyContent: 'center',
-             alignItems: 'flex-end'}}>            
-                <Footer year={footerYearTxt} brandName={footerBrandnameTxt} />
-            </Flex>         
+            <TitleStats />  
+            <FooterWrapper contentArea={
+              <Footer year={footerYearTxt} brandName={footerBrandnameTxt} />
+            } />                     
           </Container>     
         </ThemeProvider>      
       );

@@ -15,7 +15,7 @@ export const timeStampFormatted = () => {
   return formatted
 } 
 
-//title screen stats from API not recoil
+//title screen stats from API not recoil state
 export const nonRecoilStats = (list) => {
   const todoList = list;
   const totalNumTitleScrn = todoList.length;
@@ -30,10 +30,17 @@ export const nonRecoilStats = (list) => {
      };
 }
 
+//TodoItem.js functions
+export const replaceItemAtIndex = (arr, index, newValue) => {
+  return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
+}
 
+export const removeItemAtIndex = (arr, index) => {
+  return [...arr.slice(0, index), ...arr.slice(index + 1)];
+}
 
    
-  // },
+ 
 
 
 

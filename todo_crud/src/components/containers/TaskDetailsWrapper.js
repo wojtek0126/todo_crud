@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from 'theme-ui';
-import{ taskDetailsBackground } from '../../styles/themes/theme';
+import{ taskDetailsBackground } from '../../styles/gradients';
 
 
 const TaskDetailsWrapper = ({contentArea, displayIt}) => (  

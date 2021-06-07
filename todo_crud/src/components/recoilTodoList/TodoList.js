@@ -9,12 +9,13 @@ import TodoItemCreator from './TodoItemCreator';
 import TodoListFilters from './TodoListFilters';
 import TodoListStats from './TodoListStats';
 import { ThemeProvider, Container, Flex, Box } from 'theme-ui';
-import theme, { taskBackground } from '../../styles/themes/theme';
 import { getAllTasks } from '../../API/fetch';
 import SearchField from '../atoms/SearchField';
 import MediumText from '../atoms/MediumText';
 import {CircleArrow as ScrollUpButton} from 'react-scroll-up-button';
 import { todoListTitleTxt, todoListSearchPlaceholderTxt } from '../../content/contentEng';
+import theme from '../../styles/themes/theme';
+import ListWrapper from '../containers/ListWrapper';
 
 
 const TodoList = () => {
@@ -34,8 +35,7 @@ const TodoList = () => {
      getTodos()  
    }, [])  
   
-   let filterData = filteredData.filter(item => item.title.includes(toSearch));  
- 
+   let filterData = filteredData.filter(item => item.title.includes(toSearch));   
 
    const handleOnChange = ({target: {value}}) => {
     setTimeout(() => {
@@ -48,25 +48,17 @@ const TodoList = () => {
       <ThemeProvider theme={theme}>       
         <Container>            
         <TodoItemCreator/>  
-        <Flex sx={{           
-          // backgroundColor: 'boxBackground',
-          background: `${taskBackground}`,
-          color: 'text',
-          border: '2px solid', 
-          borderColor: 'boxBorder',
-          borderRadius: 4,
-          fontSize: 4,
-          margin: 3,
-          padding: 3,
-          flexDirection: 'column'
-        }}><MediumText text={todoListTitleTxt} marginBottom={2} />
-        <TodoListFilters />
-        <SearchField 
-          type={"text"}
-          placeholder={todoListSearchPlaceholderTxt}
-          value={toSearch}
-          onChange={handleOnChange}        
-        /></Flex>
+        <ListWrapper contentArea={
+          <>
+          <MediumText text={todoListTitleTxt} marginBottom={2} />
+          <TodoListFilters />
+          <SearchField 
+            type={"text"}
+            placeholder={todoListSearchPlaceholderTxt}
+            value={toSearch}
+            onChange={handleOnChange} />
+            </>
+        } />     
         <TodoListStats />  
         <ScrollUpButton />             
         <Flex sx={{ flexWrap: 'wrap' }}>  

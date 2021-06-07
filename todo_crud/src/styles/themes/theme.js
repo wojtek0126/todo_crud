@@ -1,16 +1,3 @@
-//gradients 
-export const titleBackground = 'linear-gradient(to top, #0ba360 0%, #3cba92 100%)';
-export const itemDetailsBackground = 'linear-gradient(to right, #43e97b 0%, #38f9d7 100%)';  
-export const buttonBackgroundType1 = 'linear-gradient(to top, #0ba360 0%, #3cba92 100%)';  
-export const buttonBackgroundType2 = 'linear-gradient(to top, #4481eb 0%, #04befe 100%)';  
-export const buttonBackgroundType3 = 'linear-gradient(-20deg, #fc6076 0%, #ff9a44 100%)'; 
-export const appBackground = 'linear-gradient(to top, #0ba360 0%, #3cba92 100%)';   
-export const taskBackground = 'linear-gradient( 109.6deg,  rgba(0,191,165,1) 11.2%, rgba(0,140,122,1) 100.2% )';  
-export const taskDetailsBackground = 'linear-gradient(to right, #43e97b 0%, #38f9d7 100%)';  
-
-
-//background-image: linear-gradient( 109.6deg,  rgba(0,191,165,1) 11.2%, rgba(0,140,122,1) 100.2% );
-//theme values
 export default{
   fonts: {
     body: "'Reggae One', cursive",
@@ -50,6 +37,7 @@ export default{
     buttons2: '#34aadc',
     buttons3: '#ff70b3',
     buttonText: '#ffffff',
+    buttonText2: '#000000',
     buttonsClicked: '#ff70b3', 
     //checkbox colors
     checkboxBorder: '#174A41',
@@ -69,11 +57,11 @@ export default{
     counterPercentage: '#000000', 
    //task detail show colors
    taskDetailBackground: '#F0E68C',
-   taskDetailContentBackground: 'gold',
+   taskDetailContentBackground: 'burlywood',
    taskDetailBorderColor: '#000000',   
    //bulb switch colors
    bulbOn: 'gold',
-   bulbOff: '#ffffff' 
+   bulbOff: 'darkgrey' 
   },
   space: [0, 4, 8, 16, 32, 48],
   breakpoints: ['40em', '64em', '80em'],

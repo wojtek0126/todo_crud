@@ -4,18 +4,17 @@ import { Flex, jsx } from 'theme-ui';
 import ButtonPrimary from '../atoms/ButtonPrimary';
 import TaskDetailsWrapper from '../containers/TaskDetailsWrapper';
 import { taskDetailsTaskNumberTxt,
-  taskDetailsTaskContentTxt,
-  taskDetailsStatusTxt,
-  taskDetailsTimeStartedTxt,
-  taskDetailsTimeUpdatedTxt,
-  taskDetailsInProgressTxt,
-  taskDetailsCloseBtnTxt,
-  taskDetailsCompletedTxt,
-  hideDetailsBtnIcon
+         taskDetailsTaskContentTxt,
+         taskDetailsStatusTxt,
+         taskDetailsTimeStartedTxt,
+         taskDetailsTimeUpdatedTxt,
+         taskDetailsInProgressTxt,
+         taskDetailsCompletedTxt  
 } from '../../content/contentEng';
+import { hideDetailsBtnIcon } from '../../content/icons';
 import DisplayDetailsText from '../atoms/DisplayDetailsText';
 import TaskDetailBtnWrapper from '../containers/TaskDetailBtnWrapper';
-import { buttonBackgroundType3 } from '../../styles/themes/theme';
+import { buttonBackgroundType3, taskDetailsDetailBackground } from '../../styles/gradients';
 
 
 const TaskDetails =({clickClose, displayIt = 'flex', taskData}) => {  
@@ -36,15 +35,15 @@ const TaskDetails =({clickClose, displayIt = 'flex', taskData}) => {
       <TaskDetailsWrapper displayIt={displayIt} contentArea={
         <Flex sx={{flexDirection: 'column'}}>    
           <DisplayDetailsText headText={taskDetailsTaskNumberTxt} contentText={getTask.id} marginTop={1} marginBottom={1}
-          backgroundColor={'taskDetailContentBackground'}/>       
+          backgroundColor={taskDetailsDetailBackground}/>       
           <DisplayDetailsText headText={taskDetailsTaskContentTxt} contentText={getTask.title} marginTop={2} marginBottom={2} 
-          backgroundColor={'taskDetailContentBackground'}/>            
+          backgroundColor={taskDetailsDetailBackground}/>            
           <DisplayDetailsText headText={taskDetailsStatusTxt} contentText={completionText} marginTop={2} marginBottom={2}
-          backgroundColor={'taskDetailContentBackground'}/>
+          backgroundColor={taskDetailsDetailBackground}/>
           <DisplayDetailsText headText={taskDetailsTimeStartedTxt} contentText={getTask.created_at} marginTop={2} marginBottom={2}
-          backgroundColor={'taskDetailContentBackground'} />            
+          backgroundColor={taskDetailsDetailBackground} />            
           <DisplayDetailsText headText={taskDetailsTimeUpdatedTxt} contentText={getTask.updated_at} marginTop={2} marginBottom={2}
-          backgroundColor={'taskDetailContentBackground'} />  
+          backgroundColor={taskDetailsDetailBackground} />  
             <TaskDetailBtnWrapper contentArea={  
             <ButtonPrimary text={hideDetailsBtnIcon} backgroundColor={buttonBackgroundType3}
                            onClick={clickClose} marginTop={1} marginBottom={1}/>} />          

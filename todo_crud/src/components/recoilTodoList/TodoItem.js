@@ -1,6 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { Flex, jsx } from 'theme-ui';
+import React from 'react';
+import { jsx } from 'theme-ui';
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import { useState, useEffect } from 'react';
 import { textInputState, todoListState } from '../../functions/recoil';
@@ -9,18 +10,11 @@ import { deleteTask, updateTask } from '../../API/fetch';
 import MediumText from '../atoms/MediumText';
 import BigText from '../atoms/BigText';
 import TextArea from '../atoms/TextArea';
-import { switchBtnTxt, timeStampFormatted, } from '../../functions/functionStorage';
+import { timeStampFormatted, } from '../../functions/functionStorage';
 import YesNoPopup from '../molecules/YesNoPopup';
 import TaskDetails from './TaskDetails';
 import ButtonsWrapper from '../containers/ButtonsWrapper';
-import { updateText,
-  updateEmptyText,  
-  statusYesNoMessage,
-  editYesNoMessage,  
-  deleteYesNoMessage,
-  todoItemStatusInProgressText,
-  todoItemStatusCompletedText, 
-  taskNumberText,
+import { 
   openMenuBtnIcon,
   detailsBtnIcon,
   editBtnIcon,
@@ -28,29 +22,24 @@ import { updateText,
   deleteBtnIcon,
   declineBtnIcon,
   confirmBtnIcon
-} from '../../content/contentEng';
-import { buttonBackgroundType1, buttonBackgroundType2, buttonBackgroundType3, taskBackground } from '../../styles/themes/theme';
+} from '../../content/icons';
+import { buttonBackgroundType1, buttonBackgroundType2, buttonBackgroundType3, buttonBackgroundType4 } from '../../styles/gradients';
+import { deleteYesNoMessage, editYesNoMessage, statusYesNoMessage, taskNumberText, todoItemStatusCompletedText, todoItemStatusInProgressText, updateEmptyText, updateText } from '../../content/contentEng';
+import { bulbOff, bulbOn, off, on } from '../../variables/settings';
+import ItemWrapper from '../containers/ItemWrapper';
+import ItemStatusWrapper from '../containers/ItemStatusWrapper';
+import ItemButtonsWrapper from '../containers/ItemButtonsWrapper';
 
 
 const TodoItem = ({item}) => {
-  const bulbOn = 'bulbOn';
-  const bulbOff = 'bulbOff';
-
   //init data 
   const initialTitleDisplay = item.title;
-  const todoItemPrevious = item;
-  //display toggle style setting
-  const on = 'flex';
-  const off = 'none';
-  //sets equal delays for common timeouts
-  const delayTime = 1800;
+  const todoItemPrevious = item;  
 
   //takes whole list from recoilState
   const [todoList, setTodoList] = useRecoilState(todoListState); 
    //index finder
    const index = todoList.findIndex((listItem) => listItem === item);
-  //text on update button
-  const [updateButtonText, setUpdateButtonText] = useState(updateText);
   //initial and updated task data
   const [initTaskData, setInitTaskData] = useState(item);  
   const [updatedData, setUpdatedData] = useState(todoItemPrevious);      
@@ -139,16 +128,12 @@ console.log(getInput, "input do edit item z recoila");
       if (updatedData.title === "" || updatedData.title === null || updatedData.title === undefined) {
         setTaskBtnEdit(on);
         setYesNoEditPopup(off); 
-        switchBtnTxt(setUpdateButtonText, updateText, updateEmptyText, delayTime);  
-        setTimeout(() => {
           setTaskBtnEdit(off);
           setYesNoEditPopup(on); 
-        }, delayTime);   
       } 
       else {
-        updateTask(item.id, todoDataMod);  //
-        // setTextareaDisplay(todoDataMod.title);    
-        setInitTaskData(item);            //  
+        updateTask(item.id, todoDataMod);  
+        setInitTaskData(item);              
         const newList = replaceItemAtIndex(todoList, index, {
           ...item,
           title: todoDataMod.title,
@@ -274,44 +259,23 @@ console.log(getInput, "input do edit item z recoila");
     }
 
 
-    return (      
-        <div 
-        sx={{
-          background: 'box',     
-          // backgroundColor: 'boxBackground',
-          background: `${taskBackground}`,
-          color: 'text',
-          border: '2px solid', 
-          borderColor: 'boxBorder',  
-          borderRadius: 4,
-          fontSize: 4,
-          margin: 3,
-          padding: 3,
-        }}
-        ><BigText text={ `${taskNumberText} # ${item.id}:`} marginBottom={2} />
+    return (    
+      <ItemWrapper contentArea={
+        <>
+<BigText text={ `${taskNumberText} # ${item.id}:`} marginBottom={2} />
         {/* display with task title*/}
           <TextArea disabled={disabled} value={textareaDisplay} onBlur={() => handleonBlur(textareaDisplay)}
           textareaBorderColor={textareaBorderColor}
           textareaBorderFocusColor={textareaBorderFocusColor}
-        onChange={editItemText} backgroundColor={`inputBackground`}/>     
-        <Flex sx={{flexDirection: 'row',
-                   marginBottom: 2,
-                   '@media screen and (max-width: 700px)': {                   
-                    alignItems: 'center',
-                    justifyContent: 'center'}}} >            
-          <MediumText text={itemStatusDisplay(item.completed)} display={taskStatusView} />      
-        </Flex>   
-        <Flex sx={{flexWrap: 'wrap',
-                   flexDirection: 'row',
-                   justifyContent: 'flex-start',
-                   '@media screen and (max-width: 700px)': {
-                    flexDirection: 'column',
-                    alignItems: 'baseline',
-                    justifyContent: 'baseline'}}}> 
-            {/* open close task options */}
-            <ButtonPrimary text={openMenuBtnIcon} 
+        onChange={editItemText} backgroundColor={`inputBackground`}/>  
+        <ItemStatusWrapper contentArea={        
+          <MediumText text={itemStatusDisplay(item.completed)} display={taskStatusView} />} />        
+       <ItemButtonsWrapper contentArea={
+         <>
+           {/* open close task options */}
+           <ButtonPrimary text={openMenuBtnIcon} 
             onClick={handleTaskMenuOpenCloseBtn} color={taskBtnMenuLight}
-            backgroundColor={buttonBackgroundType1} displayIt={taskBtnMenu} />
+            backgroundColor={buttonBackgroundType4} displayIt={taskBtnMenu} />
            {/* show details button */}
            <ButtonPrimary
             onClick={handleShowDetailsBtn} displayIt={taskBtnDetails}
@@ -327,8 +291,9 @@ console.log(getInput, "input do edit item z recoila");
                {/* delete button*/}               
             <ButtonPrimary 
             onClick={handleDeleteBtnClick} displayIt={taskBtnDelete}
-            text={deleteBtnIcon} backgroundColor={buttonBackgroundType3}/>       
-        </Flex>        
+            text={deleteBtnIcon} backgroundColor={buttonBackgroundType3}/>  
+         </>
+       } />             
             {/* popup with choices yes or no for editing*/}         
         <ButtonsWrapper displayStyle={yesNoEditPopup} contentArea={
         <YesNoPopup  onClickYes={() => confirmEditChanges(updatedData)} 
@@ -345,7 +310,10 @@ console.log(getInput, "input do edit item z recoila");
           onClickNo={handleStatusChangeDeny} yesText={confirmBtnIcon} noText={declineBtnIcon} messageText={statusYesNoMessage} />
         }/>        
         <TaskDetails displayIt={taskDetailView} taskData={updatedData} clickClose={handleCloseDetailsBtn} />
-      </div>
+        </>
+      } />  
+    
+      
     );
   }
   

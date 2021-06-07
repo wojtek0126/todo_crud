@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx, Flex } from 'theme-ui';
-import { buttonBackgroundType1, buttonBackgroundType3 } from '../../styles/themes/theme';
+import { buttonBackgroundType1, buttonBackgroundType3 } from '../../styles/gradients';
 import ButtonPrimary from '../atoms/ButtonPrimary';
 import MediumText from '../atoms/MediumText';
 

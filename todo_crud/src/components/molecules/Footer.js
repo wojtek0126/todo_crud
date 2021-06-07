@@ -2,7 +2,7 @@
 /** @jsx jsx */  
 import { jsx } from 'theme-ui';
 import { Flex } from "theme-ui";
-import { taskBackground } from '../../styles/themes/theme';
+import { taskBackground } from '../../styles/gradients';
 
 
 const Footer = ({brandName, year}) => {

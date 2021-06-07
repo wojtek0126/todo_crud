@@ -4,7 +4,7 @@ import { jsx } from 'theme-ui';
 
 
 const ButtonPrimary = ({text, backgroundColor, onClick, type, id, displayIt,
-    color = 'button-text', alignSelf = 'center'}) => (
+    color = 'buttonText2', alignSelf = 'center'}) => (
     <div >
         <button type={type} onClick={onClick} id={id}
             sx={{
@@ -12,7 +12,7 @@ const ButtonPrimary = ({text, backgroundColor, onClick, type, id, displayIt,
             alignSelf: `${alignSelf}`,
             // backgroundColor: `${backgroundColor}`,
             background: `${backgroundColor}`,
-            transition: '1s',    
+            transition: '0.5s',    
             borderRadius: '4px',
             border: 'none',
             color: `${color}`,
