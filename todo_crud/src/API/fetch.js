@@ -9,7 +9,7 @@ export const getAllTasks = (successCallback) => {
         .then(data => {
             successCallback(data.data);
             if (data.error === false && typeof successCallback === "function") {
-                successCallback(data);
+                successCallback(data.data);
             }
         })
         .catch(error => {

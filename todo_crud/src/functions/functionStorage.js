@@ -15,6 +15,27 @@ export const timeStampFormatted = () => {
   return formatted
 } 
 
+//title screen stats from API not recoil
+export const nonRecoilStats = (list) => {
+  const todoList = list;
+  const totalNumTitleScrn = todoList.length;
+  const totalCompletedNumTitleScrn = todoList.filter((item) => item.completed).length;
+  const totalUncompletedNumTitleScrn = totalNumTitleScrn - totalCompletedNumTitleScrn;
+  const percentCompletedTitleScrn = totalNumTitleScrn === 0 ? 0 : totalCompletedNumTitleScrn / totalNumTitleScrn * 100;
+   return {
+       totalNumTitleScrn,
+       totalCompletedNumTitleScrn,
+       totalUncompletedNumTitleScrn,
+       percentCompletedTitleScrn,
+     };
+}
+
+
+
+   
+  // },
+
+
 
 
 
