@@ -1,14 +1,14 @@
+import React from 'react';
 import {
   useRecoilState,
   useRecoilValue,
 } from 'recoil';
 import { useState, useEffect } from 'react';
 import { filteredTodoListState, inputLengthState, todoListState } from '../../functions/recoil';
-import TodoItem from './TodoItem';
 import TodoItemCreator from './TodoItemCreator';
 import TodoListFilters from './TodoListFilters';
 import TodoListStats from './TodoListStats';
-import { ThemeProvider, Container, Flex, Box } from 'theme-ui';
+import { ThemeProvider, Container, Box } from 'theme-ui';
 import { getAllTasks } from '../../API/fetch';
 import SearchField from '../atoms/SearchField';
 import MediumText from '../atoms/MediumText';
@@ -16,6 +16,8 @@ import {CircleArrow as ScrollUpButton} from 'react-scroll-up-button';
 import { todoListTitleTxt, todoListSearchPlaceholderTxt } from '../../content/contentEng';
 import theme from '../../styles/themes/theme';
 import ListWrapper from '../containers/ListWrapper';
+import ItemFilteredWrapper from '../containers/ItemFilteredWrapper';
+import TodoItem from './TodoItem';
 
 
 const TodoList = () => {
@@ -60,14 +62,13 @@ const TodoList = () => {
             </>
         } />     
         <TodoListStats />  
-        <ScrollUpButton />             
-        <Flex sx={{ flexWrap: 'wrap' }}>  
-          {filterData.map((todoItem) => (
-            <Box key={todoItem.id} sx={{ width: ['100%'] }}>
-              <TodoItem item={todoItem} todos={todos} />
-            </Box>         
-         ))}
-          </Flex>
+        <ScrollUpButton />    
+        <ItemFilteredWrapper contentArea={
+          filterData.map((todoItem) => (
+          <Box key={todoItem.id} sx={{ width: ['100%'] }}>
+      <TodoItem item={todoItem} todos={todos} />
+    </Box>         
+ ))} />       
         </Container>     
       </ThemeProvider>    
     );

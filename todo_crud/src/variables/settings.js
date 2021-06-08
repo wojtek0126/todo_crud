@@ -5,6 +5,6 @@
 export const on = 'flex';
 export const off = 'none';
 
-//buttons on off theme colors
+//buttons light on off theme colors
 export const bulbOn = 'bulbOn';
 export const bulbOff = 'bulbOff';

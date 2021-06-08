@@ -1,6 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { Flex, jsx } from 'theme-ui';
+import React from 'react';
+import { jsx } from 'theme-ui';
 import ButtonPrimary from '../atoms/ButtonPrimary';
 import TaskDetailsWrapper from '../containers/TaskDetailsWrapper';
 import { taskDetailsTaskNumberTxt,
@@ -33,7 +34,7 @@ const TaskDetails =({clickClose, displayIt = 'flex', taskData}) => {
     
     return (
       <TaskDetailsWrapper displayIt={displayIt} contentArea={
-        <Flex sx={{flexDirection: 'column'}}>    
+       <>
           <DisplayDetailsText headText={taskDetailsTaskNumberTxt} contentText={getTask.id} marginTop={1} marginBottom={1}
           backgroundColor={taskDetailsDetailBackground}/>       
           <DisplayDetailsText headText={taskDetailsTaskContentTxt} contentText={getTask.title} marginTop={2} marginBottom={2} 
@@ -46,8 +47,8 @@ const TaskDetails =({clickClose, displayIt = 'flex', taskData}) => {
           backgroundColor={taskDetailsDetailBackground} />  
             <TaskDetailBtnWrapper contentArea={  
             <ButtonPrimary text={hideDetailsBtnIcon} backgroundColor={buttonBackgroundType3}
-                           onClick={clickClose} marginTop={1} marginBottom={1}/>} />          
-        </Flex>         
+                           onClick={clickClose} marginTop={1} marginBottom={1}/>} />  
+        </>                
       }/>    
     );
   }

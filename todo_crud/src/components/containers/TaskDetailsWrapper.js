@@ -1,6 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx } from 'theme-ui';
+import { jsx, Flex } from 'theme-ui';
 import{ taskDetailsBackground } from '../../styles/gradients';
 
 
@@ -22,7 +22,9 @@ const TaskDetailsWrapper = ({contentArea, displayIt}) => (
       padding: 3,          
     }}
   >  
+  <Flex sx={{flexDirection: 'column'}}>  
     {contentArea}
+  </Flex>
 </div> 
 );
 
