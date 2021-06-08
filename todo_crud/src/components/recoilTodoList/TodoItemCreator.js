@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import React from 'react';
-import { jsx, Flex } from 'theme-ui';
+import { jsx } from 'theme-ui';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { useState } from 'react';
 import { textInputState, todoListState } from '../../functions/recoil';
@@ -109,7 +109,7 @@ const TodoItemCreator = () => {
           <ButtonPrimary onClick={() => addItem(getInput)} text={addTaskBtnIcon} backgroundColor={buttonBackgroundType2}
           displayIt={creatorBtnAdd} />
           <ButtonWithlink to={`home`} text={goBackBtnIcon} backgroundColor={buttonBackgroundType3}
-          displayIt={creatorBtnBack} alignSelf={'baseline'}/>
+          displayIt={creatorBtnBack} />
         </>
       } />
       </>

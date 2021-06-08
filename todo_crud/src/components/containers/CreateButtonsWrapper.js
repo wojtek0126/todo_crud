@@ -8,7 +8,7 @@ const CreateButtonsWrapper = ({contentArea}) => (
                  justifyContent: 'flex-start',
                  flexWrap: 'wrap',
                  '@media screen and (max-width: 700px)': {
-                  flexDirection: 'column',
+                  flexDirection: 'row',
                   alignItems: 'baseline',
                   justifyContent: 'baseline'                  
                 } }}>

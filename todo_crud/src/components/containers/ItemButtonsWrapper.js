@@ -8,7 +8,7 @@ const ItemButtonsWrapper = ({contentArea}) => (
                    flexDirection: 'row',
                    justifyContent: 'flex-start',
                    '@media screen and (max-width: 700px)': {
-                    flexDirection: 'column',
+                    flexDirection: 'row',
                     alignItems: 'baseline',
                     justifyContent: 'baseline'}}}> 
     {contentArea}

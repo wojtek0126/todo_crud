@@ -8,9 +8,9 @@ const ThoughtButtonsWrapper = ({contentArea}) => (
     flexDirection: 'row',
     justifyContent: 'flex-start',
     '@media screen and (max-width: 700px)': {
-      flexDirection: 'column',
-      alignItems: 'baseline',
-      justifyContent: 'center'}}}>
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'flex-start'}}}>
     {contentArea}
   </Flex> 
 );
