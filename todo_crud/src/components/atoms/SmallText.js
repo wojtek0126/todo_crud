@@ -1,10 +1,9 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx } from 'theme-ui';
+import { jsx } from 'theme-ui'
 
-
-const SmallText = ({text, color}) => (
-    <div
+const SmallText = ({ text, color }) => (
+  <div
     sx={{
       fontFamily: 'heading',
       fontWeight: 'heading',
@@ -14,11 +13,7 @@ const SmallText = ({text, color}) => (
     }}
   >
     {text}
-  </div> 
-);
+  </div>
+)
 
-
-export default SmallText;
-
-
-    
+export default SmallText

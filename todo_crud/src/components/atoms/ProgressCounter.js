@@ -1,12 +1,19 @@
+/* eslint-disable */
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx } from 'theme-ui';
+import { jsx } from 'theme-ui'
 
-
-const ProgressCounter = ({text, counter, backgroundColor, color, borderColor}) => (
-    <button        
+const ProgressCounter = ({
+  text,
+  counter,
+  backgroundColor,
+  color,
+  borderColor,
+}) => (
+  <button
     sx={{
-      wordBreak: 'break-word', 
+      width: '100%',
+      wordBreak: 'break-word',
       backgroundColor: `${backgroundColor}`,
       borderRadius: '4px',
       border: `2px solid`,
@@ -20,14 +27,12 @@ const ProgressCounter = ({text, counter, backgroundColor, color, borderColor}) =
       px: 3, // shorthand for defining padding-left and padding-right
       py: 2, // shorthand for defining padding-top and padding-bottom
       textDecoration: 'none',
-    //   textTransform: 'uppercase',         
+      // textTransform: 'uppercase',
     }}
-  > {text} {counter}
-  </button>   
-);
+  >
+    {' '}
+    {text} {counter}
+  </button>
+)
 
-
-export default ProgressCounter;
-
-
-    
+export default ProgressCounter

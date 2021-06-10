@@ -1,10 +1,17 @@
+/* eslint-disable */
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx } from 'theme-ui';
+import { jsx } from 'theme-ui'
 
-
-const MediumText = ({text, color, marginBottom, marginTop, display, alignSelf}) => (
-    <div 
+const MediumText = ({
+  text,
+  color,
+  marginBottom,
+  marginTop,
+  display,
+  alignSelf,
+}) => (
+  <div
     sx={{
       fontFamily: 'heading',
       fontWeight: 'heading',
@@ -13,15 +20,11 @@ const MediumText = ({text, color, marginBottom, marginTop, display, alignSelf}) 
       marginBottom: `${marginBottom}`,
       marginTop: `${marginTop}`,
       display: `${display}`,
-      alignSelf: `${alignSelf}`  
+      alignSelf: `${alignSelf}`,
     }}
   >
     {text}
-  </div> 
-);
+  </div>
+)
 
-
-export default MediumText;
-
-
-    
+export default MediumText

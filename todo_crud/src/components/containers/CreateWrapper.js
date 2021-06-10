@@ -1,29 +1,27 @@
+/* eslint-disable */
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { Flex, jsx } from 'theme-ui';
-import { taskBackground } from '../../styles/gradients';
+import { Flex, jsx } from 'theme-ui'
+import { taskBackground } from '../../styles/gradients'
 
-
-const CreateWrapper = ({contentArea}) => (    
-<Flex  sx={{
+const CreateWrapper = ({ contentArea }) => (
+  <Flex
+    sx={{
       flexDirection: 'column',
-      background: 'box',   
+      background: 'box',
       // backgroundColor: 'boxBackground',
       background: `${taskBackground}`,
-      color: 'text',      
+      color: 'text',
       border: '2px solid',
-      borderColor: 'boxBorder', 
+      borderColor: 'boxBorder',
       borderRadius: 4,
       fontSize: 4,
       margin: 3,
       padding: 3,
-    }}>
+    }}
+  >
     {contentArea}
-</Flex> 
-);
+  </Flex>
+)
 
-
-export default CreateWrapper;
-
-
-    
+export default CreateWrapper

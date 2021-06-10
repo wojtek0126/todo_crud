@@ -1,22 +1,22 @@
+/* eslint-disable */
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Flex } from 'theme-ui';
+import { jsx, Flex } from 'theme-ui'
 
-
-const ItemStatusWrapper = ({contentArea}) => (    
-<div sx={{        
-    display: 'flex',
-    flexDirection: 'row',
-                   marginBottom: 2,
-                   '@media screen and (max-width: 700px)': {                   
-                    alignItems: 'center',
-                    justifyContent: 'center'}}} >  
+const ItemStatusWrapper = ({ contentArea }) => (
+  <div
+    sx={{
+      display: 'flex',
+      flexDirection: 'row',
+      marginBottom: 2,
+      '@media screen and (max-width: 700px)': {
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+    }}
+  >
     {contentArea}
-  </div> 
-);
+  </div>
+)
 
-
-export default ItemStatusWrapper;
-
-
-    
+export default ItemStatusWrapper

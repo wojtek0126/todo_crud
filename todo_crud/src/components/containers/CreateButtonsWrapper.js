@@ -1,23 +1,23 @@
+/* eslint-disable */
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { Flex, jsx } from 'theme-ui';
+import { Flex, jsx } from 'theme-ui'
 
-
-const CreateButtonsWrapper = ({contentArea}) => (    
-<Flex  sx={{flexDirection: 'row',
-                 justifyContent: 'flex-start',
-                 flexWrap: 'wrap',
-                 '@media screen and (max-width: 700px)': {
-                  flexDirection: 'row',
-                  alignItems: 'baseline',
-                  justifyContent: 'baseline'                  
-                } }}>
+const CreateButtonsWrapper = ({ contentArea }) => (
+  <Flex
+    sx={{
+      flexDirection: 'row',
+      justifyContent: 'flex-start',
+      flexWrap: 'wrap',
+      '@media screen and (max-width: 700px)': {
+        flexDirection: 'row',
+        alignItems: 'baseline',
+        justifyContent: 'baseline',
+      },
+    }}
+  >
     {contentArea}
-</Flex> 
-);
+  </Flex>
+)
 
-
-export default CreateButtonsWrapper;
-
-
-    
+export default CreateButtonsWrapper

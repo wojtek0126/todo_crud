@@ -1,22 +1,23 @@
+/* eslint-disable */
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Flex } from 'theme-ui';
+import { jsx, Flex } from 'theme-ui'
 
-
-const ThoughtButtonsWrapper = ({contentArea}) => (    
-    <Flex sx={{flexWrap: 'wrap',
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    '@media screen and (max-width: 700px)': {
+const ThoughtButtonsWrapper = ({ contentArea }) => (
+  <Flex
+    sx={{
+      flexWrap: 'wrap',
       flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'flex-start'}}}>
+      justifyContent: 'flex-start',
+      '@media screen and (max-width: 700px)': {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+      },
+    }}
+  >
     {contentArea}
-  </Flex> 
-);
+  </Flex>
+)
 
-
-export default ThoughtButtonsWrapper;
-
-
-    
+export default ThoughtButtonsWrapper

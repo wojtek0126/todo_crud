@@ -1,19 +1,23 @@
-import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
-import TitleScreen from './components/recoilTodoList/TitleScreen';
-import TodoList from './components/recoilTodoList/TodoList';
+/* eslint-disable */
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from 'react-router-dom'
+import TitleScreen from './components/recoilTodoList/TitleScreen'
+import TodoList from './components/recoilTodoList/TodoList'
 
-
-const App = () => {
-  return (   
+const App = () => (
     <Router>
       <Switch>
-       <Redirect exact from="/" to="/home" />    
-        <Route path="/action" component={TodoList} />   
-        <Route path="/home" component={TitleScreen} />   
-      <TodoList />    
-     </Switch>         
-    </Router>    
-  );
-}
+        <Redirect exact from="/" to="/home" />
+        <Route path="/action" component={TodoList} />
+        <Route path="/home" component={TitleScreen} />
+        <TodoList />
+      </Switch>
+    </Router>
+  )
 
-export default App;
+
+export default App
