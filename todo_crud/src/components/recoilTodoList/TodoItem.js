@@ -11,7 +11,13 @@ import { deleteTask, updateTask } from '../../API/fetch'
 import MediumText from '../atoms/MediumText'
 import BigText from '../atoms/BigText'
 import TextArea from '../atoms/TextArea'
-import { timeStampFormatted } from '../../functions/functionStorage'
+import { 
+  replaceItemAtIndex,
+  removeItemAtIndex,
+  timeStampFormatted,
+  switchDisplayStateOnOff,
+  handleOnBlur
+} from '../../functions/functionStorage'
 import YesNoPopup from '../molecules/YesNoPopup'
 import TaskDetails from './TaskDetails'
 import ButtonsWrapper from '../containers/ButtonsWrapper'
@@ -38,7 +44,7 @@ import {
   todoItemStatusCompletedText,
   todoItemStatusInProgressText  
 } from '../../content/contentEng'
-import { bulbOff, bulbOn, off, on } from '../../variables/settings'
+import { bulbOff, bulbOn, off, on } from '../../variables/variablesStorage'
 import ItemWrapper from '../containers/ItemWrapper'
 import ItemStatusWrapper from '../containers/ItemStatusWrapper'
 import ItemButtonsWrapper from '../containers/ItemButtonsWrapper'
@@ -79,9 +85,8 @@ const TodoItem = ({ item }) => {
     useState('inputBorder')
   // set dynamic character count
   const setInput = useSetRecoilState(textInputState)
-  const getInput = useRecoilValue(textInputState)
+ 
 
-  console.log(getInput, 'input do edit item z recoila')
   // data to retrieve initial input if edit cancelled
   useEffect(() => {
     const todoDataInit = {
@@ -97,14 +102,32 @@ const TodoItem = ({ item }) => {
 
   // when edit button clicked
   const handleUpdateBtn = () => {
-    displayControl(off, off, off, off, off, on, off, off, false, off)
+    switchDisplayStateOnOff(setTaskBtnMenu, off)
+    switchDisplayStateOnOff(setTaskBtnEdit, off)
+    switchDisplayStateOnOff(setTaskBtnDelete, off)
+    switchDisplayStateOnOff(setTaskBtnDetails, off)
+    switchDisplayStateOnOff(setTaskBtnStatus, off)
+    switchDisplayStateOnOff(setYesNoDeletePopup, off)
+    switchDisplayStateOnOff(setYesNoEditPopup, on)
+    switchDisplayStateOnOff(setYesNoStatusPopup, off)
+    switchDisplayStateOnOff(setDisabled, false)
+    switchDisplayStateOnOff(setTaskDetailView,off) 
     setTextareaBorderColor('inputBorderEditon')
     setTextareaBorderFocusColor('inputBorderFocus')
   }
 
   // when edit cancelled
   const handleUpdateNoBtn = () => {
-    displayControl(on, on, on, on, off, off, off, off, true, on)   
+    switchDisplayStateOnOff(setTaskBtnMenu, on)
+    switchDisplayStateOnOff(setTaskBtnEdit, on)
+    switchDisplayStateOnOff(setTaskBtnDelete, on)
+    switchDisplayStateOnOff(setTaskBtnDetails, on)
+    switchDisplayStateOnOff(setTaskBtnStatus, on)
+    switchDisplayStateOnOff(setYesNoDeletePopup, off)
+    switchDisplayStateOnOff(setYesNoEditPopup, off)
+    switchDisplayStateOnOff(setYesNoStatusPopup, off)
+    switchDisplayStateOnOff(setDisabled, true)
+    switchDisplayStateOnOff(setTaskDetailView, off)
     setTextareaDisplay(todoList[index].title)    
     setTextareaBorderColor('inputBorder')
     setTextareaBorderFocusColor('inputBorder')
@@ -123,13 +146,6 @@ const TodoItem = ({ item }) => {
     }
     setTextareaDisplay(todoDataMod.title)
     setUpdatedData(todoDataMod)
-  }
-
-  // onblur
-  const handleonBlur = (value) => {
-    setTimeout(() => {
-      setInput(value)
-    }, 100)
   }
 
   // commit edit changes on click
@@ -152,7 +168,16 @@ const TodoItem = ({ item }) => {
         updated_at: timeStampFormatted(),
       })
       setTodoList(newList)
-      displayControl(on, on, on, on, off, off, off, off, true, on)
+      switchDisplayStateOnOff(setTaskBtnMenu, on)
+      switchDisplayStateOnOff(setTaskBtnEdit, on)
+      switchDisplayStateOnOff(setTaskBtnDelete, on)
+      switchDisplayStateOnOff(setTaskBtnDetails, on)
+      switchDisplayStateOnOff(setTaskBtnStatus, on)
+      switchDisplayStateOnOff(setYesNoDeletePopup, off)
+      switchDisplayStateOnOff(setYesNoEditPopup, off)
+      switchDisplayStateOnOff(setYesNoStatusPopup, off)
+      switchDisplayStateOnOff(setDisabled, true)
+      switchDisplayStateOnOff(setTaskDetailView, off)   
       setTextareaBorderColor('inputBorder')
       setTextareaBorderFocusColor('inputBorder')
     }
@@ -160,18 +185,45 @@ const TodoItem = ({ item }) => {
 
   // when change status button clicked
   const handleChangeStatusBtn = () => {
-    displayControl(off, off, off, off, off, off, on, off, true, off)
+    switchDisplayStateOnOff(setTaskBtnMenu, off)
+    switchDisplayStateOnOff(setTaskBtnEdit, off)
+    switchDisplayStateOnOff(setTaskBtnDelete,off)
+    switchDisplayStateOnOff(setTaskBtnDetails, off)
+    switchDisplayStateOnOff(setTaskBtnStatus, off)
+    switchDisplayStateOnOff(setYesNoDeletePopup, off)
+    switchDisplayStateOnOff(setYesNoEditPopup, off)
+    switchDisplayStateOnOff(setYesNoStatusPopup, on)
+    switchDisplayStateOnOff(setDisabled, true)
+    switchDisplayStateOnOff(setTaskDetailView, off) 
   }
 
   // when status changed and answer 'yes' to confirmation question
   const handleStatusChangeConfirm = () => {
-    displayControl(on, on, on, on, off, off, off, off, true, on)
+    switchDisplayStateOnOff(setTaskBtnMenu, on)
+    switchDisplayStateOnOff(setTaskBtnEdit, on)
+    switchDisplayStateOnOff(setTaskBtnDelete, on)
+    switchDisplayStateOnOff(setTaskBtnDetails, on)
+    switchDisplayStateOnOff(setTaskBtnStatus, on)
+    switchDisplayStateOnOff(setYesNoDeletePopup, off)
+    switchDisplayStateOnOff(setYesNoEditPopup, off)
+    switchDisplayStateOnOff(setYesNoStatusPopup, off)
+    switchDisplayStateOnOff(setDisabled, true)
+    switchDisplayStateOnOff(setTaskDetailView, off)   
     toggleItemCompletion()
   }
 
   // when status changed and answer 'no' to confirmation question
   const handleStatusChangeDeny = () => {
-    displayControl(on, on, on, on, off, off, off, off, true, on)
+    switchDisplayStateOnOff(setTaskBtnMenu, on)
+    switchDisplayStateOnOff(setTaskBtnEdit, on)
+    switchDisplayStateOnOff(setTaskBtnDelete, on)
+    switchDisplayStateOnOff(setTaskBtnDetails, on)
+    switchDisplayStateOnOff(setTaskBtnStatus, on)
+    switchDisplayStateOnOff(setYesNoDeletePopup, off)
+    switchDisplayStateOnOff(setYesNoEditPopup, off)
+    switchDisplayStateOnOff(setYesNoStatusPopup, off)
+    switchDisplayStateOnOff(setDisabled, true)
+    switchDisplayStateOnOff(setTaskDetailView, off)   
   }
 
   // update task comletion status
@@ -199,12 +251,30 @@ const TodoItem = ({ item }) => {
     deleteTask(item.id)
     const newList = removeItemAtIndex(todoList, index)
     setTodoList(newList)
-    displayControl(on, on, on, on, off, off, off, off, true, on)
+    switchDisplayStateOnOff(setTaskBtnMenu, on)
+    switchDisplayStateOnOff(setTaskBtnEdit, on)
+    switchDisplayStateOnOff(setTaskBtnDelete, on)
+    switchDisplayStateOnOff(setTaskBtnDetails, on)
+    switchDisplayStateOnOff(setTaskBtnStatus, on)
+    switchDisplayStateOnOff(setYesNoDeletePopup, off)
+    switchDisplayStateOnOff(setYesNoEditPopup, off)
+    switchDisplayStateOnOff(setYesNoStatusPopup, off)
+    switchDisplayStateOnOff(setDisabled, true)
+    switchDisplayStateOnOff(setTaskDetailView, off)
   }
 
   // after clicking delete button
   const handleDeleteBtnClick = () => {
-    displayControl(off, off, off, off, on, off, off, off, true, off)
+    switchDisplayStateOnOff(setTaskBtnMenu, off)
+    switchDisplayStateOnOff(setTaskBtnEdit, off)
+    switchDisplayStateOnOff(setTaskBtnDelete, off)
+    switchDisplayStateOnOff(setTaskBtnDetails, off)
+    switchDisplayStateOnOff(setTaskBtnStatus, off)
+    switchDisplayStateOnOff(setYesNoDeletePopup, on)
+    switchDisplayStateOnOff(setYesNoEditPopup, off)
+    switchDisplayStateOnOff(setYesNoStatusPopup, off)
+    switchDisplayStateOnOff(setDisabled, true)
+    switchDisplayStateOnOff(setTaskDetailView, off) 
   }
 
   // after clicking delete confirm button
@@ -214,19 +284,46 @@ const TodoItem = ({ item }) => {
 
   // after clicking delete no - 'go back' button
   const handleDeleteBtnNoClick = () => {
-    displayControl(on, on, on, on, off, off, off, off, true, on)
+    switchDisplayStateOnOff(setTaskBtnMenu, on)
+    switchDisplayStateOnOff(setTaskBtnEdit, on)
+    switchDisplayStateOnOff(setTaskBtnDelete, on)
+    switchDisplayStateOnOff(setTaskBtnDetails, on)
+    switchDisplayStateOnOff(setTaskBtnStatus, on)
+    switchDisplayStateOnOff(setYesNoDeletePopup, off)
+    switchDisplayStateOnOff(setYesNoEditPopup, off)
+    switchDisplayStateOnOff(setYesNoStatusPopup, off)
+    switchDisplayStateOnOff(setDisabled, true)
+    switchDisplayStateOnOff(setTaskDetailView, off)  
   }
 
   // after clicking show details
   const handleShowDetailsBtn = () => {
-    displayControl(off, off, off, off, off, off, off, on, true, off)
-    setTaskStatusView(off)
+    switchDisplayStateOnOff(setTaskBtnMenu, off)
+    switchDisplayStateOnOff(setTaskBtnEdit, off)
+    switchDisplayStateOnOff(setTaskBtnDelete, off)
+    switchDisplayStateOnOff(setTaskBtnDetails, off)
+    switchDisplayStateOnOff(setTaskBtnStatus, off)
+    switchDisplayStateOnOff(setYesNoDeletePopup, off)
+    switchDisplayStateOnOff(setYesNoEditPopup, off)
+    switchDisplayStateOnOff(setYesNoStatusPopup, off)
+    switchDisplayStateOnOff(setDisabled, true)
+    switchDisplayStateOnOff(setTaskDetailView, on)
+    switchDisplayStateOnOff(setTaskStatusView, off)  
   }
 
   // after clicking close details
   const handleCloseDetailsBtn = () => {
-    displayControl(on, on, on, on, off, off, off, off, true, on)
-    setTaskStatusView(on)
+    switchDisplayStateOnOff(setTaskBtnMenu, on)
+    switchDisplayStateOnOff(setTaskBtnEdit, on)
+    switchDisplayStateOnOff(setTaskBtnDelete, on)
+    switchDisplayStateOnOff(setTaskBtnDetails, on)
+    switchDisplayStateOnOff(setTaskBtnStatus, on)
+    switchDisplayStateOnOff(setYesNoDeletePopup, off)
+    switchDisplayStateOnOff(setYesNoEditPopup, off)
+    switchDisplayStateOnOff(setYesNoStatusPopup, off)
+    switchDisplayStateOnOff(setDisabled, true)
+    switchDisplayStateOnOff(setTaskDetailView, off)
+    switchDisplayStateOnOff(setTaskStatusView, on)
   }
 
   // item completed/in progress to display
@@ -238,37 +335,31 @@ const TodoItem = ({ item }) => {
     }
   }
 
-  // display control function
-  const displayControl = (
-    setBtnEdit,
-    setBtnDelete,
-    setBtnStatus,
-    setBtnDetails,
-    setPopupDel,
-    setPopupEdit,
-    setPopupStatus,
-    setDetailView,
-    disableEditbool,
-    setBtnMenu,
-  ) => {
-    setTaskBtnMenu(setBtnMenu)
-    setTaskBtnEdit(setBtnEdit)
-    setTaskBtnDelete(setBtnDelete)
-    setTaskBtnDetails(setBtnDetails)
-    setTaskBtnStatus(setBtnStatus)
-    setYesNoDeletePopup(setPopupDel)
-    setYesNoEditPopup(setPopupEdit)
-    setYesNoStatusPopup(setPopupStatus)
-    setDisabled(disableEditbool)
-    setTaskDetailView(setDetailView)
-  }
-
   // popup menu control
   const handleTaskMenuOpenCloseBtn = () => {
-    displayControl(off, off, off, off, off, off, off, off, true, on)
+    switchDisplayStateOnOff(setTaskBtnMenu, on)
+    switchDisplayStateOnOff(setTaskBtnEdit, off)
+    switchDisplayStateOnOff(setTaskBtnDelete, off)
+    switchDisplayStateOnOff(setTaskBtnDetails, off)
+    switchDisplayStateOnOff(setTaskBtnStatus, off)
+    switchDisplayStateOnOff(setYesNoDeletePopup, off)
+    switchDisplayStateOnOff(setYesNoEditPopup, off)
+    switchDisplayStateOnOff(setYesNoStatusPopup, off)
+    switchDisplayStateOnOff(setDisabled, true)
+    switchDisplayStateOnOff(setTaskDetailView, off)
+   
     setTimeout(() => {
       if (taskBtnEdit === 'none') {
-        displayControl(on, on, on, on, off, off, off, off, true, on)
+        switchDisplayStateOnOff(setTaskBtnMenu, on)
+        switchDisplayStateOnOff(setTaskBtnEdit, on)
+        switchDisplayStateOnOff(setTaskBtnDelete, on)
+        switchDisplayStateOnOff(setTaskBtnDetails, on)
+        switchDisplayStateOnOff(setTaskBtnStatus, on)
+        switchDisplayStateOnOff(setYesNoDeletePopup, off)
+        switchDisplayStateOnOff(setYesNoEditPopup, off)
+        switchDisplayStateOnOff(setYesNoStatusPopup, off)
+        switchDisplayStateOnOff(setDisabled, true)
+        switchDisplayStateOnOff(setTaskDetailView, off)     
         setTaskBtnMenuLight(bulbOn)
       } else {
         setTaskBtnMenuLight(bulbOff)
@@ -285,7 +376,7 @@ const TodoItem = ({ item }) => {
           <TextArea
             disabled={disabled}
             value={textareaDisplay}
-            onBlur={() => handleonBlur(textareaDisplay)}
+            onBlur={() => handleOnBlur(setInput, textareaDisplay)}
             textareaBorderColor={textareaBorderColor}
             textareaBorderFocusColor={textareaBorderFocusColor}
             onChange={editItemText}
@@ -391,12 +482,5 @@ const TodoItem = ({ item }) => {
   )
 }
 
-const replaceItemAtIndex = (arr, index, newValue) => {
-  return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)]
-}
-
-const removeItemAtIndex = (arr, index) => {
-  return [...arr.slice(0, index), ...arr.slice(index + 1)]
-}
 
 export default TodoItem

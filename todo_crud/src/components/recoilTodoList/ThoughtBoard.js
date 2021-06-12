@@ -24,9 +24,10 @@ import {
   buttonBackgroundType3,
   buttonBackgroundType4,
 } from '../../styles/gradients'
-import { bulbOff, bulbOn, off, on } from '../../variables/settings'
+import { bulbOff, bulbOn, off, on } from '../../variables/variablesStorage'
 import ThoughtBoardWrapper from '../containers/ThoughtBoardWrapper'
 import ThoughtButtonsWrapper from '../containers/ThoughtButtonsWrapper'
+import { handleClickClearLocal, handleClickSaveToLocal, handleOnChangeDoubleOutput, switchDisplayStateOnOff } from '../../functions/functionStorage'
 
 const ThoughtBoard = () => {
   const boardTxtFromLocal = localStorage.getItem('notes')
@@ -38,42 +39,17 @@ const ThoughtBoard = () => {
   const [boardText, setBoardText] = useState(boardTxtFromLocal)
   const setInput = useSetRecoilState(textInputState)
 
-  const handleOnChange = ({ target: { value } }) => {
-    setBoardText(value)
-    setInput(value)
-  }
-
-  const handleClickSaveToLocal = (localKey, localValue, inputValue) => {
-    // no empty content - validator
-    if (inputValue === '' || inputValue === null || inputValue === undefined) {
-    } else {
-      localStorage.setItem(localKey, localValue)
-    }
-  }
-
-  const handleClickClearLocal = (inputValue) => {
-    if (inputValue === '' || inputValue === null || inputValue === undefined) {
-    } else {
-      localStorage.clear()
-      setTimeout(() => {
-        setBoardText('')
-      })
-    }
-  }
-
-  // display control function
-  const displayControlBoard = (setBtnMenu, setBtnAdd, setBtnDel) => {
-    setBoardrBtnMenu(setBtnMenu)
-    setBoardBtnAdd(setBtnAdd)
-    setBoardBtnDelete(setBtnDel)
-  }
 
   // popup menu control
   const handleBoardOpenCloseBtn = () => {
-    displayControlBoard(on, off, off)
+    switchDisplayStateOnOff(setBoardrBtnMenu, on)
+    switchDisplayStateOnOff(setBoardBtnAdd, off)
+    switchDisplayStateOnOff(setBoardBtnDelete, off)
     setTimeout(() => {
       if (boardBtnAdd === 'none') {
-        displayControlBoard(on, on, on)
+        switchDisplayStateOnOff(setBoardrBtnMenu, on)
+        switchDisplayStateOnOff(setBoardBtnAdd, on)
+        switchDisplayStateOnOff(setBoardBtnDelete, on)
         setBoardBtnMenuLight(bulbOn)
       } else {
         setBoardBtnMenuLight(bulbOff)
@@ -89,7 +65,7 @@ const ThoughtBoard = () => {
           <TextArea
             value={boardText}
             textareaBorderFocusColor={'inputBorderFocus'}
-            onChange={handleOnChange}
+            onChange={handleOnChangeDoubleOutput(setBoardText, setInput)}
           />
           <ThoughtButtonsWrapper
             contentArea={

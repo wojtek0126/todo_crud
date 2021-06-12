@@ -1,3 +1,4 @@
+/* eslint-disable */
 // all text content in English lands here, in exported variables
 
 // recoil.js text

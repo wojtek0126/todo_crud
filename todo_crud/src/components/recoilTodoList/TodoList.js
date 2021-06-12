@@ -11,7 +11,6 @@ import TodoItemCreator from './TodoItemCreator'
 import TodoListFilters from './TodoListFilters'
 import TodoListStats from './TodoListStats'
 import { ThemeProvider, Container, Box } from 'theme-ui'
-import { getAllTasks } from '../../API/fetch'
 import SearchField from '../atoms/SearchField'
 import MediumText from '../atoms/MediumText'
 import { CircleArrow as ScrollUpButton } from 'react-scroll-up-button'
@@ -23,6 +22,7 @@ import theme from '../../styles/themes/theme'
 import ListWrapper from '../containers/ListWrapper'
 import ItemFilteredWrapper from '../containers/ItemFilteredWrapper'
 import TodoItem from './TodoItem'
+import { getTodos, handleOnChangeTargetValue } from '../../functions/functionStorage'
 
 const TodoList = () => {
   const [todos, setTodos] = useRecoilState(todoListState)
@@ -34,22 +34,11 @@ const TodoList = () => {
   console.log(inputLength, 'dynamic character count')
 
 
-  useEffect(() => {
-    const getTodos = async () => {
-      getAllTasks(setTodos)
-    }
-    getTodos()
-    console.log(todos, 'list')
-
+  useEffect(() => {  
+    getTodos(setTodos)
   }, [])
 
   let filterData = filteredData.filter((item) => item.title.includes(toSearch))
-
-  const handleOnChange = ({ target: { value } }) => {
-    setTimeout(() => {
-      setToSearch(value)
-    }, 0)
-  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -64,7 +53,7 @@ const TodoList = () => {
                 type={'text'}
                 placeholder={todoListSearchPlaceholderTxt}
                 value={toSearch}
-                onChange={handleOnChange}
+                onChange={handleOnChangeTargetValue(setToSearch)}
               />
             </>
           }

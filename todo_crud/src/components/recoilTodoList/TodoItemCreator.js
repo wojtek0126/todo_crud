@@ -11,7 +11,7 @@ import { addTask } from '../../API/fetch'
 import MediumText from '../atoms/MediumText'
 import ButtonWithlink from '../atoms/ButtonWithLink'
 import TextArea from '../atoms/TextArea'
-import { timeStampFormatted } from '../../functions/functionStorage'
+import { handleOnChangeTargetValue, switchDisplayStateOnOff, timeStampFormatted } from '../../functions/functionStorage'
 import {
   openMenuBtnIcon,
   addTaskBtnIcon,
@@ -26,9 +26,8 @@ import {
   buttonBackgroundType2,
   buttonBackgroundType3,
   buttonBackgroundType4,
-  taskBackground,
 } from '../../styles/gradients'
-import { bulbOff, bulbOn, off, on } from '../../variables/settings'
+import { bulbOff, bulbOn, off, on } from '../../variables/variablesStorage'
 import CreateWrapper from '../containers/CreateWrapper'
 import CreateButtonsWrapper from '../containers/CreateButtonsWrapper'
 import { userId } from '../../API/variables'
@@ -65,33 +64,24 @@ const TodoItemCreator = () => {
     }
   }
 
-  // taking input value for task from textarea
-  const handleonChange = ({ target: { value } }) => {
-    setTimeout(() => {
-      setTextareaDisplay(value)
-    }, 0)
-  }
-
-  // onblur
-  const handleonBlur = () => {
+  // onblur handler to avoid input lag, so far could not move it to functionStorage.js only works without import here??
+  const handleOnBlur = () => {
     setTimeout(() => {
       setInput(textareaDisplay)
     }, 0)
-  }
-
-  // display control function
-  const displayControlCreateTask = (setBtnMenu, setBtnAdd, setBtnBack) => {
-    setCreatorBtnMenu(setBtnMenu)
-    setCreatorBtnAdd(setBtnAdd)
-    setCreatorBtnBack(setBtnBack)
-  }
+  }  
 
   // popup menu control
   const handleTaskMenuOpenCloseBtn = () => {
-    displayControlCreateTask(on, off, off)
+    switchDisplayStateOnOff(setCreatorBtnMenu, on)
+    switchDisplayStateOnOff(setCreatorBtnAdd, off)
+    setCreatorBtnBack(setCreatorBtnMenu, off)
+
     setTimeout(() => {
       if (creatorBtnAdd === 'none') {
-        displayControlCreateTask(on, on, on)
+        switchDisplayStateOnOff(setCreatorBtnMenu, on)
+        switchDisplayStateOnOff(setCreatorBtnAdd, on)
+        setCreatorBtnBack(setCreatorBtnMenu, on)
         setCreatorBtnMenuLight(bulbOn)
       } else {
         setCreatorBtnMenuLight(bulbOff)
@@ -107,8 +97,8 @@ const TodoItemCreator = () => {
           <TextArea
             textareaBorderFocusColor={'inputBorderFocus'}
             value={textareaDisplay}
-            onBlur={handleonBlur}
-            onChange={handleonChange}
+            onBlur={handleOnBlur}
+            onChange={handleOnChangeTargetValue(setTextareaDisplay)}
             backgroundColor={`inputBackground`}
             placeholder={todoCreatorPlaceholderTxt}
           />

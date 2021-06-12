@@ -1,3 +1,4 @@
+/* eslint-disable */
 export default {
   fonts: {
     body: "'Reggae One', cursive",

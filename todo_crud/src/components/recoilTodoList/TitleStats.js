@@ -4,11 +4,10 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
 import { jsx } from 'theme-ui'
-import { nonRecoilStats } from '../../functions/functionStorage'
+import { getTodos, handleOnOffOnClick, nonRecoilStats } from '../../functions/functionStorage'
 import ProgressCounter from '../atoms/ProgressCounter'
 import MediumText from '../atoms/MediumText'
 import ButtonWithlink from '../atoms/ButtonWithLink'
-import { getAllTasks } from '../../API/fetch'
 import {
   titleStatsTitleTxt,
   titleStatsTotalTxt,
@@ -19,30 +18,18 @@ import {
 import { buttonBackgroundType1 } from '../../styles/gradients'
 import { enterListBtnIcon } from '../../content/icons'
 import StatsTitleWrapper from '../containers/StatsTitleWrapper'
+import { bulbOff, bulbOn } from '../../variables/variablesStorage'
 
-const TitleStats = () => {
-  const bulbOn = 'bulbOn'
-  const bulbOff = 'bulbOff'
+const TitleStats = () => {  
   const [tasksStatsTitle, setTasksStatsTitle] = useState([])
   const [tasksStatsTitleBtnLight, setTasksStatsTitleBtnLight] =
     useState(bulbOff)
 
-  useEffect(() => {
-    const getTodos = async () => {
-      getAllTasks(setTasksStatsTitle)
-    }
-    getTodos()
+  useEffect(() => {   
+    getTodos(setTasksStatsTitle)
   }, [])
 
-  const titleStats = nonRecoilStats(tasksStatsTitle)
-
-  const handleOnOffOnClick = (myTarget, setIt, on, off) => {
-    if (myTarget === on) {
-      setIt(off)
-    } else {
-      setIt(on)
-    }
-  }
+  const titleStats = nonRecoilStats(tasksStatsTitle)  
 
   return (
     <StatsTitleWrapper

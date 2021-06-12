@@ -1,3 +1,4 @@
+/* eslint-disable */
 // gradients
 export const titleBackground =
   'linear-gradient(to top, #0ba360 0%, #3cba92 100%)'

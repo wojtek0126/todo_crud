@@ -1,5 +1,8 @@
 /* eslint-disable */
-// switch button text, add it to onClick handler for buttons,
+
+import { getAllTasks } from "../API/fetch"
+
+// switch button text on click - for buttons,
 export const switchBtnTxt = (setUpdateState, text1, text2, delay = 1800) => {
   setUpdateState(text2)
   setTimeout(() => {
@@ -51,16 +54,48 @@ export const removeItemAtIndex = (arr, index) => {
   return [...arr.slice(0, index), ...arr.slice(index + 1)]
 }
 
-// ThoughtBoard.js functions
-export const handleOnChange = (
-  { target: { value } },
-  setBoardText,
-  setInput,
-) => {
-  setBoardText(value)
-  setInput(value)
+//switches display state on/off
+export const switchDisplayStateOnOff = (setDisplay, onOff) => {
+  setDisplay(onOff);  
 }
 
+  // onblur to handle input lag
+  export const handleOnBlur = (setInput, value, timeout = 0) => {
+    setTimeout(() => {
+      setInput(value)
+    }, timeout)
+  }
+
+  // on change value handler
+  export const handleOnChangeTargetValue = (setTargetState) => ({ target: { value } }) => {
+    setTimeout(() => {    
+        setTargetState(value)      
+    }, 0)
+  }
+
+    // on change value handler with two states output
+    export const handleOnChangeDoubleOutput = (setTargetState1, setTargetState2) => ({ target: { value } }) => {
+      setTimeout(() => {    
+          setTargetState1(value)
+          setTargetState2(value)      
+      }, 0)
+    }
+
+  //get all tasks and set state with them
+  export const getTodos = async (setTodos) => {
+    getAllTasks(setTodos)
+  }
+
+  // switch target on off
+  export const handleOnOffOnClick = (myTarget, setIt, on, off) => {
+    if (myTarget === on) {
+      setIt(off)
+    } else {
+      setIt(on)
+    }
+  }
+
+// ThoughtBoard.js functions
 export const handleClickSaveToLocal = (localKey, localValue, inputValue) => {
   // no empty content - validator
   if (inputValue === '' || inputValue === null || inputValue === undefined) {
@@ -79,40 +114,5 @@ export const handleClickClearLocal = (inputValue, setBoardText) => {
   }
 }
 
-// display control function
-export const displayControlBoard = (
-  setBtnMenu,
-  setBtnAdd,
-  setBtnDel,
-  setBoardrBtnMenu,
-  setBoardBtnAdd,
-  setBoardBtnDelete,
-) => {
-  setBoardrBtnMenu(setBtnMenu)
-  setBoardBtnAdd(setBtnAdd)
-  setBoardBtnDelete(setBtnDel)
-}
 
-// popup menu control
-export const handleBoardOpenCloseBtn = (
-  set1,
-  set2,
-  set3,
-  boardBtnAdd,
-  set4,
-  set5,
-  set6,
-  setBoardBtnMenuLight,
-  bulbSet1,
-  bulbSet2,
-) => {
-  displayControlBoard(set1, set2, set3)
-  setTimeout(() => {
-    if (boardBtnAdd === 'none') {
-      displayControlBoard(set4, set5, set6)
-      setBoardBtnMenuLight(bulbSet1)
-    } else {
-      setBoardBtnMenuLight(bulbSet2)
-    }
-  }, 10)
-}
+
