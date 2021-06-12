@@ -27,7 +27,7 @@ const TodoList = () => {
     const filteredData =  useRecoilValue(filteredTodoListState);
     
     
-    //dynamic character count with recoil
+    // dynamic character count with recoil
     console.log(inputLength, "dynamic character count"); 
    
     useEffect(() => {
