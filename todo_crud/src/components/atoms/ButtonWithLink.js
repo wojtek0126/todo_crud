@@ -3,6 +3,7 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
 import { Link } from 'react-router-dom'
+import { buttonsBorderRadius } from '../../styles/themes/settings'
 
 const ButtonWithlink = ({
   to,
@@ -21,7 +22,7 @@ const ButtonWithlink = ({
       wordBreak: 'break-word',
       // backgroundColor: `${backgroundColor}`,
       background: `${backgroundColor}`,
-      borderRadius: '4px',
+      borderRadius: buttonsBorderRadius,
       border: 'none',
       color: 'buttonText2',
       textAlign: 'center',

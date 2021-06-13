@@ -2,6 +2,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
+import { detailsBorderRadius } from '../../styles/themes/settings'
 
 const DisplayDetailsText = ({
   headText,
@@ -25,7 +26,7 @@ const DisplayDetailsText = ({
       padding: 2,
       border: '2px solid',
       borderColor: 'taskDetailBorderColor',
-      borderRadius: '4px',
+      borderRadius: detailsBorderRadius,
       fontSize: [1, 4],
     }}
   >

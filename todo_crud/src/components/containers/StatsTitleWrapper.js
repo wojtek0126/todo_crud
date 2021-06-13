@@ -3,16 +3,17 @@
 /** @jsx jsx */
 import { jsx, Flex } from 'theme-ui';
 import { taskBackground } from '../../styles/gradients';
+import { generalBorderRadius } from '../../styles/themes/settings';
 
 
 const StatsTitleWrapper = ({contentArea}) => (    
     <Flex sx={{    
-        // backgroundColor: 'boxBackground',                    
-        background: `${taskBackground}`,
+        backgroundColor: 'boxBackground',                    
+        // background: `${taskBackground}`,
         color: 'text',
         border: '2px solid',  
         borderColor: 'boxBorder', 
-        borderRadius: 4,
+        borderRadius: generalBorderRadius,
         fontSize: 4,
         margin: 3,       
         padding: 3,

@@ -2,6 +2,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
+import { buttonsBorderRadius } from '../../styles/themes/settings'
 
 const ButtonPrimary = ({
   text,
@@ -24,7 +25,7 @@ const ButtonPrimary = ({
         // backgroundColor: `${backgroundColor}`,
         background: `${backgroundColor}`,
         transition: '0.5s',
-        borderRadius: '4px',
+        borderRadius: buttonsBorderRadius,
         border: 'none',
         color: `${color}`,
         display: 'flex !important',

@@ -1,7 +1,7 @@
 /* eslint-disable */
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Flex } from 'theme-ui'
+import { jsx } from 'theme-ui'
 
 const ItemStatusWrapper = ({ contentArea }) => (
   <div

@@ -3,6 +3,7 @@
 /** @jsx jsx */
 import { jsx, Flex } from 'theme-ui'
 import { taskDetailsBackground } from '../../styles/gradients'
+import { generalBorderRadius } from '../../styles/themes/settings'
 
 const TaskDetailsWrapper = ({ contentArea, displayIt }) => (
   <div
@@ -15,7 +16,7 @@ const TaskDetailsWrapper = ({ contentArea, displayIt }) => (
       color: 'text',
       border: '2px solid',
       borderColor: 'boxBorder',
-      borderRadius: 4,
+      borderRadius: generalBorderRadius,
       fontFamily: 'body',
       fontSize: 4,
       margin: 3,

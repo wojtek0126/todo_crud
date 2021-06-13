@@ -37,11 +37,12 @@ export const nonRecoilStats = (list) => {
     totalNumTitleScrn === 0
       ? 0
       : (totalCompletedNumTitleScrn / totalNumTitleScrn) * 100
+  const percentRound = Math.round(percentCompletedTitleScrn)
   return {
     totalNumTitleScrn,
     totalCompletedNumTitleScrn,
     totalUncompletedNumTitleScrn,
-    percentCompletedTitleScrn,
+    percentRound
   }
 }
 

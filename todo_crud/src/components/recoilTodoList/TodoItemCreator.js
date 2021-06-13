@@ -75,16 +75,19 @@ const TodoItemCreator = () => {
   const handleTaskMenuOpenCloseBtn = () => {
     switchDisplayStateOnOff(setCreatorBtnMenu, on)
     switchDisplayStateOnOff(setCreatorBtnAdd, off)
-    setCreatorBtnBack(setCreatorBtnMenu, off)
+    setCreatorBtnBack(off)
 
     setTimeout(() => {
       if (creatorBtnAdd === 'none') {
         switchDisplayStateOnOff(setCreatorBtnMenu, on)
         switchDisplayStateOnOff(setCreatorBtnAdd, on)
-        setCreatorBtnBack(setCreatorBtnMenu, on)
+        setCreatorBtnBack(on)
         setCreatorBtnMenuLight(bulbOn)
       } else {
         setCreatorBtnMenuLight(bulbOff)
+        switchDisplayStateOnOff(setCreatorBtnMenu, on)
+        switchDisplayStateOnOff(setCreatorBtnAdd, off)
+        setCreatorBtnBack(off)
       }
     }, 10)
   }

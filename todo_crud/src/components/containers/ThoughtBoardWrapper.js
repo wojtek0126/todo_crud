@@ -3,6 +3,7 @@
 /** @jsx jsx */
 import { jsx, Flex } from 'theme-ui'
 import { taskBackground } from '../../styles/gradients'
+import { generalBorderRadius } from '../../styles/themes/settings'
 
 const ThoughtBoardWrapper = ({ contentArea }) => (
   <Flex
@@ -10,12 +11,12 @@ const ThoughtBoardWrapper = ({ contentArea }) => (
       maxWidth: '100vw',
       flexDirection: 'column',
       background: 'box',
-      // backgroundColor: 'boxBackground',
-      background: `${taskBackground}`,
+      backgroundColor: 'boxBackground',
+      // background: `${taskBackground}`,
       color: 'text',
       border: '2px solid',
       borderColor: 'boxBorder',
-      borderRadius: 4,
+      borderRadius: generalBorderRadius,
       fontSize: 4,
       margin: 3,
       padding: 3,

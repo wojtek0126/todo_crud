@@ -52,7 +52,7 @@ const TitleStats = () => {
             color={`counterText`}
           />
           <ProgressCounter
-            text={`${titleStatsPercentCompletedTxt} ${titleStats.percentCompletedTitleScrn}`}
+            text={`${titleStatsPercentCompletedTxt} ${titleStats.percentRound}`}
             backgroundColor={'counterPercentage'}
             color={`counterText`}
           />

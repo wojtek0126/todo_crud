@@ -17,10 +17,10 @@ export default {
   },
   colors: {
     // background color
-    background: 'darkolivegreen',
+    background: '#ffffff',
     // box container colors
     boxBorder: '#000000',
-    boxBackground: 'darkseagreen',
+    boxBackground: 'gold',
     // app title text colors
     titleText1: 'blue',
     titleText2: 'white',
