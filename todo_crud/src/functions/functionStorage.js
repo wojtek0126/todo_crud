@@ -2,7 +2,7 @@
 
 import { getAllTasks } from "../API/fetch"
 
-// switch button text on click - for buttons,
+// switch button text on click 
 export const switchBtnTxt = (setUpdateState, text1, text2, delay = 1800) => {
   setUpdateState(text2)
   setTimeout(() => {
