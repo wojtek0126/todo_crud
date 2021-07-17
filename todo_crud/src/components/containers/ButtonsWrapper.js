@@ -11,7 +11,7 @@ const ButtonsWrapper = ({ contentArea, displayStyle, alignSelf }) => (
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignSelf: `${alignSelf}`,
-      width: '100% !important',
+      width: '100%',
       '@media screen and (max-width: 700px)': {
         flexDirection: 'column',
         alignItems: 'center',

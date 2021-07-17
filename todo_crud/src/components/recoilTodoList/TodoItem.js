@@ -44,7 +44,7 @@ import {
   todoItemStatusCompletedText,
   todoItemStatusInProgressText  
 } from '../../content/contentEng'
-import { bulbOff, bulbOn, off, on } from '../../variables/variablesStorage'
+import { bulbOff, bulbOn, empty, off, on } from '../../variables/variablesStorage'
 import ItemWrapper from '../containers/ItemWrapper'
 import ItemStatusWrapper from '../containers/ItemStatusWrapper'
 import ItemButtonsWrapper from '../containers/ItemButtonsWrapper'
@@ -53,6 +53,10 @@ const TodoItem = ({ item }) => {
   // init data
   const initialTitleDisplay = item.title
   const todoItemPrevious = item
+
+  // button full width or invisible, for button effect
+  const [btnRolled, setBtnRolled] = useState(empty)
+
 
   // takes whole list from recoilState
   const [todoList, setTodoList] = useRecoilState(todoListState)
@@ -403,6 +407,7 @@ const TodoItem = ({ item }) => {
                 />
                 {/* show details button */}
                 <ButtonPrimary
+                  height={'10px'}
                   onClick={handleShowDetailsBtn}
                   displayIt={taskBtnDetails}
                   text={detailsBtnIcon}

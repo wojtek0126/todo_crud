@@ -11,9 +11,13 @@ export const off = 'none'
 export const bulbOn = 'bulbOn'
 export const bulbOff = 'bulbOff'
 
-//variable for TodoListFilters.js
+// variable for TodoListFilters.js
 export const filteredOptions = [
     todoFilterShowAllTxt,
     todoFilterCompletedOnlyTxt,
     todoFilterInProgressOnlyTxt,
   ]
+
+  // width for buttons
+  export const empty = 0
+  export const full = '100%'

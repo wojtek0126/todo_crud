@@ -5,6 +5,7 @@ import { jsx } from 'theme-ui'
 import { buttonsBorderRadius } from '../../styles/themes/settings'
 
 const ButtonPrimary = ({
+  heigth,
   text,
   backgroundColor,
   onClick,
@@ -24,6 +25,7 @@ const ButtonPrimary = ({
         alignSelf: `${alignSelf}`,
         // backgroundColor: `${backgroundColor}`,
         background: `${backgroundColor}`,
+        height: `${heigth}`,
         transition: '0.5s',
         borderRadius: buttonsBorderRadius,
         border: 'none',
