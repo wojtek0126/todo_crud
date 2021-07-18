@@ -3,7 +3,7 @@
 /** @jsx jsx */
 import { Flex, jsx } from 'theme-ui'
 import { generalBorderRadius, footerBorder } from '../../styles/themes/settings'
-import background3 from "../../assets/bubbles2.jpg";
+import background3 from "../../assets/poly4.webp";
 
 
 const FooterWrapper = ({ contentArea }) => (

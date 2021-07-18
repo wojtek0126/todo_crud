@@ -11,7 +11,7 @@ const Footer = ({ brandName, year }) => {
     sx={{
       fontFamily: 'heading',
       fontWeight: 'body',
-      color: `textWhite`,
+      color: `text`,
     }}
   >
     © {year} {brandName}
