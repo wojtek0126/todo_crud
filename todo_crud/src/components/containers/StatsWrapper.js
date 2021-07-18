@@ -3,7 +3,7 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
 import { taskBackground } from '../../styles/gradients'
-import { generalBorderRadius, borders } from '../../styles/themes/settings'
+import { generalBorderRadius, borders, boxOpacity } from '../../styles/themes/settings'
 import background3 from "../../assets/poly4.webp";
 
 
@@ -16,6 +16,7 @@ const StatsWrapper = ({ contentArea }) => (
       backgroundSize: 'cover',
       // backgroundColor: 'boxBackground',
       // background: `${taskBackground}`,
+      opacity: `${boxOpacity}`,
       border: `${borders}`,
       borderColor: 'boxBorder',
       borderRadius: generalBorderRadius,

@@ -19,7 +19,7 @@ import { useRecoilValue } from 'recoil'
 import theme from '../../styles/themes/theme'
 import TitleWrapper from '../containers/TitleWrapper'
 import FooterWrapper from '../containers/FooterWrapper'
-import background from "../../assets/bubbles2.jpg";
+import background from "../../assets/bubbles9.jpg";
 
 const TitleScreen = () => {
   const inputLength = useRecoilValue(inputLengthState)
@@ -30,6 +30,7 @@ const TitleScreen = () => {
   return (
     <ThemeProvider theme={theme}>
        <Container sx={{backgroundImage: `url(${background})`,
+                      backgroundSize: 'cover',
                       paddingTop: '20px'
                       }}>           
         <TitleWrapper

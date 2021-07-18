@@ -12,4 +12,7 @@ export const detailsBorderRadius = 5
 export const borders = 'none' 
 
 // border for footer
-export const footerBorder = '1px solid white'
+export const footerBorder = 'none'
+
+// opacity for task boxes etc
+export const boxOpacity = '0.9'

@@ -2,7 +2,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { Flex, jsx } from 'theme-ui'
-import { generalBorderRadius, footerBorder } from '../../styles/themes/settings'
+import { generalBorderRadius, footerBorder, boxOpacity } from '../../styles/themes/settings'
 import background3 from "../../assets/poly4.webp";
 
 
@@ -22,7 +22,9 @@ const FooterWrapper = ({ contentArea }) => (
         fontSize: 4,
         textAlign: 'center',
         margin: 3,
+        marginTop: '7px',
         padding: '9px',
+        opacity: `${boxOpacity}`,
         borderRadius: generalBorderRadius,
         border: `${footerBorder}`,
         // borderColor: `boxBorder`,

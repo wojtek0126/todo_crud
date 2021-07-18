@@ -45,6 +45,9 @@ const TodoList = () => {
   return (
     <ThemeProvider theme={theme}>
       <Container sx={{backgroundImage: `url(${background})`,
+                      backgroundSize: 'auto',
+                      minHeight: '100vh',
+                      // backgroundRepeat: 'round',
                       paddingTop: '20px'
                       }}>
         <TodoItemCreator />
@@ -63,7 +66,7 @@ const TodoList = () => {
           }
         />
         <TodoListStats />
-        <ScrollUpButton />
+        <ScrollUpButton sx={{zIndex: 3}} />
         <ItemFilteredWrapper
           contentArea={filterData.map((todoItem) => (
             <Box key={todoItem.id} sx={{ width: ['100%'] }}>

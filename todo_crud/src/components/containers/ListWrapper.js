@@ -3,7 +3,7 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
 import { taskBackground } from '../../styles/gradients'
-import { generalBorderRadius, borders } from '../../styles/themes/settings'
+import { generalBorderRadius, borders, boxOpacity } from '../../styles/themes/settings'
 import background3 from "../../assets/poly4.webp";
  
 const ListWrapper = ({ contentArea }) => (
@@ -14,6 +14,7 @@ const ListWrapper = ({ contentArea }) => (
       backgroundSize: 'cover',
       // backgroundColor: 'boxBackground',
       // background: `${taskBackground}`,
+      opacity: `${boxOpacity}`,
       color: 'text',
       border: `${borders}`,
       borderColor: 'boxBorder',
