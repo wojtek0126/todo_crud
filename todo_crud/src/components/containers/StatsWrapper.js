@@ -4,13 +4,17 @@
 import { jsx } from 'theme-ui'
 import { taskBackground } from '../../styles/gradients'
 import { generalBorderRadius, borders } from '../../styles/themes/settings'
+import background3 from "../../assets/silver.jpg";
+
 
 const StatsWrapper = ({ contentArea }) => (
   <div
     sx={{
       display: 'flex',
       flexDirection: 'column',
-      backgroundColor: 'boxBackground',
+      backgroundImage: `url(${background3})`,
+      backgroundSize: 'cover',
+      // backgroundColor: 'boxBackground',
       // background: `${taskBackground}`,
       border: `${borders}`,
       borderColor: 'boxBorder',

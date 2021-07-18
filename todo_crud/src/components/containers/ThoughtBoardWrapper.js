@@ -4,14 +4,18 @@
 import { jsx, Flex } from 'theme-ui'
 import { taskBackground } from '../../styles/gradients'
 import { generalBorderRadius, borders } from '../../styles/themes/settings'
+import background3 from "../../assets/silver.jpg";
+
 
 const ThoughtBoardWrapper = ({ contentArea }) => (
   <Flex
     sx={{
       maxWidth: '100vw',
       flexDirection: 'column',
-      background: 'box',
-      backgroundColor: 'boxBackground',
+      backgroundImage: `url(${background3})`,
+      backgroundSize: 'cover',
+      // background: 'box',
+      // backgroundColor: 'boxBackground',
       // background: `${taskBackground}`,
       color: 'text',
       border: `${borders}`,

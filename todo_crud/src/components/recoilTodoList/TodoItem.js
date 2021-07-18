@@ -54,12 +54,10 @@ const TodoItem = ({ item }) => {
   const initialTitleDisplay = item.title
   const todoItemPrevious = item
 
-  // button full width or invisible, for button effect
-  const [btnRolled, setBtnRolled] = useState(empty)
+  // initial padding for task details to make it invisible when off
+  const [detailsPadding, setDetailsPadding] = useState(0)
   // task details animation
   const [detailsHeight, setDetailsHeight] = useState("0")
-
-
   // takes whole list from recoilState
   const [todoList, setTodoList] = useRecoilState(todoListState)
   // index finder
@@ -314,10 +312,11 @@ const TodoItem = ({ item }) => {
     switchDisplayStateOnOff(setYesNoStatusPopup, off)
     switchDisplayStateOnOff(setDisabled, true)
     switchDisplayStateOnOff(setTaskStatusView, off)  
-    setDetailsHeight("600px")  
+    setDetailsHeight("650px")  
+    setDetailsPadding(3)
     setTimeout(() => {
       switchDisplayStateOnOff(setTaskDetailView, on)
-    }, 1000)  
+    }, 300)  
   }
 
   // after clicking close details
@@ -334,6 +333,7 @@ const TodoItem = ({ item }) => {
     switchDisplayStateOnOff(setTaskDetailView, off)
     switchDisplayStateOnOff(setTaskStatusView, on)
     setDetailsHeight("0")
+    setDetailsPadding(0)
   }
 
   // item completed/in progress to display
@@ -376,6 +376,8 @@ const TodoItem = ({ item }) => {
       }
     }, 10)
   }
+
+  console.log(detailsPadding, "detpad")
 
   return (
     <ItemWrapper
@@ -483,6 +485,7 @@ const TodoItem = ({ item }) => {
             }
           />
           <TaskDetails
+            padding={detailsPadding}
             displayIt={taskDetailView}
             height={detailsHeight}
             taskData={updatedData}

@@ -19,7 +19,7 @@ import { useRecoilValue } from 'recoil'
 import theme from '../../styles/themes/theme'
 import TitleWrapper from '../containers/TitleWrapper'
 import FooterWrapper from '../containers/FooterWrapper'
-import background from "C:/CodersLab/todo_crud/todo_crud/src/assets/bubbles2.jpg";
+import background from "../../assets/bubbles2.jpg";
 
 const TitleScreen = () => {
   const inputLength = useRecoilValue(inputLengthState)

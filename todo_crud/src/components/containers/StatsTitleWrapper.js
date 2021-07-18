@@ -4,11 +4,13 @@
 import { jsx, Flex } from 'theme-ui';
 import { taskBackground } from '../../styles/gradients';
 import { generalBorderRadius, borders } from '../../styles/themes/settings';
-
+import background3 from "../../assets/silver.jpg";
 
 const StatsTitleWrapper = ({contentArea}) => (    
     <Flex sx={{    
-        backgroundColor: 'boxBackground',                    
+      backgroundImage: `url(${background3})`,
+      backgroundSize: 'cover',
+        // backgroundColor: 'boxBackground',                    
         // background: `${taskBackground}`,
         color: 'text',
         border: `${borders}`,

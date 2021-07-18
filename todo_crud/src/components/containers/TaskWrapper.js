@@ -4,12 +4,16 @@
 import { jsx } from 'theme-ui'
 import { taskBackground } from '../../styles/styles/gradients'
 import { generalBorderRadius, borders } from '../../styles/themes/settings'
+import background3 from "../../assets/silver.jpg";
+
 
 const TaskWrapper = ({ contentArea }) => (
   <div
     sx={{
-      background: 'box',
-      backgroundColor: 'boxBackground',
+      backgroundImage: `url(${background3})`,
+      backgroundSize: 'cover',
+      // background: 'box',
+      // backgroundColor: 'boxBackground',
       // background: `${taskBackground}`,
       color: 'text',
       border: `${borders}`,

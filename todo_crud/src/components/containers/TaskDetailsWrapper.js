@@ -4,8 +4,10 @@
 import { jsx, Flex } from 'theme-ui'
 import { taskDetailsBackground } from '../../styles/gradients'
 import { generalBorderRadius, borders } from '../../styles/themes/settings'
+import background2 from "../../assets/bubbles4.jpg";
 
-const TaskDetailsWrapper = ({ contentArea, displayIt = 'flex', height = 0 }) => (
+
+const TaskDetailsWrapper = ({ contentArea, displayIt = 'flex', height = 0, padding }) => (
   <div
     sx={{
       // display: `${displayIt}`,
@@ -14,16 +16,21 @@ const TaskDetailsWrapper = ({ contentArea, displayIt = 'flex', height = 0 }) => 
       alignItems: 'center',
       justifyContent: 'center',
       alignSelf: 'center',
-      background: `${taskDetailsBackground}`,
+      backgroundImage: `url(${background2})`,
+      backgroundSize: 'cover',
+      // background: `${taskDetailsBackground}`,
       color: 'text',
-      border: `${borders}`,
+      border: `none`,
       borderColor: 'boxBorder',
       borderRadius: generalBorderRadius,
       fontFamily: 'body',
       fontSize: 4,
       margin: 3,
-      padding: 3,
-      transition: '1s'
+      padding: `${padding}`,
+      paddingLeft: 3,
+      paddingRight: 3,
+      transition: '0.5s',
+      maxHeight: '100%'
     }}
   >
     <Flex sx={{ flexDirection: 'column' }}>{contentArea}</Flex>

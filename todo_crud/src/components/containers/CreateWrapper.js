@@ -4,13 +4,17 @@
 import { Flex, jsx } from 'theme-ui'
 import { taskBackground } from '../../styles/gradients'
 import { generalBorderRadius, borders } from '../../styles/themes/settings'
+import background3 from "../../assets/silver.jpg";
+
 
 const CreateWrapper = ({ contentArea }) => (
   <Flex
     sx={{
       flexDirection: 'column',
       background: 'box',
-      backgroundColor: 'boxBackground',
+      // backgroundColor: 'boxBackground',
+      backgroundImage: `url(${background3})`,
+      backgroundSize: 'cover',
       // background: `${taskBackground}`,
       color: 'text',
       border: `${borders}`,

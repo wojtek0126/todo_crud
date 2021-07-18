@@ -22,7 +22,7 @@ import {
   taskDetailsDetailBackground,
 } from '../../styles/gradients'
 
-const TaskDetails = ({ clickClose, displayIt = 'flex', taskData, height }) => {
+const TaskDetails = ({ clickClose, displayIt = 'none', taskData, height }) => {
   let getTask = taskData
   const updated = getTask.updated_at
   let updateDisplay = ""

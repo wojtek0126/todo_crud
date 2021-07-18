@@ -23,7 +23,7 @@ import ListWrapper from '../containers/ListWrapper'
 import ItemFilteredWrapper from '../containers/ItemFilteredWrapper'
 import TodoItem from './TodoItem'
 import { getTodos, handleOnChangeTargetValue } from '../../functions/functionStorage'
-import background from "C:/CodersLab/todo_crud/todo_crud/src/assets/bubbles2.jpg";
+import background from "../../assets/bubbles2.jpg";
 
 
 const TodoList = () => {

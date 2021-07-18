@@ -3,6 +3,8 @@
 /** @jsx jsx */
 import { Flex, jsx } from 'theme-ui'
 import { generalBorderRadius, footerBorder } from '../../styles/themes/settings'
+import background3 from "../../assets/bubbles2.jpg";
+
 
 const FooterWrapper = ({ contentArea }) => (
   <Flex
@@ -24,8 +26,9 @@ const FooterWrapper = ({ contentArea }) => (
         borderRadius: generalBorderRadius,
         border: `${footerBorder}`,
         // borderColor: `boxBorder`,
-        backgroundColor: 'boxBackground'
+        // backgroundColor: 'boxBackground',
         // background: `${taskBackground}`,
+        backgroundImage: `url(${background3})`,
       }}
     >
       {contentArea}
