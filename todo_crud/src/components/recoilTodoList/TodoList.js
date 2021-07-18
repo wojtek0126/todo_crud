@@ -23,6 +23,8 @@ import ListWrapper from '../containers/ListWrapper'
 import ItemFilteredWrapper from '../containers/ItemFilteredWrapper'
 import TodoItem from './TodoItem'
 import { getTodos, handleOnChangeTargetValue } from '../../functions/functionStorage'
+import background from "C:/CodersLab/todo_crud/todo_crud/src/assets/bubbles2.jpg";
+
 
 const TodoList = () => {
   const [todos, setTodos] = useRecoilState(todoListState)
@@ -42,7 +44,9 @@ const TodoList = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container>
+      <Container sx={{backgroundImage: `url(${background})`,
+                      paddingTop: '20px'
+                      }}>
         <TodoItemCreator />
         <ListWrapper
           contentArea={

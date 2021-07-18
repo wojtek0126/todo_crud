@@ -3,7 +3,7 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
 import { taskBackground } from '../../styles/gradients'
-import { generalBorderRadius } from '../../styles/themes/settings'
+import { generalBorderRadius, borders } from '../../styles/themes/settings'
 
 const StatsWrapper = ({ contentArea }) => (
   <div
@@ -12,7 +12,7 @@ const StatsWrapper = ({ contentArea }) => (
       flexDirection: 'column',
       backgroundColor: 'boxBackground',
       // background: `${taskBackground}`,
-      border: '2px solid',
+      border: `${borders}`,
       borderColor: 'boxBorder',
       borderRadius: generalBorderRadius,
       fontSize: 4,

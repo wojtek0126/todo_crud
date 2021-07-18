@@ -3,7 +3,7 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
 import { taskBackground } from '../../styles/gradients'
-import { generalBorderRadius } from '../../styles/themes/settings'
+import { generalBorderRadius, borders } from '../../styles/themes/settings'
 
 const ItemWrapper = ({ contentArea }) => (
   <div
@@ -12,7 +12,7 @@ const ItemWrapper = ({ contentArea }) => (
       backgroundColor: 'boxBackground',
       // background: `${taskBackground}`,
       color: 'text',
-      border: '2px solid',
+      border: `${borders}`,
       borderColor: 'boxBorder',
       borderRadius: generalBorderRadius,
       fontSize: 4,

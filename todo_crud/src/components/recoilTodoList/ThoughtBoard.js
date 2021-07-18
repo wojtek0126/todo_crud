@@ -90,9 +90,7 @@ const ThoughtBoard = () => {
                   backgroundColor={buttonBackgroundType3}
                   onClick={() =>
                     handleClickClearLocal(
-                      thoughtForgottenTxt,
-                      thoughtForgetBtnTxt,
-                      boardText,
+                      setBoardText,
                     )
                   }
                   displayIt={boardBtnDelete}

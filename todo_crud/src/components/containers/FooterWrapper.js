@@ -2,7 +2,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { Flex, jsx } from 'theme-ui'
-import { generalBorderRadius } from '../../styles/themes/settings'
+import { generalBorderRadius, footerBorder } from '../../styles/themes/settings'
 
 const FooterWrapper = ({ contentArea }) => (
   <Flex
@@ -22,8 +22,8 @@ const FooterWrapper = ({ contentArea }) => (
         margin: 3,
         padding: '9px',
         borderRadius: generalBorderRadius,
-        border: `2px solid`,
-        borderColor: `boxBorder`,
+        border: `${footerBorder}`,
+        // borderColor: `boxBorder`,
         backgroundColor: 'boxBackground'
         // background: `${taskBackground}`,
       }}

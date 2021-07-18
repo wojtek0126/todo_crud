@@ -3,10 +3,10 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
 
-const TaskDetailBtnWrapper = ({ contentArea }) => (
+const TaskDetailBtnWrapper = ({ contentArea, displayIt }) => (
   <div
     sx={{
-      display: 'flex',
+      display: `${displayIt}`,
       justifyContent: 'center',
       alignSelf: 'center',
       width: '100%',

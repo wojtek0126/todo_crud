@@ -10,10 +10,11 @@ const DisplayDetailsText = ({
   marginTop,
   marginBottom,
   backgroundColor,
+  displayIt
 }) => (
   <div
     sx={{
-      display: 'flex',
+      display: `${displayIt}`,
       wordBreak: 'break-word',
       alignSelf: `center`,
       flexDirection: 'column',

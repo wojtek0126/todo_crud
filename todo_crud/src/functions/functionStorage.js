@@ -105,14 +105,14 @@ export const handleClickSaveToLocal = (localKey, localValue, inputValue) => {
   }
 }
 
-export const handleClickClearLocal = (inputValue, setBoardText) => {
-  if (inputValue === '' || inputValue === null || inputValue === undefined) {
-  } else {
+export const handleClickClearLocal = (setBoardText) => {
+  // if (inputValue === '' || inputValue === null || inputValue === undefined) {
+  // } else {
     localStorage.clear()
     setTimeout(() => {
       setBoardText('')
     })
-  }
+  // }
 }
 
 

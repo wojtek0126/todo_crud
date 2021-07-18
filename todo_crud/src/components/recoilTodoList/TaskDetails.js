@@ -22,8 +22,10 @@ import {
   taskDetailsDetailBackground,
 } from '../../styles/gradients'
 
-const TaskDetails = ({ clickClose, displayIt = 'flex', taskData }) => {
+const TaskDetails = ({ clickClose, displayIt = 'flex', taskData, height }) => {
   let getTask = taskData
+  const updated = getTask.updated_at
+  let updateDisplay = ""
 
   // convert task completion status from true/false to success/in progress text
   let completionText = ''
@@ -33,12 +35,26 @@ const TaskDetails = ({ clickClose, displayIt = 'flex', taskData }) => {
     completionText = taskDetailsInProgressTxt
   }
 
+  if (updated === undefined) {
+    updateDisplay = "Not updated yet"
+  }
+  else {
+    updateDisplay = updated
+  }
+
+  setTimeout(() => {
+    console.log(getTask)
+
+  }, 1000)
+
   return (
     <TaskDetailsWrapper
+      height={height}
       displayIt={displayIt}
       contentArea={
         <>
           <DisplayDetailsText
+            displayIt={displayIt}
             headText={taskDetailsTaskNumberTxt}
             contentText={getTask.id}
             marginTop={1}
@@ -46,6 +62,7 @@ const TaskDetails = ({ clickClose, displayIt = 'flex', taskData }) => {
             backgroundColor={taskDetailsDetailBackground}
           />
           <DisplayDetailsText
+            displayIt={displayIt}
             headText={taskDetailsTaskContentTxt}
             contentText={getTask.title}
             marginTop={2}
@@ -53,6 +70,7 @@ const TaskDetails = ({ clickClose, displayIt = 'flex', taskData }) => {
             backgroundColor={taskDetailsDetailBackground}
           />
           <DisplayDetailsText
+            displayIt={displayIt}
             headText={taskDetailsStatusTxt}
             contentText={completionText}
             marginTop={2}
@@ -60,20 +78,23 @@ const TaskDetails = ({ clickClose, displayIt = 'flex', taskData }) => {
             backgroundColor={taskDetailsDetailBackground}
           />
           <DisplayDetailsText
+            displayIt={displayIt}
             headText={taskDetailsTimeStartedTxt}
-            contentText={getTask.created_at}
+            contentText={getTask.due_on}
             marginTop={2}
             marginBottom={2}
             backgroundColor={taskDetailsDetailBackground}
           />
           <DisplayDetailsText
+            displayIt={displayIt}
             headText={taskDetailsTimeUpdatedTxt}
-            contentText={getTask.updated_at}
+            contentText={updateDisplay}
             marginTop={2}
             marginBottom={2}
             backgroundColor={taskDetailsDetailBackground}
           />
           <TaskDetailBtnWrapper
+            displayIt={displayIt}
             contentArea={
               <ButtonPrimary
                 text={hideDetailsBtnIcon}

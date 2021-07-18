@@ -56,6 +56,8 @@ const TodoItem = ({ item }) => {
 
   // button full width or invisible, for button effect
   const [btnRolled, setBtnRolled] = useState(empty)
+  // task details animation
+  const [detailsHeight, setDetailsHeight] = useState("0")
 
 
   // takes whole list from recoilState
@@ -92,13 +94,13 @@ const TodoItem = ({ item }) => {
  
 
   // data to retrieve initial input if edit cancelled
-  useEffect(() => {
+  useEffect(() => {  
     const todoDataInit = {
       id: item.id,
       user_id: item.user_id,
       title: item.title,
       completed: item.completed,
-      created_at: item.created_at,
+      due_on: item.due_on,
       updated_at: item.updated_at,
     }
     setInitTaskData(todoDataInit)
@@ -145,7 +147,7 @@ const TodoItem = ({ item }) => {
       user_id: item.user_id,
       title: value,
       completed: item.completed,
-      created_at: item.created_at,
+      due_on: item.due_on,
       updated_at: timeStampFormatted(),
     }
     setTextareaDisplay(todoDataMod.title)
@@ -242,7 +244,7 @@ const TodoItem = ({ item }) => {
       user_id: item.user_id,
       title: item.title,
       completed: !item.completed,
-      created_at: item.created_at,
+      due_on: item.due_on,
       updated_at: timeStampFormatted(),
     }
     updateTask(item.id, todoDataModCheck)
@@ -311,8 +313,11 @@ const TodoItem = ({ item }) => {
     switchDisplayStateOnOff(setYesNoEditPopup, off)
     switchDisplayStateOnOff(setYesNoStatusPopup, off)
     switchDisplayStateOnOff(setDisabled, true)
-    switchDisplayStateOnOff(setTaskDetailView, on)
     switchDisplayStateOnOff(setTaskStatusView, off)  
+    setDetailsHeight("600px")  
+    setTimeout(() => {
+      switchDisplayStateOnOff(setTaskDetailView, on)
+    }, 1000)  
   }
 
   // after clicking close details
@@ -328,6 +333,7 @@ const TodoItem = ({ item }) => {
     switchDisplayStateOnOff(setDisabled, true)
     switchDisplayStateOnOff(setTaskDetailView, off)
     switchDisplayStateOnOff(setTaskStatusView, on)
+    setDetailsHeight("0")
   }
 
   // item completed/in progress to display
@@ -478,6 +484,7 @@ const TodoItem = ({ item }) => {
           />
           <TaskDetails
             displayIt={taskDetailView}
+            height={detailsHeight}
             taskData={updatedData}
             clickClose={handleCloseDetailsBtn}
           />

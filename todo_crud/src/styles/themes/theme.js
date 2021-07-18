@@ -19,7 +19,7 @@ export default {
     // background color
     background: '#ffffff',
     // box container colors
-    boxBorder: '#000000',
+    boxBorder: '#ffffff',
     boxBackground: 'gold',
     // app title text colors
     titleText1: 'blue',
@@ -72,6 +72,7 @@ export default {
       backgroundColor: 'background',
       fontFamily: 'body',
       lineHeight: 'body',
+      
     },
     Container: {
       maxWidth: 1160,
