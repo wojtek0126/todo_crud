@@ -4,7 +4,7 @@
 import { Flex, jsx } from 'theme-ui'
 import { taskBackground } from '../../styles/gradients'
 import { generalBorderRadius, borders } from '../../styles/themes/settings'
-import background3 from "../../assets/silver.jpg";
+import background3 from "../../assets/poly4.webp";
 
 
 const CreateWrapper = ({ contentArea }) => (
