@@ -24,3 +24,5 @@ Planned:
 -new API
 -animations
 -more options
+Demo:
+https://wojtek0126.github.io/todo_crud/
