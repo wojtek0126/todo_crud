@@ -66,7 +66,7 @@ const TodoList = () => {
           }
         />
         <TodoListStats />
-        <ScrollUpButton sx={{zIndex: 3}} />
+        <ScrollUpButton />
         <ItemFilteredWrapper
           contentArea={filterData.map((todoItem) => (
             <Box key={todoItem.id} sx={{ width: ['100%'] }}>
