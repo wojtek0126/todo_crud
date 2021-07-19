@@ -7,7 +7,7 @@ import { generalBorderRadius, borders, boxOpacity } from '../../styles/themes/se
 import background3 from "../../assets/poly4.webp";
 
 
-const ItemWrapper = ({ contentArea }) => (
+const ItemWrapper = ({ contentArea, paddingBottom }) => (
   <div
     sx={{
       backgroundImage: `url(${background3})`,
@@ -23,6 +23,7 @@ const ItemWrapper = ({ contentArea }) => (
       fontSize: 4,
       margin: 3,
       padding: 3,
+      paddingBottom: `${paddingBottom}`
     }}
   >
     {contentArea}

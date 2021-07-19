@@ -56,6 +56,8 @@ const TodoItem = ({ item }) => {
 
   // initial padding for task details to make it invisible when off
   const [detailsPadding, setDetailsPadding] = useState(0)
+  // padding bottom in task wrapper creates bug either too big task box other no gap when details on - here is the fix
+  const [padBot, setPadBot] = useState("unset")
   // task details animation
   const [detailsHeight, setDetailsHeight] = useState("0")
   // takes whole list from recoilState
@@ -314,6 +316,7 @@ const TodoItem = ({ item }) => {
     switchDisplayStateOnOff(setTaskStatusView, off)  
     setDetailsHeight("650px")  
     setDetailsPadding(3)
+    setPadBot(3)
     setTimeout(() => {
       switchDisplayStateOnOff(setTaskDetailView, on)
     }, 300)  
@@ -334,6 +337,7 @@ const TodoItem = ({ item }) => {
     switchDisplayStateOnOff(setTaskStatusView, on)
     setDetailsHeight("0")
     setDetailsPadding(0)
+    setPadBot(0)
   }
 
   // item completed/in progress to display
@@ -380,7 +384,7 @@ const TodoItem = ({ item }) => {
   console.log(detailsPadding, "detpad")
 
   return (
-    <ItemWrapper
+    <ItemWrapper paddingBottom={padBot}
       contentArea={
         <>
           <BigText text={`${taskNumberText} # ${item.id}:`} marginBottom={2} />
