@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/todo_crud/static/css/main.2ae47eeb.chunk.css",
-    "main.js": "/todo_crud/static/js/main.a2d0fdd9.chunk.js",
-    "main.js.map": "/todo_crud/static/js/main.a2d0fdd9.chunk.js.map",
+    "main.js": "/todo_crud/static/js/main.b58db24a.chunk.js",
+    "main.js.map": "/todo_crud/static/js/main.b58db24a.chunk.js.map",
     "runtime-main.js": "/todo_crud/static/js/runtime-main.27913f6f.js",
     "runtime-main.js.map": "/todo_crud/static/js/runtime-main.27913f6f.js.map",
     "static/js/2.0e898cea.chunk.js": "/todo_crud/static/js/2.0e898cea.chunk.js",
@@ -15,12 +15,13 @@
     "static/media/b4769e3a52766f30e86b375391c84441.3d007a0b.jpg": "/todo_crud/static/media/b4769e3a52766f30e86b375391c84441.3d007a0b.jpg",
     "static/media/bubbles2.889ee6ed.jpg": "/todo_crud/static/media/bubbles2.889ee6ed.jpg",
     "static/media/bubbles4.1ed83b0d.jpg": "/todo_crud/static/media/bubbles4.1ed83b0d.jpg",
+    "static/media/bubbles9.887b33c1.jpg": "/todo_crud/static/media/bubbles9.887b33c1.jpg",
     "static/media/poly4.a48ef4f1.webp": "/todo_crud/static/media/poly4.a48ef4f1.webp"
   },
   "entrypoints": [
     "static/js/runtime-main.27913f6f.js",
     "static/js/2.0e898cea.chunk.js",
     "static/css/main.2ae47eeb.chunk.css",
-    "static/js/main.a2d0fdd9.chunk.js"
+    "static/js/main.b58db24a.chunk.js"
   ]
 }
