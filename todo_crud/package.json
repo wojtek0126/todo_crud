@@ -25,6 +25,8 @@
     "react-scroll-up-button": "^1.6.4",
     "react-search": "^2.1.1",
     "react-search-field": "^1.2.1",
+    "react-sky": "^1.1.0",
+    "react-wavify": "^1.5.3",
     "recoil": "^0.2.0",
     "theme-ui": "^0.8.4",
     "web-vitals": "^1.1.2"
